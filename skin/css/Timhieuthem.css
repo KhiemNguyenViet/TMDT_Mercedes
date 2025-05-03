@@ -1,0 +1,78 @@
+.allcard {
+    padding: 40px;
+}
+
+.text1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    margin-left: 5px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.card,
+.card-small {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    height: 450px;
+}
+
+.card {
+    flex: 0 0 60%;
+    /* Thẻ lớn 60% */
+}
+
+.card-small {
+    flex: 0 0 38%;
+    /* Thẻ nhỏ 38% */
+}
+
+.card-img,
+.card1-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-img,
+.card-small:hover .card1-img {
+    transform: scale(1.3);
+    /* Phóng to 30% khi hover */
+}
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    text-align: left;
+}
+
+.btn-view {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #4F59E4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-view:hover {
+    background-color: #3a41c2;
+}
