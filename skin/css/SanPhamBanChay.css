@@ -1,0 +1,82 @@
+.sanpham-container {
+    padding: 20px;
+    margin-left: 10px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.danh-muc {
+    margin-top: 40px;
+}
+
+.danh-muc h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.sanpham-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.sanpham-item {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.sanpham-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.image-wrapper {
+    position: relative;
+}
+
+.sanpham-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.sale-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 1;
+}
+
+.sanpham-ten {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.sanpham-gia {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.gia-cu {
+    display: block;
+    font-size: 14px;
+    text-decoration: line-through;
+    color: #888;
+    margin-top: 3px;
+}
