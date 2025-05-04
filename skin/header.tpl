@@ -44,7 +44,7 @@
         </div>
         <div class="navbar-center">
             <img src="../hinhanh/logo.jpg" alt="Mercedes Logo" class="logo"
-                onclick="window.location.href='CacMauXe.html'" />
+                onclick="window.location.href='index.html'" />
         </div>
         <div class="navbar-right">
             <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" />
@@ -55,7 +55,7 @@
                     <ul>
                         <li><a href="account.tpl">Tài khoản</a></li>
                         <li><a href="login.html">Đăng nhập</a></li>
-                        <li><a href="register.tpl">Đăng ký</a></li>
+                        <li><a href="register.html">Đăng ký</a></li>
                     </ul>
                 </div>
             </div>

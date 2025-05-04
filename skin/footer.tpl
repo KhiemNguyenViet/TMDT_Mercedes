@@ -1,5 +1,5 @@
 <!-- Footer -->
-
+<script src="../js/process.js"></script>
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-column">

@@ -59,15 +59,15 @@
     <div class="login-container">
         <h2>Đăng Nhập</h2>
         <form action="login-process.php" method="POST">
-            <input type="text" placeholder="Tên đăng nhập" required />
-            <input type="password" placeholder="Mật khẩu" required />
-            <input type="text" placeholder="Email" required />
-            <input type="text" placeholder="Họ tên đầy đủ" required />
-            <input type="text" placeholder="Số điện thoại" required />
-            <input type="text" placeholder="Địa chỉ" required />
+            <input type="text" name="username" placeholder="Tên đăng nhập" required />
+            <input type="password" name="password" placeholder="Mật khẩu" required />
+            <!-- <input type="text" name="email" placeholder="Email" required />
+            <input type="text" name="name" placeholder="Họ tên đầy đủ" required />
+            <input type="text" name="phone" placeholder="Số điện thoại" required />
+            <input type="text" name="address" placeholder="Địa chỉ" required /> -->
             <button type="submit">Đăng Nhập</button>
         </form>
-        <p>Chưa có tài khoản? <a href="register.tpl">Đăng ký ngay</a></p>
+        <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
     </div>
     <style>
         body{
@@ -115,5 +115,6 @@
     </style>
     <div class="footer-wrapper">
     {footer}
+    <script src="/js/process.js"></script>
 </body>
 </html>
