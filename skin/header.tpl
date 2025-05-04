@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -38,12 +34,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-=======
-    <h1>Hào chim bé</h1>
->>>>>>> f729be94ab6695104b00ed201c26fa122b3b9d60
->>>>>>> fdbe6afccd35372bcf3b1c43adb576d87f037d20
->>>>>>> aac0d23e8bdd08efc54b1b685228c5d26ad5dbae
     <!-- MenuBar -->
     <nav class="navbar">
         <div class="navbar-left">
