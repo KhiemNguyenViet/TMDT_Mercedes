@@ -1,3 +1,49 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main Menu</title>
+    <!-- Link tới CSS -->
+    <link rel="stylesheet" href="../skin/css/MenuBar.css">
+    <link rel="stylesheet" href="../skin/css/Banner.css">
+    <link rel="stylesheet" href="../skin/css/Timhieuthem.css">
+    <link rel="stylesheet" href="../skin/css/DichVu.css">
+    <link rel="stylesheet" href="../skin/css/SanPhamBanChay.css">
+    <link rel="stylesheet" href="../skin/css/Footer.css">
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        .dichvu-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .dichvu-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .dichvu-slider:hover {
+            cursor: grab;
+        }
+    </style>
+</head>
+
+<body>
+<<<<<<< HEAD
+=======
+    <h1>Hào chim bé</h1>
+>>>>>>> f729be94ab6695104b00ed201c26fa122b3b9d60
+>>>>>>> fdbe6afccd35372bcf3b1c43adb576d87f037d20
+>>>>>>> aac0d23e8bdd08efc54b1b685228c5d26ad5dbae
     <!-- MenuBar -->
     <nav class="navbar">
         <div class="navbar-left">
