@@ -34,7 +34,6 @@
 </head>
 
 <body>
-    <h1>Hào chim bé</h1>
     <!-- MenuBar -->
     <nav class="navbar">
         <div class="navbar-left">
