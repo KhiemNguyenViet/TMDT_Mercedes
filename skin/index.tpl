@@ -227,6 +227,30 @@
       </div>
   </div>
 </div>
+<div class="footer-wrapper">
+    <div class="testdrive-section">
+        <div class="testdrive-overlay">
+            <form class="testdrive-form" onsubmit="handleSubmit(event)">
+                <h2 class="form-title">Đăng ký lái thử</h2>
+                <input type="text" name="name" placeholder="Họ và tên" required />
+                <input type="tel" name="phone" placeholder="Số điện thoại" required />
+                <select name="carModel" required>
+                    <option value="">Dòng xe cần tư vấn</option>
+                    <option value="A-Class">A-Class</option>
+                    <option value="C-Class">C-Class</option>
+                    <option value="E-Class">E-Class</option>
+                    <option value="GLB">GLB</option>
+                    <option value="GLC">GLC</option>
+                    <option value="GLC 2023">GLC 2023</option>
+                    <option value="GLE">GLE</option>
+                    <option value="GLS">GLS</option>
+                    <option value="Maybach">Maybach</option>
+                    <option value="S-Class">S-Class</option>
+                </select>
+                <button type="submit" class="submit-button">Gửi thông tin</button>
+            </form>
+        </div>
+    </div>
 {footer}
 <script>
     function handleSubmit(event) {
