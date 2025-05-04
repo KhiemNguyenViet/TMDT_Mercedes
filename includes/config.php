@@ -8,7 +8,7 @@
 
 	$tlca_data['dbpassword'] = '';
 
-	$tlca_data['dbname'] = 'mercedes';
+	$tlca_data['dbname'] = 'mercedes_shop';
 
 	date_default_timezone_set('Asia/Saigon');
 
