@@ -11,7 +11,7 @@ function token_login($user_id,$password){
 include('./includes/config.php');
 $email=addslashes(strip_tags($_REQUEST['username']));
 $password=addslashes(strip_tags($_REQUEST['password']));
-$thongtin=mysqli_query($conn,"SELECT *,count(*) AS total FROM user_info WHERE email='$email' OR username='$email'");
+$thongtin=mysqli_query($conn,"SELECT *,count(*) AS total FROM user WHERE email='$email' OR username='$email'");
 $r_tt=mysqli_fetch_assoc($thongtin);
 if($r_tt['total']>0){
     $pass=md5($password.''.$r_tt['salt']);

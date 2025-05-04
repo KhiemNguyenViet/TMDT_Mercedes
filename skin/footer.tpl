@@ -58,13 +58,3 @@
     </footer>
 </div>
 
-<script>
-    function handleSubmit(event) {
-        event.preventDefault();
-        alert("Thông tin của bạn đã được gửi!");
-    }
-</script>
-
-</body>
-
-</html>

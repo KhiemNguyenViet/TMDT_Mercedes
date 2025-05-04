@@ -16,5 +16,5 @@
         'footer' => $skin->skin_normal('skin/footer'),
     );
 
-    echo $skin->skin_replace('skin/index', $replace);
+    echo $skin->skin_replace('skin/login', $replace);
 ?>

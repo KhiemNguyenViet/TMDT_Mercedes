@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -34,6 +36,11 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+    <h1>Hào chim bé</h1>
+>>>>>>> f729be94ab6695104b00ed201c26fa122b3b9d60
+>>>>>>> fdbe6afccd35372bcf3b1c43adb576d87f037d20
     <!-- MenuBar -->
     <nav class="navbar">
         <div class="navbar-left">
@@ -48,10 +55,25 @@
         </div>
         <div class="navbar-right">
             <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" />
+<<<<<<< HEAD
+            <img src="../hinhanh/cart5.png" alt="Cart" class="icon" style="width: 30px; height: 30px; background-color: black;" />
+            <div class="user-dropdown">
+                <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
+                <div class="dropdown-content">
+                    <ul>
+                        <li><a href="account.tpl">Tài khoản</a></li>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="register.tpl">Đăng ký</a></li>
+                    </ul>
+                </div>
+            </div>
+=======
             <img src="../hinhanh/cart5.png" alt="Cart" class="icon"
                 style="width: 30px; height: 30px; background-color: black;" />
             <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
+>>>>>>> f729be94ab6695104b00ed201c26fa122b3b9d60
             <img src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px;" />
             <!-- <a href=""><i class="fa fa-user icon" style="width: 20px; height: 20px;color: white;"></i></a> -->
         </div>
     </nav>
+    <script type="text/javascript" src="/js/process.js?t=<?php echo time();?>"></script>    

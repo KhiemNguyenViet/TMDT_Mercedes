@@ -2,3 +2,4 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 RewriteRule ^index.html index.php
+RewriteRule ^login.html login.php
