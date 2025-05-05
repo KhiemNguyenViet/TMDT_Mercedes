@@ -30,6 +30,35 @@
         .dichvu-slider:hover {
             cursor: grab;
         }
+
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 90px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dropdown-content ul li {
+            text-align: center;
+            padding: 7px;
+        }
+        .dropdown-content ul li a {
+            text-decoration: none;
+            color: black;
+        }
+        .user-dropdown:hover .dropdown-content {
+            display: block;
+        }
     </style>
 </head>
 

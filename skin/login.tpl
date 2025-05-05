@@ -115,6 +115,9 @@
     </style>
     <div class="footer-wrapper">
     {footer}
+<<<<<<< HEAD
     <script src="/skin/tpl/js/process.js"></script>
+=======
+>>>>>>> b474affdf50003bf164af10fb457b4a0363962bd
 </body>
 </html>
