@@ -115,6 +115,5 @@
     </style>
     <div class="footer-wrapper">
     {footer}
-    <script src="/js/process.js"></script>
 </body>
 </html>
