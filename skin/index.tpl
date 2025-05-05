@@ -162,7 +162,7 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD {footer}=======<div class="footer-wrapper">
+<div class="footer-wrapper">
     <div class="testdrive-section">
         <div class="testdrive-overlay">
             <form class="testdrive-form" onsubmit="handleSubmit(event)">
@@ -197,4 +197,3 @@
     </body>
 
     </html>
-    >>>>>>> 5a159ed16794ada88096fd9c9fb030084022a336
