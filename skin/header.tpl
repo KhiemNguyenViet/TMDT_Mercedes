@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Menu</title>
     <!-- Link tới CSS -->
-    <link rel="stylesheet" href="../skin/css/MenuBar.css">
-    <link rel="stylesheet" href="../skin/css/Banner.css">
-    <link rel="stylesheet" href="../skin/css/Timhieuthem.css">
-    <link rel="stylesheet" href="../skin/css/DichVu.css">
-    <link rel="stylesheet" href="../skin/css/SanPhamBanChay.css">
-    <link rel="stylesheet" href="../skin/css/Footer.css">
+    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
+    <link rel="stylesheet" href="../skin/tpl/css/Banner.css">
+    <link rel="stylesheet" href="../skin/tpl/css/Timhieuthem.css">
+    <link rel="stylesheet" href="../skin/tpl/css/DichVu.css">
+    <link rel="stylesheet" href="../skin/tpl/css/SanPhamBanChay.css">
+    <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
     <!-- Font Awesome for icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>

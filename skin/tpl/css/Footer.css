@@ -6,7 +6,7 @@
 .testdrive-section {
     width: 100%;
     height: 500px;
-    background: url('../../hinhanh/dkylaithu.jpeg') no-repeat center center/cover;
+    background: url('../../../hinhanh/dkylaithu.jpeg') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: center;

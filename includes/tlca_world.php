@@ -1,14 +1,27 @@
 <?php
-session_start();
-// Config
-error_reporting(1);
-include('config.php');
-// class gold ly
-include('class_manage.php');
-// Class manage Variable
-$tlca_do = new class_manage;
-// Template Variable
-$tlca_skin = $tlca_do->skin;
-$class_member = $tlca_do->load('class_member');
-$class_member->check_login();
+class class_manage {
+    protected $db;
+    
+    public function __construct() {
+        $this->db = new mysqli('localhost', 'root', '', 'mercedes_shop');
+        
+        if ($this->db->connect_error) {
+            die('Kết nối database thất bại: ' . $this->db->connect_error);
+        }
+        
+        $this->db->set_charset("utf8");
+    }
+
+    public function load($class_name) {
+        // Kiểm tra file tồn tại
+        $file_path = __DIR__ . '/' . $class_name . '.php';
+        if (file_exists($file_path)) {
+            // Include file class
+            require_once($file_path);
+            // Tạo instance mới của class
+            return new $class_name();
+        }
+        return null;
+    }
+}
 ?>
