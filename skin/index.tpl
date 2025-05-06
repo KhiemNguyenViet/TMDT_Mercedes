@@ -164,15 +164,19 @@
                         </form>
                     </div>
                 </div>
-                {footer}
-                <script>
-                    function handleSubmit(event) {
-                        event.preventDefault();
-                        alert("Thông tin của bạn đã được gửi!");
-                    }
+            </div>
+        </div>
+    </div>
+</div>
+{footer}
+<script>
+    function handleSubmit(event) {
+        event.preventDefault();
+        alert("Thông tin của bạn đã được gửi!");
+    }
 
-                </script>
+</script>
 
-                </body>
+</body>
 
-                </html>
+</html>
