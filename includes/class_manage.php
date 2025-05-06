@@ -1,15 +1,34 @@
 <?php
-class class_manage {
-    protected $db;
-    
-    public function __construct() {
-        $this->db = new mysqli('localhost', 'root', '', 'mercedes_shop');
-        
-        if ($this->db->connect_error) {
-            die('Kết nối database thất bại: ' . $this->db->connect_error);
-        }
-        
-        $this->db->set_charset("utf8");
-    }
-}
+	class class_manage
+		{	
+			/*========================================/*
+			*| construcs function
+			*| Xay dung doi tuong can thiet
+			*| Dinh nghia $data va $skin
+			/*========================================*/
+			public $data;
+			public $skin;
+			public $userid;
+			function __construct()
+				{
+					$this->skin = $this->load('class_skin');
+				}
+			/*========================================/*
+			*|
+			*| Class load
+			*| Chi input class name , ko .php
+			/*========================================*/
+			function load($class_name)
+				{
+					if(!class_exists($class_name))
+					{
+					$class_file = $class_name.'.php';
+					include($class_file);
+					$load = new $class_name;
+					return $load;
+					}
+					$load = new $class_name();
+					return $load;
+				}
+		}
 ?>

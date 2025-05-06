@@ -126,7 +126,7 @@
     <div class="danh-muc">
         <h3>GLC</h3>
         <div class="sanpham-list">
-            {box_index}
+            {spglc_banchay}
         </div>
     </div>
 
