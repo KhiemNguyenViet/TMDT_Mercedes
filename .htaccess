@@ -4,3 +4,5 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 RewriteRule ^index.html index.php
 RewriteRule ^login.html login.php
 RewriteRule ^register.html register.php
+
+RewriteRule ^admin/dashboard admin/index.php?action=dashboard

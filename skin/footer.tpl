@@ -1,5 +1,6 @@
 <!-- Footer -->
-<script src="../skin/tpl/js/process.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../skin/tpl/js/process.js"></script> -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-column">

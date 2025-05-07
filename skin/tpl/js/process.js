@@ -1,37 +1,57 @@
-$('#button_login').on('click', function() {
-    username = $('.login-container input[name=username]').val();
-    password = $('.login-container input[name=password]').val();
-    if (username.length < 4) {
-        $('.login-container input[name=username]').focus();
-    } else if (password.length < 6) {
-        $('.box_form input[name=password]').focus();
-    } else {
-        $('.load_overlay').show();
-        $('.load_process').fadeIn();
+$(document).ready(function () {
+    // Chặn form reload
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+
+        let username = $('input[name="username"]').val().trim();
+        let password = $('input[name="password"]').val().trim();
+
+        // Kiểm tra dữ liệu đầu vào
+        if (username.length < 4) {
+            alert('Tên đăng nhập phải từ 4 ký tự trở lên');
+            $('input[name="username"]').focus();
+            return;
+        }
+
+        if (password.length < 6) {
+            alert('Mật khẩu phải từ 6 ký tự trở lên');
+            $('input[name="password"]').focus();
+            return;
+        }
+
+        // Gửi AJAX
         $.ajax({
-            url: "/process_login.php",
-            type: "post",
+            url: '/admin/process.php',
+            method: 'POST',
             data: {
+                action: 'dangnhap',
                 username: username,
                 password: password
             },
-            success: function(kq) {
-                var info = JSON.parse(kq);
-                setTimeout(function() {
-                    $('.load_note').html(info.thongbao);
-                }, 1000);
-                setTimeout(function() {
-                    $('.load_process').hide();
-                    $('.load_note').html('Hệ thống đang xử lý');
-                    $('.load_overlay').hide();
-                    if (info.ok == 1) {
-                        window.location.href='/tai-khoan.html';
-                    } else {
+            beforeSend: function () {
+                // Có thể hiện loading nếu bạn muốn
+            },
+            success: function (response) {
+                let info;
+                try {
+                    info = JSON.parse(response);
+                } catch (e) {
+                    alert('Lỗi phản hồi từ máy chủ.');
+                    console.error('Response:', response);
+                    return;
+                }
 
-                    }
-                }, 3000);
+                if (info.ok == 1) {
+                    window.location.href = '/admin/dashboard';
+                }  else if (info.ok == 24) {
+                    window.location.href = '/index.html';
+                }else {
+                    alert(info.thongbao || 'Đăng nhập thất bại.');
+                }
+            },
+            error: function (xhr) {
+                alert('Không thể kết nối máy chủ. Mã lỗi: ' + xhr.status);
             }
         });
-    }
+    });
 });
-

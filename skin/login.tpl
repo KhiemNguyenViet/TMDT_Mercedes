@@ -58,14 +58,13 @@
     {header}
     <div class="login-container">
         <h2>Đăng Nhập</h2>
-        <form action="login-process.php" method="POST">
+        <form >
             <input type="text" name="username" placeholder="Tên đăng nhập" required />
             <input type="password" name="password" placeholder="Mật khẩu" required />
-            <!-- <input type="text" name="email" placeholder="Email" required />
-            <input type="text" name="name" placeholder="Họ tên đầy đủ" required />
-            <input type="text" name="phone" placeholder="Số điện thoại" required />
-            <input type="text" name="address" placeholder="Địa chỉ" required /> -->
-            <button type="submit">Đăng Nhập</button>
+            <div class="remember" value="on">
+                <i class="fa fa-check-circle-o" style="color: #000;"></i> Remember
+            </div>
+            <button name="login">Đăng Nhập</button>
         </form>
         <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
     </div>
@@ -115,9 +114,7 @@
     </style>
     <div class="footer-wrapper">
     {footer}
-<<<<<<< HEAD
-    <script src="/skin/tpl/js/process.js"></script>
-=======
->>>>>>> b474affdf50003bf164af10fb457b4a0363962bd
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../skin/tpl/js/process.js"></script>
 </body>
 </html>

@@ -82,9 +82,17 @@
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
                 <div class="dropdown-content">
                     <ul>
-                        <li><a href="account.tpl">Tài khoản</a></li>
                         <li><a href="login.html">Đăng nhập</a></li>
                         <li><a href="register.html">Đăng ký</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tk-dropdown">
+                <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
+                <div class="dropdown-content">
+                    <ul>
+                        <li><a href="account.tpl">Tài khoản</a></li>
+                        <li><a href="login.html">Đăng xuất</a></li>
                     </ul>
                 </div>
             </div>
@@ -92,4 +100,5 @@
             <!-- <a href=""><i class="fa fa-user icon" style="width: 20px; height: 20px;color: white;"></i></a> -->
         </div>
     </nav>
-    <script type="text/javascript" src="/js/process.js?t=<?php echo time();?>"></script>    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>    
