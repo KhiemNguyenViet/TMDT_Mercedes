@@ -6,64 +6,62 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 #RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|css|js|svg|ico|webp|woff|woff2|ttf|eot|otf|mp4|mp3)$ [NC]
 #RewriteRule ^(.*)$ baotri.php [L]
 RewriteRule ^index.html index.php
-<<<<<<< HEAD
 RewriteRule ^login.html login.php
 RewriteRule ^register.html register.php
 
 RewriteRule ^admin/dashboard admin/index.php?action=dashboard
-=======
-RewriteRule ^tim-kiem.html timkiem.php
-RewriteRule ^detail/([^/]+).html view_tintuc.php?blank=$1
+# =======
+# RewriteRule ^tim-kiem.html timkiem.php
+# RewriteRule ^detail/([^/]+).html view_tintuc.php?blank=$1
 RewriteRule ^product/([^/]+).html view.php?blank=$1
-RewriteRule ^addon-deal.html addon_deal.php
-RewriteRule ^coupon-detail.html coupon_detail.php
-RewriteRule ^bai-viet/([^/]+).html tintuc.php?blank=$1
-RewriteRule ^san-pham/([^/]+).html sanpham_category.php?blank=$1
-# THêm đường link cho shop
-RewriteRule ^shop/([^/]+)/san-pham.html sanpham_shop.php?username=$1 [L]
-RewriteRule ^v/([^/]+) rut_gon.php?rut_gon=$1
-RewriteRule ^register.html register.php
-RewriteRule ^dang-ky.html dangky.php
-RewriteRule ^kichhoat-baohanh.html kichhoat_baohanh.php
-RewriteRule ^dangky-banhang.html dangky_banhang.php
-RewriteRule ^dangky-ncc.html dangky_ncc.php
-RewriteRule ^dang-nhap.html dangnhap.php
-RewriteRule ^tai-khoan.html taikhoan.php
-RewriteRule ^dang-xuat.html process_logout.php
-RewriteRule ^quen-mat-khau.html quen_matkhau.php
-RewriteRule ^doi-mat-khau.html doi_matkhau.php
-RewriteRule ^tich-diem.html tich_diem.php
-RewriteRule ^dia-chi.html dia_chi.php
-RewriteRule ^vi-voucher.html vi_voucher.php
-RewriteRule ^chinh-sach.html chinh_sach.php
-RewriteRule ^danh-gia.html danh_gia.php
-RewriteRule ^doi-avatar.html doi_avatar.php
-RewriteRule ^don-hang.html don_hang.php
-RewriteRule ^order-detail.html order_detail.php
-RewriteRule ^ban-hang.html ban_hang.php
-RewriteRule ^lien-he.html lienhe.php
-RewriteRule ^thongbao.html thongbao.php
-RewriteRule ^thongbao-chitiet.html thongbao_detail.php
-RewriteRule ^san-pham.html sanpham.php
-RewriteRule ^san-pham-hot.html sanpham_hot.php
-RewriteRule ^san-pham-noi-bat.html sanpham_noibat.php
-RewriteRule ^san-pham-deal.html sanpham_deal.php
-RewriteRule ^flash-sale.html flash_sale.php
-RewriteRule ^coupon.html coupon.php
-RewriteRule ^gioi-thieu.html gioi_thieu.php
-RewriteRule ^gop-don.html gop_don.php
-RewriteRule ^deal-soc.html deal_soc.php
-RewriteRule ^gio-hang.html shopcart.php
-RewriteRule ^checkout.html checkout.php
-RewriteRule ^checkout-gopdon.html checkout_gopdon.php
-RewriteRule ^kho-giao-dien.html kho_giaodien.php
-RewriteRule ^sieu-sale.html sieu_sale.php
-RewriteRule ^sitemap.xml sitemap.php
-RewriteRule ^product-([0-9]+).xml sitemap.php?loai=product&page=$1
-RewriteRule ^post-([0-9]+).xml sitemap.php?loai=post&page=$1
-RewriteRule ^page.xml sitemap.php?loai=page
-RewriteRule ^danhmuc-tintuc-([0-9]+).xml sitemap.php?loai=category_tintuc&page=$1
-RewriteRule ^category-([0-9]+).xml sitemap.php?loai=category&page=$1
-RewriteRule ^404.html 404.php
-ErrorDocument 404 /404.html
->>>>>>> 1985ed7e30521a3af5659487536f2e744e55a41d
+# RewriteRule ^addon-deal.html addon_deal.php
+# RewriteRule ^coupon-detail.html coupon_detail.php
+# RewriteRule ^bai-viet/([^/]+).html tintuc.php?blank=$1
+# RewriteRule ^san-pham/([^/]+).html sanpham_category.php?blank=$1
+# # THêm đường link cho shop
+# RewriteRule ^shop/([^/]+)/san-pham.html sanpham_shop.php?username=$1 [L]
+# RewriteRule ^v/([^/]+) rut_gon.php?rut_gon=$1
+# RewriteRule ^dang-ky.html dangky.php
+# RewriteRule ^kichhoat-baohanh.html kichhoat_baohanh.php
+# RewriteRule ^dangky-banhang.html dangky_banhang.php
+# RewriteRule ^dangky-ncc.html dangky_ncc.php
+# RewriteRule ^dang-nhap.html dangnhap.php
+# RewriteRule ^tai-khoan.html taikhoan.php
+# RewriteRule ^dang-xuat.html process_logout.php
+# RewriteRule ^quen-mat-khau.html quen_matkhau.php
+# RewriteRule ^doi-mat-khau.html doi_matkhau.php
+# RewriteRule ^tich-diem.html tich_diem.php
+# RewriteRule ^dia-chi.html dia_chi.php
+# RewriteRule ^vi-voucher.html vi_voucher.php
+# RewriteRule ^chinh-sach.html chinh_sach.php
+# RewriteRule ^danh-gia.html danh_gia.php
+# RewriteRule ^doi-avatar.html doi_avatar.php
+# RewriteRule ^don-hang.html don_hang.php
+# RewriteRule ^order-detail.html order_detail.php
+# RewriteRule ^ban-hang.html ban_hang.php
+# RewriteRule ^lien-he.html lienhe.php
+# RewriteRule ^thongbao.html thongbao.php
+# RewriteRule ^thongbao-chitiet.html thongbao_detail.php
+# RewriteRule ^san-pham.html sanpham.php
+# RewriteRule ^san-pham-hot.html sanpham_hot.php
+# RewriteRule ^san-pham-noi-bat.html sanpham_noibat.php
+# RewriteRule ^san-pham-deal.html sanpham_deal.php
+# RewriteRule ^flash-sale.html flash_sale.php
+# RewriteRule ^coupon.html coupon.php
+# RewriteRule ^gioi-thieu.html gioi_thieu.php
+# RewriteRule ^gop-don.html gop_don.php
+# RewriteRule ^deal-soc.html deal_soc.php
+# RewriteRule ^gio-hang.html shopcart.php
+# RewriteRule ^checkout.html checkout.php
+# RewriteRule ^checkout-gopdon.html checkout_gopdon.php
+# RewriteRule ^kho-giao-dien.html kho_giaodien.php
+# RewriteRule ^sieu-sale.html sieu_sale.php
+# RewriteRule ^sitemap.xml sitemap.php
+# RewriteRule ^product-([0-9]+).xml sitemap.php?loai=product&page=$1
+# RewriteRule ^post-([0-9]+).xml sitemap.php?loai=post&page=$1
+# RewriteRule ^page.xml sitemap.php?loai=page
+# RewriteRule ^danhmuc-tintuc-([0-9]+).xml sitemap.php?loai=category_tintuc&page=$1
+# RewriteRule ^category-([0-9]+).xml sitemap.php?loai=category&page=$1
+# RewriteRule ^404.html 404.php
+# ErrorDocument 404 /404.html
+

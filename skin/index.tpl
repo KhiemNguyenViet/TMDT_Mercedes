@@ -164,10 +164,6 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 {footer}
 <script>
     function handleSubmit(event) {
