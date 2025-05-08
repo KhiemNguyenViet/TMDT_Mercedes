@@ -181,7 +181,7 @@
         <div class="model">
             <img src="../hinhanh/glcclass.jpg" alt="GLC-Class">
             <div class="model-info">
-                <h2>GLC-Class</h2>
+                <h2>GLC</h2>
                 <p>GLC là mẫu SUV bán chạy nhất của Mercedes, cung cấp không gian rộng rãi, khả năng vận hành ổn định và
                     các tính năng an toàn tiên tiến.</p>
             </div>
