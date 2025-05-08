@@ -124,22 +124,26 @@
     <h1 class="title">Sản phẩm bán chạy</h1>
 
     <div class="danh-muc">
-        <h3>GLC</h3>
+        <h3>Sedan</h3>
         <div class="sanpham-list">
-            {spglc_banchay}
+            {spsedan_banchay}
         </div>
     </div>
 
     <div class="danh-muc">
-        <h3>C Class 2025</h3>
+        <h3>SUV</h3>
         <div class="sanpham-list">
-            <div class="sanpham-item">
-                <div class="image-wrapper">
-                    <img src="../hinhanh/sanpham3.png" alt="C 200 Avantgarde 2025" class="sanpham-image" />
-                </div>
-                <p class="sanpham-ten">C 200 Avantgarde 2025</p>
-                <p class="sanpham-gia">Giá: 2.800.000.000 vnđ</p>
-            </div>
+            {spsuv_banchay}
+        </div>
+    </div>
+
+    <div class="danh-muc">
+        <h3>Coupe</h3>
+        <div class="sanpham-list">
+            {spcoupe_banchay}
+        </div>
+    </div>
+
             <div class="footer-wrapper">
                 <div class="testdrive-section">
                     <div class="testdrive-overlay">

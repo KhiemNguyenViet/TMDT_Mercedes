@@ -10,14 +10,14 @@ $skin = $tlca_do->load('class_skin');
 $product_id = isset($_GET['blank']) ? $_GET['blank'] : 0;
 
 // Lấy thông tin sản phẩm
-$product = $class_index->getProductById($product_id);
+$product = $class_index->getProductById($conn,$product_id);
 
 if ($product) {
     // Format giá tiền
     $product['price'] = number_format($product['price'], 0, ',', '.') . ' vnđ';
     
     // Lấy tên danh mục
-    $category = $class_index->getCategoryById($product['category_id']);
+    $category = $class_index->getCategoryById($conn,$product['category_id']);
     $product['category_name'] = $category['name'];
     
     // Xử lý và hiển thị nội dung
