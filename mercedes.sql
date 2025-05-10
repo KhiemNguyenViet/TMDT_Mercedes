@@ -164,6 +164,34 @@ INSERT INTO product_details (product_id, engine_type, displacement_cc, horsepowe
 (24, 'Electric Motor (Dual)', NULL, 516, 855, 'Single Speed Automatic', 'AWD (4MATIC)', 5216, 1926, 1718, NULL, 4.6, 210, 'MBUX Hyperscreen, Da Nappa, Hệ thống lọc không khí HEPA', 'Driving Assistance Package Plus, Digital Light', 'Trắng Diamond, Đen Obsidian, Xanh Sodalite'),
 (30, 'V8 Biturbo', 3982, 585, 700, 'AMG SPEEDSHIFT DCT 7G', 'RWD', 4551, 2007, 1284, 11.4, 3.6, 318, 'Ghế đua AMG Carbon, Vật liệu Dinamica, AMG Track Pace', 'AMG Traction Control, Phanh gốm AMG carbon', 'Xanh Green Hell Magno, Vàng Solarbeam, Đỏ Jupiter');
 
+-- Chèn dữ liệu mẫu cho product_details cho các sản phẩm còn lại (cần cập nhật thông tin chính xác)
+INSERT INTO product_details (product_id, engine_type, displacement_cc, horsepower_hp, torque_nm, transmission_type, drive_type, length_mm, width_mm, height_mm, fuel_consumption_l_100km, acceleration_0_100_s, top_speed_kmh, interior_features, safety_features, color_options) VALUES
+(1, 'I4 Turbo', 1991, 204, 300, '9G-TRONIC', 'RWD', 4751, 1820, 1438, 6.5, 7.3, 246, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(2, 'I4 Turbo', 1991, 258, 400, '9G-TRONIC', 'AWD (4MATIC)', 4716, 1890, 1640, 7.4, 6.2, 240, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(3, 'I6 Turbo', 2999, 367, 500, '9G-TRONIC', 'RWD', 4835, 1860, 1430, 8.0, 5.0, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(4, 'I4 Turbo', 1332, 163, 250, '7G-DCT', 'FWD', 4549, 1796, 1446, 5.4, 8.1, 230, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(5, 'I6 Turbo', 2999, 367, 500, '9G-TRONIC', 'AWD (4MATIC)', 4924, 2010, 1797, 9.0, 5.7, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(6, 'I4 Turbo', 1991, 224, 350, '7G-DCT', 'FWD/AWD (4MATIC)', 4688, 1830, 1439, 6.2, 6.3, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(7, 'V8 Biturbo', 3982, 503, 700, '9G-TRONIC', 'RWD/AWD (4MATIC)', 5289, 1954, 1503, 10.5, 4.4, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(8, 'V8 Biturbo', 3982, 422, 610, '9G-TRONIC', 'AWD (4MATIC)', 4817, 1931, 1969, 12.1, 5.9, 210, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(9, 'V8 Biturbo', 3982, 530, 670, 'AMG SPEEDSHIFT MCT 7G', 'RWD', 4546, 1939, 1288, 11.5, 3.8, 310, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(10, 'I4 Turbo', 1991, 258, 400, '9G-TRONIC', 'RWD', 4935, 1852, 1468, 6.8, 6.1, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(11, 'I6 Turbo/V8 Biturbo', NULL, NULL, NULL, '9G-TRONIC', 'AWD (4MATIC)', 5207, 2030, 1838, NULL, NULL, NULL, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(12, 'I4 Turbo', 1991, 258, 400, '9G-TRONIC', 'RWD/AWD (4MATIC)', 4693, 1810, 1405, 6.9, 6.0, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(13, 'V8 Biturbo/V12 Biturbo', NULL, NULL, NULL, '9G-TRONIC', 'AWD (4MATIC)', 5469, 1921, 1503, NULL, NULL, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(14, 'I4 Turbo', 1332, 163, 250, '7G-DCT/8G-DCT', 'FWD/AWD (4MATIC)', 4410, 1834, 1611, 5.7, 8.7, 209, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(15, 'V8 Biturbo', 3982, 469, 700, '9G-TRONIC', 'RWD/AWD (4MATIC)', 5027, 1899, 1411, 10.1, 4.6, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(16, 'V8 Biturbo', 3982, 510, 700, 'AMG SPEEDSHIFT MCT 9G', 'RWD', 4751, 1839, 1426, 10.8, 4.0, 290, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(17, 'I6 Turbo + EQ Boost', 2999, 435, 520, 'AMG SPEEDSHIFT TCT 9G', 'AWD (4MATIC+)', 4961, 2018, 1716, 9.3, 5.3, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(18, 'V8 Biturbo', 3982, 639, 900, 'AMG SPEEDSHIFT MCT 9G', 'AWD (4MATIC+)', 5054, 1953, 1447, 11.3, 3.2, 315, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(19, 'Electric Motor', NULL, 523, 855, 'Single Speed Automatic', 'AWD (4MATIC)', 5216, 1926, 1512, NULL, 4.3, 210, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(20, 'Electric Motor', NULL, 292, 520, 'Single Speed Automatic', 'AWD (4MATIC)', 4684, 1834, 1668, NULL, 6.2, 160, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(25, 'I4 Turbo', 1991, 306, 400, 'AMG SPEEDSHIFT DCT 7G', 'AWD (4MATIC)', 4439, 1796, 1400, 7.3, 4.7, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(26, 'I4 Diesel', 1950, 190, 440, '9G-TRONIC', 'RWD', 5140, 1928, 1880, 6.5, 9.5, 206, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(27, 'V8 Biturbo + EQ Boost', 3982, 558, 730, '9G-TRONIC', 'AWD (4MATIC)', 5205, 2030, 1838, 12.0, 4.9, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(28, 'Electric Motor (Dual)', NULL, 408, 760, 'Single Speed Automatic', 'AWD (4MATIC)', 4761, 1884, 1623, NULL, 5.1, 180, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết'),
+(29, 'I6 Turbo + EQ Boost', 2999, 367, 500, '9G-TRONIC', 'AWD (4MATIC)', 4988, 1890, 1435, 7.8, 4.8, 250, 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết', 'Cần cập nhật chi tiết');
+
 -- Chèn dữ liệu mẫu cho users
 INSERT INTO users (username, password, email, full_name, phone, address, role) VALUES
 ('admin', 'ea48576f30be1669971699c09ad05c94', 'admin@mercedes.com', 'Administrator', NULL, NULL, 'admin'),

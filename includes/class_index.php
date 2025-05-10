@@ -4,7 +4,7 @@ class class_index extends class_manage {
     function getProductById($conn,$id)
     {
         $id = (int)$id;
-        $sql = "SELECT * FROM products WHERE id = $id LIMIT 1";
+        $sql = "SELECT * FROM products LEFT JOIN product_details ON products.id = product_details.product_id WHERE products.id = $id LIMIT 1";
         $result =  mysqli_query($conn,$sql);
 
         if ($result && mysqli_num_rows($result) > 0) {
@@ -34,6 +34,17 @@ class class_index extends class_manage {
         
         return $products;
     }
+    // function getProductDetails($conn,$id) {
+    //     $id = (int)$id;
+    //     $sql = "SELECT * FROM product_details WHERE product_id = $id LIMIT 1";
+    //     $result =  mysqli_query($conn,$sql);
+    //     $products = array();
+    //     while($row = $result->fetch_assoc()) {
+    //         $products[] = $row;
+    //     }
+        
+    //     return $products;
+    // }
 
     function list_glcbanchay($conn,$limit) {
         $thongtin= mysqli_query($conn,"SELECT * FROM products WHERE category_id = 1 LIMIT $limit");

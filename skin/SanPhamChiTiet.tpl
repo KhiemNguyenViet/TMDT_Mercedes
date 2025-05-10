@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
+    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
+    <link rel="stylesheet" href="../skin/tpl/css/Banner.css">
+    <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Chi tiết xe Mercedes</title>
@@ -187,9 +189,10 @@
 </head>
 
 <body>
+    {header}
     <div class="container">
         <div class="image-gallery">
-            <img id="mainImage" src="../hinhanh/sanpham25.jpg" alt="GLC" class="main-image" />
+            <img id="mainImage" src="../hinhanh/{product.image}" alt="{product.name}" class="main-image" />
             <div class="thumbnail-wrapper">
                 <span class="arrow" onclick="prevImage()">&#10094;</span>
                 <div class="thumbnail-container" id="thumbnailSlider">
@@ -200,11 +203,11 @@
 
         <div class="info">
             <p>TRANG CHỦ / MERCEDES-BENZ</p>
-            <h2>Mercedes-Benz GLC 300 2024</h2>
+            <h2>{product.name}</h2>
             <div class="price">
-                2.450.000.000 VNĐ <span class="old-price">2.839.000.000 VNĐ</span>
+                 {product.price} <!-- <span class="old-price">2.839.000.000 VNĐ</span> -->
             </div>
-            <p><strong>Giá xe Mercedes-Benz GLC 300 4MATIC</strong></p>
+            <p><strong>Dòng xe {product.category_name}</strong></p>
 
             <div class="promo-box">
                 <ul>
@@ -231,41 +234,39 @@
             <span class="disabled-tab">ĐÁNH GIÁ (0)</span>
         </div>
 
-        <h2>GLC thế hệ mới X254</h2>
+        <!-- <h2>GLC thế hệ mới X254</h2>
         <p>
             GLC thế hệ mới định nghĩa lại sự xa xỉ trong thiết kế thể thao hiện đại, tôn thêm nét khỏe khoắn vốn có của
             dòng xe sang Mercedes-Benz SUV.
             Sự nâng cấp đáng kể về công nghệ và các tính năng hỗ trợ trong không gian nội thất mang đến những trải
             nghiệm đỉnh cao mới.
-        </p>
+        </p> -->
 
-        <div class="image-row">
+        <!-- <div class="image-row">
             <img src="../hinhanh/mota1.jpg" alt="GLC front" />
             <img src="../hinhanh/mota2.jpg" alt="GLC rear" />
             <img src="../hinhanh/mota3.jpg" alt="GLC interior" />
-        </div>
-        <img src="../hinhanh/mota4.jpg" alt="GLC interior" style="width: 100%; margin-top: 20px; border-radius: 8px;" />
+        </div> -->
+        <!-- <img src="../hinhanh/mota4.jpg" alt="GLC interior" style="width: 100%; margin-top: 20px; border-radius: 8px;" /> -->
         <h2>Thông số kỹ thuật</h2>
-        <p>Thông số kỹ thuật của Mercedes-Benz GLC 300 4MATIC 2024</p>
+        <p>Thông số kỹ thuật của {product.name}</p>
         <ul style="line-height: 1.8; font-size: 16px; font-family: Arial, sans-serif;"></ul>
-        <li style="text-align: justify">D x R x C : 4716 x 1934 x 1640 (mm)</li>
+        <li style="text-align: justify">D x R x C : {length} x {width} x {height} (mm)</li>
         <li style="text-align: justify">Chiều dài cơ sở : 2888 (mm)</li>
         <li style="text-align: justify">Tự trọng/Tải trọng : 1925/585 (kg)</li>
-        <li style="text-align: justify">Động cơ : I4</li>
-        <li style="text-align: justify">Dung tích công tác : 1999 (cc)</li>
-        <li style="text-align: justify">Công suất cực đại : 190 kW [258 hp] tại 5800 vòng/phút</li>
-        <li style="text-align: justify">Mô-men xoắn cực đại : 400 Nm tại 2000 – 3200 vòng/phút</li>
-        <li style="text-align: justify">Hộp số : Tự động 9 cấp 9G-TRONIC</li>
-        <li style="text-align: justify">Dẫn động : 4 bánh toàn thời gian 4MATIC</li>
-        <li style="text-align: justify">Tăng tốc (0 – 100 km/h) : 6,2 (giây)</li>
-        <li style="text-align: justify">Vận tốc tối đa : 240 (km/h)</li>
-        <li style="text-align: justify">Dung tích bình xăng : 62 (lít)</li>
-        <li style="text-align: justify">Loại nhiên liệu : Xăng không chì có trị số octane 95 hoặc cao hơn</li>
-        <li style="text-align: justify">Mức tiêu thụ nhiên liệu, kết hợp : (l/100km)</li>
-        <li style="text-align: justify">Mức tiêu thụ nhiên liệu, trong đô thị : (l/100km)</li>
-        <li style="text-align: justify">Mức tiêu thụ nhiên liệu, ngoài đô thị : (l/100km)</li>
+        <li style="text-align: justify">Động cơ : {engine}</li>
+        <li style="text-align: justify">Dung tích công tác : {displacement_cc} (cc)</li>
+        <li style="text-align: justify">Công suất cực đại : {power} [258 hp] tại 5800 vòng/phút</li>
+        <li style="text-align: justify">Mô-men xoắn cực đại : {torque} Nm tại 2000 – 3200 vòng/phút</li>
+        <li style="text-align: justify">Hộp số : {transmission}</li>
+        <li style="text-align: justify">Dẫn động : {drive}</li>
+        <li style="text-align: justify">Tăng tốc (0 – 100 km/h) : {acceleration} (giây)</li>
+        <li style="text-align: justify">Vận tốc tối đa : {max_speed} (km/h)</li>
+        <li style="text-align: justify">Dung tích nhiên liệu : {fuel_capacity} (lít)</li>
+        <li style="text-align: justify">Loại nhiên liệu : {fuel_type}</li>
+        <li style="text-align: justify">Mức tiêu thụ nhiên liệu : {fuel_consumption_combined} (l/100km)</li>
         </ul>
-        <h2>Ngoại Thất Mercedes-Benz GLC 300 4MATIC</h2>
+        <!-- <h2>Ngoại Thất Mercedes-Benz GLC 300 4MATIC</h2>
         <div style="display: flex; gap: 20px; margin-top: 20px;">
             <img src="../hinhanh/chitiet7.jpg" alt="GLC exterior" style="width: 49%; border-radius: 8px;" />
             <img src="../hinhanh/chitiet8.jpg" alt="GLC exterior" style="width: 49%; border-radius: 8px;" />
@@ -359,7 +360,7 @@
             <li style="text-align: justify">Bộ dụng cụ thay lốp</li>
             <li style="text-align: justify">Dây đai an toàn 3 điểm cho tất cả các ghế với bộ căng đai khẩn cấp &amp;
                 giới hạn lực siết</li>
-        </ul>
+        </ul> -->
         <h2>Khả năng vận hành</h2>
         <ul style="line-height: 1.8; font-size: 16px; font-family: Arial, sans-serif;">
             <li style="text-align: justify">Động cơ mới với công nghệ 48V mild-hybrid</li>
@@ -376,7 +377,7 @@
     </div>
     <script>
         const images = [
-            "../hinhanh/sanpham25.jpg",
+            "../hinhanh/{product.image}",
             "../hinhanh/chitiet1.jpg",
             "../hinhanh/chitiet2.jpg",
             "../hinhanh/chitiet3.jpg",
@@ -432,6 +433,7 @@
         // Initial load
         updateMainImage();
     </script>
+    {footer}
 </body>
 
 </html>
