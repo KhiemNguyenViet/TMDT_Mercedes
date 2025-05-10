@@ -41,7 +41,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="tk-dropdown">
+            <!-- <div class="tk-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
                 <div class="dropdown-content">
                     <ul>
@@ -49,7 +49,7 @@
                         <li><a href="login.html">Đăng xuất</a></li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
             <img src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px;" />
             <!-- <a href=""><i class="fa fa-user icon" style="width: 20px; height: 20px;color: white;"></i></a> -->
         </div>

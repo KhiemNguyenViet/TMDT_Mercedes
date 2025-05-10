@@ -5,9 +5,9 @@ $class_index = $tlca_do->load('class_index');
 $skin = $tlca_do->load('class_skin');
 
 // Tạo HTML cho sản phẩm GLC (category_id = 2)
-$glc_banchay = $class_index->list_glcbanchay($conn, 10);
-$suv_banchay = $class_index->list_suvbanchay($conn, 10);
-$coupe_banchay = $class_index->list_coupebanchay($conn, 10);
+$glc_banchay = $class_index->list_glcbanchay($conn, 5);
+$suv_banchay = $class_index->list_suvbanchay($conn, 5);
+$coupe_banchay = $class_index->list_coupebanchay($conn, 5);
 
 // Xử lý và hiển thị nội dung
 $replace = array(
