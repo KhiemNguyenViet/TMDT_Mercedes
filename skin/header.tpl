@@ -1,29 +1,57 @@
-<!DOCTYPE html>
-<html lang="vi">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main Menu</title>
-    <!-- Link tới CSS -->
-    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
-    <link rel="stylesheet" href="../skin/tpl/css/Banner.css">
-    <link rel="stylesheet" href="../skin/tpl/css/Timhieuthem.css">
-    <link rel="stylesheet" href="../skin/tpl/css/DichVu.css">
-    <link rel="stylesheet" href="../skin/tpl/css/SanPhamBanChay.css">
-    <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
-    <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
-
 <body>
+    <style>
+        .dichvu-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .dichvu-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .dichvu-slider:hover {
+            cursor: grab;
+        }
+
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 90px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dropdown-content ul li {
+            text-align: center;
+            padding: 7px;
+        }
+        .dropdown-content ul li a {
+            text-decoration: none;
+            color: black;
+        }
+        .user-dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
     <!-- MenuBar -->
     <nav class="navbar">
         <div class="navbar-left">
             <a href="CacMauXe.html">Các mẫu xe</a>
             <a href="#">Mua</a>
             <a href="#">Dịch vụ</a>
-            <a href="#">Thương hiệu</a>
+            <a href="thuonghieu.html">Thương hiệu</a>
         </div>
         <div class="navbar-center">
             <img src="../hinhanh/logo.jpg" alt="Mercedes Logo" class="logo"

@@ -2,13 +2,13 @@
 <html lang="vi">
 
 <head>
+    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Thông Tin Dòng Xe Mercedes-Benz</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
@@ -93,7 +93,7 @@
 </head>
 
 <body>
-
+    {header}
     <header>
         <h1>Mercedes-Benz & Các Dòng Xe</h1>
     </header>
@@ -241,6 +241,8 @@
             </div>
         </div>
     </div>
+    <footer>
+        <p>&copy; 2023 Mercedes-Benz. Bản quyền thuộc về Mercedes-Benz Việt Nam.</p>
 </body>
 
 </html>
