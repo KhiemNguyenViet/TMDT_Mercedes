@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
+    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
+    <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
     <meta charset="UTF-8">
     <title>Hồ sơ người dùng</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="HoSo.css">
+    <link rel="stylesheet" href="../skin/tpl/css/HoSo.css">
 </head>
 
 <body>
+    {header}
     <div class="profile-container">
         <h2>Hồ sơ người dùng</h2>
         <form class="profile-form">
@@ -75,6 +77,7 @@
             pw.type = pw.type === "password" ? "text" : "password";
         }
     </script>
+    {footer}
 </body>
 
 </html>

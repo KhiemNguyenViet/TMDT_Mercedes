@@ -44,6 +44,9 @@ $(document).ready(function () {
                 if (info.ok == 1) {
                     window.location.href = '/admin/dashboard';
                 }  else if (info.ok == 24) {
+                    localStorage.setItem('loginStatus', 'loggedInAsUser24');
+                    $('.navbar .user-dropdown').css('display', 'none');
+                    $('.navbar .tk-dropdown').css('display', 'block');
                     window.location.href = '/index.html';
                 }else {
                     alert(info.thongbao || 'Đăng nhập thất bại.');
@@ -53,5 +56,12 @@ $(document).ready(function () {
                 alert('Không thể kết nối máy chủ. Mã lỗi: ' + xhr.status);
             }
         });
+    });
+    /////////////////////
+    $('a[name="logout"]').click(function() {
+        localStorage.removeItem('loginStatus');
+        $('.navbar .user-dropdown').css('display', 'block');
+        $('.navbar .tk-dropdown').css('display', 'none');
+        window.location.href = '/index.html';
     });
 });

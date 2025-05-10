@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Sản phẩm</title>
-    <link rel="stylesheet" href="SanPham.css">
+    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
+    <link rel="stylesheet" href="../skin/tpl/css/SanPham.css">
+    <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
+
 </head>
 
 <body>
-
+    {header}
     <div class="container">
         <aside class="sidebar">
             <h4>MERCEDES-BENZ</h4>
@@ -164,9 +167,9 @@
                 }
             });
         </script>
-
+        
     </div>
-
+    {footer}
 </body>
 
 </html>

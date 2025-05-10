@@ -20,6 +20,10 @@
             position: relative;
             display: inline-block;
         }
+        .tk-dropdown {
+            position: relative;
+            display: inline-block;
+        }
         .dropdown-content {
             display: none;
             position: absolute;
@@ -44,11 +48,20 @@
         .user-dropdown:hover .dropdown-content {
             display: block;
         }
+        .tk-dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .navbar .tk-dropdown{
+            display: none;
+        }
+        .navbar .user-dropdown{
+            display: block;
+        }
     </style>
     <!-- MenuBar -->
     <nav class="navbar">
         <div class="navbar-left">
-            <a href="CacMauXe.html">Các mẫu xe</a>
+            <a href="cacmauxe.html">Các mẫu xe</a>
             <a href="#">Mua</a>
             <a href="#">Dịch vụ</a>
             <a href="thuonghieu.html">Thương hiệu</a>
@@ -69,18 +82,31 @@
                     </ul>
                 </div>
             </div>
-            <!-- <div class="tk-dropdown">
+            <div class="tk-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
                 <div class="dropdown-content">
                     <ul>
-                        <li><a href="account.tpl">Tài khoản</a></li>
-                        <li><a href="login.html">Đăng xuất</a></li>
+                        <li><a href="account.html">Tài khoản</a></li>
+                        <li><a name="logout">Đăng xuất</a></li>
                     </ul>
                 </div>
-            </div> -->
+            </div>
             <img src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px;" />
             <!-- <a href=""><i class="fa fa-user icon" style="width: 20px; height: 20px;color: white;"></i></a> -->
         </div>
     </nav>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>    
+    <script>
+        $(document).ready(function() {
+            if (localStorage.getItem('loginStatus') === 'loggedInAsUser24') {
+                $('.navbar .user-dropdown').css('display', 'none');
+                $('.navbar .tk-dropdown').css('display', 'block');
+            } else {
+                // Đảm bảo trạng thái mặc định nếu không có loginStatus hoặc giá trị khác
+                $('.navbar .user-dropdown').css('display', 'block');
+                $('.navbar .tk-dropdown').css('display', 'none');
+            }
+        });
+    </script>
+</body>    

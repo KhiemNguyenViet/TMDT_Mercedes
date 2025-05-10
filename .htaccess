@@ -9,6 +9,8 @@ RewriteRule ^index.html index.php
 RewriteRule ^login.html login.php
 RewriteRule ^register.html register.php
 RewriteRule ^thuonghieu.html thuonghieu.php
+RewriteRule ^cacmauxe.html cacmauxe.php
+RewriteRule ^account.html account.php
 
 RewriteRule ^admin/dashboard admin/index.php?action=dashboard
 # =======
