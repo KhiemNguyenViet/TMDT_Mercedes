@@ -11,6 +11,7 @@ RewriteRule ^register.html register.php
 RewriteRule ^thuonghieu.html thuonghieu.php
 RewriteRule ^cacmauxe.html cacmauxe.php
 RewriteRule ^account.html account.php
+RewriteRule ^dat-cho-xe.html datcho.php
 
 RewriteRule ^admin/dashboard admin/index.php?action=dashboard
 # =======

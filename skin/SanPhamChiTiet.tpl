@@ -222,7 +222,7 @@
             </div>
 
             <div class="buttons">
-                <button class="buy-btn">ĐẶT GIỮ CHỖ</button>
+                <button class="buy-btn">ĐẶT GIỮ XE</button>
                 <button class="consult-btn">ĐĂNG KÝ TƯ VẤN XE</button>
             </div>
         </div>

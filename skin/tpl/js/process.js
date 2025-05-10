@@ -64,4 +64,9 @@ $(document).ready(function () {
         $('.navbar .tk-dropdown').css('display', 'none');
         window.location.href = '/index.html';
     });
+    /////////////////////
+    // Đặt giữ xe
+    $('.buy-btn').click(function() {
+        window.location.href = '/dat-cho-xe.html';
+    });
 });

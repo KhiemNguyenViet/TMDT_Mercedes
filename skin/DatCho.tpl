@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Đặt giữ chỗ xe</title>
-    <link rel="stylesheet" href="DatCho.css">
+    <link rel="stylesheet" href="../skin/tpl/css/DatCho.css">
+    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
+    <link rel="stylesheet" href="../skin/tpl/css/Banner.css">
+    <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
 </head>
 
 <body>
+    {header}
     <a href="#" class="back-link">← Quay lại trang xe đã chọn</a>
     <div class="container">
         <div class="car-section">
@@ -135,6 +139,7 @@
             </script>
         </div>
     </div>
+    {footer}
 
     <script src="DatCho.js"></script>
 </body>
