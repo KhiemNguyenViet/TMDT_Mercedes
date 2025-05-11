@@ -185,6 +185,160 @@
             object-fit: cover;
             transition: transform 0.3s;
         }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's on top */
+        }
+        .popup-content {
+            background-color: #fff;
+            padding: 25px 35px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            position: relative; /* For positioning the close button */
+        }
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .popup-close:hover {
+            color: #333;
+        }
+        .popup-content h2 {
+            color: #0056b3; /* Mercedes-Benz blue */
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .popup-description {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .popup-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .popup-option-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            text-decoration: none;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+        }
+        .popup-option-button:hover {
+            background-color: #0056b3;
+        }
+        .popup-option-button.phone {
+            background-color: #28a745; /* Green for phone call */
+        }
+        .popup-option-button.phone:hover {
+            background-color: #1e7e34;
+        }
+
+        /* CSS for Booking Popup Form - Adjustments for horizontal and nicer layout */
+        .booking-popup-content {
+            max-width: 700px; /* Wider for two-column layout */
+            text-align: left;
+        }
+
+        .booking-popup-content h2 {
+            text-align: center; 
+            color: #0056b3; 
+            margin-top: 0;
+            margin-bottom: 25px; /* More space below title */
+        }
+
+        #bookingForm {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: space-between; /* Distribute space between items */
+        }
+
+        .form-group {
+            margin-bottom: 18px; /* Increased spacing */
+            flex-basis: calc(50% - 10px); /* Two columns with a 20px gap total */
+            box-sizing: border-box;
+        }
+
+        .form-group.full-width {
+            flex-basis: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #444; /* Slightly darker label */
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="email"],
+        .form-group input[type="date"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        #bookingForm .popup-option-button {
+            flex-basis: 100%; /* Make submit button full width */
+            margin-top: 15px; /* Space above submit button */
+            background-color: #0056b3; 
+            padding: 14px 20px;
+            font-size: 1.05em;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #bookingForm .popup-option-button:hover {
+            background-color: #004085;
+        }
     </style>
 </head>
 
@@ -223,7 +377,7 @@
 
             <div class="buttons">
                 <button class="buy-btn">ĐẶT GIỮ XE</button>
-                <button class="consult-btn">ĐĂNG KÝ TƯ VẤN XE</button>
+                <button class="consult-btn" id="openConsultPopupBtn">ĐĂNG KÝ TƯ VẤN XE</button>
             </div>
         </div>
     </div>
@@ -294,7 +448,7 @@
         </div>
         <ul style="line-height: 1.8; font-size: 16px; font-family: Arial, sans-serif;"></ul>
         <li style="text-align: justify">Gói thiết kế nội thất thể thao AMG Line</li>
-        <li style="text-align: justify">Ốp bệ bước cửa trước với dòng chữ “Mercedes-Benz” phát sáng</li>
+        <li style="text-align: justify">Ốp bệ bước cửa trước với dòng chữ "Mercedes-Benz" phát sáng</li>
         <li style="text-align: justify">Vô lăng 3 chấu thiết kế thể thao bọc da nappa cao cấp, tích hợp các nút bấm
             điều khiển cảm ứng</li>
         <li style="text-align: justify">Mặt táp-lô &amp; viền cửa sổ bọc da ARTICO</li>
@@ -375,6 +529,85 @@
             <li style="text-align: justify">Cụm chuyển đổi DYNAMIC SELECT với nhiều chế độ vận hành</li>
         </ul>
     </div>
+    <div id="consultPopup" class="popup-overlay" style="display: none;">
+        <div class="popup-content">
+            <span class="popup-close" id="closeConsultPopupBtn">&times;</span>
+            <h2>Đăng Ký Tư Vấn</h2>
+            <p class="popup-description">Vui lòng chọn một trong các hình thức tư vấn dưới đây:</p>
+            <div class="popup-options">
+                <a href="javascript:void(0);" id="openBookingPopupBtn" class="popup-option-button">Đặt Lịch Lái Thử</a>
+                <a href="tel:YOUR_PHONE_NUMBER" class="popup-option-button phone">Gọi Điện Tư Vấn Trực Tiếp</a>
+                <!-- Hoặc bạn có thể hiển thị số điện thoại:
+                <div class="phone-info">
+                    <p>Hoặc gọi trực tiếp cho chúng tôi:</p>
+                    <p style="font-size: 1.2em; font-weight: bold; color: #0056b3;">YOUR_PHONE_NUMBER</p>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+
+    <div id="bookingPopup" class="popup-overlay" style="display: none;">
+        <div class="popup-content booking-popup-content">
+            <span class="popup-close" id="closeBookingPopupBtn">&times;</span>
+            <h2>Đặt Lịch Lái Thử Xe</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="bookingFullName">Họ và Tên:</label>
+                    <input type="text" id="bookingFullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookingPhoneNumber">Số Điện Thoại:</label>
+                    <input type="tel" id="bookingPhoneNumber" name="phoneNumber" pattern="[0-9]{10,11}" title="Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookingEmail">Email (Không bắt buộc):</label>
+                    <input type="email" id="bookingEmail" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="bookingTestDriveDate">Ngày Lái Thử:</label>
+                    <input type="date" id="bookingTestDriveDate" name="testDriveDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookingTestDriveTime">Giờ Lái Thử:</label>
+                    <select id="bookingTestDriveTime" name="testDriveTime" required>
+                        <option value="">Chọn giờ</option>
+                        <option value="08:00">08:00</option>
+                        <option value="08:30">08:30</option>
+                        <option value="09:00">09:00</option>
+                        <option value="09:30">09:30</option>
+                        <option value="10:00">10:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="11:00">11:00</option>
+                        <option value="11:30">11:30</option>
+                        <option value="13:30">13:30</option>
+                        <option value="14:00">14:00</option>
+                        <option value="14:30">14:30</option>
+                        <option value="15:00">15:00</option>
+                        <option value="15:30">15:30</option>
+                        <option value="16:00">16:00</option>
+                        <option value="16:30">16:30</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingLocation">Địa điểm (Showroom):</label>
+                    <input type="text" id="bookingLocation" name="location" value="Mercedes-Benz Haxaco Láng Hạ" required>
+                    <!-- Hoặc dùng select nếu có nhiều địa điểm:
+                    <select id="bookingLocation" name="location" required>
+                        <option value="Showroom A">Showroom A</option>
+                        <option value="Showroom B">Showroom B</option>
+                    </select>
+                    -->
+                </div>
+                <div class="form-group full-width">
+                    <label for="bookingNotes">Ghi chú (Xe muốn lái thử, yêu cầu khác,...):</label>
+                    <textarea id="bookingNotes" name="notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="popup-option-button">GỬI YÊU CẦU ĐẶT LỊCH</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         const images = [
             "../hinhanh/{product.image}",
@@ -432,6 +665,108 @@
 
         // Initial load
         updateMainImage();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const consultPopup = document.getElementById('consultPopup');
+            const openBtn = document.getElementById('openConsultPopupBtn');
+            const closeBtn = document.getElementById('closeConsultPopupBtn');
+
+            if (openBtn) {
+                openBtn.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default button behavior if it's inside a form
+                    if (consultPopup) {
+                        consultPopup.style.display = 'flex';
+                    }
+                });
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    if (consultPopup) {
+                        consultPopup.style.display = 'none';
+                    }
+                });
+            }
+
+            // Optional: Close popup if user clicks outside the popup content
+            if (consultPopup) {
+                consultPopup.addEventListener('click', function(event) {
+                    if (event.target === consultPopup) { // Check if the click is on the overlay itself
+                        consultPopup.style.display = 'none';
+                    }
+                });
+            }
+
+            // JavaScript for Booking Popup
+            const bookingPopup = document.getElementById('bookingPopup');
+            const openBookingBtn = document.getElementById('openBookingPopupBtn');
+            const closeBookingBtn = document.getElementById('closeBookingPopupBtn'); // ID cho nút đóng booking popup
+            const bookingForm = document.getElementById('bookingForm');
+
+            if (openBookingBtn) {
+                openBookingBtn.addEventListener('click', function(event) {
+                    event.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
+                    if (bookingPopup) {
+                        bookingPopup.style.display = 'flex';
+                        // Tùy chọn: Ẩn popup tư vấn khi mở popup đặt lịch
+                        if (consultPopup) {
+                            consultPopup.style.display = 'none';
+                        }
+                    }
+                });
+            }
+
+            if (closeBookingBtn) {
+                closeBookingBtn.addEventListener('click', function() {
+                    if (bookingPopup) {
+                        bookingPopup.style.display = 'none';
+                    }
+                });
+            }
+
+            if (bookingPopup) {
+                bookingPopup.addEventListener('click', function(event) {
+                    // Đóng popup nếu click vào vùng overlay bên ngoài nội dung
+                    if (event.target === bookingPopup) {
+                        bookingPopup.style.display = 'none';
+                    }
+                });
+            }
+
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    // Xử lý gửi form ở đây (ví dụ: dùng AJAX)
+                    // Lấy dữ liệu form:
+                    const formData = new FormData(bookingForm);
+                    const data = {};
+                    formData.forEach((value, key) => {
+                        data[key] = value;
+                    });
+
+                    // Thêm tên xe hiện tại vào dữ liệu gửi đi (nếu cần)
+                    const productNameElement = document.querySelector('.info h2');
+                    if (productNameElement) {
+                        data['productName'] = productNameElement.textContent.trim();
+                    }
+                    
+                    console.log('Dữ liệu đặt lịch lái thử:', data); // Log dữ liệu ra console
+
+                    // Hiển thị thông báo (thay thế bằng logic gửi mail/lưu DB thực tế)
+                    alert('Yêu cầu đặt lịch lái thử xe ' + (data['productName'] ? data['productName'] : '') + ' của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất!');
+                    
+                    bookingPopup.style.display = 'none'; // Ẩn popup sau khi gửi
+                    bookingForm.reset(); // Xóa các trường trong form
+                });
+            }
+
+            // Cập nhật ngày tối thiểu cho input date là ngày hiện tại
+            const testDriveDateInput = document.getElementById('bookingTestDriveDate');
+            if(testDriveDateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                testDriveDateInput.setAttribute('min', today);
+            }
+        });
     </script>
     {footer}
 </body>
