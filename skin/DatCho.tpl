@@ -141,7 +141,7 @@
     </div>
     {footer}
 
-    <script src="DatCho.js"></script>
+    <script src="../skin/tpl/js/DatCho.js"></script>
 </body>
 
 </html>
