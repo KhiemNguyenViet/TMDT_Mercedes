@@ -68,7 +68,7 @@
         </div>
         <div class="navbar-center">
             <img src="../hinhanh/logo.jpg" alt="Mercedes Logo" class="logo"
-                onclick="window.location.href='index.html'" />
+                onclick="window.location.href='/'" />
         </div>
         <div class="navbar-right">
             <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" />
