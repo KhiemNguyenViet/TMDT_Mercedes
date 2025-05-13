@@ -30,9 +30,25 @@
         '../hinhanh/banner5.jpeg',
     ];
     let bannerIndex = 0;
+    const bannerImg = document.getElementById('banner-img');
+
+    function fadeOut(element, callback) {
+        element.style.transition = 'opacity 1s';
+        element.style.opacity = 0;
+        setTimeout(callback, 500); // Wait for the fade-out transition to complete
+    }
+
+    function fadeIn(element) {
+        element.style.transition = 'opacity 1s';
+        element.style.opacity = 1;
+    }
+
     setInterval(() => {
-        bannerIndex = (bannerIndex + 1) % bannerImages.length;
-        document.getElementById('banner-img').src = bannerImages[bannerIndex];
+        fadeOut(bannerImg, () => {
+            bannerIndex = (bannerIndex + 1) % bannerImages.length;
+            bannerImg.src = bannerImages[bannerIndex];
+            fadeIn(bannerImg);
+        });
     }, 5000);
 </script>
 
@@ -161,39 +177,39 @@
         </div>
     </div>
 
-            <div class="footer-wrapper">
-                <div class="testdrive-section">
-                    <div class="testdrive-overlay">
-                        <form class="testdrive-form" onsubmit="handleSubmit(event)">
-                            <h2 class="form-title">Đăng ký lái thử</h2>
-                            <input type="text" name="name" placeholder="Họ và tên" required />
-                            <input type="tel" name="phone" placeholder="Số điện thoại" required />
-                            <select name="carModel" required>
-                                <option value="">Dòng xe cần tư vấn</option>
-                                <option value="A-Class">A-Class</option>
-                                <option value="C-Class">C-Class</option>
-                                <option value="E-Class">E-Class</option>
-                                <option value="GLB">GLB</option>
-                                <option value="GLC">GLC</option>
-                                <option value="GLC 2023">GLC 2023</option>
-                                <option value="GLE">GLE</option>
-                                <option value="GLS">GLS</option>
-                                <option value="Maybach">Maybach</option>
-                                <option value="S-Class">S-Class</option>
-                            </select>
-                            <button type="submit" class="submit-button">Gửi thông tin</button>
-                        </form>
-                    </div>
-                </div>
-{footer}
-<script>
-    function handleSubmit(event) {
-        event.preventDefault();
-        alert("Thông tin của bạn đã được gửi!");
-    }
+    <div class="footer-wrapper">
+        <div class="testdrive-section">
+            <div class="testdrive-overlay">
+                <form class="testdrive-form" onsubmit="handleSubmit(event)">
+                    <h2 class="form-title">Đăng ký lái thử</h2>
+                    <input type="text" name="name" placeholder="Họ và tên" required />
+                    <input type="tel" name="phone" placeholder="Số điện thoại" required />
+                    <select name="carModel" required>
+                        <option value="">Dòng xe cần tư vấn</option>
+                        <option value="A-Class">A-Class</option>
+                        <option value="C-Class">C-Class</option>
+                        <option value="E-Class">E-Class</option>
+                        <option value="GLB">GLB</option>
+                        <option value="GLC">GLC</option>
+                        <option value="GLC 2023">GLC 2023</option>
+                        <option value="GLE">GLE</option>
+                        <option value="GLS">GLS</option>
+                        <option value="Maybach">Maybach</option>
+                        <option value="S-Class">S-Class</option>
+                    </select>
+                    <button type="submit" class="submit-button">Gửi thông tin</button>
+                </form>
+            </div>
+        </div>
+        {footer}
+        <script>
+            function handleSubmit(event) {
+                event.preventDefault();
+                alert("Thông tin của bạn đã được gửi!");
+            }
 
-</script>
+        </script>
 
-</body>
+        </body>
 
 </html>
