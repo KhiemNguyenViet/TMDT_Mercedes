@@ -3,18 +3,6 @@ include('../includes/tlca_world.php');
 
 $tlca_do = new class_manage();
 $check = $tlca_do->load('class_check');
-<<<<<<< HEAD
-$cpanel = $tlca_do->load('class_cpanel');
-$skin = $tlca_do->load('class_skin_cpanel');
-
-// Lấy action từ URL
-$action = isset($_GET['action']) ? $_GET['action'] : 'dashboard';
-
-// Kết nối database
-$conn = mysqli_connect('localhost', 'root', '', 'mercedes_shop');
-if (!$conn) {
-    die("Lỗi kết nối database: " . mysqli_error($conn));
-=======
 $class_index=$tlca_do->load('class_cpanel');
 $skin=$tlca_do->load('class_skin_cpanel');
 $action = addslashes($_REQUEST['action']);
@@ -33,7 +21,7 @@ if ($action == "dashboard") {
         'footer' => $skin->skin_normal('skin/footer'),
     );
     echo $skin->skin_replace('skin_adm/index', $replace);
->>>>>>> 37436bb66de101f7248d90904d25346f3aea0859
+
 }
 
 // Xử lý các action

@@ -40,19 +40,18 @@ $product = mysqli_fetch_assoc($result);
 
 if ($product) {
     // Format giá tiền
-<<<<<<< HEAD
-=======
+
     $product['price'] = number_format($product['price'], 0, ',', '.') . ' VNĐ';
-    
+
     // Lấy tên danh mục
-    $category = $class_index->getCategoryById($conn,$product['category_id']);
+    $category = $class_index->getCategoryById($conn, $product['category_id']);
     $product['category_name'] = $category['name'];
-    
+
     // Xử lý và hiển thị nội dung
     //  
 
     // Chuẩn bị dữ liệu cho template
->>>>>>> 3742f1bdb1ada092d93c23107c452f2b95c03622
+
     $replace = array(
         'header' => $header,
         'footer' => $skin->skin_normal('skin/footer'),
@@ -82,10 +81,6 @@ if ($product) {
         'phone' => $phone,
         'email' => $email,
         'product.category_name' => $product['category_name']
-<<<<<<< HEAD
-
-=======
->>>>>>> 3742f1bdb1ada092d93c23107c452f2b95c03622
     );
 
     // Debug

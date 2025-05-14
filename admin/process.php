@@ -4,7 +4,7 @@ $check = $tlca_do->load('class_check');
 $class_index = $tlca_do->load('class_index');
 $skin = $tlca_do->load('class_skin');
 $action = addslashes($_REQUEST['action']);
-<<<<<<< HEAD
+
 if ($action == "dangnhap") {
 	$username = addslashes(strip_tags($_REQUEST['username']));
 	$password = addslashes($_REQUEST['password']);
@@ -52,6 +52,5 @@ switch ($action) {
 	default:
 		echo "Invalid action";
 }
-=======
+
 ?>
->>>>>>> 3742f1bdb1ada092d93c23107c452f2b95c03622
