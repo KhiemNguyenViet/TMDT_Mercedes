@@ -13,7 +13,8 @@ RewriteRule ^cacmauxe.html cacmauxe.php
 RewriteRule ^account.html account.php
 RewriteRule ^dat-cho-xe.html datcho.php
 RewriteRule ^logout process_logout.php
-
+RewriteRule ^admincp/edit-product$ admin/index.php?action=edit_product [QSA,L]
+RewriteRule ^admincp/edit-product/([0-9]+)$ admin/index.php?action=edit_product&id=$1 [QSA,L]
 RewriteRule ^admin/dashboard admin/index.php?action=dashboard
 # =======
 # RewriteRule ^tim-kiem.html timkiem.php

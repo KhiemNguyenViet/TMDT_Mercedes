@@ -58,20 +58,22 @@
         .tk-dropdown:hover .dropdown-content {
             display: block;
         }
-<<<<<<< HEAD
-        .navbar .navbar-right .tk-dropdown{
-            display: none;
-        }
-        .navbar .navbar-right .user-dropdown{
-=======
 
-        .navbar .tk-dropdown {
+        .navbar .navbar-right .tk-dropdown {
             display: none;
         }
 
-        .navbar .user-dropdown {
->>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
-            display: block;
+        .navbar .navbar-right .user-dropdown {
+
+
+            .navbar .tk-dropdown {
+                display: none;
+            }
+
+            .navbar .user-dropdown {
+
+                display: block;
+            }
         }
     </style>
     <!-- MenuBar -->
@@ -83,14 +85,11 @@
             <a href="thuonghieu.html">Thương hiệu</a>
         </div>
         <div class="navbar-center">
-<<<<<<< HEAD
+
             <a href="/">
                 <img src="../hinhanh/logo.jpg" alt="Mercedes Logo" class="logo" />
             </a>
-=======
-            <img src="../hinhanh/logo.jpg" alt="Mercedes Logo" class="logo"
-                onclick="window.location.href='/'" />
->>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
+
         </div>
         <div class="navbar-right">
             <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" />
@@ -110,22 +109,20 @@
         </div>
     </nav>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<<<<<<< HEAD
-    <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>    
-</body>    
-=======
-    <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>
-    <script>
-        $(document).ready(function () {
-            if (localStorage.getItem('loginStatus') === 'loggedInAsUser24') {
-                $('.navbar .user-dropdown').css('display', 'none');
-                $('.navbar .tk-dropdown').css('display', 'block');
-            } else {
-                // Đảm bảo trạng thái mặc định nếu không có loginStatus hoặc giá trị khác
-                $('.navbar .user-dropdown').css('display', 'block');
-                $('.navbar .tk-dropdown').css('display', 'none');
-            }
-        });
+    <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>">
     </script>
 </body>
->>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
+
+<script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>
+<script>
+    $(document).ready(function () {
+        if (localStorage.getItem('loginStatus') === 'loggedInAsUser24') {
+            $('.navbar .user-dropdown').css('display', 'none');
+            $('.navbar .tk-dropdown').css('display', 'block');
+        } else {
+            // Đảm bảo trạng thái mặc định nếu không có loginStatus hoặc giá trị khác
+            $('.navbar .user-dropdown').css('display', 'block');
+            $('.navbar .tk-dropdown').css('display', 'none');
+        }
+    });
+</script>

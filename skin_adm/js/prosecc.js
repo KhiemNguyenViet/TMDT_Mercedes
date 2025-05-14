@@ -1,42 +1,52 @@
-function suaSanPham(id) {
-    // Gọi API lấy form edit
+function editProduct(id) {
+    // Redirect to edit page
+    window.location.href = '/admincp/edit-product?id=' + id;
+}
+
+// Hoặc nếu muốn dùng Ajax load form:
+function editProduct(id) {
     $.ajax({
-        url: 'process.php',
-        type: 'POST',
-        data: {
-            action: 'edit_product',
-            id: id
-        },
+        url: '/admincp/edit-product',
+        type: 'GET',
+        data: { id: id },
         success: function(response) {
+            // Hiển thị form edit trong modal
             $('#editModal').html(response).show();
+        },
+        error: function(xhr, status, error) {
+            alert('Có lỗi xảy ra: ' + error);
         }
     });
 }
 
-function closeEditForm() {
+// Đóng modal
+function closeEditModal() {
     $('#editModal').hide();
 }
 
-// Xử lý submit form edit
-$('#editProductForm').on('submit', function(e) {
+// Handle form submit
+$(document).on('submit', '#editProductForm', function(e) {
     e.preventDefault();
     
     var formData = new FormData(this);
-    formData.append('action', 'update_product');
     
     $.ajax({
-        url: 'process.php',
+        url: $(this).attr('action'),
         type: 'POST',
         data: formData,
         processData: false,
         contentType: false,
         success: function(response) {
-            alert(response);
-            if(response.includes('thành công')) {
-                closeEditForm();
-                // Refresh danh sách sản phẩm
-                location.reload();
+            if(response.success) {
+                alert('Cập nhật thành công!');
+                closeEditModal();
+                location.reload(); // Refresh lại trang
+            } else {
+                alert('Lỗi: ' + response.message);
             }
+        },
+        error: function(xhr, status, error) {
+            alert('Có lỗi xảy ra: ' + error);
         }
     });
 });
