@@ -58,6 +58,7 @@
         .tk-dropdown:hover .dropdown-content {
             display: block;
         }
+<<<<<<< HEAD
 
         .navbar .navbar-right .tk-dropdown {
             display: none;
@@ -74,6 +75,13 @@
 
                 display: block;
             }
+=======
+        .navbar .navbar-right .tk-dropdown{
+            display: none;
+        }
+        .navbar .navbar-right .user-dropdown{
+            display: block;
+>>>>>>> 3742f1bdb1ada092d93c23107c452f2b95c03622
         }
     </style>
     <!-- MenuBar -->
@@ -85,11 +93,17 @@
             <a href="thuonghieu.html">Thương hiệu</a>
         </div>
         <div class="navbar-center">
+<<<<<<< HEAD
 
             <a href="/">
                 <img src="../hinhanh/logo.jpg" alt="Mercedes Logo" class="logo" />
             </a>
 
+=======
+            <a href="/">
+                <img src="../hinhanh/logo.jpg" alt="Mercedes Logo" class="logo" />
+            </a>
+>>>>>>> 3742f1bdb1ada092d93c23107c452f2b95c03622
         </div>
         <div class="navbar-right">
             <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" />
@@ -109,6 +123,7 @@
         </div>
     </nav>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<<<<<<< HEAD
     <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>">
     </script>
 </body>
@@ -126,3 +141,9 @@
         }
     });
 </script>
+=======
+    <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>    
+</body>    
+    <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>
+</body>
+>>>>>>> 3742f1bdb1ada092d93c23107c452f2b95c03622

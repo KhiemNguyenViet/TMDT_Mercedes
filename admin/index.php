@@ -3,23 +3,57 @@ include('../includes/tlca_world.php');
 
 $tlca_do = new class_manage();
 $check = $tlca_do->load('class_check');
+<<<<<<< HEAD
 $cpanel = $tlca_do->load('class_cpanel');
 $skin = $tlca_do->load('class_skin_cpanel');
-$class_cpanel = $tlca_do->load('class_cpanel');
-$skin = $tlca_do->load('class_skin_cpanel');
 
+// Lấy action từ URL
 $action = isset($_GET['action']) ? $_GET['action'] : 'dashboard';
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+// Kết nối database
+$conn = mysqli_connect('localhost', 'root', '', 'mercedes_shop');
+if (!$conn) {
+    die("Lỗi kết nối database: " . mysqli_error($conn));
+=======
+$class_index=$tlca_do->load('class_cpanel');
+$skin=$tlca_do->load('class_skin_cpanel');
+$action = addslashes($_REQUEST['action']);
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+if (!$user_id && isset($_COOKIE['user_id'])) {
+    $user_id = decodeToken($conn, $_COOKIE['user_id']);
+    if ($user_id) {
+        $_SESSION['user_id'] = $user_id;
+    }
+}
 
 if ($action == "dashboard") {
     $replace = array(
         'header' => $skin->skin_normal('skin/header'),
         'footer' => $skin->skin_normal('skin/footer'),
-        'list_product' => $class_cpanel->list_product($conn),
     );
     echo $skin->skin_replace('skin_adm/index', $replace);
+>>>>>>> 37436bb66de101f7248d90904d25346f3aea0859
 }
+
+// Xử lý các action
+switch ($action) {
+    case 'edit_product':
+        include('edit_product.php');
+        $template = 'skin_adm/box_li/edit_product';
+        break;
+
+    case 'dashboard':
+    default:
+        $list_product = $cpanel->list_product($conn);
+        $thaythe = array(
+            'list_product' => $list_product
+        );
+        $template = 'skin_adm/index';
+        break;
+}
+
 // Hiển thị template tương ứng
 echo $skin->skin_replace($template, $thaythe);
+
+mysqli_close($conn);

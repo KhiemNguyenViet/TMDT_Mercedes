@@ -6,6 +6,12 @@ $skin = $tlca_do->load('class_skin');
 $class_member = $tlca_do->load('class_member');
 $user_info=$class_member->user_info($conn,$_COOKIE['user_id']);
 $action = addslashes($_REQUEST['action']);
+
+if(isset($user_info['user_id']) && $user_info['user_id']>0){
+    $header = $skin->skin_normal('skin_cpanel/headeruser');
+}else{
+    $header = $skin->skin_normal('skin/header');
+}
 if ($action == "datlich") {
     $fullName = addslashes(strip_tags($_REQUEST['fullName']));
     $phoneNumber = addslashes(strip_tags($_REQUEST['phoneNumber']));
@@ -68,5 +74,27 @@ if ($action == "datlich") {
     } else {
         echo json_encode(array('ok' => 0, 'thongbao' => 'Đặt lịch lái thử xe thất bại'));
     }
+}
+
+if ($action == "datcho") {
+    $user_id=$user_info['user_id'];
+    $id = addslashes(strip_tags($_REQUEST['id']));
+    $sql = "SELECT products.*, categories.name as category_name FROM products LEFT JOIN categories ON products.category_id = categories.id WHERE products.id = '$id'";
+    $result = $conn->query($sql);
+    $product = $result->fetch_assoc();
+    $formatted_price = number_format($product['price'], 0, ',', '.') . ' VNĐ';
+    $replace = array(
+        'header' => $header,
+        'footer' => $skin->skin_normal('skin/footer'),
+        'product.id' => $product['id'],
+        'product.name' => $product['name'],
+        'product.price' => $formatted_price,
+        'product.category_name' => $product['category_name'],
+        'username' => $user_info['username'],
+        'phone' => $user_info['phone'],
+        'email' => $user_info['email'],
+        'address' => $user_info['address'],
+    );
+    echo $skin->skin_replace('skin/DatCho', $replace);
 }
 ?>

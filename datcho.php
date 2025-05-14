@@ -1,53 +1,28 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 include('./includes/tlca_world.php');
-
-$tlca_do = new class_manage();
 $check = $tlca_do->load('class_check');
 $class_index = $tlca_do->load('class_index');
 $skin = $tlca_do->load('class_skin');
+$class_member = $tlca_do->load('class_member');
+$user_info=$class_member->user_info($conn,$_COOKIE['user_id']);
 
-// Lấy và validate ID sản phẩm 
-$product_id = isset($_GET['blank']) ? (int)$_GET['blank'] : 0;
+if(isset($user_info['user_id']) && $user_info['user_id']>0){
+    $header = $skin->skin_normal('skin_cpanel/headeruser');
+}else{
+    $header = $skin->skin_normal('skin/header');
+}
+
+// Lấy ID sản phẩm từ URL
+$product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Debug
-error_log("Raw product ID from URL: " . $_GET['blank']);
-error_log("Parsed product ID: " . $product_id);
+error_log("Loading product details for ID: " . $product_id);
 
-// Kiểm tra ID hợp lệ
-if (!$product_id || $product_id <= 0) {
-    error_log("Invalid product ID received: " . $_GET['blank']);
-    die("Invalid product ID: " . htmlspecialchars($_GET['blank']));
-}
-
-// Kết nối database
-$conn = mysqli_connect('localhost', 'root', '', 'mercedes_shop');
-if (!$conn) {
-    die("Database connection failed: " . mysqli_connect_error());
-}
-
-// Query lấy thông tin sản phẩm với ID
-$sql = "SELECT p.*, c.name as category_name 
-        FROM products p
-        LEFT JOIN categories c ON p.category_id = c.id
-        WHERE p.id = ?";
-
-$stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "i", $product_id);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$product = mysqli_fetch_assoc($result);
-
-if ($product) {
-    // Format giá tiền
     $formatted_price = number_format($product['price'], 0, ',', '.') . ' VNĐ';
 
     // Chuẩn bị dữ liệu template
     $replace = array(
-        'header' => $skin->skin_normal('skin/header'),
+        'header' => $header,
         'footer' => $skin->skin_normal('skin/footer'),
         'product.id' => $product['id'],
         'product.name' => $product['name'],
@@ -57,6 +32,4 @@ if ($product) {
     );
 
     echo $skin->skin_replace('skin/DatCho', $replace);
-} else {
-    die("Không tìm thấy sản phẩm với ID: " . $product_id);
-}
+?>

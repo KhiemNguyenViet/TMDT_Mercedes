@@ -2,7 +2,6 @@ body {
     font-family: Arial, sans-serif;
     background: #f5f5f5;
     margin: 0;
-    padding: 20px;
 }
 
 .container {
@@ -89,6 +88,8 @@ button:hover {
 }
 
 .back-link {
+    margin-top: 15px;
+    margin-left: 15px;
     text-decoration: none;
     color: #007bff;
     margin-bottom: 15px;
