@@ -14,12 +14,12 @@
     {header}
     <a href="product/{product.id}.html" class="back-link">← Quay lại trang xe đã chọn</a>
     <div class="container">
-        <div class="car-section">
-            <img src="hinhanh/{product.image}" alt="{product.name}" class="car-image">
+        <div data-product-id="{product.id}" class="car-section">
+            <img src="../hinhanh/{product.image}" alt="{product.name}" class="car-image">
             <h2>{product.name}</h2>
-            <div class="car-info">
+            <div data-product-id="{product.id}" class="car-info">
                 <p>Danh mục: <strong>{product.category_name}</strong></p>
-                <p>Giá xe: <strong>{product.price}</strong></p>
+                <p class="price" data-price="{product.price}">Giá xe: <strong>{product.price}</strong></p>
                 <p>Tiền giữ chỗ: <strong>10.000.000 VNĐ</strong></p>
             </div>
         </div>
@@ -35,15 +35,14 @@
 
             <form id="multiStepForm">
                 <!-- Bước 1: Chi tiết thanh toán -->
-                <div class="form-step active">
+                <div  class="form-step active">
                     <label>Danh xưng*</label>
-                    <select required>
-                        <option value="">Vui lòng chọn</option>
+                    <select name="salutation" required>
                         <option value="Anh">Anh</option>
                         <option value="Chị">Chị</option>
                     </select>
 
-                    <label>Họ và Tên*</label>
+                    <label class="user_info" data-user-id="{user_id}">Họ và Tên*</label>
                     <input type="text" value="{username}" name="fullName" placeholder="Nhập họ và tên" required>
 
                     <label>SĐT*</label>
@@ -60,16 +59,19 @@
 
                 <!-- Bước 2: Phương thức thanh toán -->
                 <div class="form-step">
-                    <label>Chọn phương thức*</label>
+                    <p>Giá xe: <strong>{product.price}</strong></p>
+                    <p>Sử dụng tiền cá nhân hoặc dịch vụ của bên thứ ba để thanh toán hóa đơn cuối cùng. Nhà phân phối chính hãng của Mercedes-Benz Việt Nam sẽ liên hệ Quý khách để làm rõ các điều khoản thanh toán. Khi chọn Tiếp tục, Quý khách sẽ tiến hành thanh toán Tiền giữ chỗ xe</p>
+                    <p>Tiền giữ chỗ: <strong>10.000.000 VNĐ</strong></p>
+                    <!-- <label>Chọn phương thức*</label>
                     <select required>
                         <option value="">Vui lòng chọn</option>
-                        <option value="Thẻ">Thẻ tín dụng</option>
-                        <option value="Chuyển khoản">Chuyển khoản</option>
-                        <option value="TIền Mặt">Tiền Mặt</option>
-                    </select>
+                        <option value="1">Thẻ tín dụng</option>
+                        <option value="2">Chuyển khoản</option>
+                        <option value="3">Tiền Mặt</option>
+                    </select> -->
 
                     <label>Ghi chú thanh toán</label>
-                    <input type="text" placeholder="Ví dụ: thanh toán qua ngân hàng ACB">
+                    <input type="text" placeholder="Ví dụ: Ghi chú nhắc nhở của khách hàng...">
 
                     <div style="display: flex; justify-content: space-between;">
                         <button type="button" onclick="prevStep()">← Quay lại</button>
@@ -81,16 +83,16 @@
                 <!-- Bước 3: Thông tin thanh toán -->
                 <div class="form-step">
                     <label>Số tài khoản*</label>
-                    <input type="text" placeholder="Nhập số tài khoản" required>
+                    <input type="text" name="bank_account_number" placeholder="Nhập số tài khoản" required>
 
                     <label>Tên chủ tài khoản*</label>
-                    <input type="text" placeholder="Nhập tên chủ tài khoản" required>
+                    <input type="text" name="bank_account_name" placeholder="Nhập tên chủ tài khoản" required>
 
                     <label>Ngân hàng*</label>
-                    <input type="text" placeholder="VD: Vietcombank, ACB..." required>
+                    <input type="text" name="bank_name" placeholder="VD: Vietcombank, ACB..." required>
 
                     <label>Chi nhánh</label>
-                    <input type="text" placeholder="Tên chi nhánh (nếu có)">
+                    <input type="text" name="bank_branch" placeholder="Tên chi nhánh (nếu có)">
                     <div style="display: flex; justify-content: space-between;">
                         <button type="button" onclick="prevStep()">← Quay lại</button>
                         <button type="button" onclick="nextStep()">Tiếp tục →</button>
@@ -101,7 +103,7 @@
                 <!-- Bước 4: Chọn nhà phân phối -->
                 <div class="form-step">
                     <label>Chọn đại lý*</label>
-                    <select required>
+                    <select name="dealer" required>
                         <option value="">Chọn đại lý</option>
                         <option value="Mercedes Hà Nội">Mercedes Hà Nội</option>
                         <option value="Mercedes TP.HCM">Mercedes TP.HCM</option>
@@ -109,7 +111,7 @@
                     </select>
 
                     <label>Nhân viên phụ trách (nếu có)</label>
-                    <input type="text" placeholder="Tên nhân viên tư vấn">
+                    <input type="text" name="sales_person" placeholder="Tên nhân viên tư vấn">
 
                     <div style="display: flex; justify-content: space-between;">
                         <button type="button" onclick="prevStep()">← Quay lại</button>
@@ -123,16 +125,16 @@
                     <p>Xác nhận giữ chỗ xe cho đơn hàng trên?</p>
                     <div style="display: flex; justify-content: space-between;">
                         <button type="button" onclick="prevStep()">← Quay lại</button>
-                        <button type="submit">Xác nhận giữ chỗ</button>
+                        <button id="xacnhan_giucho" type="submit">Xác nhận giữ chỗ</button>
                     </div>
 
                 </div>
             </form>
 
-            <div class="success-message" style="display: none;">
+            <!-- <div class="success-message" style="display: none;">
                 <h3>✅ Đã đặt giữ chỗ vui lòng đợi xác nhận từ nhà phân phối!</h3>
 
-            </div>
+            </div> -->
             <!-- <button onclick="resetPage()" style="position: fixed; bottom: 20px; right: 20px;">Đặt lại</button> -->
             <script>
                 function resetPage() {

@@ -213,4 +213,58 @@ $(document).ready(function () {
         // Nếu còn hàng thì mở popup tư vấn
         $('#consultPopup').css('display', 'flex');
     });
+
+    // Xử lý đặt giữ chỗ xe
+    $('#xacnhan_giucho').click(function(e) {
+        e.preventDefault();
+        price = $('.price').data('price');
+        salutation = $('select[name="salutation"]').val();
+        username = $('input[name="fullName"]').val();
+        phoneNumber = $('input[name="phoneNumber"]').val();
+        email = $('input[name="email"]').val();
+        address = $('input[name="address"]').val();
+        bank_account_number = $('input[name="bank_account_number"]').val();
+        bank_account_name = $('input[name="bank_account_name"]').val();
+        bank_name = $('input[name="bank_name"]').val();
+        bank_branch = $('input[name="bank_branch"]').val();
+        dealer = $('input[name="dealer"]').val();
+        sales_person = $('input[name="sales_person"]').val();
+        user_id = $('.user_info').data('user-id');
+        product_id = $('.car-info').data('product-id');
+        $.ajax({
+            url: '/process.php',
+            type: 'POST',
+            data: {
+                action: 'xacnhan_datcho',
+                salutation: salutation,
+                username: username,
+                phoneNumber: phoneNumber,
+                email: email,
+                address: address,
+                bank_account_number: bank_account_number,
+                bank_account_name: bank_account_name,
+                bank_name: bank_name,
+                bank_branch: bank_branch,
+                dealer: dealer,
+                sales_person: sales_person,
+                user_id: user_id,
+                product_id: product_id,
+                price: price
+            },
+            success: function(response) {
+                console.log(response);  
+                var info = JSON.parse(response);
+                if (info.ok === 1) {
+                    alert(info.thongbao);
+                    window.location.href = '/cacmauxe.html';
+                } else {
+                    alert(info.thongbao);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại sau.');
+            }
+        });
+    });
 });

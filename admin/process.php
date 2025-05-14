@@ -12,14 +12,7 @@ if ($action == "dangnhap") {
 	if (is_array($ketqua) && $ketqua['status'] == 200) {
 		$ok = 1;
 		$thongbao = "Đăng nhập thành công";
-	} else if ($ketqua == 24) {
-		$ok = 24;
-		$thongbao = "Mercedes xin chào quý khách";
-	} else if ($ketqua == 0) {
-
-		$role = $ketqua['role'];
-	} else if ($ketqua == 0) {
-
+	}else if ($ketqua == 0) {
 		$ok = 0;
 		$thongbao = "Vui lòng nhập username";
 	} else if ($ketqua == 1) {
