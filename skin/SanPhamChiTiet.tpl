@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
     <link rel="stylesheet" href="../skin/tpl/css/Banner.css">
@@ -196,18 +197,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* Ensure it's on top */
+            z-index: 1000;
+            /* Ensure it's on top */
         }
+
         .popup-content {
             background-color: #fff;
             padding: 25px 35px;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             text-align: center;
             max-width: 450px;
             width: 90%;
-            position: relative; /* For positioning the close button */
+            position: relative;
+            /* For positioning the close button */
         }
+
         .popup-close {
             position: absolute;
             top: 10px;
@@ -218,24 +223,30 @@
             cursor: pointer;
             line-height: 1;
         }
+
         .popup-close:hover {
             color: #333;
         }
+
         .popup-content h2 {
-            color: #0056b3; /* Mercedes-Benz blue */
+            color: #0056b3;
+            /* Mercedes-Benz blue */
             margin-top: 0;
             margin-bottom: 20px;
         }
+
         .popup-description {
             font-size: 0.95em;
             color: #666;
             margin-bottom: 25px;
         }
+
         .popup-options {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
+
         .popup-option-button {
             background-color: #007bff;
             color: white;
@@ -248,38 +259,48 @@
             transition: background-color 0.3s ease;
             display: block;
         }
+
         .popup-option-button:hover {
             background-color: #0056b3;
         }
+
         .popup-option-button.phone {
-            background-color: #28a745; /* Green for phone call */
+            background-color: #28a745;
+            /* Green for phone call */
         }
+
         .popup-option-button.phone:hover {
             background-color: #1e7e34;
         }
 
         /* CSS for Booking Popup Form - Adjustments for horizontal and nicer layout */
         .booking-popup-content {
-            max-width: 700px; /* Wider for two-column layout */
+            max-width: 700px;
+            /* Wider for two-column layout */
             text-align: left;
         }
 
         .booking-popup-content h2 {
-            text-align: center; 
-            color: #0056b3; 
+            text-align: center;
+            color: #0056b3;
             margin-top: 0;
-            margin-bottom: 25px; /* More space below title */
+            margin-bottom: 25px;
+            /* More space below title */
         }
 
         #bookingForm {
             display: flex;
-            flex-wrap: wrap; /* Allow items to wrap to the next line */
-            justify-content: space-between; /* Distribute space between items */
+            flex-wrap: wrap;
+            /* Allow items to wrap to the next line */
+            justify-content: space-between;
+            /* Distribute space between items */
         }
 
         .form-group {
-            margin-bottom: 18px; /* Increased spacing */
-            flex-basis: calc(50% - 10px); /* Two columns with a 20px gap total */
+            margin-bottom: 18px;
+            /* Increased spacing */
+            flex-basis: calc(50% - 10px);
+            /* Two columns with a 20px gap total */
             box-sizing: border-box;
         }
 
@@ -292,7 +313,8 @@
             margin-bottom: 6px;
             font-weight: bold;
             font-size: 0.9em;
-            color: #444; /* Slightly darker label */
+            color: #444;
+            /* Slightly darker label */
         }
 
         .form-group input[type="text"],
@@ -324,9 +346,11 @@
         }
 
         #bookingForm .popup-option-button {
-            flex-basis: 100%; /* Make submit button full width */
-            margin-top: 15px; /* Space above submit button */
-            background-color: #0056b3; 
+            flex-basis: 100%;
+            /* Make submit button full width */
+            margin-top: 15px;
+            /* Space above submit button */
+            background-color: #0056b3;
             padding: 14px 20px;
             font-size: 1.05em;
             font-weight: bold;
@@ -336,6 +360,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         #bookingForm .popup-option-button:hover {
             background-color: #004085;
         }
@@ -359,7 +384,7 @@
             <p>TRANG CHỦ / MERCEDES-BENZ</p>
             <h2>{product.name}</h2>
             <div class="price">
-                 {product.price} <!-- <span class="old-price">2.839.000.000 VNĐ</span> -->
+                {product.price} <!-- <span class="old-price">2.839.000.000 VNĐ</span> -->
             </div>
             <p><strong>Dòng xe {product.category_name}</strong></p>
 
@@ -376,9 +401,21 @@
             </div>
 
             <div class="buttons">
-                <button class="buy-btn">ĐẶT GIỮ XE</button>
+                <button class="buy-btn" onclick="redirectToBooking()" data-product-id="{product.id}">ĐẶT GIỮ XE</button>
                 <button class="consult-btn" id="openConsultPopupBtn">ĐĂNG KÝ TƯ VẤN XE</button>
             </div>
+
+            <script>
+                function redirectToBooking(productId) {
+                    // Validate ID
+                    if (productId && !isNaN(productId)) {
+                        console.log("Redirecting to booking with ID:", productId);
+                        window.location.href = 'datcho.php?blank=' + productId;
+                    } else {
+                        console.error("Invalid product ID:", productId);
+                    }
+                }
+            </script>
         </div>
     </div>
     <!-- Mô tả sản phẩm -->
@@ -558,7 +595,12 @@
                 </div>
                 <div class="form-group">
                     <label for="bookingPhoneNumber">Số Điện Thoại:</label>
+<<<<<<< HEAD
                     <input type="tel" id="bookingPhoneNumber" value="{phone}" name="phoneNumber" placeholder="Nhập số điện thoại" pattern="[0-9]{10,11}" title="Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)" required>
+=======
+                    <input type="tel" id="bookingPhoneNumber" name="phoneNumber" pattern="[0-9]{10,11}"
+                        title="Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)" required>
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
                 </div>
                 <div class="form-group">
                     <label for="bookingEmail">Email (Không bắt buộc):</label>
@@ -590,10 +632,15 @@
                 </div>
                 <div class="form-group">
                     <label for="bookingLocation">Địa điểm (Showroom):</label>
+<<<<<<< HEAD
                     <select id="bookingLocation" name="location" required>
                         <option value="Mercedes-Benz Haxaco Láng Hạ">Mercedes-Benz Haxaco Láng Hạ</option>
                         <option value="Mercedes-Benz Haxaco Điện Biên Phủ">Mercedes-Benz Haxaco Điện Biên Phủ</option>
                     </select>
+=======
+                    <input type="text" id="bookingLocation" name="location" value="Mercedes-Benz Haxaco Láng Hạ"
+                        required>
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
                     <!-- Hoặc dùng select nếu có nhiều địa điểm:
                     <select id="bookingLocation" name="location" required>
                         <option value="Showroom A">Showroom A</option>
@@ -668,12 +715,24 @@
         // Initial load
         updateMainImage();
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const consultPopup = document.getElementById('consultPopup');
             const closeBtn = document.getElementById('closeConsultPopupBtn');
 
+<<<<<<< HEAD
+=======
+            if (openBtn) {
+                openBtn.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent default button behavior if it's inside a form
+                    if (consultPopup) {
+                        consultPopup.style.display = 'flex';
+                    }
+                });
+            }
+
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
             if (closeBtn) {
-                closeBtn.addEventListener('click', function() {
+                closeBtn.addEventListener('click', function () {
                     if (consultPopup) {
                         consultPopup.style.display = 'none';
                     }
@@ -682,7 +741,7 @@
 
             // Optional: Close popup if user clicks outside the popup content
             if (consultPopup) {
-                consultPopup.addEventListener('click', function(event) {
+                consultPopup.addEventListener('click', function (event) {
                     if (event.target === consultPopup) { // Check if the click is on the overlay itself
                         consultPopup.style.display = 'none';
                     }
@@ -696,7 +755,7 @@
             const bookingForm = document.getElementById('bookingForm');
 
             if (openBookingBtn) {
-                openBookingBtn.addEventListener('click', function(event) {
+                openBookingBtn.addEventListener('click', function (event) {
                     event.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
                     if (bookingPopup) {
                         bookingPopup.style.display = 'flex';
@@ -709,7 +768,7 @@
             }
 
             if (closeBookingBtn) {
-                closeBookingBtn.addEventListener('click', function() {
+                closeBookingBtn.addEventListener('click', function () {
                     if (bookingPopup) {
                         bookingPopup.style.display = 'none';
                     }
@@ -717,7 +776,7 @@
             }
 
             if (bookingPopup) {
-                bookingPopup.addEventListener('click', function(event) {
+                bookingPopup.addEventListener('click', function (event) {
                     // Đóng popup nếu click vào vùng overlay bên ngoài nội dung
                     if (event.target === bookingPopup) {
                         bookingPopup.style.display = 'none';
@@ -725,9 +784,39 @@
                 });
             }
 
+<<<<<<< HEAD
+=======
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    // Xử lý gửi form ở đây (ví dụ: dùng AJAX)
+                    // Lấy dữ liệu form:
+                    const formData = new FormData(bookingForm);
+                    const data = {};
+                    formData.forEach((value, key) => {
+                        data[key] = value;
+                    });
+
+                    // Thêm tên xe hiện tại vào dữ liệu gửi đi (nếu cần)
+                    const productNameElement = document.querySelector('.info h2');
+                    if (productNameElement) {
+                        data['productName'] = productNameElement.textContent.trim();
+                    }
+
+                    console.log('Dữ liệu đặt lịch lái thử:', data); // Log dữ liệu ra console
+
+                    // Hiển thị thông báo (thay thế bằng logic gửi mail/lưu DB thực tế)
+                    alert('Yêu cầu đặt lịch lái thử xe ' + (data['productName'] ? data['productName'] : '') + ' của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất!');
+
+                    bookingPopup.style.display = 'none'; // Ẩn popup sau khi gửi
+                    bookingForm.reset(); // Xóa các trường trong form
+                });
+            }
+
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
             // Cập nhật ngày tối thiểu cho input date là ngày hiện tại
             const testDriveDateInput = document.getElementById('bookingTestDriveDate');
-            if(testDriveDateInput) {
+            if (testDriveDateInput) {
                 const today = new Date().toISOString().split('T')[0];
                 testDriveDateInput.setAttribute('min', today);
             }

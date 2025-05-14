@@ -12,14 +12,16 @@
 
 <body>
     {header}
-    <a href="#" class="back-link">← Quay lại trang xe đã chọn</a>
+    <a href="product/{product.id}.html" class="back-link">← Quay lại trang xe đã chọn</a>
     <div class="container">
         <div class="car-section">
-            <img src="../hinhanh/sanpham1.jpg" alt="Xe" class="car-image"
-                style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-            <h2>C 300 AMG (V1)</h2>
-            <p>Giá: <strong>2.099.000.000 ₫</strong></p>
-            <p>Tiền giữ chỗ: <strong>10.000.000 ₫</strong></p>
+            <img src="hinhanh/{product.image}" alt="{product.name}" class="car-image">
+            <h2>{product.name}</h2>
+            <div class="car-info">
+                <p>Danh mục: <strong>{product.category_name}</strong></p>
+                <p>Giá xe: <strong>{product.price}</strong></p>
+                <p>Tiền giữ chỗ: <strong>10.000.000 VNĐ</strong></p>
+            </div>
         </div>
 
         <div class="form-section">
@@ -131,7 +133,7 @@
                 <h3>✅ Đặt giữ chỗ thành công!</h3>
 
             </div>
-            <button onclick="resetPage()" style="position: fixed; bottom: 20px; right: 20px;">Đặt lại</button>
+            <!-- <button onclick="resetPage()" style="position: fixed; bottom: 20px; right: 20px;">Đặt lại</button> -->
             <script>
                 function resetPage() {
                     location.reload();
