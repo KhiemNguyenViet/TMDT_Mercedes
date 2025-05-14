@@ -48,7 +48,7 @@ if ($product) {
     $product['category_name'] = $category['name'];
     
     // Xử lý và hiển thị nội dung
-    // $formatted_price = number_format($product['price'], 0, ',', '.') . ' VNĐ';
+    //  
 
     // Chuẩn bị dữ liệu cho template
     $replace = array(

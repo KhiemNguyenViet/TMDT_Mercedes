@@ -184,6 +184,11 @@ $(document).ready(function () {
             }
         });
     });
+    /////////////////////
+    // Đặt giữ xe
+    $('#datxe').click(function() {
+        window.location.href = '/dat-cho-xe.html';
+    });
 
     /////////////////////
     // Xử lý nút tư vấn xe

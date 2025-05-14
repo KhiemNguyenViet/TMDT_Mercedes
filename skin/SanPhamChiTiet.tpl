@@ -401,7 +401,7 @@
             </div>
 
             <div class="buttons">
-                <button class="buy-btn" onclick="redirectToBooking()" data-product-id="{product.id}">ĐẶT GIỮ XE</button>
+                <button class="buy-btn" id="datxe">ĐẶT GIỮ XE</button>
                 <button class="consult-btn" id="openConsultPopupBtn">ĐĂNG KÝ TƯ VẤN XE</button>
             </div>
 
