@@ -11,10 +11,10 @@ if ($action == "dangnhap") {
 	if ($ketqua == 200) {
 		$ok = 1;
 		$thongbao = "Đăng nhập thành công";
-	}else if ($ketqua == 24) {
+	} else if ($ketqua == 24) {
 		$ok = 24;
 		$thongbao = "Mercedes xin chào quý khách";
-	}else if ($ketqua == 0) {
+	} else if ($ketqua == 0) {
 		$ok = 0;
 		$thongbao = "Vui lòng nhập username";
 	} else if ($ketqua == 1) {
@@ -32,6 +32,17 @@ if ($action == "dangnhap") {
 		'thongbao' => $thongbao,
 	);
 	echo json_encode($info);
-
 }
-?>
+switch ($action) {
+	case 'edit_product':
+		$id = (int)$_POST['id'];
+		echo $cpanel->edit_product($conn, $id);
+		break;
+
+	case 'update_product':
+		echo $cpanel->update_product($conn, $_POST);
+		break;
+
+	default:
+		echo "Invalid action";
+}

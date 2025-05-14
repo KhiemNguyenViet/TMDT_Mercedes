@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../skin_adm/css/admin.css">
+    <link rel="icon" type="image/x-icon" href="{favicon}">
     <style>
         .dichvu-slider {
             display: flex;
@@ -29,32 +31,38 @@
             position: relative;
             display: inline-block;
         }
+
         .dropdown-content {
             display: none;
             position: absolute;
             background-color: #f9f9f9;
             min-width: 90px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
+
         .dropdown-content ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
+
         .dropdown-content ul li {
             text-align: center;
             padding: 7px;
         }
+
         .dropdown-content ul li a {
             text-decoration: none;
             color: black;
         }
+
         .user-dropdown:hover .dropdown-content {
             display: block;
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1 style="flex: 1; text-align: center;">Mercedes Admin Dashboard</h1>
@@ -75,26 +83,7 @@
         <!-- Product List -->
         <div id="products" class="tab-content active">
             <h2>Danh sách sản phẩm</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Ảnh</th>
-                        <th>Tên</th>
-                        <th>Giá</th>
-                        <th>Mô tả</th>
-                        <th>Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="../hinhanh/sanpham1.jpg" class="product-img"></td>
-                        <td>Mercedes C300 AMG</td>
-                        <td>2.200.000.000 đ</td>
-                        <td>Sedan hạng sang, động cơ mạnh mẽ và nội thất cao cấp.</td>
-                        <td><button class="button edit">Sửa</button> <button class="button delete">Xoá</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            {list_product}
         </div>
 
         <!-- Add Product -->
@@ -237,4 +226,5 @@
         });
     </script>
 </body>
+
 </html>
