@@ -41,7 +41,6 @@ $product = mysqli_fetch_assoc($result);
 
 if ($product) {
     // Format giá tiền
-<<<<<<< HEAD
     $product['price'] = number_format($product['price'], 0, ',', '.') . ' VNĐ';
     
     // Lấy tên danh mục
@@ -49,11 +48,9 @@ if ($product) {
     $product['category_name'] = $category['name'];
     
     // Xử lý và hiển thị nội dung
-=======
-    $formatted_price = number_format($product['price'], 0, ',', '.') . ' VNĐ';
+    // $formatted_price = number_format($product['price'], 0, ',', '.') . ' VNĐ';
 
     // Chuẩn bị dữ liệu cho template
->>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
     $replace = array(
         'header' => $header,
         'footer' => $skin->skin_normal('skin/footer'),
@@ -79,13 +76,10 @@ if ($product) {
         'fuel_capacity' => $product['fuel_capacity'],
         'fuel_type' => $product['fuel_type'],
         'fuel_consumption_combined' => $product['fuel_consumption_l_100km'],
-<<<<<<< HEAD
         'username' => $username,
         'phone' => $phone,
         'email' => $email,
-=======
         'product.category_name' => $product['category_name']
->>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
     );
 
     // Debug

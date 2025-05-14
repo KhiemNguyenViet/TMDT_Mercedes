@@ -595,12 +595,7 @@
                 </div>
                 <div class="form-group">
                     <label for="bookingPhoneNumber">Số Điện Thoại:</label>
-<<<<<<< HEAD
                     <input type="tel" id="bookingPhoneNumber" value="{phone}" name="phoneNumber" placeholder="Nhập số điện thoại" pattern="[0-9]{10,11}" title="Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)" required>
-=======
-                    <input type="tel" id="bookingPhoneNumber" name="phoneNumber" pattern="[0-9]{10,11}"
-                        title="Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)" required>
->>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
                 </div>
                 <div class="form-group">
                     <label for="bookingEmail">Email (Không bắt buộc):</label>
@@ -632,15 +627,10 @@
                 </div>
                 <div class="form-group">
                     <label for="bookingLocation">Địa điểm (Showroom):</label>
-<<<<<<< HEAD
                     <select id="bookingLocation" name="location" required>
                         <option value="Mercedes-Benz Haxaco Láng Hạ">Mercedes-Benz Haxaco Láng Hạ</option>
                         <option value="Mercedes-Benz Haxaco Điện Biên Phủ">Mercedes-Benz Haxaco Điện Biên Phủ</option>
                     </select>
-=======
-                    <input type="text" id="bookingLocation" name="location" value="Mercedes-Benz Haxaco Láng Hạ"
-                        required>
->>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
                     <!-- Hoặc dùng select nếu có nhiều địa điểm:
                     <select id="bookingLocation" name="location" required>
                         <option value="Showroom A">Showroom A</option>
@@ -718,19 +708,6 @@
         document.addEventListener('DOMContentLoaded', function () {
             const consultPopup = document.getElementById('consultPopup');
             const closeBtn = document.getElementById('closeConsultPopupBtn');
-
-<<<<<<< HEAD
-=======
-            if (openBtn) {
-                openBtn.addEventListener('click', function (event) {
-                    event.preventDefault(); // Prevent default button behavior if it's inside a form
-                    if (consultPopup) {
-                        consultPopup.style.display = 'flex';
-                    }
-                });
-            }
-
->>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
             if (closeBtn) {
                 closeBtn.addEventListener('click', function () {
                     if (consultPopup) {
@@ -783,37 +760,6 @@
                     }
                 });
             }
-
-<<<<<<< HEAD
-=======
-            if (bookingForm) {
-                bookingForm.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    // Xử lý gửi form ở đây (ví dụ: dùng AJAX)
-                    // Lấy dữ liệu form:
-                    const formData = new FormData(bookingForm);
-                    const data = {};
-                    formData.forEach((value, key) => {
-                        data[key] = value;
-                    });
-
-                    // Thêm tên xe hiện tại vào dữ liệu gửi đi (nếu cần)
-                    const productNameElement = document.querySelector('.info h2');
-                    if (productNameElement) {
-                        data['productName'] = productNameElement.textContent.trim();
-                    }
-
-                    console.log('Dữ liệu đặt lịch lái thử:', data); // Log dữ liệu ra console
-
-                    // Hiển thị thông báo (thay thế bằng logic gửi mail/lưu DB thực tế)
-                    alert('Yêu cầu đặt lịch lái thử xe ' + (data['productName'] ? data['productName'] : '') + ' của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất!');
-
-                    bookingPopup.style.display = 'none'; // Ẩn popup sau khi gửi
-                    bookingForm.reset(); // Xóa các trường trong form
-                });
-            }
-
->>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
             // Cập nhật ngày tối thiểu cho input date là ngày hiện tại
             const testDriveDateInput = document.getElementById('bookingTestDriveDate');
             if (testDriveDateInput) {
