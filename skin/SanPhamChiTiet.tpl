@@ -380,7 +380,7 @@
             </div>
         </div>
 
-        <div class="info">
+        <div class="info" data-product-id="{product.id}" data-stock="{product.stock}">
             <p>TRANG CHỦ / MERCEDES-BENZ</p>
             <h2>{product.name}</h2>
             <div class="price">
@@ -591,16 +591,20 @@
             <form id="bookingForm">
                 <div class="form-group">
                     <label for="bookingFullName">Họ và Tên:</label>
-                    <input type="text" id="bookingFullName" name="fullName" required>
+                    <input type="text" id="bookingFullName" value="{username}" name="fullName" placeholder="Nhập họ và tên" required>
                 </div>
                 <div class="form-group">
                     <label for="bookingPhoneNumber">Số Điện Thoại:</label>
+<<<<<<< HEAD
+                    <input type="tel" id="bookingPhoneNumber" value="{phone}" name="phoneNumber" placeholder="Nhập số điện thoại" pattern="[0-9]{10,11}" title="Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)" required>
+=======
                     <input type="tel" id="bookingPhoneNumber" name="phoneNumber" pattern="[0-9]{10,11}"
                         title="Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)" required>
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
                 </div>
                 <div class="form-group">
                     <label for="bookingEmail">Email (Không bắt buộc):</label>
-                    <input type="email" id="bookingEmail" name="email">
+                    <input type="email" id="bookingEmail" value="{email}" name="email" placeholder="Nhập email">
                 </div>
                 <div class="form-group">
                     <label for="bookingTestDriveDate">Ngày Lái Thử:</label>
@@ -610,7 +614,6 @@
                     <label for="bookingTestDriveTime">Giờ Lái Thử:</label>
                     <select id="bookingTestDriveTime" name="testDriveTime" required>
                         <option value="">Chọn giờ</option>
-                        <option value="08:00">08:00</option>
                         <option value="08:30">08:30</option>
                         <option value="09:00">09:00</option>
                         <option value="09:30">09:30</option>
@@ -629,8 +632,15 @@
                 </div>
                 <div class="form-group">
                     <label for="bookingLocation">Địa điểm (Showroom):</label>
+<<<<<<< HEAD
+                    <select id="bookingLocation" name="location" required>
+                        <option value="Mercedes-Benz Haxaco Láng Hạ">Mercedes-Benz Haxaco Láng Hạ</option>
+                        <option value="Mercedes-Benz Haxaco Điện Biên Phủ">Mercedes-Benz Haxaco Điện Biên Phủ</option>
+                    </select>
+=======
                     <input type="text" id="bookingLocation" name="location" value="Mercedes-Benz Haxaco Láng Hạ"
                         required>
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
                     <!-- Hoặc dùng select nếu có nhiều địa điểm:
                     <select id="bookingLocation" name="location" required>
                         <option value="Showroom A">Showroom A</option>
@@ -642,7 +652,7 @@
                     <label for="bookingNotes">Ghi chú (Xe muốn lái thử, yêu cầu khác,...):</label>
                     <textarea id="bookingNotes" name="notes" rows="3"></textarea>
                 </div>
-                <button type="submit" class="popup-option-button">GỬI YÊU CẦU ĐẶT LỊCH</button>
+                <button class="datlich-button">GỬI YÊU CẦU ĐẶT LỊCH</button>
             </form>
         </div>
     </div>
@@ -707,9 +717,10 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             const consultPopup = document.getElementById('consultPopup');
-            const openBtn = document.getElementById('openConsultPopupBtn');
             const closeBtn = document.getElementById('closeConsultPopupBtn');
 
+<<<<<<< HEAD
+=======
             if (openBtn) {
                 openBtn.addEventListener('click', function (event) {
                     event.preventDefault(); // Prevent default button behavior if it's inside a form
@@ -719,6 +730,7 @@
                 });
             }
 
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
             if (closeBtn) {
                 closeBtn.addEventListener('click', function () {
                     if (consultPopup) {
@@ -772,6 +784,8 @@
                 });
             }
 
+<<<<<<< HEAD
+=======
             if (bookingForm) {
                 bookingForm.addEventListener('submit', function (event) {
                     event.preventDefault();
@@ -799,6 +813,7 @@
                 });
             }
 
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
             // Cập nhật ngày tối thiểu cho input date là ngày hiện tại
             const testDriveDateInput = document.getElementById('bookingTestDriveDate');
             if (testDriveDateInput) {

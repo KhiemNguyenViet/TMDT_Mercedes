@@ -1,12 +1,23 @@
 <?php
 
 include('./includes/tlca_world.php');
-
-$tlca_do = new class_manage();
 $check = $tlca_do->load('class_check');
 $class_index = $tlca_do->load('class_index');
 $skin = $tlca_do->load('class_skin');
-
+$class_member = $tlca_do->load('class_member');
+$user_info=$class_member->user_info($conn,$_COOKIE['user_id']);
+if(isset($user_info['user_id'])){
+    $header = $skin->skin_normal('skin_cpanel/headeruser');
+    $thongtinkhachhang = $class_index->getThongTinKhachHang($conn,$user_info['user_id']);
+    $username = $thongtinkhachhang['username'];
+    $phone = $thongtinkhachhang['phone'];
+    $email = $thongtinkhachhang['email'];
+}else{
+    $header = $skin->skin_normal('skin/header');
+    $username = '';
+    $phone = '';
+    $email = '';
+}
 // Lấy ID sản phẩm từ URL
 $product_id = isset($_GET['blank']) ? (int)$_GET['blank'] : 0;
 
@@ -30,14 +41,25 @@ $product = mysqli_fetch_assoc($result);
 
 if ($product) {
     // Format giá tiền
+<<<<<<< HEAD
+    $product['price'] = number_format($product['price'], 0, ',', '.') . ' VNĐ';
+    
+    // Lấy tên danh mục
+    $category = $class_index->getCategoryById($conn,$product['category_id']);
+    $product['category_name'] = $category['name'];
+    
+    // Xử lý và hiển thị nội dung
+=======
     $formatted_price = number_format($product['price'], 0, ',', '.') . ' VNĐ';
 
     // Chuẩn bị dữ liệu cho template
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
     $replace = array(
-        'header' => $skin->skin_normal('skin/header'),
+        'header' => $header,
         'footer' => $skin->skin_normal('skin/footer'),
         'product.id' => $product['id'],
         'product.name' => $product['name'],
+        'product.id' => $product['id'],
         'product.image' => $product['image'],
         'product.price' => $product['price'],
         'product.description' => $product['description'],
@@ -57,7 +79,13 @@ if ($product) {
         'fuel_capacity' => $product['fuel_capacity'],
         'fuel_type' => $product['fuel_type'],
         'fuel_consumption_combined' => $product['fuel_consumption_l_100km'],
+<<<<<<< HEAD
+        'username' => $username,
+        'phone' => $phone,
+        'email' => $email,
+=======
         'product.category_name' => $product['category_name']
+>>>>>>> 92b47e9c4ba7a8236e2c1d689d0d9c29f4413d8e
     );
 
     // Debug
