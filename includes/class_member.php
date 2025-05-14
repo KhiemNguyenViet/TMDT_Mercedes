@@ -1,5 +1,6 @@
 <?php
-class class_member extends class_manage {
+ class class_member extends class_manage    
+ {
     function check_login(){
         if(!isset($_COOKIE['user_id'])){
             return 0;
@@ -8,20 +9,11 @@ class class_member extends class_manage {
             return $_COOKIE['user_id'];
         }
     }
-    ///////////////////////////////
-    function token_login($user_id,$password){
-        $pass_1=substr($password, 0,8);
-        $pass_2=substr($password, 8,8);
-        $pass_3=substr($password, 16,8);
-        $pass_4=substr($password, 24,8);
-        $string=$pass_1.'-'.$pass_3.'-'.$pass_2.''.$user_id.'-'.$pass_2.'-'.$pass_4;
-        $token_login=base64_encode($string);
-        return $token_login;
-    }
-    ///////////////////////////////
+    ///////////////////////
     function login($conn,$username,$password,$remember){
+        $check = $this->load('class_check');
         if(strlen($username)<4){
-            return 0;
+            return [];
         }else{
             $info=mysqli_query($conn,"SELECT * FROM users WHERE username='$username'");
             $total=mysqli_num_rows($info);
@@ -31,22 +23,50 @@ class class_member extends class_manage {
                 if($pass!=$r_info['password']){
                     return 2;
                 }else{
-                    if (isset($r_info['role']) && $r_info['role'] == 'user') {
-                        return 24;
-                    } else {
-                        if(isset($remember) && $remember=='on'){
-                            setcookie("user_id",$this->token_login($r_info['id'], $r_info['password']),time() + 31536000,'/');
-                        }else{
-                            setcookie("user_id",$this->token_login($r_info['id'], $r_info['password']),time() + 3600,'/');
-                        }
-                        return 200;
+                    if($remember=='on'){
+                        //setcookie("emin_id",$r_info['id'],time() + 31536000);
+                        setcookie("user_id",$check->token_login($r_info['id'],$r_info['password']),time() + 2593000,'/');
+                    }else{
+                        //setcookie("emin_id",$r_info['id'],time() + 3600);
+                        setcookie("user_id",$check->token_login($r_info['id'],$r_info['password']),time() + 3600,'/');
                     }
+                    return array(
+                        'status' => 200,
+                        'role' => $r_info['role']
+                    );
                 }
             }else{
                 return 1;
             }
         }
     }
-    // Thêm các phương thức cần thiết ở đây
+//////////////////////////////////////////////////////////
+    function logout(){
+        setcookie("user_id",$_COOKIE['user_id'],time() - 3600);
+    }
+///////////////////////////////////////////////////////////
+    function user_info($conn,$user_id){
+        $check = $this->load('class_check');
+        $tach=json_decode($check->token_login_decode($user_id),true);
+        $user_id=$tach['user_id'];
+        $password=$tach['password'];
+        $thongtin=mysqli_query($conn,"SELECT * FROM users WHERE user_id='$user_id' AND password='$password'");   
+        $total=mysqli_num_rows($thongtin);    
+        if($total>0){
+            $r_tt=mysqli_fetch_assoc($thongtin);
+        }
+        return $r_tt;
+    }
+///////////////////////////////////////////////////////////
+    function acount_info($conn,$username){
+        $username = addslashes($username);
+        $thongtin=mysqli_query($conn,"SELECT * FROM users WHERE username='$username'");   
+        $total=mysqli_num_rows($thongtin);    
+        if($total>0){
+            $r_tt=mysqli_fetch_assoc($thongtin);
+        }
+        return $r_tt;
+    }
+/////////////////////////////////////////////////////////////
 }
-?> 
+?>

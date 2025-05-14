@@ -1,5 +1,11 @@
 <?php
 class class_index extends class_manage {
+    function getThongTinKhachHang($conn,$id)
+    {
+        $sql = "SELECT * FROM users WHERE user_id = $id";
+        $result =  mysqli_query($conn,$sql);
+        return mysqli_fetch_assoc($result);
+    }
 
     function getProductById($conn,$id)
     {
@@ -34,17 +40,6 @@ class class_index extends class_manage {
         
         return $products;
     }
-    // function getProductDetails($conn,$id) {
-    //     $id = (int)$id;
-    //     $sql = "SELECT * FROM product_details WHERE product_id = $id LIMIT 1";
-    //     $result =  mysqli_query($conn,$sql);
-    //     $products = array();
-    //     while($row = $result->fetch_assoc()) {
-    //         $products[] = $row;
-    //     }
-        
-    //     return $products;
-    // }
 
     function list_glcbanchay($conn,$limit) {
         $thongtin= mysqli_query($conn,"SELECT * FROM products WHERE category_id = 1 LIMIT $limit");

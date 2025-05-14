@@ -12,6 +12,7 @@ RewriteRule ^thuonghieu.html thuonghieu.php
 RewriteRule ^cacmauxe.html cacmauxe.php
 RewriteRule ^account.html account.php
 RewriteRule ^dat-cho-xe.html datcho.php
+RewriteRule ^logout process_logout.php
 
 RewriteRule ^admin/dashboard admin/index.php?action=dashboard
 # =======

@@ -7,13 +7,11 @@ $action = addslashes($_REQUEST['action']);
 if ($action == "dangnhap") {
 	$username = addslashes(strip_tags($_REQUEST['username']));
 	$password = addslashes($_REQUEST['password']);
-	$ketqua = $class_member->login($conn, $username, $password, $remember, $role);
-	if ($ketqua == 200) {
+	$ketqua = $class_member->login($conn, $username, $password, $remember);
+	if (is_array($ketqua) && $ketqua['status'] == 200) {
 		$ok = 1;
 		$thongbao = "Đăng nhập thành công";
-	}else if ($ketqua == 24) {
-		$ok = 24;
-		$thongbao = "Mercedes xin chào quý khách";
+		$role = $ketqua['role'];
 	}else if ($ketqua == 0) {
 		$ok = 0;
 		$thongbao = "Vui lòng nhập username";
@@ -30,8 +28,8 @@ if ($action == "dangnhap") {
 	$info = array(
 		'ok' => $ok,
 		'thongbao' => $thongbao,
+		'role' => $role ?? null
 	);
 	echo json_encode($info);
-
 }
 ?>

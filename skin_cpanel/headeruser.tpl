@@ -52,10 +52,10 @@
             display: block;
         }
         .navbar .navbar-right .tk-dropdown{
-            display: none;
+            display: block;
         }
         .navbar .navbar-right .user-dropdown{
-            display: block;
+            display: none;
         }
     </style>
     <!-- MenuBar -->
@@ -74,12 +74,12 @@
         <div class="navbar-right">
             <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" />
             <img src="../hinhanh/cart5.png" alt="Cart" class="icon" style="width: 30px; height: 30px; background-color: black;" />
-            <div class="user-dropdown">
+            <div class="tk-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
                 <div class="dropdown-content">
                     <ul>
-                        <li><a href="/login.html">Đăng nhập</a></li>
-                        <li><a href="/register.html">Đăng ký</a></li>
+                        <li><a href="/account.html">Tài khoản</a></li>
+                        <li><a href="/logout">Đăng xuất</a></li>
                     </ul>
                 </div>
             </div>

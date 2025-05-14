@@ -58,13 +58,13 @@
     {header}
     <div class="login-container">
         <h2>Đăng Nhập</h2>
-        <form >
+        <form id="login-form" method="post">
             <input type="text" name="username" placeholder="Tên đăng nhập" required />
             <input type="password" name="password" placeholder="Mật khẩu" required />
             <div class="remember" value="on">
                 <i class="fa fa-check-circle-o" style="color: #000;"></i> Remember
             </div>
-            <button name="login">Đăng Nhập</button>
+            <button type="submit" class="login-button">Đăng Nhập</button>
         </form>
         <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
     </div>
