@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -23,7 +23,7 @@
         .container {
             display: flex;
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 20px auto;
             gap: 40px;
             background: #fff;
             padding: 20px;

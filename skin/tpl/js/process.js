@@ -37,8 +37,6 @@ $(document).ready(function () {
             },
             success: function (kq) {
                 var info = JSON.parse(kq);
-                console.log(info);
-                
                 //Hiển thị thông báo
                 // setTimeout(function () {
                 //     $('.load_note').html(info.thongbao);
@@ -73,7 +71,18 @@ $(document).ready(function () {
     /////////////////////
     // Đặt giữ xe
     $('.buy-btn').click(function() {
-        window.location.href = '/dat-cho-xe.html';
+        id = $('.info').data('product-id');
+        $.ajax({
+            url: '/process.php',
+            type: 'POST',
+            data: {
+                action: 'datcho',
+                id: id
+            },
+            success: function(response) {
+                $('body').html(response);
+            }
+        });
     });
     /////////////////////
     // Đặt lịch lái thử xe
@@ -186,9 +195,9 @@ $(document).ready(function () {
     });
     /////////////////////
     // Đặt giữ xe
-    $('#datxe').click(function() {
-        window.location.href = '/dat-cho-xe.html';
-    });
+    // $('#datxe').click(function() {
+    //     window.location.href = '/dat-cho-xe.html';
+    // });
 
     /////////////////////
     // Xử lý nút tư vấn xe

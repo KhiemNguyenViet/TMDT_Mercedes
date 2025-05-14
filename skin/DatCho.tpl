@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Đặt giữ chỗ xe</title>
-    <link rel="stylesheet" href="../skin/tpl/css/DatCho.css">
+    <link rel="stylesheet" href="../skin/tpl/css/DatCho.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
     <link rel="stylesheet" href="../skin/tpl/css/Banner.css">
     <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
@@ -44,16 +44,16 @@
                     </select>
 
                     <label>Họ và Tên*</label>
-                    <input type="text" placeholder="Nhập họ và tên" required>
+                    <input type="text" value="{username}" name="fullName" placeholder="Nhập họ và tên" required>
 
                     <label>SĐT*</label>
-                    <input type="tel" pattern="[0-9]{10,11}" placeholder="Ví dụ: 0901234567" required>
+                    <input type="tel" value="{phone}" name="phoneNumber" pattern="[0-9]{10,11}" placeholder="Ví dụ: 0901234567" required>
 
                     <label>Email*</label>
-                    <input type="email" placeholder="example@gmail.com" required>
+                    <input type="email" value="{email}" name="email" placeholder="example@gmail.com" required>
 
                     <label>Địa chỉ liên hệ</label>
-                    <input type="text" placeholder="Số nhà, đường, quận, thành phố">
+                    <input type="text" value="{address}" name="address" placeholder="Số nhà, đường, quận, thành phố">
 
                     <button type="button" onclick="nextStep()">Tiếp tục</button>
                 </div>
@@ -130,7 +130,7 @@
             </form>
 
             <div class="success-message" style="display: none;">
-                <h3>✅ Đặt giữ chỗ thành công!</h3>
+                <h3>✅ Đã đặt giữ chỗ vui lòng đợi xác nhận từ nhà phân phối!</h3>
 
             </div>
             <!-- <button onclick="resetPage()" style="position: fixed; bottom: 20px; right: 20px;">Đặt lại</button> -->

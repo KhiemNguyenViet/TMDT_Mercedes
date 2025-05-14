@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Đăng Ký</title>
-    <link rel="stylesheet" href="../skin/css/MenuBar.css"> <!-- Liên kết CSS hiện có -->
-    <link rel="stylesheet" href="../skin/css/Footer.css">
+    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css"> <!-- Liên kết CSS hiện có -->
+    <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         .dichvu-slider {
