@@ -20,7 +20,7 @@ if ($action == "datlich") {
     $testDriveTime = addslashes(strip_tags($_REQUEST['testDriveTime']));
     $notes = addslashes(strip_tags($_REQUEST['notes']));
     $productId = addslashes(strip_tags($_REQUEST['productId']));
-    $location = addslashes(strip_tags($_REQUEST['location']));
+    $location = addslashes(strip_tags($_REQUEST['diadiem']));
     $hientai = date('Y-m-d H:i:s');
     $thoigiankhachdat = date('Y-m-d H:i:s', strtotime($testDriveDate . ' ' . $testDriveTime));
     // Kiểm tra trùng lịch

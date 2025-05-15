@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../skin_adm/css/admin.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/skin_adm/js/process.js"></script>
     <link rel="icon" type="image/x-icon" href="{favicon}">
     <style>
         .dichvu-slider {
@@ -75,6 +77,7 @@
             <li onclick="showTab('products')">📦 Danh mục sản phẩm</li>
             <li onclick="showTab('add-product')">➕ Thêm sản phẩm</li>
             <li onclick="showTab('users')">👥 Quản lý tài khoản</li>
+            <li onclick="showTab('orders')">Quản lí đặt lịch</li>
             <li onclick="showTab('revenue')">📊 Doanh thu theo tháng</li>
         </ul>
     </div>
@@ -159,6 +162,30 @@
                     src="https://quickchart.io/chart-maker/view/ckz7qtSyaUUFJx0Uld4A"></iframe>
             </div>
             <div id="total-revenue" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></div>
+        </div>
+        <!-- orders -->
+        <div id="orders" class="tab-content">
+            <h2>Quản lý đặt lịch</h2>
+            <div class="orders-container">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Khách hàng</th>
+                            <th>Thông tin liên hệ</th>
+                            <th>Sản phẩm</th>
+                            <th>Thời gian hẹn</th>
+                            <th>Địa điểm</th>
+                            <th>Trạng thái</th>
+                            <th>Ghi chú</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {list_orders}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 

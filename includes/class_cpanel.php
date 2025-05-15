@@ -30,6 +30,57 @@ class class_cpanel extends class_manage
             'list_product_item' => $list
         ));
     }
+
+
+    function list_orders($conn)
+    {
+        $skin = $this->load('class_skin_cpanel');
+
+        $query = mysqli_query($conn, "SELECT td.*, p.name as product_name 
+                                FROM test_drives td
+                                LEFT JOIN products p ON td.product_id = p.id 
+                                ORDER BY td.created_at DESC");
+
+        $list = '';
+        while ($row = mysqli_fetch_assoc($query)) {
+            // Format dates
+            $row['preferred_date'] = date('d/m/Y', strtotime($row['preferred_date']));
+            $row['preferred_time'] = date('H:i', strtotime($row['preferred_time']));
+
+            // Set action buttons based on current status
+            switch ($row['status']) {
+                case 'pending':
+                    $row['status_text'] = 'Chờ xác nhận';
+                    $row['action_buttons'] = '
+                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'confirmed\')" class="btn-confirm">
+                        Xác nhận
+                    </button>
+                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'cancelled\')" class="btn-cancel">
+                        Hủy
+                    </button>';
+                    break;
+                case 'confirmed':
+                    $row['status_text'] = 'Đã xác nhận';
+                    $row['action_buttons'] = '
+                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'completed\')" class="btn-complete">
+                        Hoàn thành
+                    </button>';
+                    break;
+                case 'completed':
+                    $row['status_text'] = 'Đã hoàn thành';
+                    $row['action_buttons'] = '<span class="badge badge-success">Đã hoàn thành</span>';
+                    break;
+                case 'cancelled':
+                    $row['status_text'] = 'Đã hủy';
+                    $row['action_buttons'] = '<span class="badge badge-danger">Đã hủy</span>';
+                    break;
+            }
+
+            $list .= $skin->skin_replace('skin_adm/box_li/li_order', $row);
+        }
+
+        return $list;
+    }
     ///////////////////////////////////
     function get_product($conn, $id)
     {

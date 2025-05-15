@@ -3,8 +3,8 @@ include('../includes/tlca_world.php');
 
 $tlca_do = new class_manage();
 $check = $tlca_do->load('class_check');
-$class_index=$tlca_do->load('class_cpanel');
-$skin=$tlca_do->load('class_skin_cpanel');
+$class_cpanel = $tlca_do->load('class_cpanel');
+$skin = $tlca_do->load('class_skin_cpanel');
 $action = addslashes($_REQUEST['action']);
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
@@ -19,28 +19,11 @@ if ($action == "dashboard") {
     $replace = array(
         'header' => $skin->skin_normal('skin/header'),
         'footer' => $skin->skin_normal('skin/footer'),
+        'list_product' => $class_cpanel->list_product($conn),
+        'list_orders' => $class_cpanel->list_orders($conn)
     );
     echo $skin->skin_replace('skin_adm/index', $replace);
-
 }
-
-// Xử lý các action
-switch ($action) {
-    case 'edit_product':
-        include('edit_product.php');
-        $template = 'skin_adm/box_li/edit_product';
-        break;
-
-    case 'dashboard':
-    default:
-        $list_product = $cpanel->list_product($conn);
-        $thaythe = array(
-            'list_product' => $list_product
-        );
-        $template = 'skin_adm/index';
-        break;
-}
-
 // Hiển thị template tương ứng
 echo $skin->skin_replace($template, $thaythe);
 
