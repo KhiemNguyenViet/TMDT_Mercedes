@@ -118,25 +118,25 @@ function prevStep() {
     }
 }
 
-document.getElementById("multiStepForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+// document.getElementById("multiStepForm").addEventListener("submit", function (e) {
+//     e.preventDefault();
 
-    const allInputs = this.querySelectorAll("input, select");
-    let allValid = true;
+//     const allInputs = this.querySelectorAll("input, select");
+//     let allValid = true;
 
-    for (let input of allInputs) {
-        if (!input.checkValidity()) {
-            allValid = false;
-            break;
-        }
-    }
+//     for (let input of allInputs) {
+//         if (!input.checkValidity()) {
+//             allValid = false;
+//             break;
+//         }
+//     }
 
-    // if (allValid) {
-    //     this.style.display = "none";
-    //     document.querySelector(".success-message").innerHTML = "<h3>✅ Đặt giữ chỗ thành công!</h3>";
-    //     document.querySelector(".success-message").style.display = "block";
-    // } else {
-    //     document.querySelector(".success-message").innerHTML = "<h3 style='color: red;'>❌ Không thành công do thông tin bạn nhập không chính xác hoặc bị bỏ trống.</h3>";
-    //     document.querySelector(".success-message").style.display = "block";
-    // }
-});
+//     if (allValid) {
+//         this.style.display = "none";
+//         document.querySelector(".success-message").innerHTML = "<h3>✅ Đặt giữ chỗ thành công!</h3>";
+//         document.querySelector(".success-message").style.display = "block";
+//     } else {
+//         document.querySelector(".success-message").innerHTML = "<h3 style='color: red;'>❌ Không thành công do thông tin bạn nhập không chính xác hoặc bị bỏ trống.</h3>";
+//         document.querySelector(".success-message").style.display = "block";
+//     }
+// });

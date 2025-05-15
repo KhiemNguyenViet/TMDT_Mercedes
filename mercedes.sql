@@ -44,11 +44,25 @@ CREATE TABLE products (
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    total_amount DECIMAL(15,2) NOT NULL,
+    product_id INT NOT NULL,                     -- ID của xe được đặt
+    salutation VARCHAR(10) NOT NULL,             -- Danh xưng (Anh/Chị)
+    full_name VARCHAR(255) NOT NULL,             -- Họ và tên người đặt
+    phone_number VARCHAR(20) NOT NULL,           -- Số điện thoại
+    email VARCHAR(255) NOT NULL,                 -- Email
+    contact_address TEXT,                        -- Địa chỉ liên hệ
+    total_amount DECIMAL(15,2) NOT NULL,         -- Tổng giá trị xe
+    deposit_amount DECIMAL(15,2) NOT NULL DEFAULT 10000000.00, -- Tiền giữ chỗ
+    payment_notes TEXT,                          -- Ghi chú thanh toán
+    bank_account_number VARCHAR(50),             -- Số tài khoản
+    bank_account_name VARCHAR(255),              -- Tên chủ tài khoản
+    bank_name VARCHAR(100),                      -- Tên ngân hàng
+    bank_branch VARCHAR(100),                    -- Chi nhánh ngân hàng
+    dealer VARCHAR(255) NOT NULL,                -- Đại lý được chọn
+    sales_person VARCHAR(255),                   -- Nhân viên phụ trách (nếu có)
     status ENUM('pending', 'processing', 'completed', 'cancelled') DEFAULT 'pending',
-    shipping_address TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(id) -- Giả sử bạn có bảng products với khóa chính là id
 );
 
 -- Tạo bảng order_items
