@@ -1,10 +1,10 @@
-/* Phần container chính của sản phẩm */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
 .sanpham-container {
-    padding: 20px;
-    margin-left: 10px;
     background-color: #ffffff;
-    padding-bottom: 40px;
-    /* Đảm bảo khoảng cách dưới để tránh dính footer */
 }
 
 /* Tiêu đề chính */
@@ -145,5 +145,4 @@
 .sanpham-container::after {
     content: "";
     display: block;
-    height: 40px;
 }

@@ -52,7 +52,7 @@ $(document).on('submit', '#editProductForm', function (e) {
 });
 $(document).ready(function () {
     window.updateStatus = function (id, status) {
-        // Message for confirm/cancel
+        // Tạo thông báo xác nhận
         let message = '';
         switch (status) {
             case 'completed':
@@ -82,19 +82,32 @@ $(document).ready(function () {
                 try {
                     let result = JSON.parse(response);
                     if (result.success) {
+                        // Cập nhật trạng thái trực tiếp trên giao diện
+                        let trangThai = status === 'completed' ? 'Đã hoàn thành' : 'Đã hủy';
+                        let mauBadge = status === 'completed' ? 'success' : 'danger';
+
+                        // Cập nhật text trạng thái
+                        $(`#order_${id} .status-badge`).text(trangThai)
+                            .removeClass('status-pending status-completed status-cancelled')
+                            .addClass(`status-${status}`);
+
+                        // Ẩn nút thao tác và hiển thị badge
+                        $(`#order_${id} .action-buttons`).html(
+                            `<span class="badge badge-${mauBadge}">${trangThai}</span>`
+                        );
+
                         alert('Cập nhật trạng thái thành công!');
-                        location.reload();
                     } else {
                         alert('Lỗi: ' + result.message);
                     }
                 } catch (e) {
-                    console.error('Parse error:', e);
+                    console.error('Lỗi xử lý:', e);
                     alert('Có lỗi xảy ra khi xử lý dữ liệu!');
                 }
             },
             error: function (xhr, status, error) {
-                console.error('Ajax error:', error);
-                alert('Có lỗi khi kết nối đến server!');
+                console.error('Lỗi Ajax:', error);
+                alert('Có lỗi khi kết nối đến máy chủ!');
             }
         });
     };
