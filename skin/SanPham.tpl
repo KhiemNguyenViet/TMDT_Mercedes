@@ -52,7 +52,10 @@
                     <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
                     <p class="model">Mercedes-EQ</p>
                     <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
+                    <p class="price">
+                        <span class="old">2.259.000.000 VND</span>
+                        <span class="new">1.818.000.000 VND</span>
+                    </p>
                 </div>
 
                 <div class="product-card sale" data-category="A-Class">
@@ -167,7 +170,7 @@
                 }
             });
         </script>
-        
+
     </div>
     {footer}
 </body>

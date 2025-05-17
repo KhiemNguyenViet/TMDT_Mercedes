@@ -186,8 +186,12 @@
             <li onclick="showTab('products')">📦 Danh mục sản phẩm</li>
             <li onclick="showTab('add-product')">➕ Thêm sản phẩm</li>
             <li onclick="showTab('users')">👥 Quản lý tài khoản</li>
+<<<<<<< HEAD
             <li onclick="showTab('orders')">Quản lí đặt lịch</li>
             <li onclick="showTab('orders_car')">Quản lí đơn hàng </li>
+=======
+            <li onclick="showTab('orders')">📅 Quản lí đặt lịch</li>
+>>>>>>> ae4e12a7edb876cddc83a6b888a2bb6be4c7ec43
             <li onclick="showTab('revenue')">📊 Doanh thu theo tháng</li>
         </ul>
     </div>
