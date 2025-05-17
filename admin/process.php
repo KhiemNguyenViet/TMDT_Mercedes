@@ -47,7 +47,7 @@ if ($action == "update_test_drive_status") {
 	}
 
 	// Only allow completed or cancelled
-	$allowed_statuses = ['completed', 'cancelled'];
+	$allowed_statuses = ['confirmed','completed', 'cancelled'];
 	if (!in_array($status, $allowed_statuses)) {
 		echo json_encode([
 			'success' => false,
@@ -58,6 +58,47 @@ if ($action == "update_test_drive_status") {
 
 	// Update status in database
 	$query = "UPDATE test_drives 
+             SET status = '$status'
+             WHERE id = $id";
+
+	if (mysqli_query($conn, $query)) {
+		echo json_encode([
+			'success' => true,
+			'message' => 'Cập nhật trạng thái thành công'
+		]);
+	} else {
+		echo json_encode([
+			'success' => false,
+			'message' => 'Lỗi cập nhật: ' . mysqli_error($conn)
+		]);
+	}
+	exit;
+}else if ($action == "update_order_status") {
+	// Validate input
+	$id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+	$status = isset($_POST['status']) ? $_POST['status'] : '';
+
+	// Validate id
+	if ($id <= 0) {
+		echo json_encode([
+			'success' => false,
+			'message' => 'ID không hợp lệ'
+		]);
+		exit;
+	}
+
+	// Only allow completed or cancelled
+	$allowed_statuses = ['processing','completed', 'cancelled'];
+	if (!in_array($status, $allowed_statuses)) {
+		echo json_encode([
+			'success' => false,
+			'message' => 'Trạng thái không hợp lệ'
+		]);
+		exit;
+	}
+
+	// Update status in database
+	$query = "UPDATE orders 
              SET status = '$status'
              WHERE id = $id";
 

@@ -43,6 +43,7 @@ class class_cpanel extends class_manage
 
         $list = '';
         while ($row = mysqli_fetch_assoc($query)) {
+            $row['id_testdrivess'] = $row['id'];
             // Format dates
             $row['preferred_date'] = date('d/m/Y', strtotime($row['preferred_date']));
             $row['preferred_time'] = date('H:i', strtotime($row['preferred_time']));
@@ -52,7 +53,7 @@ class class_cpanel extends class_manage
                 case 'pending':
                     $row['status_text'] = 'Chờ xác nhận';
                     $row['action_buttons'] = '
-                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'confirmed\')" class="btn-confirm">
+                    <button type="button" class="btn-confirm" data-id="' . $row['id'] . '">
                         Xác nhận
                     </button>
                     <button type="button" onclick="updateStatus(' . $row['id'] . ', \'cancelled\')" class="btn-cancel">
@@ -62,8 +63,11 @@ class class_cpanel extends class_manage
                 case 'confirmed':
                     $row['status_text'] = 'Đã xác nhận';
                     $row['action_buttons'] = '
-                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'completed\')" class="btn-complete">
+                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'completed\')" class="btn-complete" data-id="' . $row['id'] . '">
                         Hoàn thành
+                    </button>   
+                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'cancelled\')" class="btn-cancel">
+                        Hủy
                     </button>';
                     break;
                 case 'completed':
@@ -80,6 +84,63 @@ class class_cpanel extends class_manage
         }
 
         return $list;
+    }
+    ///////////////////////////////////
+    function list_orders_car($conn){
+        $skin = $this->load('class_skin_cpanel');
+        $list = '';
+        $i = 0;
+        $query = mysqli_query($conn, "SELECT o.*, p.name as product_name FROM orders o LEFT JOIN products p ON o.product_id = p.id ");
+        while ($row = mysqli_fetch_assoc($query)) {
+            $i++;
+            $row['stt'] = $i;
+            $row['image'] =  $row['image_thanhtoan'] ?? 'Không có';
+            $row['product_name'] =  $row['product_name'];
+            $row['address'] =  $row['contact_address'];
+            $row['phone'] =  $row['phone_number'];
+            $row['email'] =  $row['email'];
+            $row['amount'] =  $row['deposit_amount'];
+            $row['bank_name'] =  $row['bank_name'];
+            $row['account_number'] =  $row['bank_account_number'];
+            $row['account_name'] =  $row['bank_account_name'];
+            $row['created_at'] = date('d/m/Y', strtotime($row['created_at']));
+            switch ($row['status']) {
+                case 'pending':
+                    $row['status_text'] = 'Chờ xử lý';
+                    $row['action_buttons'] = '
+                    <button type="button" onclick="status_update(' . $row['id'] . ', \'processing\')" class="btn-processing" data-id="' . $row['id'] . '">
+                        Xử lý
+                    </button>
+                    <button type="button" onclick="status_update(' . $row['id'] . ', \'cancelled\')" class="btn-cancel">
+                        Hủy
+                    </button>';
+                    break;
+                case 'processing':
+                    $row['status_text'] = 'Đang xử lý';
+                    $row['action_buttons'] = '
+                    <button type="button" onclick="status_update(' . $row['id'] . ', \'completed\')" class="btn-complete" data-id="' . $row['id'] . '">
+                        Hoàn thành
+                    </button>   
+                    <button type="button" onclick="status_update(' . $row['id'] . ', \'cancelled\')" class="btn-cancel">
+                        Hủy
+                    </button>';
+                    break;
+                case 'completed':
+                    $row['status_text'] = 'Đã hoàn thành';
+                    $row['action_buttons'] = '<span class="badge badge-success">Đã hoàn thành</span>';
+                    break;
+                case 'cancelled':
+                    $row['status_text'] = 'Đã hủy';
+                    $row['action_buttons'] = '<span class="badge badge-danger">Đã hủy</span>';
+                    break;
+            }
+            $row['note'] =  $row['payment_notes'] ?? 'Không có';
+            $list .= $skin->skin_replace('skin_adm/box_li/li_oders_car', $row);
+        }
+        // var_dump($list);
+        // die();
+        return $list;
+
     }
     ///////////////////////////////////
     function get_product($conn, $id)

@@ -77,9 +77,9 @@ if ($action == "datlich") {
 }
 
 if ($action == "datcho") {
-    $user_id=$user_info['user_id'];
-    $id = addslashes(strip_tags($_REQUEST['id']));
-    $sql = "SELECT products.*, categories.name as category_name FROM products LEFT JOIN categories ON products.category_id = categories.id WHERE products.id = '$id'";
+    $user_id=$user_info['user_id'] ?? 'NULL';
+    $id = addslashes(strip_tags($_REQUEST['product_id']));
+    $sql = "SELECT products.*, categories.name as category_name FROM products LEFT JOIN categories ON products.category_id = categories.id WHERE products.id = $id";
     $result = $conn->query($sql);
     $product = $result->fetch_assoc();
     $formatted_price = number_format($product['price'], 0, ',', '.') . ' VNĐ';
@@ -95,12 +95,14 @@ if ($action == "datcho") {
         'phone' => $user_info['phone'],
         'email' => $user_info['email'],
         'address' => $user_info['address'],
-        'user_id' => $user_info['user_id']
+        'user_id' => $user_info['user_id'] ?? 'NULL'
     );
     echo $skin->skin_replace('skin/DatCho', $replace);
 }
 
 if ($action == "xacnhan_datcho") {
+    $pay_note = addslashes(strip_tags($_REQUEST['pay_note']));
+    $image_thanhtoan = addslashes(strip_tags($_REQUEST['image_thanhtoan']));
     $price = addslashes(strip_tags($_REQUEST['price']));
     $price = floatval(preg_replace('/[^0-9]/', '', $price));
     $salutation = addslashes(strip_tags($_REQUEST['salutation']));
@@ -117,8 +119,8 @@ if ($action == "xacnhan_datcho") {
     $dealer = addslashes(strip_tags($_REQUEST['dealer']));
     $sales_person = addslashes(strip_tags($_REQUEST['sales_person']));
     $hientai = date('Y-m-d H:i:s');
-    $sql = "INSERT INTO orders (user_id, product_id, salutation, full_name, phone_number, email, contact_address, total_amount, deposit_amount, bank_account_number, bank_account_name, bank_name, bank_branch, dealer, sales_person, created_at) 
-            VALUES (" . ($user_id ? $user_id : "NULL") . ", '$product_id', '$salutation', '$username', '$phoneNumber', '$email', '$address', '$price', '10000000', '$bank_account_number', '$bank_account_name', '$bank_name', '$bank_branch', '$dealer', '$sales_person', '$hientai')";
+    $sql = "INSERT INTO orders (user_id, product_id, salutation, full_name, phone_number, email, contact_address, total_amount, deposit_amount, bank_account_number, bank_account_name, bank_name, bank_branch, dealer, sales_person, created_at, image_thanhtoan, payment_notes) 
+            VALUES (" . ($user_id ? $user_id : "NULL") . ", '$product_id', '$salutation', '$username', '$phoneNumber', '$email', '$address', '$price', '10000000', '$bank_account_number', '$bank_account_name', '$bank_name', '$bank_branch', '$dealer', '$sales_person', '$hientai', '$image_thanhtoan', '$pay_note')";
     $result = $conn->query($sql);
     if ($result) {
         echo json_encode(array('ok' => 1, 'thongbao' => 'Đặt giữ chỗ xe thành công'));

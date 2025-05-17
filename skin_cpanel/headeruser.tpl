@@ -72,8 +72,10 @@
             </a>
         </div>
         <div class="navbar-right">
-            <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" />
-            <img src="../hinhanh/cart5.png" alt="Cart" class="icon" style="width: 30px; height: 30px; background-color: black;" />
+            <!-- <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" /> -->
+            <a href="/lich_laithu.html">
+                <img style="background-color: rgb(255, 255, 255); border-radius: 50%;" src="../hinhanh/files.png" alt="Cart" class="icon" style="width: 30px; height: 30px;" />
+            </a>
             <div class="tk-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
                 <div class="dropdown-content">
@@ -89,4 +91,7 @@
     </nav>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>    

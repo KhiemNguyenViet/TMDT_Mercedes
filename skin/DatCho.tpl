@@ -12,7 +12,7 @@
 
 <body>
     {header}
-    <a href="product/{product.id}.html" class="back-link">← Quay lại trang xe đã chọn</a>
+    <a href="/product/{product.id}.html" class="back-link">← Quay lại trang xe đã chọn</a>
     <div class="container">
         <div data-product-id="{product.id}" class="car-section">
             <img src="../hinhanh/{product.image}" alt="{product.name}" class="car-image">
@@ -62,16 +62,15 @@
                     <p>Giá xe: <strong>{product.price}</strong></p>
                     <p>Sử dụng tiền cá nhân hoặc dịch vụ của bên thứ ba để thanh toán hóa đơn cuối cùng. Nhà phân phối chính hãng của Mercedes-Benz Việt Nam sẽ liên hệ Quý khách để làm rõ các điều khoản thanh toán. Khi chọn Tiếp tục, Quý khách sẽ tiến hành thanh toán Tiền giữ chỗ xe</p>
                     <p>Tiền giữ chỗ: <strong>10.000.000 VNĐ</strong></p>
-                    <!-- <label>Chọn phương thức*</label>
-                    <select required>
-                        <option value="">Vui lòng chọn</option>
-                        <option value="1">Thẻ tín dụng</option>
-                        <option value="2">Chuyển khoản</option>
-                        <option value="3">Tiền Mặt</option>
-                    </select> -->
+
+                    <label>Quét mã QR để chuyển tiền:</label><br>
+                    <img src="../hinhanh/qr_code.png" alt="Mã QR chuyển tiền" style="max-width: 250px; display: block; margin-bottom: 10px;">
+
+                    <label>Chọn ảnh xác nhận chuyển khoản (bắt buộc):</label>
+                    <input type="file" name="payment_image" accept="image/*" required>
 
                     <label>Ghi chú thanh toán</label>
-                    <input type="text" placeholder="Ví dụ: Ghi chú nhắc nhở của khách hàng...">
+                    <input type="text" name="pay_note" placeholder="Ví dụ: Ghi chú nhắc nhở của khách hàng...">
 
                     <div style="display: flex; justify-content: space-between;">
                         <button type="button" onclick="prevStep()">← Quay lại</button>
@@ -82,16 +81,16 @@
 
                 <!-- Bước 3: Thông tin thanh toán -->
                 <div class="form-step">
-                    <label>Số tài khoản*</label>
+                    <label>Số tài khoản của quý khách *</label>
                     <input type="text" name="bank_account_number" placeholder="Nhập số tài khoản" required>
 
-                    <label>Tên chủ tài khoản*</label>
+                    <label>Tên chủ tài khoản của quý khách *</label>
                     <input type="text" name="bank_account_name" placeholder="Nhập tên chủ tài khoản" required>
 
-                    <label>Ngân hàng*</label>
+                    <label>Ngân hàng của quý khách *</label>
                     <input type="text" name="bank_name" placeholder="VD: Vietcombank, ACB..." required>
 
-                    <label>Chi nhánh</label>
+                    <label>Chi nhánh ngân hàng của quý khách</label>
                     <input type="text" name="bank_branch" placeholder="Tên chi nhánh (nếu có)">
                     <div style="display: flex; justify-content: space-between;">
                         <button type="button" onclick="prevStep()">← Quay lại</button>
@@ -122,7 +121,7 @@
 
                 <!-- Bước 5: Xác nhận giữ chỗ -->
                 <div class="form-step">
-                    <p>Xác nhận giữ chỗ xe cho đơn hàng trên?</p>
+                    <p>Qúy khách xác nhận giữ chỗ xe cho đơn hàng trên?</p>
                     <div style="display: flex; justify-content: space-between;">
                         <button type="button" onclick="prevStep()">← Quay lại</button>
                         <button id="xacnhan_giucho" type="submit">Xác nhận giữ chỗ</button>

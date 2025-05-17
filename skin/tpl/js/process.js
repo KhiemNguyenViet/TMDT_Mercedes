@@ -5,20 +5,38 @@ $(document).ready(function () {
         return emailRegex.test(email);
     }
 
+    //////////////////////
+    $('#datxe').click(function() {
+        product_id = $('.info').data('product-id');
+        user_id = $('.user_info').data('user-id');
+        $.ajax({
+            url: '/process.php',
+            type: 'POST',
+            data: {
+                action: 'datcho',
+                product_id: product_id,
+                user_id: user_id
+            },
+            success: function(response) {
+                $('body').html(response);
+            }
+        })
+    });
     // Chặn form reload
     $('#login-form').on('submit', function (e) {
         e.preventDefault();
-        password = $('input[name=password]').val();
-        username = $('input[name=username]').val();
-        remember = $('.remember').attr('value');
+        const password = $('input[name=password]').val();
+        const username = $('input[name=username]').val();
+        const remember = $('.remember').attr('value');
+        
         if (username.length < 4) {
-            alert('Tên đăng nhập phải từ 4 ký tự trở lên');
+            toastr.error('Tên đăng nhập phải từ 4 ký tự trở lên');
             $('input[name=username]').focus();
             return;
         }
 
         if (password.length < 6) {
-            alert('Mật khẩu phải từ 6 ký tự trở lên');
+            toastr.error('Mật khẩu phải từ 6 ký tự trở lên');
             $('input[name=password]').focus();
             return;
         }
@@ -26,6 +44,7 @@ $(document).ready(function () {
         // Hiển thị loading
         $('.load_overlay').show();
         $('.load_process').fadeIn();
+        
         // Gửi AJAX
         $.ajax({
             url: "/process_login.php",
@@ -36,11 +55,7 @@ $(document).ready(function () {
                 remember: remember
             },
             success: function (kq) {
-                var info = JSON.parse(kq);
-                //Hiển thị thông báo
-                // setTimeout(function () {
-                //     $('.load_note').html(info.thongbao);
-                // }, 1000);
+                const info = JSON.parse(kq);
 
                 // Xử lý chuyển hướng
                 setTimeout(function () {
@@ -49,107 +64,86 @@ $(document).ready(function () {
                     $('.load_overlay').hide();
 
                     if (info.ok == 1) {
-                        // Nếu là admin
                         window.location.href = '/admin/dashboard';
                     } else if (info.ok == 2) {
-                        // Nếu là user thường
                         window.location.href = '/index.html';
                     } else {
-                        // Nếu có lỗi
-                        alert(info.thongbao);
+                        toastr.error(info.thongbao);
                     }
                 }, 1000);
             },
             error: function(xhr) {
                 $('.load_process').hide();
                 $('.load_overlay').hide();
-                alert('Không thể kết nối máy chủ. Mã lỗi: ' + xhr.status);
+                toastr.error('Không thể kết nối máy chủ. Mã lỗi: ' + xhr.status);
             }
         });
     });
-    
-    /////////////////////
-    // Đặt giữ xe
-    $('.buy-btn').click(function() {
-        id = $('.info').data('product-id');
-        $.ajax({
-            url: '/process.php',
-            type: 'POST',
-            data: {
-                action: 'datcho',
-                id: id
-            },
-            success: function(response) {
-                $('body').html(response);
-            }
-        });
-    });
+
     /////////////////////
     // Đặt lịch lái thử xe
     $('.datlich-button').click(function() {
-        // Hiển thị loading
         const $button = $(this);
         const originalText = $button.text();
         $button.prop('disabled', true).text('Đang xử lý...');
 
         // Lấy giá trị từ form
-        username = $('input[name="fullName"]').val();
-        phoneNumber = $('input[name="phoneNumber"]').val();
-        email = $('input[name="email"]').val();
-        testDriveDate = $('input[name="testDriveDate"]').val();
-        testDriveTime = $('select[name="testDriveTime"]').val();
-        notes = $('textarea[name="notes"]').val();
-        diadiem = $('select[name="location"]').val();
+        const username = $('input[name="fullName"]').val();
+        const phoneNumber = $('input[name="phoneNumber"]').val();
+        const email = $('input[name="email"]').val();
+        const testDriveDate = $('input[name="testDriveDate"]').val();
+        const testDriveTime = $('select[name="testDriveTime"]').val();
+        const notes = $('textarea[name="notes"]').val();
+        const diadiem = $('select[name="location"]').val();
         
         // Lấy productId từ URL hoặc data attribute
-        productId = $('.info').data('product-id');
+        const productId = $('.info').data('product-id');
 
         // Validate dữ liệu
         if (username.length < 4) {
-            alert('Tên khách hàng phải từ 4 ký tự trở lên');
+            toastr.error('Tên khách hàng phải từ 4 ký tự trở lên');
             $('input[name="fullName"]').focus();
             $button.prop('disabled', false).text(originalText);
             return;
         }
         if (phoneNumber.length < 10 || phoneNumber.length > 11) {
-            alert('Số điện thoại phải từ 10 ký tự trở lên và không quá 11 ký tự');
+            toastr.error('Số điện thoại phải từ 10 ký tự trở lên và không quá 11 ký tự');
             $('input[name="phoneNumber"]').focus();
             $button.prop('disabled', false).text(originalText);
             return;
         }
         if (testDriveDate == '') {
-            alert('Ngày lái thử xe không được để trống');
+            toastr.error('Ngày lái thử xe không được để trống');
             $('input[name="testDriveDate"]').focus();
             $button.prop('disabled', false).text(originalText);
             return;
         }
         if (testDriveTime == '') {
-            alert('Giờ lái thử xe không được để trống');
+            toastr.error('Giờ lái thử xe không được để trống');
             $('select[name="testDriveTime"]').focus();
             $button.prop('disabled', false).text(originalText);
             return;
         }
         if (!productId) {
-            alert('Không tìm thấy thông tin xe. Vui lòng thử lại sau.');
+            toastr.error('Không tìm thấy thông tin xe. Vui lòng thử lại sau.');
             $button.prop('disabled', false).text(originalText);
             return;
         }
-        if(email == ''){
-            alert('Email không được để trống');
+        if (email == '') {
+            toastr.error('Email không được để trống');
             $button.prop('disabled', false).text(originalText);
             return;
         }
-        if(email != ''){
-            if (!isValidEmail(email)) {
-                alert('Email không hợp lệ. Vui lòng nhập lại.');
-                $button.prop('disabled', false).text(originalText);
-                return;
-            }
+        if (email != '' && !isValidEmail(email)) {
+            toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
+            $button.prop('disabled', false).text(originalText);
+            return;
         }
         if (!confirm('Bạn có chắc chắn muốn đặt lịch lái thử xe này?')) {
             $button.prop('disabled', false).text(originalText);
             return;
         }
+
         // Gửi request đến server
         $.ajax({
             url: '../../process.php',
@@ -168,10 +162,9 @@ $(document).ready(function () {
             dataType: 'json',
             success: function(response) {
                 if (response.ok === 1) {
-                    alert('Yêu cầu đặt lịch lái thử xe của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất!');
+                    toastr.success('Yêu cầu đặt lịch lái thử xe của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất!');
                     $('#bookingPopup').hide();
                     $('form#bookingForm')[0].reset();
-                    
                 } else {
                     if (response.trungLich) {
                         const confirmChange = confirm(response.thongbao + '\n\nBạn có muốn chọn thời gian khác không?');
@@ -179,13 +172,13 @@ $(document).ready(function () {
                             $('input[name="testDriveDate"]').focus();
                         }
                     } else {
-                        alert(response.thongbao);
+                        toastr.error(response.thongbao);
                     }
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                alert('Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại sau.');
+                toastr.error('Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại sau.');
             },
             complete: function() {
                 // Khôi phục trạng thái nút
@@ -193,20 +186,14 @@ $(document).ready(function () {
             }
         });
     });
-    /////////////////////
-    // Đặt giữ xe
-    // $('#datxe').click(function() {
-    //     window.location.href = '/dat-cho-xe.html';
-    // });
 
-    /////////////////////
     // Xử lý nút tư vấn xe
     $('#openConsultPopupBtn').click(function() {
         const stock = parseInt($('.info').data('stock'));
         const productName = $('.info h2').text();
         
         if (stock === 0) {
-            alert('Xin lỗi, sản phẩm ' + productName + ' hiện đã hết hàng. Vui lòng liên hệ với chúng tôi để được tư vấn về các sản phẩm khác.');
+            toastr.error('Xin lỗi, sản phẩm ' + productName + ' hiện đã hết hàng. Vui lòng liên hệ với chúng tôi để được tư vấn về các sản phẩm khác.');
             return;
         }
         
@@ -214,28 +201,46 @@ $(document).ready(function () {
         $('#consultPopup').css('display', 'flex');
     });
 
+    // Xử lý nút đặt lịch lái thử
+    $('#openBookingPopupBtn').click(function() {
+        user_id = $('.user_info').data('user-id');
+        if (user_id == '') {
+            toastr.error('Hãy đăng nhập để sử dụng chức năng này');
+            setTimeout(function() {
+                window.location.href = '/login.php';
+            }, 1000);
+            return;
+        }
+        // Nếu đã đăng nhập thì mở popup đặt lịch
+        $('#bookingPopup').css('display', 'flex');
+    });
+
     // Xử lý đặt giữ chỗ xe
     $('#xacnhan_giucho').click(function(e) {
         e.preventDefault();
-        price = $('.price').data('price');
-        salutation = $('select[name="salutation"]').val();
-        username = $('input[name="fullName"]').val();
-        phoneNumber = $('input[name="phoneNumber"]').val();
-        email = $('input[name="email"]').val();
-        address = $('input[name="address"]').val();
-        bank_account_number = $('input[name="bank_account_number"]').val();
-        bank_account_name = $('input[name="bank_account_name"]').val();
-        bank_name = $('input[name="bank_name"]').val();
-        bank_branch = $('input[name="bank_branch"]').val();
-        dealer = $('input[name="dealer"]').val();
-        sales_person = $('input[name="sales_person"]').val();
-        user_id = $('.user_info').data('user-id');
-        product_id = $('.car-info').data('product-id');
+        const pay_note = $('input[name="pay_note"]').val();
+        const image_thanhtoan = $('input[name="payment_image"]').val();
+        const price = $('.price').data('price');
+        const salutation = $('select[name="salutation"]').val();
+        const username = $('input[name="fullName"]').val();
+        const phoneNumber = $('input[name="phoneNumber"]').val();
+        const email = $('input[name="email"]').val();
+        const address = $('input[name="address"]').val();
+        const bank_account_number = $('input[name="bank_account_number"]').val();
+        const bank_account_name = $('input[name="bank_account_name"]').val();
+        const bank_name = $('input[name="bank_name"]').val();
+        const bank_branch = $('input[name="bank_branch"]').val();
+        const dealer = $('input[name="dealer"]').val();
+        const sales_person = $('input[name="sales_person"]').val();
+        const user_id = $('.user_info').data('user-id');
+        const product_id = $('.car-info').data('product-id');
+
         $.ajax({
             url: '/process.php',
             type: 'POST',
             data: {
                 action: 'xacnhan_datcho',
+                image_thanhtoan: image_thanhtoan,
                 salutation: salutation,
                 username: username,
                 phoneNumber: phoneNumber,
@@ -249,21 +254,23 @@ $(document).ready(function () {
                 sales_person: sales_person,
                 user_id: user_id,
                 product_id: product_id,
-                price: price
+                price: price,
+                pay_note: pay_note
             },
             success: function(response) {
-                console.log(response);  
-                var info = JSON.parse(response);
+                const info = JSON.parse(response);
                 if (info.ok === 1) {
-                    alert(info.thongbao);
-                    window.location.href = '/cacmauxe.html';
+                    toastr.success(info.thongbao); //Hiện thông báo ngay
+                    setTimeout(function() {
+                        window.location.href = '/cacmauxe.html'; // Chờ 2s rồi chuyển
+                    }, 2000);
                 } else {
-                    alert(info.thongbao);
+                    toastr.error(info.thongbao);
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                alert('Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại sau.');
+                toastr.error('Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại sau.');
             }
         });
     });

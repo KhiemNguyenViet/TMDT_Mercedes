@@ -62,6 +62,115 @@
         .user-dropdown:hover .dropdown-content {
             display: block;
         }
+
+        /* Nền mờ của popup */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        #popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            width: 350px;
+            border-radius: 10px;
+            display: none;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+        }
+
+        #popup h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
+            text-align: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        #popup form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #popup label {
+            color: #555;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        #popup input[type="email"],
+        #popup input[type="text"],
+        #popup textarea {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        #popup input[type="email"]:focus,
+        #popup input[type="text"]:focus,
+        #popup textarea:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+            outline: none;
+        }
+
+        #popup textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        #popup button[type="submit"] {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            margin-top: 5px;
+        }
+
+        #popup button[type="submit"]:hover {
+            background: #357abd;
+        }
+
+        #popup button.close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        #popup button.close:hover {
+            background: #ff6b81;
+        }
     </style>
 </head>
 
@@ -78,6 +187,7 @@
             <li onclick="showTab('add-product')">➕ Thêm sản phẩm</li>
             <li onclick="showTab('users')">👥 Quản lý tài khoản</li>
             <li onclick="showTab('orders')">Quản lí đặt lịch</li>
+            <li onclick="showTab('orders_car')">Quản lí đơn hàng </li>
             <li onclick="showTab('revenue')">📊 Doanh thu theo tháng</li>
         </ul>
     </div>
@@ -187,6 +297,80 @@
                 </table>
             </div>
         </div>
+        <!-- orders_car -->
+        <div id="orders_car" class="tab-content">
+            <h2>Quản lý đơn hàng</h2>
+            <div class="orders-container">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Khách hàng</th>
+                            <th>Hình ảnh chuyển khoản</th>
+                            <th>Số tiền đặt cọc</th>
+                            <th>Ngân hàng</th>
+                            <th>Số tài khoản</th>
+                            <th>Tên chủ tài khoản</th>
+                            <th>Ngày đặt</th>
+                            <th>Số điện thoại</th>
+                            <!-- <th>Email</th> -->
+                            <th>Sản phẩm</th>
+                            <th>Địa điểm</th>
+                            <th>Trạng thái</th>
+                            <th>Ghi chú</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {list_orders_car}
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div id="overlay"></div>
+        <div id="popup">
+            <button class="close" onclick="closePopup()">×</button>
+            <h3>Gửi Email đến khách hàng</h3>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hoàn thành xác nhận đơn hàng*</p>
+            <form action="sendmail.php" method="POST">
+                <label>Đến email:</label><br>
+                <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
+
+                <label>Tiêu đề:</label><br>
+                <input type="text" name="subject" required placeholder="Nhập tiêu đề email"><br><br>
+
+                <label>Nội dung:</label><br>
+                <textarea name="message" rows="4" required placeholder="Nhập nội dung email"></textarea><br><br>
+
+                <button type="submit" name="send" onclick="updateStatus(currentTestDriveId, 'confirmed')">Gửi</button>
+            </form>
+        </div>
+        <script>
+            let currentTestDriveId = null;
+            const popup = document.getElementById('popup');
+            const overlay = document.getElementById('overlay');
+
+            // Lặp qua tất cả các nút xác nhận
+            document.querySelectorAll('.btn-confirm').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    currentTestDriveId = this.dataset.id;
+                    console.log("Mở popup cho ID:", currentTestDriveId);
+                    popup.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+            });
+
+            function closePopup() {
+                popup.style.display = 'none';
+                overlay.style.display = 'none';
+                currentTestDriveId = null;
+            }
+
+            overlay.addEventListener('click', closePopup);
+        </script>
+
     </main>
 
     <script>

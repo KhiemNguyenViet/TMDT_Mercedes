@@ -380,7 +380,7 @@
             </div>
         </div>
 
-        <div class="info" data-product-id="{product.id}" data-stock="{product.stock}">
+        <div class="info" data-user-id="{user_id}" data-product-id="{product.id}" data-stock="{product.stock}">
             <p>TRANG CHỦ / MERCEDES-BENZ</p>
             <h2>{product.name}</h2>
             <div class="price">
@@ -404,18 +404,6 @@
                 <button class="buy-btn" id="datxe">ĐẶT GIỮ XE</button>
                 <button class="consult-btn" id="openConsultPopupBtn">ĐĂNG KÝ TƯ VẤN XE</button>
             </div>
-
-            <script>
-                function redirectToBooking(productId) {
-                    // Validate ID
-                    if (productId && !isNaN(productId)) {
-                        console.log("Redirecting to booking with ID:", productId);
-                        window.location.href = 'datcho.php?blank=' + productId;
-                    } else {
-                        console.error("Invalid product ID:", productId);
-                    }
-                }
-            </script>
         </div>
     </div>
     <!-- Mô tả sản phẩm -->
@@ -726,23 +714,11 @@
             }
 
             // JavaScript for Booking Popup
+            
             const bookingPopup = document.getElementById('bookingPopup');
             const openBookingBtn = document.getElementById('openBookingPopupBtn');
             const closeBookingBtn = document.getElementById('closeBookingPopupBtn'); // ID cho nút đóng booking popup
             const bookingForm = document.getElementById('bookingForm');
-
-            if (openBookingBtn) {
-                openBookingBtn.addEventListener('click', function (event) {
-                    event.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
-                    if (bookingPopup) {
-                        bookingPopup.style.display = 'flex';
-                        // Tùy chọn: Ẩn popup tư vấn khi mở popup đặt lịch
-                        if (consultPopup) {
-                            consultPopup.style.display = 'none';
-                        }
-                    }
-                });
-            }
 
             if (closeBookingBtn) {
                 closeBookingBtn.addEventListener('click', function () {
