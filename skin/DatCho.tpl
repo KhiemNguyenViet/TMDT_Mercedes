@@ -66,8 +66,14 @@
                     <label>Quét mã QR để chuyển tiền:</label><br>
                     <img src="../hinhanh/qr_code.png" alt="Mã QR chuyển tiền" style="max-width: 250px; display: block; margin-bottom: 10px;">
 
-                    <label>Chọn ảnh xác nhận chuyển khoản (bắt buộc):</label>
-                    <input type="file" name="payment_image" accept="image/*" required>
+                    <!-- <label>Chọn ảnh xác nhận chuyển khoản (bắt buộc):</label>
+                    <input type="file" name="payment_image" accept="image/*" required> -->
+
+                    <form action="upload_process.php" method="POST" enctype="multipart/form-data">
+                        Chọn ảnh xác nhận chuyển khoản (bắt buộc): <input type="file" name="image" required>
+                        <br><br>
+                        <input type="submit" name="submit" value="Upload">
+                    </form>
 
                     <label>Ghi chú thanh toán</label>
                     <input type="text" name="pay_note" placeholder="Ví dụ: Ghi chú nhắc nhở của khách hàng...">

@@ -54,7 +54,7 @@
         }
 
         form input {
-            width: 100%;
+            width: 95%;
             padding: 12px;
             border: none;
             border-radius: 8px;
