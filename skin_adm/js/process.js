@@ -111,4 +111,150 @@ $(document).ready(function () {
             }
         });
     };
+    //////////////////////////////////////////
+
+});
+$(document).ready(function () {
+    $(document).on('click', '.button.delete', function () {
+        var userId = $(this).closest('tr').attr('id').replace('user_', '');
+        var $boxConfirm = $('.box_confirm');
+
+        $boxConfirm.fadeIn(200).css('display', 'flex');
+
+        $(document).on('click', '#confirm_yes', function () {
+            $('.load_overlay').show();
+            $('.load_process').fadeIn();
+
+            $.ajax({
+                url: 'process.php',
+                type: 'POST',
+                data: {
+                    action: 'delete_user',
+                    id: userId
+                },
+                dataType: 'json',
+                success: function (response) {
+                    try {
+                        setTimeout(function () {
+                            $('.load_note').html(response.message);
+                        }, 1000);
+
+                        setTimeout(function () {
+                            $('.load_process').hide();
+                            $('.load_overlay').hide();
+                            $boxConfirm.fadeOut(200);
+
+                            if (response.ok === 1) {
+                                location.reload();
+                            }
+                        }, 500);
+                    } catch (e) {
+                        console.error('Lỗi:', e);
+                        $('.load_note').html('Có lỗi xử lý dữ liệu');
+                        setTimeout(function () {
+                            $('.load_process').hide();
+                            $('.load_overlay').hide();
+                            $boxConfirm.fadeOut(200);
+                        }, 500);
+                    }
+                },
+                error: function () {
+                    $('.load_note').html('Có lỗi xảy ra');
+                    setTimeout(function () {
+                        $('.load_process').hide();
+                        $('.load_overlay').hide();
+                        $boxConfirm.fadeOut(200);
+                    }, 500);
+                }
+            });
+
+            $(document).off('click', '#confirm_yes');
+        });
+
+        $(document).on('click', '#confirm_no', function () {
+            $boxConfirm.fadeOut(200);
+            $(document).off('click', '#confirm_yes');
+            $(document).off('click', '#confirm_no');
+        });
+    });
+});
+function showNotification(message) {
+    $('.success-notification').fadeIn(300)
+        .find('.notification-text').text(message);
+
+    setTimeout(function () {
+        $('.success-notification').fadeOut(300);
+    }, 3000);
+}
+////////////////////////////////////////
+$(document).ready(function () {
+    $(document).on('click', '.btn-delete', function () {
+        var productId = $(this).closest('tr').attr('id').replace('product-', '');
+        var $boxConfirm = $('.box_confirm');
+
+        // Hiện box confirm
+        $boxConfirm.fadeIn(200).css('display', 'flex');
+
+        // Bind event cho nút Thực hiện
+        $(document).on('click', '#confirm_yes', function () {
+            $('.load_overlay').show();
+            $('.load_process').fadeIn();
+
+            $.ajax({
+                url: 'process.php',
+                type: 'POST',
+                data: {
+                    action: 'delete_product',
+                    id: productId
+                },
+                dataType: 'json',
+                success: function (response) {
+                    try {
+                        setTimeout(function () {
+                            $('.load_note').html(response.message);
+                        }, 1000);
+
+                        setTimeout(function () {
+                            $('.load_process').hide();
+                            $('.load_overlay').hide();
+                            $boxConfirm.fadeOut(200);
+
+                            if (response.ok === 1) {
+                                $('#product-' + productId).remove(); // Xóa hàng khỏi bảng
+                                location.reload(); // Reload trang
+                            }
+                        }, 500);
+                    } catch (e) {
+                        console.error('Lỗi:', e);
+                        $('.load_note').html('Có lỗi xử lý dữ liệu');
+                        setTimeout(function () {
+                            $('.load_process').hide();
+                            $('.load_overlay').hide();
+                            $boxConfirm.fadeOut(200);
+                        }, 500);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX error:', status, error);
+                    $('.load_note').html('Có lỗi xảy ra');
+                    setTimeout(function () {
+                        $('.load_process').hide();
+                        $('.load_overlay').hide();
+                        $boxConfirm.fadeOut(200);
+                    }, 500);
+                }
+            });
+
+            // Unbind event sau khi xử lý
+            $(document).off('click', '#confirm_yes');
+        });
+
+        // Bind event cho nút Hủy
+        $(document).on('click', '#confirm_no', function () {
+            $boxConfirm.fadeOut(200);
+            // Unbind các event
+            $(document).off('click', '#confirm_yes');
+            $(document).off('click', '#confirm_no');
+        });
+    });
 });

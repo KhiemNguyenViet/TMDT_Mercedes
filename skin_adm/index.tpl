@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xin chào Admin</title>
-    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css"> <!-- Liên kết CSS hiện có -->
+    <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
     <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../skin_adm/css/admin.css">
@@ -63,6 +63,18 @@
             display: block;
         }
     </style>
+    <style>
+        body {
+            opacity: 0;
+            transition: opacity 0.1s ease-in-out;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.opacity = "1";
+        });
+
+    </script>
 </head>
 
 <body>
@@ -104,20 +116,6 @@
         <!-- User Management -->
         <div id="users" class="tab-content">
             <h2>Danh sách tài khoản người dùng</h2>
-            <div class="input-row">
-                <input type="text" placeholder="ID">
-                <input type="text" placeholder="Họ tên">
-                <input type="tel" placeholder="Số điện thoại">
-                <input type="email" placeholder="Email">
-                <input type="text" placeholder="Địa chỉ">
-                <input type="text" placeholder="Tên tài khoản">
-                <div style="display:flex; align-items:center; flex: 1;">
-                    <input type="password" placeholder="Mật khẩu" id="new-password">
-                    <button class="toggle-password"
-                        onclick="togglePassword('new-password', this)">&#128065;&#x20E0;</button>
-                </div>
-                <button class="button add">Thêm</button>
-            </div>
             <table>
                 <thead>
                     <tr>
@@ -132,22 +130,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Nguyen Van A</td>
-                        <td>0901234567</td>
-                        <td>a@example.com</td>
-                        <td>Hà Nội</td>
-                        <td>nguyenvana</td>
-                        <td>
-                            <div style="display:flex; align-items:center;">
-                                <input type="password" value="123456" readonly id="pw1">
-                                <button class="toggle-password"
-                                    onclick="togglePassword('pw1', this)">&#128065;&#x20E0;</button>
-                            </div>
-                        </td>
-                        <td><button class="button edit">Sửa</button> <button class="button delete">Xoá</button></td>
-                    </tr>
+                    {list_users}
                 </tbody>
             </table>
         </div>
@@ -202,6 +185,7 @@
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
+            window.location.hash = tabId; // Cập nhật hash trong URL
             hideSidebar();
         }
 
@@ -209,10 +193,10 @@
             const input = document.getElementById(inputId);
             if (input.type === 'password') {
                 input.type = 'text';
-                button.innerHTML = '&#128065;';
+                button.innerHTML = '👁';
             } else {
                 input.type = 'password';
-                button.innerHTML = '&#128065;&#x20E0;';
+                button.innerHTML = '👁⃠';
             }
         }
 
@@ -249,6 +233,15 @@
             const chartUrl = chartIframe?.src;
             if (chartUrl) {
                 extractRevenueFromUrl(chartUrl);
+            }
+
+            // Kiểm tra hash trong URL để hiển thị tab tương ứng
+            const hash = window.location.hash.replace('#', '');
+            const validTabs = ['products', 'add-product', 'users', 'orders', 'revenue'];
+            if (hash && validTabs.includes(hash)) {
+                showTab(hash);
+            } else {
+                showTab('products'); // Mặc định hiển thị tab products
             }
         });
     </script>

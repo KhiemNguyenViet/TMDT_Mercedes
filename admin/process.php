@@ -12,7 +12,7 @@ if ($action == "dangnhap") {
 	if (is_array($ketqua) && $ketqua['status'] == 200) {
 		$ok = 1;
 		$thongbao = "Đăng nhập thành công";
-	}else if ($ketqua == 0) {
+	} else if ($ketqua == 0) {
 		$ok = 0;
 		$thongbao = "Vui lòng nhập username";
 	} else if ($ketqua == 1) {
@@ -86,4 +86,69 @@ switch ($action) {
 
 	default:
 		echo "Invalid action";
+}
+if ($action == 'delete_product') {
+	$id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+
+	mysqli_begin_transaction($conn);
+
+	try {
+		$check_stmt = mysqli_prepare($conn, "SELECT COUNT(*) as total FROM products WHERE id = ?");
+		mysqli_stmt_bind_param($check_stmt, "i", $id);
+		mysqli_stmt_execute($check_stmt);
+		$result = mysqli_stmt_get_result($check_stmt);
+		$row = mysqli_fetch_assoc($result);
+
+		if ($row['total'] == 0) {
+			$ok = 0;
+			$message = 'Không tìm thấy sản phẩm';
+		} else {
+			$delete_details_stmt = mysqli_prepare($conn, "DELETE FROM product_details WHERE product_id = ?");
+			mysqli_stmt_bind_param($delete_details_stmt, "i", $id);
+			mysqli_stmt_execute($delete_details_stmt);
+
+			$delete_product_stmt = mysqli_prepare($conn, "DELETE FROM products WHERE id = ?");
+			mysqli_stmt_bind_param($delete_product_stmt, "i", $id);
+			mysqli_stmt_execute($delete_product_stmt);
+
+			$ok = 1;
+			$message = 'Xóa sản phẩm thành công';
+		}
+
+		mysqli_commit($conn);
+	} catch (Exception $e) {
+		mysqli_rollback($conn);
+		$ok = 0;
+		$message = 'Lỗi: ' . $e->getMessage();
+	}
+
+	ob_end_clean();
+	echo json_encode(['ok' => $ok, 'message' => $message]);
+	exit;
+}
+if ($action == 'delete_user') {
+	$id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+
+	$check_query = mysqli_query($conn, "SELECT COUNT(*) as total FROM users WHERE user_id='$id' AND role='user'");
+	$result = mysqli_fetch_assoc($check_query);
+
+	if ($result['total'] == 0) {
+		$ok = 0;
+		$message = 'Không tìm thấy người dùng hoặc không có quyền xóa';
+	} else {
+		if (mysqli_query($conn, "DELETE FROM users WHERE user_id='$id' AND role='user'")) {
+			$ok = 1;
+			$message = 'Xóa người dùng thành công';
+		} else {
+			$ok = 0;
+			$message = 'Lỗi khi xóa người dùng';
+		}
+	}
+
+	ob_end_clean();
+	echo json_encode([
+		'ok' => $ok,
+		'message' => $message
+	]);
+	exit;
 }

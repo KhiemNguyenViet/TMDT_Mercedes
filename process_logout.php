@@ -9,7 +9,7 @@ $replace=array(
 	'header'=>$skin->skin_normal('skin/header'),
 	'title'=>'Đăng xuất thành công',
 	'thongbao'=>$thongbao,
-	'link'=>'/login.html'
+	'link'=>'/'
 );
 echo $skin->skin_replace('skin/chuyenhuong',$replace);
 ?>

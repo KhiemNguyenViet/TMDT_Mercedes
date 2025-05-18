@@ -13,7 +13,8 @@ if ($action == "dashboard") {
         'header' => $skin->skin_normal('skin/header'),
         'footer' => $skin->skin_normal('skin/footer'),
         'list_product' => $class_cpanel->list_product($conn),
-        'list_orders' => $class_cpanel->list_orders($conn)
+        'list_orders' => $class_cpanel->list_orders($conn),
+        'list_users' => $class_cpanel->list_users($conn),
     );
     echo $skin->skin_replace('skin_adm/index', $replace);
 }

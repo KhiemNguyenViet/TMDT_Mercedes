@@ -196,4 +196,29 @@ class class_cpanel extends class_manage
         $sql = "DELETE FROM products WHERE id = $id";
         return mysqli_query($conn, $sql);
     }
+    ///////////////////////////////////                 
+    function list_users($conn)
+    {
+        $skin = $this->load('class_skin_cpanel');
+
+        $query = mysqli_query($conn, "SELECT * FROM users WHERE role = 'user' ORDER BY created_at DESC");
+
+        if (!$query) {
+            return "Lỗi truy vấn: " . mysqli_error($conn);
+        }
+
+        $list = '';
+        while ($row = mysqli_fetch_assoc($query)) {
+            // Format created date
+            $row['created_at'] = date('d/m/Y H:i', strtotime($row['created_at']));
+
+            // Replace empty values with '-'
+            $row['phone'] = $row['phone'] ?: '-';
+            $row['address'] = $row['address'] ?: '-';
+
+            $list .= $skin->skin_replace('skin_adm/box_li/li_user', $row);
+        }
+
+        return $list;
+    }
 }
