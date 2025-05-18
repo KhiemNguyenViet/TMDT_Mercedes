@@ -30,10 +30,14 @@ if (!$conn) {
 }
 
 // Lấy thông tin sản phẩm
-$sql = "SELECT p.*, c.name as category_name 
-        FROM products p
-        LEFT JOIN categories c ON p.category_id = c.id 
-        WHERE p.id = $product_id";
+$sql = "SELECT 
+    p.*, 
+    c.name AS category_name,
+    pd.*
+FROM products p
+LEFT JOIN categories c ON p.category_id = c.id
+LEFT JOIN product_details pd ON p.id = pd.product_id
+WHERE p.id = $product_id";
 
 $result = mysqli_query($conn, $sql);
 $product = mysqli_fetch_assoc($result);
@@ -55,36 +59,35 @@ if ($product) {
     $replace = array(
         'header' => $header,
         'footer' => $skin->skin_normal('skin/footer'),
-        'product.id' => $product['id'],
         'product.name' => $product['name'],
-        'product.id' => $product['id'],
+        'product.id' => $product_id,
         'product.image' => $product['image'],
         'product.price' => $product['price'],
         'product.description' => $product['description'],
         'product.category_name' => $product['category_name'],
         'product.stock' => $product['stock'],
-        'length' => $product['length_mm'],
-        'width' => $product['width_mm'],
-        'height' => $product['height_mm'],
-        'engine' => $product['engine_type'],
-        'displacement_cc' => $product['displacement_cc'],
-        'power' => $product['horsepower_hp'],
-        'torque' => $product['torque_nm'],
-        'transmission' => $product['transmission_type'],
-        'drive' => $product['drive_type'],
-        'acceleration' => $product['acceleration_0_100_s'],
-        'max_speed' => $product['top_speed_kmh'],
-        'fuel_capacity' => $product['fuel_capacity'],
-        'fuel_type' => $product['fuel_type'],
+        'length' => $product['length_mm'] ?? 'Đang cập nhật',
+        'width' => $product['width_mm'] ?? 'Đang cập nhật',
+        'height' => $product['height_mm'] ?? 'Đang cập nhật',
+        'engine' => $product['engine_type'] ?? 'Đang cập nhật',
+        'displacement_cc' => $product['displacement_cc'] ?? 'Đang cập nhật',
+        'power' => $product['horsepower_hp'] ?? 'Đang cập nhật',
+        'torque' => $product['torque_nm'] ?? 'Đang cập nhật',
+        'transmission' => $product['transmission_type'] ?? 'Đang cập nhật',
+        'drive' => $product['drive_type'] ?? 'Đang cập nhật',
+        'acceleration' => $product['acceleration_0_100_s'] ?? 'Đang cập nhật',
+        'max_speed' => $product['top_speed_kmh'] ?? 'Đang cập nhật',
+        'fuel_capacity' => $product['fuel_capacity'] ?? 'Đang cập nhật',
+        'fuel_type' => $product['fuel_type'] ?? 'Đang cập nhật',
         'fuel_consumption_combined' => $product['fuel_consumption_l_100km'],
         'username' => $username,
         'phone' => $phone,
         'email' => $email,
-        'product.category_name' => $product['category_name']
+        'product.category_name' => $product['category_name'],
+        'user_id' => $user_info['user_id']
     );
-
-    // Debug
-    error_log("Product data for template: " . print_r($replace, true));
+    // var_dump($replace);
+    // die();
 
     echo $skin->skin_replace('skin/SanPhamChiTiet', $replace);
 } else {

@@ -89,6 +89,27 @@ class class_index extends class_manage {
         }
         return $list;
     }
+    function list_lichlai($conn,$user_id) {
+        $thongtin_laithu= mysqli_query($conn,"SELECT test_drives.*, products.name as car_name FROM test_drives LEFT JOIN products ON test_drives.product_id = products.id WHERE user_id = $user_id");
+        $skin = $this->load('class_skin');
+		$check = $this->load('class_check');
+        $i=0;
+        $list = '';
+        while($row = mysqli_fetch_array($thongtin_laithu)) {
+            $i++;
+            $row['stt'] = $i;
+            $row['fullname'] = $row['full_name'];
+            $row['location'] = $row['location'];
+            $row['phone_number'] = $row['phone_number'];
+            $row['preferred_date'] = $row['preferred_date'];
+            $row['preferred_time'] = $row['preferred_time'];
+            $row['note'] = $row['notes'] ? $row['notes'] : 'Không có';
+            $row['car_name'] = $row['car_name'];
+            $row['status'] = $row['status'];
+            $list.=$skin->skin_replace('skin/box_li/li_lichlai',$row);
+        }
+        return $list;
+    }
 
 }
 ?>

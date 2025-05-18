@@ -18,8 +18,7 @@
     </td>
     <td>{notes}</td>
     <td class="action-buttons">
-        <button type="button" onclick="updateStatus({id}, 'completed')" class="btn-confirm">Xác nhận</button>
-        <button type="button" onclick="updateStatus({id}, 'cancelled')" class="btn-cancel">Hủy</button>
+        {action_buttons}
     </td>
 </tr>
 <style>

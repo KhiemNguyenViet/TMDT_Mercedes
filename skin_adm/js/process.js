@@ -55,8 +55,11 @@ $(document).ready(function () {
         // Tạo thông báo xác nhận
         let message = '';
         switch (status) {
+            case 'confirmed':
+                message = 'Xác nhận đơn đặt lịch này?'
+                break;
             case 'completed':
-                message = 'Xác nhận đơn đặt lịch này?';
+                message = 'Xác nhận hoàn thành đơn đặt lịch này?';
                 break;
             case 'cancelled':
                 message = 'Bạn có chắc muốn hủy đơn này?';
@@ -111,9 +114,9 @@ $(document).ready(function () {
             }
         });
     };
-    //////////////////////////////////////////
 
 });
+//////////////////////////////////////////
 $(document).ready(function () {
     $(document).on('click', '.button.delete', function () {
         var userId = $(this).closest('tr').attr('id').replace('user_', '');
@@ -258,3 +261,53 @@ $(document).ready(function () {
         });
     });
 });
+window.status_update = function (id, status) {
+    let message = '';
+    switch (status) {
+        case 'processing':
+            message = 'Xác nhận xử lý đơn hàng này?'
+            break;
+        case 'completed':
+            message = 'Xác nhận hoàn thành đơn hàng này?';
+            break;
+        case 'cancelled':
+            message = 'Bạn có chắc muốn hủy đơn hàng này?';
+            break;
+        default:
+            alert('Trạng thái không hợp lệ');
+            return;
+    }
+
+    if (!confirm(message)) {
+        return;
+    }
+
+    $.ajax({
+        url: 'process.php',
+        type: 'POST',
+        data: {
+            action: 'update_order_status',
+            id: id,
+            status: status
+        },
+        success: function (response) {
+            try {
+                let result = JSON.parse(response);
+                if (result.success) {
+                    alert('Cập nhật trạng thái thành công!');
+                    location.reload();
+                } else {
+                    alert('Lỗi: ' + result.message);
+                }
+            } catch (e) {
+                console.error('Parse error:', e);
+                alert('Có lỗi xảy ra khi xử lý dữ liệu!');
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('Ajax error:', error);
+            alert('Có lỗi khi kết nối đến server!');
+        }
+    });
+}
+
