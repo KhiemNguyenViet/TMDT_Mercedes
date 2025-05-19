@@ -1,28 +1,39 @@
 <?php
-if (isset($_POST['submit'])) {
-    $target_dir = "uploads/";
-    $file_name = basename($_FILES["image"]["name"]);
-    $target_file = $target_dir . $file_name;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Kiểm tra file đã được upload chưa
+    if (isset($_FILES['payment_image']) && $_FILES['payment_image']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['payment_image']['tmp_name'];
+        $fileName = $_FILES['payment_image']['name'];
+        $fileSize = $_FILES['payment_image']['size'];
+        $fileType = $_FILES['payment_image']['type'];
+        $fileNameCmps = explode(".", $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
 
-    // Kiểm tra có phải là file hình không
-    $check = getimagesize($_FILES["image"]["tmp_name"]);
-    if ($check === false) {
-        die("File không phải hình ảnh.");
-    }
+        // Danh sách định dạng hợp lệ
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        if (in_array($fileExtension, $allowedExtensions)) {
+            // Tạo tên mới để tránh trùng
+            $newFileName = time() . '_' . md5($fileName) . '.' . $fileExtension;
 
-    // Giới hạn định dạng file
-    $allowed = ['jpg', 'jpeg', 'png', 'gif'];
-    if (!in_array($imageFileType, $allowed)) {
-        die("Chỉ cho phép JPG, JPEG, PNG, GIF.");
-    }
+            // Đường dẫn thư mục lưu ảnh (đảm bảo thư mục này tồn tại và có quyền ghi)
+            $uploadFileDir = './uploads/';
+            $dest_path = $uploadFileDir . $newFileName;
 
-    // Di chuyển file upload vào thư mục "uploads"
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        echo "Upload thành công.<br>";
-        echo "<a href='display.php?file=" . urlencode($file_name) . "'>Xem hình ảnh</a>";
+            // Di chuyển file từ tmp vào thư mục uploads
+            if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                echo "Upload thành công!<br>";
+                echo "Tên ảnh: " . htmlspecialchars($newFileName);
+            } else {
+                echo "Lỗi: Không thể lưu file.";
+            }
+        } else {
+            echo "Chỉ chấp nhận file ảnh có đuôi JPG, JPEG, PNG, GIF.";
+        }
     } else {
-        echo "Có lỗi xảy ra khi upload.";
+        echo "Vui lòng chọn ảnh xác nhận chuyển khoản.";
     }
+
+    // Bạn có thể xử lý thêm các dữ liệu form khác tại đây, ví dụ:
+    // $_POST['fullName'], $_POST['email'], $_POST['dealer'], ...
 }
 ?>

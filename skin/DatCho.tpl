@@ -33,8 +33,7 @@
                 <div class="step">5. Giữ chỗ ngay</div>
             </div>
 
-            <form id="multiStepForm">
-                <!-- Bước 1: Chi tiết thanh toán -->
+            <form id="multiStepForm" method="POST" enctype="multipart/form-data" onsubmit="return false;">                <!-- Bước 1: Chi tiết thanh toán -->
                 <div  class="form-step active">
                     <label>Danh xưng*</label>
                     <select name="salutation" required>
@@ -66,14 +65,9 @@
                     <label>Quét mã QR để chuyển tiền:</label><br>
                     <img src="../hinhanh/qr_code.png" alt="Mã QR chuyển tiền" style="max-width: 250px; display: block; margin-bottom: 10px;">
 
-                    <!-- <label>Chọn ảnh xác nhận chuyển khoản (bắt buộc):</label>
-                    <input type="file" name="payment_image" accept="image/*" required> -->
+                    <label>Chọn ảnh xác nhận chuyển khoản (bắt buộc):</label>
+                    <input type="file" name="payment_image" accept="image/*" required>
 
-                    <form action="upload_process.php" method="POST" enctype="multipart/form-data">
-                        Chọn ảnh xác nhận chuyển khoản (bắt buộc): <input type="file" name="image" required>
-                        <br><br>
-                        <input type="submit" name="submit" value="Upload">
-                    </form>
 
                     <label>Ghi chú thanh toán</label>
                     <input type="text" name="pay_note" placeholder="Ví dụ: Ghi chú nhắc nhở của khách hàng...">
@@ -130,7 +124,7 @@
                     <p>Qúy khách xác nhận giữ chỗ xe cho đơn hàng trên?</p>
                     <div style="display: flex; justify-content: space-between;">
                         <button type="button" onclick="prevStep()">← Quay lại</button>
-                        <button id="xacnhan_giucho" type="submit">Xác nhận giữ chỗ</button>
+                        <button id="xacnhan_giucho" type="button">Xác nhận giữ chỗ</button>
                     </div>
 
                 </div>
@@ -152,5 +146,93 @@
 
     <script src="../skin/tpl/js/DatCho.js"></script>
 </body>
+<script>
+    $(document).ready(function() {
+    // Xóa tất cả event handlers cũ trước khi thêm handler mới
+    $('#xacnhan_giucho').off('click').on('click', function(e) {
+        e.preventDefault();
+        
+        // Ngăn chặn double submit
+        if ($(this).data('submitting')) return;
+        $(this).data('submitting', true);
+        
+        console.log('Starting form submission...');
+
+        // Tạo FormData từ form
+        var form = document.getElementById('multiStepForm');
+        var formData = new FormData(form);
+        
+        // Thêm action và các trường bị thiếu
+        formData.append('action', 'xacnhan_datcho');
+        
+        // Lấy product_id từ data attribute
+        var product_id = $('.car-info').data('product-id');
+        console.log('Product ID:', product_id);
+        formData.append('product_id', product_id);
+
+        // Lấy price từ data attribute
+        var price = $('.price').data('price');
+        console.log('Price:', price);
+        formData.append('price', price);
+
+        // Log tất cả dữ liệu sẽ gửi đi
+        console.log('Form data:');
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+
+        // Kiểm tra dữ liệu bắt buộc
+        if (!product_id) {
+            alert('Không tìm thấy thông tin sản phẩm!');
+            $(this).data('submitting', false);
+            return;
+        }
+
+        // Disable button
+        $(this).prop('disabled', true).text('Đang xử lý...');
+
+        // Gửi AJAX request
+        $.ajax({
+            url: '/process.php',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log('Response received:', response);
+                try {
+                    var result = JSON.parse(response);
+                    if(result.ok === 1) {
+                        alert('Thành công: ' + result.thongbao);
+                        // Chuyển hướng ngay sau khi alert
+                        window.location.href = '/cacmauxe.html';
+                    } else {
+                        alert('Lỗi: ' + result.thongbao);
+                    }
+                } catch(e) {
+                    console.error('Error parsing response:', e);
+                    console.error('Raw response:', response);
+                    alert('Có lỗi xảy ra khi xử lý phản hồi từ server');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Ajax error:', status, error);
+                console.error('Response text:', xhr.responseText);
+                alert('Có lỗi khi gửi yêu cầu: ' + error);
+            },
+            complete: function() {
+                // Enable button và reset trạng thái submitting
+                $('#xacnhan_giucho')
+                    .prop('disabled', false)
+                    .text('Xác nhận giữ chỗ')
+                    .data('submitting', false);
+            }
+        });
+    });
+
+    // Xóa các event handlers test nếu có
+    $('#xacnhan_giucho').off('click.test');
+});
+</script>
 
 </html>
