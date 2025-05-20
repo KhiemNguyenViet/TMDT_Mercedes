@@ -199,7 +199,7 @@
             processData: false,
             contentType: false,
             success: function(response) {
-            console.log(                                        'Response received:', response);
+            console.log('Response received:', response);
                 try {
                     var result = JSON.parse(response);
                     if(result.ok === 1) {

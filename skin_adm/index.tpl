@@ -76,7 +76,7 @@
             z-index: 1000;
         }
 
-        #popup {
+        #popup, #popup_xl_thanhtoan, #popup_ht_thanhtoan, #popup_huy_thanhtoan, #popup_huy_laithu, #popup_ht_laithu {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -90,7 +90,7 @@
             z-index: 1001;
         }
 
-        #popup h3 {
+        #popup h3, #popup_xl_thanhtoan h3, #popup_ht_thanhtoan h3, #popup_huy_thanhtoan h3, #popup_huy_laithu h3, #popup_ht_laithu h3 {
             color: #333;
             margin-bottom: 15px;
             font-size: 20px;
@@ -99,12 +99,12 @@
             padding-bottom: 8px;
         }
 
-        #popup form {
+        #popup form, #popup_xl_thanhtoan form, #popup_ht_thanhtoan form, #popup_huy_thanhtoan form, #popup_huy_laithu form, #popup_ht_laithu form {
             display: flex;
             flex-direction: column;
         }
 
-        #popup label {
+        #popup label, #popup_xl_thanhtoan label, #popup_ht_thanhtoan label, #popup_huy_thanhtoan label, #popup_huy_laithu label, #popup_ht_laithu label {
             color: #555;
             font-weight: 500;
             font-size: 13px;
@@ -112,7 +112,22 @@
 
         #popup input[type="email"],
         #popup input[type="text"],
-        #popup textarea {
+        #popup textarea,
+        #popup_xl_thanhtoan input[type="email"],
+        #popup_xl_thanhtoan input[type="text"],
+        #popup_xl_thanhtoan textarea,
+        #popup_ht_thanhtoan input[type="email"],
+        #popup_ht_thanhtoan input[type="text"],
+        #popup_ht_thanhtoan textarea,
+        #popup_huy_thanhtoan input[type="email"],
+        #popup_huy_thanhtoan input[type="text"],
+        #popup_huy_thanhtoan textarea,
+        #popup_huy_laithu input[type="email"],
+        #popup_huy_laithu input[type="text"],
+        #popup_huy_laithu textarea,
+        #popup_ht_laithu input[type="email"],
+        #popup_ht_laithu input[type="text"],
+        #popup_ht_laithu textarea {
             width: 95%;
             padding: 8px;
             border: 1px solid #ddd;
@@ -123,18 +138,43 @@
 
         #popup input[type="email"]:focus,
         #popup input[type="text"]:focus,
-        #popup textarea:focus {
+        #popup textarea:focus,
+        #popup_xl_thanhtoan input[type="email"]:focus,
+        #popup_xl_thanhtoan input[type="text"]:focus,
+        #popup_xl_thanhtoan textarea:focus,
+        #popup_ht_thanhtoan input[type="email"]:focus,
+        #popup_ht_thanhtoan input[type="text"]:focus,
+        #popup_ht_thanhtoan textarea:focus,
+        #popup_huy_thanhtoan input[type="email"]:focus,
+        #popup_huy_thanhtoan input[type="text"]:focus,
+        #popup_huy_thanhtoan textarea:focus,
+        #popup_huy_laithu input[type="email"]:focus,
+        #popup_huy_laithu input[type="text"]:focus,
+        #popup_huy_laithu textarea:focus,
+        #popup_ht_laithu input[type="email"]:focus,
+        #popup_ht_laithu input[type="text"]:focus,
+        #popup_ht_laithu textarea:focus {
             border-color: #4a90e2;
             box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
             outline: none;
         }
 
-        #popup textarea {
+        #popup textarea,
+        #popup_xl_thanhtoan textarea,
+        #popup_ht_thanhtoan textarea,
+        #popup_huy_thanhtoan textarea,
+        #popup_huy_laithu textarea,
+        #popup_ht_laithu textarea {
             resize: vertical;
             min-height: 80px;
         }
 
-        #popup button[type="submit"] {
+        #popup button[type="submit"],
+        #popup_xl_thanhtoan button[type="submit"],
+        #popup_ht_thanhtoan button[type="submit"],
+        #popup_huy_thanhtoan button[type="submit"],
+        #popup_huy_laithu button[type="submit"],
+        #popup_ht_laithu button[type="submit"] {
             background: #4a90e2;
             color: white;
             border: none;
@@ -146,11 +186,21 @@
             margin-top: 5px;
         }
 
-        #popup button[type="submit"]:hover {
+        #popup button[type="submit"]:hover,
+        #popup_xl_thanhtoan button[type="submit"]:hover,
+        #popup_ht_thanhtoan button[type="submit"]:hover,
+        #popup_huy_thanhtoan button[type="submit"]:hover,
+        #popup_huy_laithu button[type="submit"]:hover,
+        #popup_ht_laithu button[type="submit"]:hover {
             background: #357abd;
         }
 
-        #popup button.close {
+        #popup button.close,
+        #popup_xl_thanhtoan button.close,
+        #popup_ht_thanhtoan button.close,
+        #popup_huy_thanhtoan button.close,
+        #popup_huy_laithu button.close,
+        #popup_ht_laithu button.close {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -168,7 +218,12 @@
             transition: background 0.3s ease;
         }
 
-        #popup button.close:hover {
+        #popup button.close:hover,
+        #popup_xl_thanhtoan button.close:hover,
+        #popup_ht_thanhtoan button.close:hover,
+        #popup_huy_thanhtoan button.close:hover,
+        #popup_huy_laithu button.close:hover,
+        #popup_ht_laithu button.close:hover {
             background: #ff6b81;
         }
     </style>
@@ -315,8 +370,8 @@
         <div id="overlay"></div>
         <div id="popup">
             <button class="close" onclick="closePopup()">×</button>
-            <h3>Gửi Email đến khách hàng</h3>
-            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hoàn thành xác nhận đơn hàng*</p>
+            <h3>Gửi Email xác nhận lịch lái thử đến khách hàng</h3>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để xác nhận lịch lái thử*</p>
             <form action="sendmail.php" method="POST">
                 <label>Đến email:</label><br>
                 <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
@@ -330,9 +385,99 @@
                 <button type="submit" name="send" onclick="updateStatus(currentTestDriveId, 'confirmed')">Gửi</button>
             </form>
         </div>
+        <div id="popup_ht_laithu">
+            <button class="close" onclick="closePopup_ht_laithu()">×</button>
+            <h3>Gửi Email xác nhận hoàn thành lịch lái thử đến khách hàng</h3>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hoàn thành xác nhận lịch lái thử*</p>
+            <form action="sendmail.php" method="POST">
+                <label>Đến email:</label><br>
+                <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
+
+                <label>Tiêu đề:</label><br>
+                <input type="text" name="subject" required placeholder="Nhập tiêu đề email"><br><br>
+
+                <label>Nội dung:</label><br>
+                <textarea name="message" rows="4" required placeholder="Nhập nội dung email"></textarea><br><br>
+
+                <button type="submit" name="send" onclick="updateStatus(currentTestDriveId, 'completed')">Gửi</button>
+            </form>
+        </div>
+        <div id="popup_huy_laithu">
+            <button class="close" onclick="closePopup_huy_laithu()">×</button>
+            <h3>Gửi Email xác nhận hủy lịch lái thử đến khách hàng</h3>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hủy lịch lái thử*</p>
+            <form action="sendmail.php" method="POST">
+                <label>Đến email:</label><br>
+                <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
+
+                <label>Tiêu đề:</label><br>
+                <input type="text" name="subject" required placeholder="Nhập tiêu đề email"><br><br>
+
+                <label>Nội dung:</label><br>
+                <textarea name="message" rows="4" required placeholder="Nhập nội dung email"></textarea><br><br>
+
+                <button type="submit" name="send" onclick="updateStatus(currentTestDriveId, 'cancelled')">Gửi</button>
+            </form>
+        </div>
+        <div id="popup_xl_thanhtoan">
+            <button class="close" onclick="closePopup_xl_thanhtoan()">×</button>
+            <h3>Gửi Email xác nhận xử lý đơn hàng đến khách hàng</h3>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để xác nhận xử lý đơn hàng*</p>
+            <form action="sendmail.php" method="POST">
+                <label>Đến email:</label><br>
+                <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
+
+                <label>Tiêu đề:</label><br>
+                <input type="text" name="subject" required placeholder="Nhập tiêu đề email"><br><br>
+
+                <label>Nội dung:</label><br>
+                <textarea name="message" rows="4" required placeholder="Nhập nội dung email"></textarea><br><br>
+
+                <button type="submit" name="send" onclick="status_update(currentTestDriveId, 'processing')">Gửi</button>
+            </form>
+        </div>
+        <div id="popup_ht_thanhtoan">
+            <button class="close" onclick="closePopup_ht_thanhtoan()">×</button>
+            <h3>Gửi Email xác nhận hoàn thành đơn hàng đến khách hàng</h3>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hoàn thành xác nhận hoàn thành đơn hàng*</p>
+            <form action="sendmail.php" method="POST">
+                <label>Đến email:</label><br>
+                <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
+
+                <label>Tiêu đề:</label><br>
+                <input type="text" name="subject" required placeholder="Nhập tiêu đề email"><br><br>
+
+                <label>Nội dung:</label><br>
+                <textarea name="message" rows="4" required placeholder="Nhập nội dung email"></textarea><br><br>
+
+                <button type="submit" name="send" onclick="status_update(currentTestDriveId, 'completed')">Gửi</button>
+            </form>
+        </div>
+        <div id="popup_huy_thanhtoan">
+            <button class="close" onclick="closePopup_huy_thanhtoan()">×</button>
+            <h3>Gửi Email xác nhận hủy đơn hàng đến khách hàng</h3>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hủy đơn hàng*</p>
+            <form action="sendmail.php" method="POST">
+                <label>Đến email:</label><br>
+                <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
+
+                <label>Tiêu đề:</label><br>
+                <input type="text" name="subject" required placeholder="Nhập tiêu đề email"><br><br>
+
+                <label>Nội dung:</label><br>
+                <textarea name="message" rows="4" required placeholder="Nhập nội dung email"></textarea><br><br>
+
+                <button type="submit" name="send" onclick="status_update(currentTestDriveId, 'cancelled')">Gửi</button>
+            </form>
+        </div>
         <script>
             let currentTestDriveId = null;
             const popup = document.getElementById('popup');
+            const popup_xl_thanhtoan = document.getElementById('popup_xl_thanhtoan');
+            const popup_ht_thanhtoan = document.getElementById('popup_ht_thanhtoan');
+            const popup_huy_thanhtoan = document.getElementById('popup_huy_thanhtoan');
+            const popup_huy_laithu = document.getElementById('popup_huy_laithu');
+            const popup_ht_laithu = document.getElementById('popup_ht_laithu');
             const overlay = document.getElementById('overlay');
 
             // Lặp qua tất cả các nút xác nhận
@@ -344,14 +489,84 @@
                     overlay.style.display = 'block';
                 });
             });
+            document.querySelectorAll('.btn-processing').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    currentTestDriveId = this.dataset.id;
+                    console.log("Mở popup cho ID:", currentTestDriveId);
+                    popup_xl_thanhtoan.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+            });
+            document.querySelectorAll('.btn-completed').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    currentTestDriveId = this.dataset.id;
+                    console.log("Mở popup cho ID:", currentTestDriveId);
+                    popup_ht_thanhtoan.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+            });
+            document.querySelectorAll('.btn-cancelled').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    currentTestDriveId = this.dataset.id;
+                    console.log("Mở popup cho ID:", currentTestDriveId);
+                    popup_huy_thanhtoan.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+            });
+            document.querySelectorAll('.btn-cancel').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    currentTestDriveId = this.dataset.id;
+                    console.log("Mở popup cho ID:", currentTestDriveId);
+                    popup_huy_laithu.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+            });
+            document.querySelectorAll('.btn-complete').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    currentTestDriveId = this.dataset.id;
+                    console.log("Mở popup cho ID:", currentTestDriveId);
+                    popup_ht_laithu.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+            });
+
 
             function closePopup() {
                 popup.style.display = 'none';
                 overlay.style.display = 'none';
                 currentTestDriveId = null;
             }
-
+            function closePopup_xl_thanhtoan() {
+                popup_xl_thanhtoan.style.display = 'none';
+                overlay.style.display = 'none';
+                currentTestDriveId = null;
+            }
+            function closePopup_ht_thanhtoan() {
+                popup_ht_thanhtoan.style.display = 'none';
+                overlay.style.display = 'none';
+                currentTestDriveId = null;
+            }
+            function closePopup_huy_thanhtoan() {
+                popup_huy_thanhtoan.style.display = 'none';
+                overlay.style.display = 'none';
+                currentTestDriveId = null;
+            }
+            function closePopup_huy_laithu() {
+                popup_huy_laithu.style.display = 'none';
+                overlay.style.display = 'none';
+                currentTestDriveId = null;
+            }
+            function closePopup_ht_laithu() {
+                popup_ht_laithu.style.display = 'none';
+                overlay.style.display = 'none';
+                currentTestDriveId = null;
+            }
             overlay.addEventListener('click', closePopup);
+            overlay.addEventListener('click', closePopup_xl_thanhtoan);
+            overlay.addEventListener('click', closePopup_ht_thanhtoan);
+            overlay.addEventListener('click', closePopup_huy_thanhtoan);
+            overlay.addEventListener('click', closePopup_huy_laithu);
+            overlay.addEventListener('click', closePopup_ht_laithu);
         </script>
 
     </main>
@@ -421,7 +636,7 @@
 
             // Kiểm tra hash trong URL để hiển thị tab tương ứng
             const hash = window.location.hash.replace('#', '');
-            const validTabs = ['products', 'add-product', 'users', 'orders', 'revenue'];
+            const validTabs = ['products', 'add-product', 'users', 'orders', 'revenue', 'orders_car'];
             if (hash && validTabs.includes(hash)) {
                 showTab(hash);
             } else {

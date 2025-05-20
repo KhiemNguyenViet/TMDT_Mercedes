@@ -29,20 +29,20 @@ class class_cpanel extends class_manage
                 case 'pending':
                     $row['status_text'] = 'Chờ xử lý';
                     $row['action_buttons'] = '
-                    <button type="button" onclick="status_update(' . $row['id'] . ', \'processing\')" class="btn-processing" data-id="' . $row['id'] . '">
+                    <button type="button" class="btn-processing" data-id="' . $row['id'] . '">
                         Xử lý
                     </button>
-                    <button type="button" onclick="status_update(' . $row['id'] . ', \'cancelled\')" class="btn-cancel">
+                    <button type="button" class="btn-cancelled" data-id="' . $row['id'] . '">
                         Hủy
                     </button>';
                     break;
                 case 'processing':
                     $row['status_text'] = 'Đang xử lý';
                     $row['action_buttons'] = '
-                    <button type="button" onclick="status_update(' . $row['id'] . ', \'completed\')" class="btn-complete" data-id="' . $row['id'] . '">
+                    <button type="button" class="btn-completed" data-id="' . $row['id'] . '">
                         Hoàn thành
                     </button>   
-                    <button type="button" onclick="status_update(' . $row['id'] . ', \'cancelled\')" class="btn-cancel">
+                    <button type="button" class="btn-cancelled" data-id="' . $row['id'] . '">
                         Hủy
                     </button>';
                     break;
@@ -117,17 +117,17 @@ class class_cpanel extends class_manage
                     <button type="button" class="btn-confirm" data-id="' . $row['id'] . '">
                         Xác nhận
                     </button>
-                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'cancelled\')" class="btn-cancel">
+                    <button type="button" class="btn-cancel">
                         Hủy
                     </button>';
                     break;
                 case 'confirmed':
                     $row['status_text'] = 'Đã xác nhận';
                     $row['action_buttons'] = '
-                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'completed\')" class="btn-complete" data-id="' . $row['id'] . '">
+                    <button type="button" class="btn-complete" data-id="' . $row['id'] . '">
                         Hoàn thành
                     </button>   
-                    <button type="button" onclick="updateStatus(' . $row['id'] . ', \'cancelled\')" class="btn-cancel">
+                    <button type="button" class="btn-cancel">
                         Hủy
                     </button>';
                     break;

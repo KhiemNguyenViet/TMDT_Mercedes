@@ -107,13 +107,13 @@ $(document).ready(function () {
         $button.prop('disabled', true).text('Đang xử lý...');
 
         // Lấy giá trị từ form
-        username = $('input[name="fullName"]').val();
-        phoneNumber = $('input[name="phoneNumber"]').val();
-        email = $('input[name="email"]').val();
-        testDriveDate = $('input[name="testDriveDate"]').val();
-        testDriveTime = $('select[name="testDriveTime"]').val();
-        notes = $('textarea[name="notes"]').val();
-        diadiem = $('select[name="location"]').val();
+        // username = $('input[name="fullName"]').val();
+        // phoneNumber = $('input[name="phoneNumber"]').val();
+        // email = $('input[name="email"]').val();
+        // testDriveDate = $('input[name="testDriveDate"]').val();
+        // testDriveTime = $('select[name="testDriveTime"]').val();
+        // notes = $('textarea[name="notes"]').val();
+        // diadiem = $('select[name="location"]').val();
 
         const username = $('input[name="fullName"]').val();
         const phoneNumber = $('input[name="phoneNumber"]').val();
@@ -157,13 +157,13 @@ $(document).ready(function () {
             return;
         }
         if (email == '') {
-            alert('Email không được để trống');
+            toastr.error('Email không được để trống');
             $button.prop('disabled', false).text(originalText);
             return;
         }
         if (email != '') {
             if (!isValidEmail(email)) {
-                alert('Email không hợp lệ. Vui lòng nhập lại.');
+                toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
                 $button.prop('disabled', false).text(originalText);
                 return;
             }
@@ -200,8 +200,10 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.ok === 1) {
                     toastr.success('Yêu cầu đặt lịch lái thử xe của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất!');
-                    $('#bookingPopup').hide();
-                    $('form#bookingForm')[0].reset();
+                    setTimeout(function () {
+                        $('#bookingPopup').hide();
+                        $('form#bookingForm')[0].reset();
+                    }, 2000);
 
                 } else {
                     if (response.trungLich) {
