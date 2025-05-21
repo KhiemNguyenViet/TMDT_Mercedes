@@ -29,7 +29,7 @@
             '../hinhanh/banner2.jpg',
             '../hinhanh/banner3.jpg',
             '../hinhanh/banner4.png',
-            '../hinhanh/banner5.jpeg',
+            '../hinhanh/glbclass.jpg',
         ];
         let bannerIndex = 0;
         const bannerImg = document.getElementById('banner-img');
@@ -176,13 +176,18 @@
                             <option value="A-Class">A-Class</option>
                             <option value="C-Class">C-Class</option>
                             <option value="E-Class">E-Class</option>
+                            <option value="G-Class">G-Class</option>
+                            <option value="S-Class">S-Class</option>
+                            <option value="V-Class">V-Class</option>
+                            <option value="AMG">AMG</option>
+                            <option value="GT">GT</option>
+                            <option value="Maybach">Maybach</option>
+                            <option value="EQ">Mercedes-EQ</option>
+                            <option value="GLA">GLA</option>
                             <option value="GLB">GLB</option>
                             <option value="GLC">GLC</option>
-                            <option value="GLC 2023">GLC 2023</option>
                             <option value="GLE">GLE</option>
                             <option value="GLS">GLS</option>
-                            <option value="Maybach">Maybach</option>
-                            <option value="S-Class">S-Class</option>
                         </select>
                         <button type="submit" class="submit-button">Gửi thông tin</button>
                     </form>

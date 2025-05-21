@@ -38,7 +38,7 @@
 
         <main class="main-content">
             <div class="topbar">
-                <select>
+                <select class="sort-select">
                     <option>Thứ tự mặc định</option>
                     <option>Giá tăng dần</option>
                     <option>Giá giảm dần</option>
