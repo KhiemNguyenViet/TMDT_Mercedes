@@ -101,32 +101,64 @@ if ($action == "datcho") {
 }
 
 if ($action == "xacnhan_datcho") {
-    $pay_note = addslashes(strip_tags($_REQUEST['pay_note']));
-    $image_thanhtoan = addslashes(strip_tags($_REQUEST['image_thanhtoan']));
-    $price = addslashes(strip_tags($_REQUEST['price']));
-    $price = floatval(preg_replace('/[^0-9]/', '', $price));
-    $salutation = addslashes(strip_tags($_REQUEST['salutation']));
-    $user_id = addslashes(strip_tags($_REQUEST['user_id']));
-    $product_id = addslashes(strip_tags($_REQUEST['product_id']));
-    $username = addslashes(strip_tags($_REQUEST['username']));
-    $phoneNumber = addslashes(strip_tags($_REQUEST['phoneNumber']));
-    $email = addslashes(strip_tags($_REQUEST['email']));
-    $address = addslashes(strip_tags($_REQUEST['address']));
-    $bank_account_number = addslashes(strip_tags($_REQUEST['bank_account_number']));
-    $bank_account_name = addslashes(strip_tags($_REQUEST['bank_account_name']));
-    $bank_name = addslashes(strip_tags($_REQUEST['bank_name']));
-    $bank_branch = addslashes(strip_tags($_REQUEST['bank_branch']));
-    $dealer = addslashes(strip_tags($_REQUEST['dealer']));
-    $sales_person = addslashes(strip_tags($_REQUEST['sales_person']));
-    $hientai = date('Y-m-d H:i:s');
-    $sql = "INSERT INTO orders (user_id, product_id, salutation, full_name, phone_number, email, contact_address, total_amount, deposit_amount, bank_account_number, bank_account_name, bank_name, bank_branch, dealer, sales_person, created_at, image_thanhtoan, payment_notes) 
-            VALUES (" . ($user_id ? $user_id : "NULL") . ", '$product_id', '$salutation', '$username', '$phoneNumber', '$email', '$address', '$price', '10000000', '$bank_account_number', '$bank_account_name', '$bank_name', '$bank_branch', '$dealer', '$sales_person', '$hientai', '$image_thanhtoan', '$pay_note')";
-    $result = $conn->query($sql);
-    if ($result) {
-        echo json_encode(array('ok' => 1, 'thongbao' => 'Đặt giữ chỗ xe thành công'));
+    error_log("Received request: " . print_r($_POST, true));
+    error_log("Files: " . print_r($_FILES, true));
+    if (isset($_FILES['payment_image']) && $_FILES['payment_image']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['payment_image']['tmp_name'];
+        $fileName = $_FILES['payment_image']['name'];
+        $fileNameCmps = explode(".", $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
+        
+        // Tạo tên file mới
+        $newFileName = time() . '_' . md5($fileName) . '.' . $fileExtension;
+        $uploadFileDir = './uploads/';
+        $dest_path = $uploadFileDir . $newFileName;
+
+        if (move_uploaded_file($fileTmpPath, $dest_path)) {
+            // Lấy các dữ liệu khác
+            $pay_note = addslashes(strip_tags($_POST['pay_note']));
+            $price = floatval(preg_replace('/[^0-9]/', '', $_POST['price']));
+            $salutation = addslashes(strip_tags($_POST['salutation']));
+            $user_id = addslashes(strip_tags($_POST['user_id']));
+            $product_id = addslashes(strip_tags($_POST['product_id']));
+            $username = addslashes(strip_tags($_POST['username']));
+            $phoneNumber = addslashes(strip_tags($_POST['phoneNumber']));
+            $email = addslashes(strip_tags($_POST['email']));
+            $address = addslashes(strip_tags($_POST['address']));
+            $bank_account_number = addslashes(strip_tags($_POST['bank_account_number']));
+            $bank_account_name = addslashes(strip_tags($_POST['bank_account_name']));
+            $bank_name = addslashes(strip_tags($_POST['bank_name']));
+            $bank_branch = addslashes(strip_tags($_POST['bank_branch']));
+            $dealer = addslashes(strip_tags($_POST['dealer']));
+            $sales_person = addslashes(strip_tags($_POST['sales_person']));
+            $hientai = date('Y-m-d H:i:s');
+
+            // Insert vào database với tên file mới
+            $sql = "INSERT INTO orders (
+                user_id, product_id, salutation, full_name, phone_number, 
+                email, contact_address, total_amount, deposit_amount, 
+                bank_account_number, bank_account_name, bank_name, bank_branch, 
+                dealer, sales_person, created_at, image_thanhtoan, payment_notes
+            ) VALUES (
+                " . ($user_id ? "'$user_id'" : "NULL") . ", 
+                '$product_id', '$salutation', '$username', '$phoneNumber',
+                '$email', '$address', '$price', '10000000',
+                '$bank_account_number', '$bank_account_name', '$bank_name', '$bank_branch',
+                '$dealer', '$sales_person', '$hientai', '$newFileName', '$pay_note'
+            )";
+
+            $result = $conn->query($sql);
+            if ($result) {
+                echo json_encode(['ok' => 1, 'thongbao' => 'Đặt giữ chỗ xe thành công']);
+            } else {
+                echo json_encode(['ok' => 0, 'thongbao' => 'Đặt giữ chỗ xe thất bại: ' . $conn->error]);
+            }
+        } else {
+            echo json_encode(['ok' => 0, 'thongbao' => 'Không thể lưu file ảnh']);
+        }
     } else {
-        echo json_encode(array('ok' => 0, 'thongbao' => 'Đặt giữ chỗ xe thất bại'));
-    }
-    
+        $uploadError = isset($_FILES['payment_image']) ? $_FILES['payment_image']['error'] : 'No file uploaded';
+        error_log("Upload error: " . $uploadError);
+        echo json_encode(['ok' => 0, 'thongbao' => 'Vui lòng chọn ảnh xác nhận chuyển khoản. Error: ' . $uploadError]);    }
 }
 ?>

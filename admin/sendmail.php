@@ -68,9 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
         $mail->AltBody = strip_tags($message);
 
         $mail->send();
-        echo 'Email đã được gửi thành công!';
+        
     } catch (Exception $e) {
-        echo 'Gửi email thất bại: ' . $mail->ErrorInfo;
+        echo json_encode([
+            'success' => false,
+            'message' => 'Gửi email thất bại: ' . $mail->ErrorInfo
+        ]);
     }
 } else {
     echo 'Không nhận được dữ liệu hợp lệ.';

@@ -743,6 +743,7 @@
                 testDriveDateInput.setAttribute('min', today);
             }
         });
+        
     </script>
     {footer}
 </body>
