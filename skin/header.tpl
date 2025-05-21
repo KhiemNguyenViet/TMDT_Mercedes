@@ -53,6 +53,7 @@
 
         .user-dropdown:hover .dropdown-content {
             display: block;
+            width: 100px;
         }
 
         .tk-dropdown:hover .dropdown-content {
@@ -86,7 +87,8 @@
         <div class="navbar-left">
             <a href="cacmauxe.html">Các mẫu xe</a>
             <a href="#">Mua</a>
-            <a href="#">Dịch vụ</a>
+            <a href="/#dichvu-section">Dịch vụ</a>
+
             <a href="thuonghieu.html">Thương hiệu</a>
         </div>
         <div class="navbar-center">
@@ -100,8 +102,8 @@
         <div class="navbar-right">
             <!-- <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" /> -->
             <a href="/lich_laithu.html">
-                <img style="background-color: rgb(255, 255, 255); border-radius: 50%;" src="../hinhanh/files.png" alt="Cart" class="icon"
-                    style="width: 30px; height: 30px;" />
+                <img style="background-color: rgb(255, 255, 255); border-radius: 50%;" src="../hinhanh/files.png"
+                    alt="Cart" class="icon" style="width: 30px; height: 30px;" />
             </a>
             <div class="user-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />

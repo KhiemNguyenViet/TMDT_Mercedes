@@ -1,14 +1,19 @@
+body {
+    margin: 0;
+}
+
 .banner {
     width: 100%;
+    height: 90vh;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     background-color: black;
+    object-fit: cover;
 }
 
 .banner img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     object-position: center;
 }
 
@@ -44,7 +49,7 @@
 
 .dropdown-content ul {
     list-style-type: none;
-    padding: 0;
+
     margin: 0;
 }
 
