@@ -4,7 +4,8 @@
             <div class="stock-badge">Còn {stock} xe</div>
             <img src="hinhanh/{image}" alt="{name}" class="sanpham-image" />
         </div>
-        <p class="sanpham-ten">{name}</p>
-        <p class="sanpham-gia">Giá: {price} vnđ</p>
+        <a class="sanpham-ten">{name}</a>
+        <a class="sanpham-gia">Giá: {price} vnđ</a>
     </a>
+
 </div>
