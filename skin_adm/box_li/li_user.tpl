@@ -33,9 +33,9 @@
         </div>
     </div>
 </div>
-<div class="success-notification" style="display: none;">
+<!-- <div class="success-notification" style="display: none;">
     <div class="notification-text"></div>
-</div>
+</div> -->
 <style>
     .load_overlay {
         position: fixed;
