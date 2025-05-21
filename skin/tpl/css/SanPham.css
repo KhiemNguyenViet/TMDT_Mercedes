@@ -15,23 +15,28 @@ body {
     margin: 0 auto;
     padding: 20px;
     display: flex;
-    gap: 30px;
+    gap: 20px;
+    /* Giảm khoảng cách giữa sidebar và content */
 }
 
-/* Sidebar styles */
+/* Sidebar styles - Cập nhật để sát lề hơn */
 .sidebar {
-    width: 250px;
+    width: 220px;
+    height: 780px;
     flex-shrink: 0;
     background: #fff;
     border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 12px;
+    /* Giảm padding */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 0;
+    /* Đảm bảo sidebar sát lề trái */
 }
 
 .sidebar h4 {
     color: #333;
-    padding: 10px 0;
-    margin-bottom: 15px;
+    padding: 8px 0;
+    margin-bottom: 12px;
     border-bottom: 2px solid #eee;
 }
 
@@ -40,11 +45,15 @@ body {
 }
 
 #category-list li {
-    padding: 12px 15px;
+    padding: 10px 12px;
+    /* Giảm padding */
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 4px;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+    /* Giảm khoảng cách */
+    font-size: 15px;
+    /* Giảm font size để phù hợp với sidebar nhỏ hơn */
 }
 
 #category-list li:hover {
@@ -61,20 +70,29 @@ body {
     flex: 1;
 }
 
-/* Product grid */
+/* Product grid - cập nhật thành 4 cột và 3 hàng */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 20px;
+    margin-bottom: 30px;
 }
 
+/* Product card - cố định layout */
 .product-card {
+    margin-top: 20px;
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    /* Chiều cao cố định cho card */
+    position: relative;
 }
 
 .product-card:hover {
@@ -83,7 +101,8 @@ body {
 
 .product-card img {
     width: 100%;
-    height: 220px;
+    height: 180px;
+    /* Giảm chiều cao ảnh để phù hợp với grid nhỏ hơn */
     object-fit: contain;
     background: #fff;
     padding: 15px;
@@ -91,14 +110,24 @@ body {
 
 .product-info {
     padding: 15px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
+/* Tên sản phẩm - cố định chiều cao */
 .product-card h3 {
-    font-size: 18px;
+    font-size: 16px;
+    /* Giảm font size */
     color: #333;
-    margin-bottom: 10px;
-    min-height: 44px;
-    line-height: 22px;
+    margin-bottom: 8px;
+    height: 40px;
+    /* Chiều cao cố định */
+    line-height: 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .badge {
@@ -112,44 +141,128 @@ body {
     font-size: 13px;
 }
 
+/* Giá sản phẩm - cố định vị trí */
 .price {
-    font-size: 20px;
+    font-size: 18px;
+    /* Giảm font size */
     font-weight: bold;
     color: #333;
-    margin: 10px 0;
+    margin: 8px 0;
+    height: 27px;
+    /* Chiều cao cố định */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Mô tả sản phẩm - chiều cao cố định với scroll nếu quá dài */
 .description {
     color: #666;
-    font-size: 14px;
-    margin: 10px 0;
+    font-size: 13px;
+    /* Giảm font size */
     line-height: 1.4;
+    height: 75px;
+    /* Chiều cao cố định */
+    overflow-y: auto;
+    /* Thêm scroll nếu cần */
+    margin: 8px 0;
 }
 
 .stock {
     color: #008f39;
-    font-size: 14px;
-    margin-top: 10px;
+    font-size: 13px;
+    margin-top: 8px;
+    height: 18px;
+    /* Chiều cao cố định */
+}
+
+/* Phần chứa nút Chi tiết - cố định ở dưới cùng */
+.product-actions {
+    margin-top: auto;
+    padding: 15px 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 /* Chi tiết button */
 .btn-detail {
     display: inline-block;
-    padding: 8px 25px;
+    padding: 7px 20px;
     background: #000;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
-    margin-top: 15px;
     transition: all 0.3s ease;
+    font-size: 14px;
 }
 
 .btn-detail:hover {
     background: #333;
 }
 
+/* Thanh phân trang */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+}
+
+.page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    padding: 0 15px;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    font-weight: medium;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.page-link:hover {
+    background: #f5f5f5;
+}
+
+.page-link.active {
+    background: #000;
+    color: #fff;
+}
+
+.page-link.prev {
+    margin-right: 10px;
+}
+
+.page-link.next {
+    margin-left: 10px;
+}
+
+.page-link.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -159,13 +272,21 @@ body {
     .container {
         flex-direction: column;
     }
-    
+
     .sidebar {
         width: 100%;
         margin-bottom: 20px;
     }
-    
+
     .product-grid {
         grid-template-columns: 1fr;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+
+    .page-link {
+        margin: 5px;
     }
 }
