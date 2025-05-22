@@ -21,6 +21,7 @@
     $replace = array(
         'header' => $header,
         'footer' => $skin->skin_normal('skin/footer'),
+        'box_index' => $class_index->box_index($conn),
     );
 
     echo $skin->skin_replace('skin/SanPham', $replace);

@@ -39,11 +39,9 @@
             </ul>
         </aside>
 
-
-
         <main class="main-content">
             <div class="topbar">
-                <select>
+                <select class="sort-select">
                     <option>Thứ tự mặc định</option>
                     <option>Giá tăng dần</option>
                     <option>Giá giảm dần</option>
@@ -51,127 +49,141 @@
             </div>
 
             <div class="product-grid">
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">
-                        <span class="old">2.259.000.000 VND</span>
-                        <span class="new">1.818.000.000 VND</span>
-                    </p>
-                </div>
-
-                <div class="product-card sale" data-category="A-Class">
-                    <span class="badge">Giảm giá!</span>
-                    <img src="../hinhanh/sanpham9.jpg" alt="Xe 2">
-                    <p class="model">A-Class</p>
-                    <h3>Mercedes-AMG A 35 4MATIC</h3>
-                    <p class="price">
-                        <span class="old">2.259.000.000 VND</span>
-                        <span class="new">1.818.000.000 VND</span>
-                    </p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-                <div class="product-card" data-category="EQ">
-                    <img src="../hinhanh/sanpham17.jpg" alt="Xe 1">
-                    <p class="model">Mercedes-EQ</p>
-                    <h3>Mercedes EQB 250</h3>
-                    <p class="price">2.289.000.000 VND</p>
-                </div>
-
-
-                <!-- Thêm các sản phẩm khác ở đây -->
+                {box_index}
             </div>
 
             <div class="pagination">
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">&gt;</a>
+                <a href="#" class="page-link prev">&larr; Trước đó</a>
+                <div class="page-numbers">
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                </div>
+                <a href="#" class="page-link next">Tiếp theo &rarr;</a>
             </div>
         </main>
         <script>
             const categoryList = document.getElementById('category-list');
             const products = document.querySelectorAll('.product-card');
+            const productsPerPage = 12; // 3 hàng x 4 cột = 12 sản phẩm mỗi trang
+            let currentPage = 1;
 
+            // Hàm hiển thị sản phẩm theo trang
+            function displayProductsByPage(page) {
+                const startIndex = (page - 1) * productsPerPage;
+                const endIndex = startIndex + productsPerPage;
+
+                let visibleProducts = Array.from(products).filter(product => {
+                    const filter = document.querySelector('#category-list li.active').getAttribute('data-filter');
+                    const category = product.getAttribute('data-category');
+                    return filter === 'all' || category === filter;
+                });
+
+                products.forEach(product => {
+                    product.style.display = 'none';
+                });
+
+                visibleProducts.forEach((product, index) => {
+                    if (index >= startIndex && index < endIndex) {
+                        product.style.display = 'block';
+                    }
+                });
+
+                // Cập nhật thanh phân trang
+                updatePagination(visibleProducts.length);
+            }
+
+            // Cập nhật trạng thái thanh phân trang
+            function updatePagination(totalProducts) {
+                const pageCount = Math.ceil(totalProducts / productsPerPage);
+                const pageNumbersEl = document.querySelector('.page-numbers');
+                const prevBtn = document.querySelector('.page-link.prev');
+                const nextBtn = document.querySelector('.page-link.next');
+
+                // Xóa các liên kết trang cũ
+                pageNumbersEl.innerHTML = '';
+
+                // Tạo các liên kết trang mới
+                for (let i = 1; i <= pageCount; i++) {
+                    const pageLink = document.createElement('a');
+                    pageLink.href = '#';
+                    pageLink.classList.add('page-link');
+                    if (i === currentPage) {
+                        pageLink.classList.add('active');
+                    }
+                    pageLink.textContent = i;
+                    pageLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        currentPage = i;
+                        displayProductsByPage(currentPage);
+                    });
+                    pageNumbersEl.appendChild(pageLink);
+                }
+
+                // Cập nhật trạng thái nút Trước đó
+                if (currentPage === 1) {
+                    prevBtn.classList.add('disabled');
+                } else {
+                    prevBtn.classList.remove('disabled');
+                }
+
+                // Cập nhật trạng thái nút Tiếp theo
+                if (currentPage === pageCount || pageCount === 0) {
+                    nextBtn.classList.add('disabled');
+                } else {
+                    nextBtn.classList.remove('disabled');
+                }
+
+                // Ẩn thanh phân trang nếu chỉ có 1 trang hoặc không có sản phẩm
+                const paginationEl = document.querySelector('.pagination');
+                if (pageCount <= 1) {
+                    paginationEl.style.display = 'none';
+                } else {
+                    paginationEl.style.display = 'flex';
+                }
+            }
+
+            // Xử lý click trên danh mục
             categoryList.addEventListener('click', (e) => {
                 if (e.target.tagName === 'LI') {
                     // Xử lý active class
                     categoryList.querySelectorAll('li').forEach(li => li.classList.remove('active'));
                     e.target.classList.add('active');
 
-                    const filter = e.target.getAttribute('data-filter');
-
-                    products.forEach(product => {
-                        const category = product.getAttribute('data-category');
-                        if (filter === 'all' || category === filter) {
-                            product.style.display = 'block';
-                        } else {
-                            product.style.display = 'none';
-                        }
-                    });
+                    // Reset về trang 1 khi chọn danh mục mới
+                    currentPage = 1;
+                    displayProductsByPage(currentPage);
                 }
             });
+
+            // Xử lý nút Trước đó
+            document.querySelector('.page-link.prev').addEventListener('click', (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayProductsByPage(currentPage);
+                }
+            });
+
+            // Xử lý nút Tiếp theo
+            document.querySelector('.page-link.next').addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageCount = Math.ceil(
+                    Array.from(products).filter(product => {
+                        const filter = document.querySelector('#category-list li.active').getAttribute('data-filter');
+                        const category = product.getAttribute('data-category');
+                        return filter === 'all' || category === filter;
+                    }).length / productsPerPage
+                );
+
+                if (currentPage < pageCount) {
+                    currentPage++;
+                    displayProductsByPage(currentPage);
+                }
+            });
+
+            // Hiển thị trang đầu tiên khi tải trang
+            displayProductsByPage(currentPage);
         </script>
 
     </div>

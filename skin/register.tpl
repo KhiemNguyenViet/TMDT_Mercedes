@@ -75,7 +75,7 @@
 
         form input::placeholder {
             color: #999;
-            
+
         }
 
         form button {
@@ -277,12 +277,12 @@
     {header}
     <div class="login-container">
         <h2>Đăng Ký</h2>
-        <form action="login-process.php" method="POST">
+        <form id="register-form">
             <input type="text" name="username" placeholder="Tên đăng nhập" required />
             <input type="password" name="password" placeholder="Mật khẩu" required />
-            <input type="text" name="email" placeholder="Email" required />
+            <input type="email" name="email" placeholder="Email" required />
             <input type="text" name="name" placeholder="Họ tên đầy đủ" required />
-            <input type="text" name="phone" placeholder="Số điện thoại" required />
+            <input type="tel" name="phone" placeholder="Số điện thoại" required />
             <input type="text" name="address" placeholder="Địa chỉ" required />
             <button type="submit">Đăng Ký</button>
         </form>

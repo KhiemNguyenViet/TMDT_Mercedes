@@ -6,24 +6,16 @@ $skin = $tlca_do->load('class_skin');
 $class_member = $tlca_do->load('class_member');
 $user_info=$class_member->user_info($conn,$_COOKIE['user_id']);
 
-// Nếu chưa đăng nhập thì chuyển hướng sang trang đăng ký
-// if (!isset($user_info['user_id']) || $user_info['user_id'] <= 0) {
-//     header('Location: /register.php');
-//     exit();
-// }
-
 if (isset($user_info['user_id']) && $user_info['user_id'] > 0) {
     $header = $skin->skin_normal('skin_cpanel/headeruser');
 } else {
     $header = $skin->skin_normal('skin/header');
     echo '<script>alert("Hãy đăng nhập để xem lịch lái thử");</script>';
-    // Chuyển hướng sau khi hiển thị thông báo
     echo '<script>window.location.href = "/login.php";</script>';
     exit();
 }
 
 $list_lichlai = $class_index->list_lichlai($conn,$user_info['user_id']);
-// Xử lý và hiển thị nội dung
 $replace = array(
     'header' => $header,
     'footer' => $skin->skin_normal('skin/footer'),

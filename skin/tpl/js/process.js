@@ -30,6 +30,75 @@ $(document).ready(function () {
         const password = $('input[name=password]').val();
         const remember = $('.remember').attr('value');
 
+
+        $('.load_overlay').show();
+        $('.load_process').fadeIn();
+        $('.load_note').html('Đang xử lý đăng nhập...');
+
+        $.ajax({
+            url: "/process_login.php",
+            type: "POST",
+            data: {
+                username: username,
+                password: password,
+                remember: remember
+            },
+            success: function (response) {
+                try {
+                    const info = JSON.parse(response);
+
+                    // Hiển thị thông báo trên load_process
+                    $('.load_note').html(info.thongbao || 'Đăng nhập thành công!');
+
+                    setTimeout(function () {
+                        if (info.ok == 1) {
+                            $('.load_note').html('Đăng nhập thành công! Đang chuyển hướng...');
+                            setTimeout(function () {
+                                window.location.href = '/admin/dashboard';
+                            }, 1000);
+                        } else if (info.ok == 2) {
+                            $('.load_note').html('Đăng nhập thành công! Đang chuyển hướng...');
+                            setTimeout(function () {
+                                window.location.href = '/index.html';
+                            }, 1000);
+                        } else {
+                            $('.load_note').html(info.thongbao || 'Đăng nhập thất bại');
+                            setTimeout(function () {
+                                $('.load_process').hide();
+                                $('.load_overlay').hide();
+                                toastr.error(info.thongbao || 'Đăng nhập thất bại');
+                            }, 1000);
+                        }
+                    }, 1000);
+                } catch (e) {
+                    console.error('Lỗi:', e);
+                    $('.load_note').html('Có lỗi xử lý dữ liệu');
+                    setTimeout(function () {
+                        $('.load_process').hide();
+                        $('.load_overlay').hide();
+                    }, 1000);
+                }
+            },
+            error: function () {
+                $('.load_note').html('Có lỗi xảy ra khi kết nối máy chủ');
+                setTimeout(function () {
+                    $('.load_process').hide();
+                    $('.load_overlay').hide();
+                }, 1000);
+            }
+        });
+    });
+    ///////////////////////////////////
+    $('#register-form').on('submit', function (e) {
+        e.preventDefault();
+
+        var username = $('input[name=username]').val();
+        var password = $('input[name=password]').val();
+        var email = $('input[name=email]').val();
+        var name = $('input[name=name]').val();
+        var phone = $('input[name=phone]').val();
+        var address = $('input[name=address]').val();
+
         if (username.length < 4) {
             toastr.error('Tên đăng nhập phải từ 4 ký tự trở lên');
             $('input[name=username]').focus();
@@ -44,38 +113,56 @@ $(document).ready(function () {
 
         $('.load_overlay').show();
         $('.load_process').fadeIn();
+        $('.load_note').html('Đang xử lý đăng ký...');
 
-        // Gửi AJAX
         $.ajax({
-            url: "/process_login.php",
-            type: "POST",
+            url: '/process_register.php',
+            type: 'POST',
             data: {
                 username: username,
                 password: password,
-                remember: remember
+                email: email,
+                name: name,
+                phone: phone,
+                address: address
             },
             success: function (response) {
-                const info = JSON.parse(response);
+                try {
+                    var info = JSON.parse(response);
 
-                $('.load_note').html('Đang xử lý đăng nhập...');
+                    // Hiển thị thông báo trên load_process
+                    $('.load_note').html(info.thongbao || 'Đăng ký thành công!');
 
+                    setTimeout(function () {
+                        if (info.ok == 1) {
+                            $('.load_note').html('Đăng ký thành công! Đang chuyển hướng...');
+                            setTimeout(function () {
+                                window.location.href = 'login.html';
+                            }, 1000);
+                        } else {
+                            $('.load_note').html(info.thongbao || 'Đăng ký thất bại');
+                            setTimeout(function () {
+                                $('.load_process').hide();
+                                $('.load_overlay').hide();
+                                toastr.error(info.thongbao || 'Đăng ký thất bại');
+                            }, 1000);
+                        }
+                    }, 1000);
+                } catch (e) {
+                    console.error('Lỗi:', e);
+                    $('.load_note').html('Có lỗi xử lý dữ liệu');
+                    setTimeout(function () {
+                        $('.load_process').hide();
+                        $('.load_overlay').hide();
+                    }, 1000);
+                }
+            },
+            error: function () {
+                $('.load_note').html('Có lỗi xảy ra khi kết nối máy chủ');
                 setTimeout(function () {
                     $('.load_process').hide();
                     $('.load_overlay').hide();
-
-                    if (info.ok == 1) {
-                        window.location.href = '/admin/dashboard';
-                    } else if (info.ok == 2) {
-                        window.location.href = '/index.html';
-                    } else {
-                        toastr.error(info.thongbao || 'Đăng nhập thất bại');
-                    }
-                }, 2000);
-            },
-            error: function () {
-                $('.load_process').hide();
-                $('.load_note').html('Có lỗi xảy ra khi kết nối máy chủ');
-                $('.load_overlay').hide();
+                }, 1000);
             }
         });
     });
