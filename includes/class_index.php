@@ -53,9 +53,15 @@ class class_index extends class_manage
         while ($row = mysqli_fetch_array($thongtin)) {
             $i++;
             $row['stock'] = $row['stock'];
+<<<<<<< HEAD
             $row['name'] = $row['name'];
             $row['image'] = $row['image'];
             $row['price'] = number_format($row['price'], 0, ',', '.');
+=======
+            $row['name'] = $row['name_car'];
+            $row['image'] = $row['image_car'];
+            $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
+>>>>>>> fdcd77106a258a670111c0fecdc38d4aa91d446e
             $list .= $skin->skin_replace('skin/box_li/li_glcbanchay', $row);
         }
         return $list;
@@ -70,9 +76,15 @@ class class_index extends class_manage
         while ($row = mysqli_fetch_array($thongtin)) {
             $i++;
             $row['stock'] = $row['stock'];
+<<<<<<< HEAD
             $row['name'] = $row['name'];
             $row['image'] = $row['image'];
             $row['price'] = number_format($row['price'], 0, ',', '.');
+=======
+            $row['name'] = $row['name_car'];
+            $row['image'] = $row['image_car'];
+            $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
+>>>>>>> fdcd77106a258a670111c0fecdc38d4aa91d446e
             $list .= $skin->skin_replace('skin/box_li/li_suvbanchay', $row);
         }
         return $list;
@@ -87,9 +99,15 @@ class class_index extends class_manage
         while ($row = mysqli_fetch_array($thongtin)) {
             $i++;
             $row['stock'] = $row['stock'];
+<<<<<<< HEAD
             $row['name'] = $row['name'];
             $row['image'] = $row['image'];
             $row['price'] = number_format($row['price'], 0, ',', '.');
+=======
+            $row['name'] = $row['name_car'];
+            $row['image'] = $row['image_car'];
+            $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
+>>>>>>> fdcd77106a258a670111c0fecdc38d4aa91d446e
             $list .= $skin->skin_replace('skin/box_li/li_coupebanchay', $row);
         }
         return $list;
@@ -116,33 +134,128 @@ class class_index extends class_manage
         }
         return $list;
     }
-    function box_index($conn, $limit = null)
+    function box_index($conn)
     {
+        // Get parameters
+        $category = isset($_GET['category']) ? $_GET['category'] : 'all';
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $per_page = 12;
+
+        // Build base query
         $query = "SELECT p.*, c.name as category_name 
               FROM products p 
               LEFT JOIN categories c ON p.category_id = c.id";
 
-        if ($limit !== null) {
-            $query .= " LIMIT $limit";
+        // Add category filter
+        if ($category !== 'all') {
+            $category = mysqli_real_escape_string($conn, $category);
+            $query .= " WHERE p.category_id = '$category'";
         }
 
+        // Add sorting
+        switch ($sort) {
+            case 'price-asc':
+                $query .= " ORDER BY p.price ASC";
+                break;
+            case 'price-desc':
+                $query .= " ORDER BY p.price DESC";
+                break;
+            default:
+                $query .= " ORDER BY p.id ASC";
+        }
+
+        // Get total records for pagination
+        $total_query = mysqli_query($conn, "SELECT COUNT(*) as total FROM ($query) as t");
+        $total = mysqli_fetch_assoc($total_query)['total'];
+        $total_pages = ceil($total / $per_page);
+
+        // Add pagination
+        $offset = ($page - 1) * $per_page;
+        $query .= " LIMIT $offset, $per_page";
+
+        // Execute final query
         $thongtin = mysqli_query($conn, $query);
         $skin = $this->load('class_skin');
-        $check = $this->load('class_check');
-        $i = 0;
+        $list = '';
+
+        // Build products list
+        while ($row = mysqli_fetch_array($thongtin)) {
+            $row = array_merge($row, [
+                'stock' => $row['stock'],
+                'name' => $row['name_car'],
+                'image' => $row['image_car'],
+                'price' => number_format($row['price'], 0, ',', '.') . ' vnđ',
+                'description' => $row['description_car'],
+                'id' => $row['id'],
+                'category_id' => $row['category_id'],
+                'category' => $row['category_name']
+            ]);
+            $list .= $skin->skin_replace('skin/box_li/li_sanpham', $row);
+        }
+
+        // Build pagination
+        $pagination = $this->build_pagination($page, $total_pages, $category, $sort);
+
+        return [
+            'list' => $list,
+            'pagination' => $pagination,
+            'category_param' => $category !== 'all' ? "category=$category&" : '',
+            'sort_param' => $sort !== 'default' ? "&sort=$sort" : '',
+            'active_all' => $category === 'all' ? 'active' : '',
+            'sort_default' => $sort === 'default' ? 'selected' : '',
+            'sort_asc' => $sort === 'price-asc' ? 'selected' : '',
+            'sort_desc' => $sort === 'price-desc' ? 'selected' : ''
+        ];
+    }
+
+    function build_pagination($current_page, $total_pages, $category, $sort)
+    {
+        if ($total_pages <= 1) return '';
+
+        $html = '<div class="pagination">';
+
+        // Previous button
+        $prev_disabled = $current_page == 1 ? 'disabled' : '';
+        $prev_link = "?category=$category" . ($sort != 'default' ? "&sort=$sort" : '') . "&page=" . ($current_page - 1);
+        $html .= "<a href='$prev_link' class='page-link prev $prev_disabled'>&larr; Trước đó</a>";
+
+        $html .= '<div class="page-numbers">';
+        // Page numbers
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $active = $i == $current_page ? 'active' : '';
+            $link = "?category=$category" . ($sort != 'default' ? "&sort=$sort" : '') . "&page=$i";
+            $html .= "<a href='$link' class='page-link $active'>$i</a>";
+        }
+        $html .= '</div>';
+
+        // Next button
+        $next_disabled = $current_page == $total_pages ? 'disabled' : '';
+        $next_link = "?category=$category" . ($sort != 'default' ? "&sort=$sort" : '') . "&page=" . ($current_page + 1);
+        $html .= "<a href='$next_link' class='page-link next $next_disabled'>Tiếp theo &rarr;</a>";
+
+        $html .= '</div>';
+        return $html;
+    }
+    function list_category($conn)
+    {
+        $query = "SELECT id, name, slug FROM categories ORDER BY id ASC";
+        $thongtin = mysqli_query($conn, $query);
+
+        if (!$thongtin) {
+            die("Query failed: " . mysqli_error($conn));
+        }
+
+        $skin = $this->load('class_skin');
         $list = '';
 
         while ($row = mysqli_fetch_array($thongtin)) {
-            $i++;
-            $row['stock'] = $row['stock'];
-            $row['name'] = $row['name'];
-            $row['image'] = $row['image'];
-            $row['price'] = number_format($row['price'], 0, ',', '.');
-            $row['description'] = $row['description'];
             $row['id'] = $row['id'];
-            $row['category'] = $row['category_name'];
-            $list .= $skin->skin_replace('skin/box_li/li_sanpham', $row);
+            $row['name'] = $row['name'];
+            $row['slug'] = $row['slug'];
+            $list .= $skin->skin_replace('skin/box_li/li_category', $row);
         }
-        return $list; 
+
+        return $list;
     }
 }

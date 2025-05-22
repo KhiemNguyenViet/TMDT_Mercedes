@@ -31,7 +31,7 @@
 .navbar-left a:hover,
 .navbar-right a:hover {
     color: #1e90ff;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .navbar-center {

@@ -220,7 +220,7 @@ if ($action == "dangnhap") {
 		$newFileName = time() . '_' . md5($fileName) . '.' . $fileExtension;
 		$dest_path = $uploadFileDir . $newFileName;
 		// Kiểm tra định dạng file		
-		$allowedTypes = array('jpg', 'jpeg', 'png', 'gif');
+		$allowedTypes = array('jpg', 'jpeg', 'png', 'gif','avif');
 		if (!in_array($fileExtension, $allowedTypes)) {
 			echo json_encode(['ok' => 0, 'message' => 'Chỉ chấp nhận file ảnh định dạng: ' . implode(', ', $allowedTypes)]);
 			exit;
@@ -324,7 +324,7 @@ if ($action == "dangnhap") {
 		$dest_path = $uploadFileDir . $newFileName;
 
 		// Kiểm tra định dạng file		
-		$allowedTypes = array('jpg', 'jpeg', 'png', 'gif');
+		$allowedTypes = array('jpg', 'jpeg', 'png', 'gif','avif');
 		if (!in_array($fileExtension, $allowedTypes)) {
 			echo json_encode(['ok' => 0, 'message' => 'Chỉ chấp nhận file ảnh định dạng: ' . implode(', ', $allowedTypes)]);
 			exit;

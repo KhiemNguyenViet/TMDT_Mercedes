@@ -1,5 +1,5 @@
 <tr id="product-{id}">
-    <td><img src="../hinhanh/{image}" alt="{name}" class="product-img"></td>
+    <td><img src="../uploads/{image}" alt="{name}" class="product-img"></td>
     <td><strong>{name}</strong><br></td>
     <td>{price}</td>
     <td>{description}</td>

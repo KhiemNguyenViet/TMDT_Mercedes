@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileExtension = strtolower(end($fileNameCmps));
 
         // Danh sách định dạng hợp lệ
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif','avif'];
         if (in_array($fileExtension, $allowedExtensions)) {
             // Tạo tên mới để tránh trùng
             $newFileName = time() . '_' . md5($fileName) . '.' . $fileExtension;
