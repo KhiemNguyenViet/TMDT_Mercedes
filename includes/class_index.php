@@ -54,7 +54,7 @@ class class_index extends class_manage
             $i++;
             $row['stock'] = $row['stock'];
             $row['name'] = $row['name_car'];
-            $row['image'] = $row['image'];
+            $row['image'] = $row['image_car'];
             $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
             $list .= $skin->skin_replace('skin/box_li/li_glcbanchay', $row);
         }
@@ -71,7 +71,7 @@ class class_index extends class_manage
             $i++;
             $row['stock'] = $row['stock'];
             $row['name'] = $row['name_car'];
-            $row['image'] = $row['image'];
+            $row['image'] = $row['image_car'];
             $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
             $list .= $skin->skin_replace('skin/box_li/li_suvbanchay', $row);
         }
@@ -88,7 +88,7 @@ class class_index extends class_manage
             $i++;
             $row['stock'] = $row['stock'];
             $row['name'] = $row['name_car'];
-            $row['image'] = $row['image'];
+            $row['image'] = $row['image_car'];
             $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
             $list .= $skin->skin_replace('skin/box_li/li_coupebanchay', $row);
         }
@@ -166,7 +166,7 @@ class class_index extends class_manage
             $row = array_merge($row, [
                 'stock' => $row['stock'],
                 'name' => $row['name_car'],
-                'image' => $row['image'],
+                'image' => $row['image_car'],
                 'price' => number_format($row['price'], 0, ',', '.') . ' vnđ',
                 'description' => $row['description_car'],
                 'id' => $row['id'],
