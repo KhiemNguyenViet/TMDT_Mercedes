@@ -53,15 +53,9 @@ class class_index extends class_manage
         while ($row = mysqli_fetch_array($thongtin)) {
             $i++;
             $row['stock'] = $row['stock'];
-<<<<<<< HEAD
-            $row['name'] = $row['name'];
-            $row['image'] = $row['image'];
-            $row['price'] = number_format($row['price'], 0, ',', '.');
-=======
             $row['name'] = $row['name_car'];
             $row['image'] = $row['image_car'];
             $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
->>>>>>> fdcd77106a258a670111c0fecdc38d4aa91d446e
             $list .= $skin->skin_replace('skin/box_li/li_glcbanchay', $row);
         }
         return $list;
@@ -76,15 +70,10 @@ class class_index extends class_manage
         while ($row = mysqli_fetch_array($thongtin)) {
             $i++;
             $row['stock'] = $row['stock'];
-<<<<<<< HEAD
-            $row['name'] = $row['name'];
-            $row['image'] = $row['image'];
-            $row['price'] = number_format($row['price'], 0, ',', '.');
-=======
+
             $row['name'] = $row['name_car'];
             $row['image'] = $row['image_car'];
             $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
->>>>>>> fdcd77106a258a670111c0fecdc38d4aa91d446e
             $list .= $skin->skin_replace('skin/box_li/li_suvbanchay', $row);
         }
         return $list;
@@ -99,15 +88,9 @@ class class_index extends class_manage
         while ($row = mysqli_fetch_array($thongtin)) {
             $i++;
             $row['stock'] = $row['stock'];
-<<<<<<< HEAD
-            $row['name'] = $row['name'];
-            $row['image'] = $row['image'];
-            $row['price'] = number_format($row['price'], 0, ',', '.');
-=======
             $row['name'] = $row['name_car'];
             $row['image'] = $row['image_car'];
             $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
->>>>>>> fdcd77106a258a670111c0fecdc38d4aa91d446e
             $list .= $skin->skin_replace('skin/box_li/li_coupebanchay', $row);
         }
         return $list;
