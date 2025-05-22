@@ -3,11 +3,23 @@
 class class_cpanel extends class_manage
 {
     ///////////////////////////////////
+    function list_category($conn){
+        $skin = $this->load('class_skin_cpanel');
+        $query = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
+        $list = '';
+        while ($row = mysqli_fetch_assoc($query)) {
+            $row['category_id'] = $row['id'];
+            $row['category_name'] = $row['name'];
+            $list .= $skin->skin_replace('skin_adm/box_li/li_category', $row);
+        }
+        return $list;
+    }
+    ///////////////////////////////////
     function list_orders_car($conn){
         $skin = $this->load('class_skin_cpanel');
         $list = '';
         $i = 0;
-        $query = mysqli_query($conn, "SELECT o.*, p.name as product_name FROM orders o LEFT JOIN products p ON o.product_id = p.id ");
+        $query = mysqli_query($conn, "SELECT o.*, p.name_car as product_name FROM orders o LEFT JOIN products p ON o.product_id = p.id ");
         while ($row = mysqli_fetch_assoc($query)) {
             $i++;
             $row['stt'] = $i;
@@ -68,7 +80,7 @@ class class_cpanel extends class_manage
     {
         $skin = $this->load('class_skin_cpanel');
 
-        $query = mysqli_query($conn, "SELECT p.id, p.name, p.price, p.description, p.image, p.stock 
+        $query = mysqli_query($conn, "SELECT p.id, p.name_car, p.price, p.description_car, p.image_car, p.stock 
                                  FROM products p 
                                  ORDER BY p.id DESC");
         $list = '';
@@ -79,11 +91,11 @@ class class_cpanel extends class_manage
 
             $list .= $skin->skin_replace('skin_adm/box_li/li_product', array(
                 'id' => $row['id'],
-                'name' => $row['name'],
+                'name' => $row['name_car'],
                 'price' => $row['price'],
-                'description' => $row['description'],
+                'description' => $row['description_car'],
                 'stock' => $row['stock'],
-                'image' => $row['image']
+                'image' => $row['image_car']
             ));
         }
 
@@ -97,7 +109,7 @@ class class_cpanel extends class_manage
     {
         $skin = $this->load('class_skin_cpanel');
 
-        $query = mysqli_query($conn, "SELECT td.*, p.name as product_name 
+        $query = mysqli_query($conn, "SELECT td.*, p.name_car as product_name 
                                 FROM test_drives td
                                 LEFT JOIN products p ON td.product_id = p.id 
                                 ORDER BY td.created_at DESC");

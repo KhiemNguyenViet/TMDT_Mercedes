@@ -161,16 +161,16 @@ $(document).ready(function () {
             $button.prop('disabled', false).text(originalText);
             return;
         }
-        if (email != '') {
-            if (!isValidEmail(email)) {
-                toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
+            if (email != '') {
+                if (!isValidEmail(email)) {
+                    toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
+                    $button.prop('disabled', false).text(originalText);
+                    return;
+                }
+                toastr.error('Email không được để trống');
                 $button.prop('disabled', false).text(originalText);
                 return;
             }
-            toastr.error('Email không được để trống');
-            $button.prop('disabled', false).text(originalText);
-            return;
-        }
         if (email != '' && !isValidEmail(email)) {
             toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
             $button.prop('disabled', false).text(originalText);

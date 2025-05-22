@@ -159,6 +159,7 @@ if ($action == "xacnhan_datcho") {
     } else {
         $uploadError = isset($_FILES['payment_image']) ? $_FILES['payment_image']['error'] : 'No file uploaded';
         error_log("Upload error: " . $uploadError);
-        echo json_encode(['ok' => 0, 'thongbao' => 'Vui lòng chọn ảnh xác nhận chuyển khoản. Error: ' . $uploadError]);    }
+        echo json_encode(['ok' => 0, 'thongbao' => 'Vui lòng chọn ảnh xác nhận chuyển khoản. Error: ' . $uploadError]);    
+    }
 }
 ?>

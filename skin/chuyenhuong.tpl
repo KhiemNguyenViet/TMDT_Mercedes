@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>{title}</title>
 	<meta name='description' content='Tổng kho hàng Việt Nam'>
+	<link rel="icon" href="../hinhanh/logo.jpg" type="image/x-icon">
 	<link rel="stylesheet" href="../skin/tpl/css/style.css">
 	<script type="text/javascript" src="../skin/tpl/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
