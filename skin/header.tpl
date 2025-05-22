@@ -85,10 +85,10 @@
     <!-- MenuBar -->
     <nav class="navbar">
         <div class="navbar-left">
+            <a href="/">Trang chủ</a>
             <a href="cacmauxe.html">Các mẫu xe</a>
-            <a href="#">Mua</a>
+            <!-- <a href="/">Trang chủ</a> -->
             <a href="/#dichvu-section">Dịch vụ</a>
-
             <a href="thuonghieu.html">Thương hiệu</a>
         </div>
         <div class="navbar-center">

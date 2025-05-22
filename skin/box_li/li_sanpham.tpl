@@ -1,4 +1,4 @@
-<div class="product-card" data-category="{category}">
+<div class="product-card" data-id="{id}" data-category-id="{category_id}">
     <img src="hinhanh/{image}" alt="{name}">
     <div class="product-info">
         <h3>{name}</h3>

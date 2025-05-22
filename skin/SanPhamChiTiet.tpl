@@ -1,9 +1,11 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 
 <head>
-    <meta name="description" content="Mercedes-Benz Việt Nam - Đại lý Mercedes-Benz chính hãng, cung cấp xe Mercedes-Benz mới, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
-    <meta name="keywords" content="Mercedes-Benz, xe Mercedes-Benz, đại lý Mercedes-Benz, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
+    <meta name="description"
+        content="Mercedes-Benz Việt Nam - Đại lý Mercedes-Benz chính hãng, cung cấp xe Mercedes-Benz mới, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
+    <meta name="keywords"
+        content="Mercedes-Benz, xe Mercedes-Benz, đại lý Mercedes-Benz, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
     <link rel="icon" href="../hinhanh/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
     <link rel="stylesheet" href="../skin/tpl/css/Banner.css">
@@ -54,10 +56,22 @@
         .arrow {
             cursor: pointer;
             font-size: 24px;
-            padding: 5px 10px;
+            width: 40px;
+            height: 40px;
             background-color: #eee;
             border-radius: 50%;
             user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: none;
+            color: #333;
+        }
+
+        .arrow:hover {
+            background-color: #000;
+            color: #fff;
         }
 
         .thumbnail-container {
@@ -582,11 +596,14 @@
             <form id="bookingForm">
                 <div class="form-group">
                     <label for="bookingFullName">Họ và Tên:</label>
-                    <input type="text" id="bookingFullName" value="{username}" name="fullName" placeholder="Nhập họ và tên" required>
+                    <input type="text" id="bookingFullName" value="{username}" name="fullName"
+                        placeholder="Nhập họ và tên" required>
                 </div>
                 <div class="form-group">
                     <label for="bookingPhoneNumber">Số Điện Thoại:</label>
-                    <input type="tel" id="bookingPhoneNumber" value="{phone}" name="phoneNumber" placeholder="Nhập số điện thoại" pattern="[0-9]{10,11}" title="Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)" required>
+                    <input type="tel" id="bookingPhoneNumber" value="{phone}" name="phoneNumber"
+                        placeholder="Nhập số điện thoại" pattern="[0-9]{10,11}"
+                        title="Vui lòng nhập số điện thoại hợp lệ (10-11 chữ số)" required>
                 </div>
                 <div class="form-group">
                     <label for="bookingEmail">Email (Không bắt buộc):</label>
@@ -717,7 +734,7 @@
             }
 
             // JavaScript for Booking Popup
-            
+
             const bookingPopup = document.getElementById('bookingPopup');
             const openBookingBtn = document.getElementById('openBookingPopupBtn');
             const closeBookingBtn = document.getElementById('closeBookingPopupBtn'); // ID cho nút đóng booking popup
@@ -746,7 +763,7 @@
                 testDriveDateInput.setAttribute('min', today);
             }
         });
-        
+
     </script>
     {footer}
 </body>
