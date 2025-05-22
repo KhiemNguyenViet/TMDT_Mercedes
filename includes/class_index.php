@@ -45,7 +45,7 @@ class class_index extends class_manage
 
     function list_glcbanchay($conn, $limit)
     {
-        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 1 LIMIT $limit");
+        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 1 AND featured = 1 LIMIT $limit");
         $skin = $this->load('class_skin');
         $check = $this->load('class_check');
         $i = 0;
@@ -55,14 +55,14 @@ class class_index extends class_manage
             $row['stock'] = $row['stock'];
             $row['name'] = $row['name'];
             $row['image'] = $row['image'];
-            $row['price'] = $row['price'];
+            $row['price'] = number_format($row['price'], 0, ',', '.');
             $list .= $skin->skin_replace('skin/box_li/li_glcbanchay', $row);
         }
         return $list;
     }
     function list_suvbanchay($conn, $limit)
     {
-        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 2 LIMIT $limit");
+        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 2 AND featured = 1 LIMIT $limit");
         $skin = $this->load('class_skin');
         $check = $this->load('class_check');
         $i = 0;
@@ -72,14 +72,14 @@ class class_index extends class_manage
             $row['stock'] = $row['stock'];
             $row['name'] = $row['name'];
             $row['image'] = $row['image'];
-            $row['price'] = $row['price'];
+            $row['price'] = number_format($row['price'], 0, ',', '.');
             $list .= $skin->skin_replace('skin/box_li/li_suvbanchay', $row);
         }
         return $list;
     }
     function list_coupebanchay($conn, $limit)
     {
-        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 3 LIMIT $limit");
+        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 3 AND featured = 1 LIMIT $limit");
         $skin = $this->load('class_skin');
         $check = $this->load('class_check');
         $i = 0;
@@ -89,14 +89,14 @@ class class_index extends class_manage
             $row['stock'] = $row['stock'];
             $row['name'] = $row['name'];
             $row['image'] = $row['image'];
-            $row['price'] = $row['price'];
+            $row['price'] = number_format($row['price'], 0, ',', '.');
             $list .= $skin->skin_replace('skin/box_li/li_coupebanchay', $row);
         }
         return $list;
     }
     function list_lichlai($conn, $user_id)
     {
-        $thongtin_laithu = mysqli_query($conn, "SELECT test_drives.*, products.name as car_name FROM test_drives LEFT JOIN products ON test_drives.product_id = products.id WHERE user_id = $user_id");
+        $thongtin_laithu = mysqli_query($conn, "SELECT test_drives.*, products.name_car as car_name FROM test_drives LEFT JOIN products ON test_drives.product_id = products.id WHERE user_id = $user_id");
         $skin = $this->load('class_skin');
         $check = $this->load('class_check');
         $i = 0;

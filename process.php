@@ -74,9 +74,7 @@ if ($action == "datlich") {
     } else {
         echo json_encode(array('ok' => 0, 'thongbao' => 'Đặt lịch lái thử xe thất bại'));
     }
-}
-
-if ($action == "datcho") {
+}else if ($action == "datcho") {
     $user_id=$user_info['user_id'] ?? 'NULL';
     $id = addslashes(strip_tags($_REQUEST['product_id']));
     $sql = "SELECT products.*, categories.name as category_name FROM products LEFT JOIN categories ON products.category_id = categories.id WHERE products.id = $id";
@@ -98,9 +96,7 @@ if ($action == "datcho") {
         'user_id' => $user_info['user_id'] ?? 'NULL'
     );
     echo $skin->skin_replace('skin/DatCho', $replace);
-}
-
-if ($action == "xacnhan_datcho") {
+}else if ($action == "xacnhan_datcho") {
     error_log("Received request: " . print_r($_POST, true));
     error_log("Files: " . print_r($_FILES, true));
     if (isset($_FILES['payment_image']) && $_FILES['payment_image']['error'] === UPLOAD_ERR_OK) {
@@ -160,6 +156,67 @@ if ($action == "xacnhan_datcho") {
         $uploadError = isset($_FILES['payment_image']) ? $_FILES['payment_image']['error'] : 'No file uploaded';
         error_log("Upload error: " . $uploadError);
         echo json_encode(['ok' => 0, 'thongbao' => 'Vui lòng chọn ảnh xác nhận chuyển khoản. Error: ' . $uploadError]);    
+    }
+}else if ($action == "update_tk") {
+    if(isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK){
+        $fileTmpPath = $_FILES['image']['tmp_name'];
+        $fileName = $_FILES['image']['name'];
+        $fileNameCmps = explode(".", $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
+        
+        // Sửa đường dẫn thư mục uploads
+        $uploadFileDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
+        error_log("Upload directory: " . $uploadFileDir);
+        
+        if(!is_dir($uploadFileDir)){
+            error_log("Creating directory: " . $uploadFileDir);
+            if(!mkdir($uploadFileDir, 0777, true)){
+                error_log("Failed to create directory: " . $uploadFileDir);
+                echo json_encode(['ok' => 0, 'message' => 'Không thể tạo thư mục uploads']);
+                exit;
+            }
+        }
+        
+        $newFileName = time() . '_' . md5($fileName) . '.' . $fileExtension;
+        $dest_path = $uploadFileDir . $newFileName;
+        error_log("Destination path: " . $dest_path);
+        
+        // Kiểm tra định dạng file		
+		$allowedTypes = array('jpg', 'jpeg', 'png', 'gif');
+		if (!in_array($fileExtension, $allowedTypes)) {
+			echo json_encode(['ok' => 0, 'message' => 'Chỉ chấp nhận file ảnh định dạng: ' . implode(', ', $allowedTypes)]);
+			exit;
+		}
+
+		// Kiểm tra kích thước file (giới hạn 5MB)		
+		if ($_FILES['image']['size'] > 5 * 1024 * 1024) {
+			echo json_encode(['ok' => 0, 'message' => 'Kích thước file không được vượt quá 5MB']);
+			exit;
+		}
+        if(move_uploaded_file($fileTmpPath, $dest_path)){
+            error_log("File uploaded successfully to: " . $dest_path);
+            $user_id = addslashes(strip_tags($_POST['user_id']));   
+            $avatar = $newFileName;
+            $full_name = addslashes(strip_tags($_POST['full_name']));
+            $email = addslashes(strip_tags($_POST['email']));
+            $phone = addslashes(strip_tags($_POST['phone']));
+            $address = addslashes(strip_tags($_POST['address']));
+            $sql = "UPDATE users SET full_name = '$full_name', email = '$email', phone = '$phone', address = '$address', avatar = '$avatar' WHERE user_id = '$user_id'";
+            $result = $conn->query($sql);
+            if($result){
+                echo json_encode(['ok' => 1, 'thongbao' => 'Cập nhật thông tin thành công']);
+            }else{
+                echo json_encode(['ok' => 0, 'thongbao' => 'Cập nhật thông tin thất bại']);
+            }
+        }else{
+            error_log("Failed to move uploaded file from " . $fileTmpPath . " to " . $dest_path);
+            error_log("PHP upload error: " . error_get_last()['message']);
+            echo json_encode(['ok' => 0, 'thongbao' => 'Không thể lưu file ảnh. Vui lòng kiểm tra quyền thư mục']);
+        }
+    }else{
+        $uploadError = isset($_FILES['image']) ? $_FILES['image']['error'] : 'No file uploaded';
+        error_log("Upload error: " . $uploadError);
+        echo json_encode(['ok' => 0, 'thongbao' => 'Vui lòng chọn ảnh đại diện. Error: ' . $uploadError]);
     }
 }
 ?>

@@ -1,10 +1,47 @@
+// Hàm kiểm tra email hợp lệ
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 $(document).ready(function () {
-    // Hàm kiểm tra email hợp lệ
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
+    //////////////////////
+    $('.profile-form #savetk-btn').click(function () {
+        // console.log('click');
+        var formData = new FormData();
+        var avatarFile = $('#avatarInput')[0].files[0];
+        if (avatarFile) {
+            formData.append('image', avatarFile);
+        }else{
+            toastr.error('Vui lòng chọn ảnh đại diện');
+            return;
+        }
+        formData.append('full_name', $('input[name="full_name"]').val());
+        formData.append('email', $('input[name="email"]').val());
+        formData.append('phone', $('input[name="phone"]').val());
+        formData.append('address', $('input[name="address"]').val());
+        formData.append('user_id', $('.profile-form button').attr('id_user'));
+        formData.append('action', 'update_tk');
+        $.ajax({
+            url: '/process.php',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                // console.log(response);
+                // die();
+                const info = JSON.parse(response);
+                if (info.ok == 1) {
+                    toastr.success(info.thongbao);
+                    setTimeout(function () {
+                        location.reload();
+                    }, 3000);
+                } else {
+                    toastr.error(info.thongbao);
+                }
+            }
+        });
+    });
     //////////////////////
     $('#datxe').click(function () {
         product_id = $('.info').data('product-id');

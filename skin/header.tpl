@@ -1,4 +1,6 @@
 <body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <style>
         .dichvu-slider {
             display: flex;
@@ -86,7 +88,7 @@
     <nav class="navbar">
         <div class="navbar-left">
             <a href="cacmauxe.html">Các mẫu xe</a>
-            <a href="#">Mua</a>
+            <a href="/lichsu_thanhtoan.html">Lịch Sử Thanh Toán</a>
             <a href="/#dichvu-section">Dịch vụ</a>
 
             <a href="thuonghieu.html">Thương hiệu</a>
@@ -135,6 +137,8 @@
             $('.navbar .tk-dropdown').css('display', 'none');
         }
     });
+</script>
+<script type="text/javascript" src="../skin/tpl/js/jquery-3.2.1.min.js?t=<?php echo time();?>"></script>
 </script>
 <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
