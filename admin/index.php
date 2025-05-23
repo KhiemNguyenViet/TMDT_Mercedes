@@ -36,7 +36,7 @@ if ($action == "edit_product") {
         $row['id'] = $row['id'];
         $row['name_featured'] = $row['featured'] == 1 ? 'Có' : 'Không';
         // $row['name'] = $row['name'];
-        // $row['price'] = $row['price'];
+        $row['price'] = number_format($row['price'], 0, ',', '.');
         // $row['description'] = $row['description'];
         // $row['stock'] = $row['stock'];
         // $row['image'] = $row['image'];

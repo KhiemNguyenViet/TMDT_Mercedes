@@ -5,7 +5,7 @@
             <img src="hinhanh/{image}" alt="{name}" class="sanpham-image" />
         </div>
         <a class="sanpham-ten">{name}</a>
-        <a class="sanpham-gia">Giá: {price} vnđ</a>
+        <a class="sanpham-gia">Giá: {price}</a>
     </a>
 
 </div>

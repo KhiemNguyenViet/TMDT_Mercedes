@@ -11,6 +11,7 @@ RewriteRule ^register.html register.php
 RewriteRule ^thuonghieu.html thuonghieu.php
 RewriteRule ^cacmauxe.html cacmauxe.php
 RewriteRule ^lich_laithu.html lich_laithu.php
+RewriteRule ^lichsu_thanhtoan.html lichsu_thanhtoan.php
 RewriteRule ^account.html account.php
 RewriteRule ^dat-cho-xe.html datcho.php
 RewriteRule ^logout process_logout.php

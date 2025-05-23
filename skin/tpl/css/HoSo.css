@@ -62,7 +62,7 @@ label {
 }
 
 input {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
@@ -81,7 +81,7 @@ input {
     color: #666;
 }
 
-.save-btn {
+.savetk-btn {
     width: 100%;
     padding: 12px;
     background: #007bff;
@@ -95,7 +95,7 @@ input {
 
 }
 
-.save-btn:hover {
+.savetk-btn:hover {
     background: #0056b3;
 }
 
