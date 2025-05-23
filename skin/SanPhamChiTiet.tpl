@@ -388,7 +388,7 @@
     {header}
     <div class="container">
         <div class="image-gallery">
-            <img id="mainImage" src="../hinhanh/{product.image}" alt="{product.name}" class="main-image" />
+            <img id="mainImage" src="../uploads/{product.image}" alt="{product.name}" class="main-image" />
             <div class="thumbnail-wrapper">
                 <span class="arrow" onclick="prevImage()">&#10094;</span>
                 <div class="thumbnail-container" id="thumbnailSlider">
@@ -657,7 +657,7 @@
 
     <script>
         const images = [
-            "../hinhanh/{product.image}",
+            "../uploads/{product.image}",
             "../hinhanh/chitiet1.jpg",
             "../hinhanh/chitiet2.jpg",
             "../hinhanh/chitiet3.jpg",

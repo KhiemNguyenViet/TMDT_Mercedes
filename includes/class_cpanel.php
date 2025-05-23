@@ -3,7 +3,8 @@
 class class_cpanel extends class_manage
 {
     ///////////////////////////////////
-    function list_category($conn){
+    function list_category($conn)
+    {
         $skin = $this->load('class_skin_cpanel');
         $query = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
         $list = '';
@@ -15,7 +16,8 @@ class class_cpanel extends class_manage
         return $list;
     }
     ///////////////////////////////////
-    function list_orders_car($conn){
+    function list_orders_car($conn)
+    {
         $skin = $this->load('class_skin_cpanel');
         $list = '';
         $i = 0;
@@ -32,7 +34,7 @@ class class_cpanel extends class_manage
             $row['address'] =  $row['contact_address'];
             $row['phone'] =  $row['phone_number'];
             $row['email'] =  $row['email'];
-            $row['amount'] =  $row['deposit_amount'];
+            $row['amount'] = number_format($row['deposit_amount'], 0, ',', '.') . ' VNĐ';
             $row['bank_name'] =  $row['bank_name'];
             $row['account_number'] =  $row['bank_account_number'];
             $row['account_name'] =  $row['bank_account_name'];
@@ -73,7 +75,6 @@ class class_cpanel extends class_manage
         // var_dump($list);
         // die();
         return $list;
-
     }
     ///////////////////////////////////
     function list_product($conn)
@@ -158,7 +159,7 @@ class class_cpanel extends class_manage
 
         return $list;
     }
-    
+
     ///////////////////////////////////
     function get_product($conn, $id)
     {

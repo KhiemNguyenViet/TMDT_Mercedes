@@ -24,7 +24,7 @@
 <div class="product-detail">
     <div class="product-gallery">
         <div class="main-image">
-            <img src="../hinhanh/{product.image}" alt="{product.name}">
+            <img src="../uploads/{product.image}" alt="{product.name}">
         </div>
     </div>
 
