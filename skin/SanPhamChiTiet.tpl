@@ -388,7 +388,7 @@
     {header}
     <div class="container">
         <div class="image-gallery">
-            <img id="mainImage" src="../hinhanh/{product.image}" alt="{product.name}" class="main-image" />
+            <img id="mainImage" src="../uploads/{product.image}" alt="{product.name}" class="main-image" />
             <div class="thumbnail-wrapper">
                 <span class="arrow" onclick="prevImage()">&#10094;</span>
                 <div class="thumbnail-container" id="thumbnailSlider">
@@ -650,14 +650,14 @@
                     <label for="bookingNotes">Ghi chú (Xe muốn lái thử, yêu cầu khác,...):</label>
                     <textarea id="bookingNotes" name="notes" rows="3"></textarea>
                 </div>
-                <button class="datlich-button">GỬI YÊU CẦU ĐẶT LỊCH</button>
+                <button type="button" class="datlich-button">GỬI YÊU CẦU ĐẶT LỊCH</button>
             </form>
         </div>
     </div>
 
     <script>
         const images = [
-            "../hinhanh/{product.image}",
+            "../uploads/{product.image}",
             "../hinhanh/chitiet1.jpg",
             "../hinhanh/chitiet2.jpg",
             "../hinhanh/chitiet3.jpg",
