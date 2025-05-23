@@ -98,12 +98,24 @@ $(document).ready(function () {
     $('.button.delete').click(function () {
         var userId = $(this).closest('tr').attr('id').replace('user_', '');
         var $boxConfirm = $('.box_confirm');
+        var $loadOverlay = $('.load_overlay');
+        var $loadProcess = $('.load_process');
+        var $loadNote = $('.load_note');
 
-        $boxConfirm.fadeIn(200).css('display', 'flex');
+        // Show confirmation box with smooth animation
+        $boxConfirm.css({
+            'opacity': '0',
+            'display': 'flex'
+        }).animate({
+            'opacity': '1'
+        }, 300);
 
-        $(document).on('click', '#confirm_yes', function () {
-            $('.load_overlay').show();
-            $('.load_process').fadeIn();
+        // Handle confirm delete
+        function handleDelete() {
+            // Show loading with smooth transition
+            $loadOverlay.fadeIn(300);
+            $loadProcess.fadeIn(300);
+            $loadNote.html('Đang xử lý...');
 
             $.ajax({
                 url: 'process.php',
@@ -114,48 +126,68 @@ $(document).ready(function () {
                 },
                 dataType: 'json',
                 success: function (response) {
-                    try {
-                        setTimeout(function () {
-                            $('.load_note').html(response.message);
-                        }, 1000);
+                    $loadNote.fadeOut(200, function () {
+                        $(this).html(response.message).fadeIn(200);
+                    });
 
-                        setTimeout(function () {
-                            $('.load_process').hide();
-                            $('.load_overlay').hide();
-                            $boxConfirm.fadeOut(200);
+                    if (response.ok === 1) {
+                        // Fade out the deleted row
+                        $('#user_' + userId).fadeOut(500, function () {
+                            $(this).remove();
+                        });
 
-                            if (response.ok === 1) {
+                        // Hide all overlays smoothly
+                        setTimeout(function () {
+                            $loadProcess.fadeOut(300);
+                            $loadOverlay.fadeOut(300);
+                            $boxConfirm.fadeOut(300);
+
+                            // Only reload if needed
+                            setTimeout(function () {
                                 location.reload();
-                            }
-                        }, 500);
-                    } catch (e) {
-                        console.error('Lỗi:', e);
-                        $('.load_note').html('Có lỗi xử lý dữ liệu');
+                            }, 300);
+                        }, 1000);
+                    } else {
+                        // Hide overlays on error
                         setTimeout(function () {
-                            $('.load_process').hide();
-                            $('.load_overlay').hide();
-                            $boxConfirm.fadeOut(200);
-                        }, 500);
+                            $loadProcess.fadeOut(300);
+                            $loadOverlay.fadeOut(300);
+                            $boxConfirm.fadeOut(300);
+                        }, 1000);
                     }
                 },
                 error: function () {
-                    $('.load_note').html('Có lỗi xảy ra');
+                    $loadNote.fadeOut(200, function () {
+                        $(this).html('Có lỗi xảy ra').fadeIn(200);
+                    });
+
                     setTimeout(function () {
-                        $('.load_process').hide();
-                        $('.load_overlay').hide();
-                        $boxConfirm.fadeOut(200);
-                    }, 500);
+                        $loadProcess.fadeOut(300);
+                        $loadOverlay.fadeOut(300);
+                        $boxConfirm.fadeOut(300);
+                    }, 1000);
                 }
             });
+        }
 
-            $(document).off('click', '#confirm_yes');
-        });
+        // One-time event handlers
+        function handleConfirm(e) {
+            e.preventDefault();
+            $(document).off('click', '#confirm_yes', handleConfirm);
+            $(document).off('click', '#confirm_no', handleCancel);
+            handleDelete();
+        }
 
-        $(document).on('click', '#confirm_no', function () {
-            $boxConfirm.fadeOut(200);
-            $(document).off('click', '#confirm_yes');
-            $(document).off('click', '#confirm_no');
-        });
+        function handleCancel(e) {
+            e.preventDefault();
+            $(document).off('click', '#confirm_yes', handleConfirm);
+            $(document).off('click', '#confirm_no', handleCancel);
+            $boxConfirm.fadeOut(300);
+        }
+
+        // Attach handlers
+        $(document).on('click', '#confirm_yes', handleConfirm);
+        $(document).on('click', '#confirm_no', handleCancel);
     });
     $('.btn-delete').click(function () {
         var productId = $(this).closest('tr').attr('id').replace('product-', '');
@@ -277,41 +309,41 @@ $(document).ready(function () {
             }
         });
     });
-    $('.btn-add_product').click(function () {        
+    $('.btn-add_product').click(function () {
         // Tạo FormData từ form                
-        var formData = new FormData();                
+        var formData = new FormData();
         // Thêm file ảnh        
-        var imageFile = $('#productForm_add #image')[0].files[0];        
-        if (imageFile) {            
-        formData.append('image', imageFile);        
-        } else {            
-        toastr.error('Vui lòng chọn ảnh sản phẩm');            
-        return;        
-        }               
-        formData.append('action', 'add_product');                
+        var imageFile = $('#productForm_add #image')[0].files[0];
+        if (imageFile) {
+            formData.append('image', imageFile);
+        } else {
+            toastr.error('Vui lòng chọn ảnh sản phẩm');
+            return;
+        }
+        formData.append('action', 'add_product');
         // Lấy các giá trị input cơ bản        
-        formData.append('name_product', $('#productForm_add #name').val());        
-        formData.append('category_id', $('#productForm_add #category').val());        
-        formData.append('price', $('#productForm_add #price').val().replace(/[^0-9]/g, ''));        
-        formData.append('stock', $('#productForm_add #stock').val());        
-        formData.append('description', $('#productForm_add #description').val());        
-        formData.append('featured', $('#productForm_add #featured').val());                
+        formData.append('name_product', $('#productForm_add #name').val());
+        formData.append('category_id', $('#productForm_add #category').val());
+        formData.append('price', $('#productForm_add #price').val().replace(/[^0-9]/g, ''));
+        formData.append('stock', $('#productForm_add #stock').val());
+        formData.append('description', $('#productForm_add #description').val());
+        formData.append('featured', $('#productForm_add #featured').val());
         // Thông số kỹ thuật        
-        formData.append('engine_type', $('#productForm_add #engine_type').val());        
-        formData.append('displacement_cc', $('#productForm_add #displacement').val());        
-        formData.append('horsepower_hp', $('#productForm_add #horsepower').val());        
-        formData.append('torque_nm', $('#productForm_add #torque').val());        
-        formData.append('transmission_type', $('#productForm_add #transmission').val());        
-        formData.append('drive_type', $('#productForm_add #drive_type').val());        
-        formData.append('fuel_consumption_l_100km', $('#productForm_add #fuel_consumption').val());        
-        formData.append('acceleration_0_100_s', $('#productForm_add #acceleration').val());                
+        formData.append('engine_type', $('#productForm_add #engine_type').val());
+        formData.append('displacement_cc', $('#productForm_add #displacement').val());
+        formData.append('horsepower_hp', $('#productForm_add #horsepower').val());
+        formData.append('torque_nm', $('#productForm_add #torque').val());
+        formData.append('transmission_type', $('#productForm_add #transmission').val());
+        formData.append('drive_type', $('#productForm_add #drive_type').val());
+        formData.append('fuel_consumption_l_100km', $('#productForm_add #fuel_consumption').val());
+        formData.append('acceleration_0_100_s', $('#productForm_add #acceleration').val());
         // Kích thước và tính năng        
-        formData.append('length_mm', $('#productForm_add #length').val());        
-        formData.append('width_mm', $('#productForm_add #width').val());        
-        formData.append('height_mm', $('#productForm_add #height').val());        
-        formData.append('top_speed_kmh', $('#productForm_add #top_speed').val());        
-        formData.append('interior_features', $('#productForm_add #interior_features').val());        
-        formData.append('safety_features', $('#productForm_add #safety_features').val());        
+        formData.append('length_mm', $('#productForm_add #length').val());
+        formData.append('width_mm', $('#productForm_add #width').val());
+        formData.append('height_mm', $('#productForm_add #height').val());
+        formData.append('top_speed_kmh', $('#productForm_add #top_speed').val());
+        formData.append('interior_features', $('#productForm_add #interior_features').val());
+        formData.append('safety_features', $('#productForm_add #safety_features').val());
         formData.append('color_options', $('#productForm_add #color_options').val());
 
         $.ajax({
@@ -336,9 +368,9 @@ $(document).ready(function () {
             }
         });
     });
-        
-        
-    
+
+
+
 
 });
 window.status_update = function (id, status) {

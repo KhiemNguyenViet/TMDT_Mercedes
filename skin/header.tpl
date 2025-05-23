@@ -94,7 +94,6 @@
             <a href="thuonghieu.html">Thương hiệu</a>
         </div>
         <div class="navbar-center">
-
             <a href="/">
                 <img src="../hinhanh/logo.jpg" alt="Mercedes Logo" class="logo" />
             </a>
@@ -117,8 +116,7 @@
                 </div>
             </div>
             <img src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px;" />
-            <!-- <a href=""><i class="fa fa-user icon" style="width: 20px; height: 20px;color: white;"></i></a> -->
-        </div>
+
     </nav>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>">
