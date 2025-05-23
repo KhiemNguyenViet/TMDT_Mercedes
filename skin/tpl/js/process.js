@@ -59,6 +59,21 @@ $(document).ready(function () {
             }
         })
     });
+    // $('.buy-btn').click(function () {
+    //     product_id = $('.info').data('product-id');
+    //     $.ajax({
+    //         url: '/process.php',
+    //         type: 'POST',
+    //         data: {
+    //             action: 'datcho',
+    //             product_id: product_id,
+    //         },
+    //         success: function (response) {
+    //             $('body').html(response);
+    //             toastr.error('Không thể kết nối máy chủ. Mã lỗi: ' + xhr.status);
+    //         }
+    //     });
+    // });
     // Chặn form reload
     $('#login-form').on('submit', function (e) {
         e.preventDefault();
@@ -205,23 +220,6 @@ $(document).ready(function () {
             });
         });
     });
-    /////////////////////
-    // Đặt giữ xe
-    $('.buy-btn').click(function () {
-        product_id = $('.info').data('product-id');
-        $.ajax({
-            url: '/process.php',
-            type: 'POST',
-            data: {
-                action: 'datcho',
-                product_id: product_id,
-            },
-            success: function (response) {
-                $('body').html(response);
-                toastr.error('Không thể kết nối máy chủ. Mã lỗi: ' + xhr.status);
-            }
-        });
-    });
 
     /////////////////////
     // Đặt lịch lái thử xe
@@ -286,19 +284,6 @@ $(document).ready(function () {
             $button.prop('disabled', false).text(originalText);
             return;
         }
-<<<<<<< HEAD
-=======
-        if (email != '') {
-            if (!isValidEmail(email)) {
-                toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
-                $button.prop('disabled', false).text(originalText);
-                return;
-            }
-            toastr.error('Email không được để trống');
-            $button.prop('disabled', false).text(originalText);
-            return;
-        }
->>>>>>> f110fa278f780a469ae8bdf2a6f43a4f3322d2aa
         if (email != '' && !isValidEmail(email)) {
             toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
             $button.prop('disabled', false).text(originalText);
