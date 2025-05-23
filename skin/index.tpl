@@ -94,7 +94,7 @@
                 <div class="dichvu-card-content">
                     <h4 class="dichvu-card-title">Hướng dẫn sử dụng cho chủ xe</h4>
                     <p class="dichvu-card-text">Bảng thông tin tính năng và cẩm nang sử dụng cho chủ xe.</p>
-                    <button class="dichvu-button">Tìm hiểu thêm</button>
+                    <button id="dichvu-huongdansudung" class="dichvu-button">Tìm hiểu thêm</button>
                 </div>
             </div>
             <div class="dichvu-card">
@@ -102,7 +102,7 @@
                 <div class="dichvu-card-content">
                     <h4 class="dichvu-card-title">Bảo dưỡng định kỳ</h4>
                     <p class="dichvu-card-text">Lịch trình và chi phí bảo dưỡng chính hãng Mercedes-Benz.</p>
-                    <button class="dichvu-button">Tìm hiểu thêm</button>
+                    <button id="dichvu-baoduongdinhky" class="dichvu-button">Tìm hiểu thêm</button>
                 </div>
             </div>
             <div class="dichvu-card">
@@ -110,7 +110,7 @@
                 <div class="dichvu-card-content">
                     <h4 class="dichvu-card-title">Dịch vụ cứu hộ</h4>
                     <p class="dichvu-card-text">Hỗ trợ 24/7 khi xe gặp sự cố trên đường.</p>
-                    <button class="dichvu-button">Tìm hiểu thêm</button>
+                    <button id="dichvu-cuchuho" class="dichvu-button">Tìm hiểu thêm</button>
                 </div>
             </div>
             <div class="dichvu-card">
@@ -118,7 +118,7 @@
                 <div class="dichvu-card-content">
                     <h4 class="dichvu-card-title">Tư vấn miễn phí</h4>
                     <p class="dichvu-card-text">Dịch vụ đặt lịch tư vấn các dòng xe yêu thích hoàn toàn miễn phí</p>
-                    <button class="dichvu-button">Tìm hiểu thêm</button>
+                    <button id="dichvu-tuvan" class="dichvu-button">Tìm hiểu thêm</button>
                 </div>
             </div>
             <div class="dichvu-card">
@@ -126,7 +126,7 @@
                 <div class="dichvu-card-content">
                     <h4 class="dichvu-card-title">Giao xe trên toàn quốc</h4>
                     <p class="dichvu-card-text">Hỗ trợ vận chuyển xe tới tận nhà</p>
-                    <button class="dichvu-button">Tìm hiểu thêm</button>
+                    <button id="dichvu-giaoxe" class="dichvu-button">Tìm hiểu thêm</button>
                 </div>
             </div>
             <div class="dichvu-card">
@@ -134,7 +134,7 @@
                 <div class="dichvu-card-content">
                     <h4 class="dichvu-card-title">Đổi trả xe</h4>
                     <p class="dichvu-card-text">Hỗ trợ hỗ trợ đổi trả xe khi có bất kì lỗi nào từ thương hiệu</p>
-                    <button class="dichvu-button">Tìm hiểu thêm</button>
+                    <button id="dichvu-doitra" class="dichvu-button">Tìm hiểu thêm</button>
                 </div>
             </div>
 

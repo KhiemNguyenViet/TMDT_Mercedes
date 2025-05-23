@@ -370,11 +370,23 @@ $(document).ready(function () {
 
     // Xử lý đặt giữ chỗ xe
     // Xử lý đặt giữ chỗ xe
-    // $('#xacnhan_giucho').click(function (e) {
+    // $('#xacnhan_giucho').off('click').on('click', function (e) {
     //     e.preventDefault();
-    //     const pay_note = $('input[name="pay_note"]').val();
-    //     const image_thanhtoan = $('input[name="payment_image"]').val();
+    //     var form = $('#multiStepForm')[0];
+    //     if (!form) {
+    //         toastr.error('Không tìm thấy biểu mẫu. Vui lòng kiểm tra lại.');
+    //         return;
+    //     }
+    
+    //     var formData = new FormData(form);
+    //     var image_thanhtoan = $('#multiStepForm #payment_image')[0].files[0];
+    //     formData.append('image_thanhtoan', image_thanhtoan);
+    //     formData.append('action', 'xacnhan_datcho');
+    
+    //     const product_id = $('.car-info').data('product-id');
     //     const price = $('.price').data('price');
+    //     const user_id = $('.user_info').data('user-id');
+    //     const pay_note = $('input[name="pay_note"]').val();
     //     const salutation = $('select[name="salutation"]').val();
     //     const username = $('input[name="fullName"]').val();
     //     const phoneNumber = $('input[name="phoneNumber"]').val();
@@ -386,31 +398,40 @@ $(document).ready(function () {
     //     const bank_branch = $('input[name="bank_branch"]').val();
     //     const dealer = $('input[name="dealer"]').val();
     //     const sales_person = $('input[name="sales_person"]').val();
-    //     const user_id = $('.user_info').data('user-id');
-    //     const product_id = $('.car-info').data('product-id');
-
+    
+    //     console.log(salutation, username, phoneNumber, email, bank_account_number, bank_account_name, bank_name, dealer);
+    //     // Kiểm tra các trường bắt buộc
+    //     if (!salutation || !username || !phoneNumber || !email || !bank_account_number || !bank_account_name || !bank_name || !dealer) {
+    //         toastr.error('Vui lòng điền đầy đủ các trường bắt buộc.');
+    //         return;
+    //     }
+    //     if (!product_id || !price || !user_id) {
+    //         toastr.error('Thiếu thông tin xe hoặc người dùng.');
+    //         return;
+    //     }
+    
+    //     formData.append('product_id', product_id);
+    //     formData.append('price', price);
+    //     formData.append('pay_note', pay_note);
+    //     formData.append('salutation', salutation);
+    //     formData.append('username', username);
+    //     formData.append('phoneNumber', phoneNumber);
+    //     formData.append('email', email);
+    //     formData.append('address', address);
+    //     formData.append('bank_account_number', bank_account_number);
+    //     formData.append('bank_account_name', bank_account_name);
+    //     formData.append('bank_name', bank_name);
+    //     formData.append('bank_branch', bank_branch);
+    //     formData.append('dealer', dealer);
+    //     formData.append('sales_person', sales_person);
+    //     formData.append('user_id', user_id);
+    
     //     $.ajax({
     //         url: '/process.php',
     //         type: 'POST',
-    //         data: {
-    //             action: 'xacnhan_datcho',
-    //             image_thanhtoan: image_thanhtoan,
-    //             salutation: salutation,
-    //             username: username,
-    //             phoneNumber: phoneNumber,
-    //             email: email,
-    //             address: address,
-    //             bank_account_number: bank_account_number,
-    //             bank_account_name: bank_account_name,
-    //             bank_name: bank_name,
-    //             bank_branch: bank_branch,
-    //             dealer: dealer,
-    //             sales_person: sales_person,
-    //             user_id: user_id,
-    //             product_id: product_id,
-    //             price: price,
-    //             pay_note: pay_note
-    //         },
+    //         data: formData,
+    //         processData: false,
+    //         contentType: false,
     //         success: function (response) {
     //             const info = JSON.parse(response);
     //             if (info.ok === 1) {
@@ -423,7 +444,7 @@ $(document).ready(function () {
     //             }
     //         },
     //         error: function (xhr, status, error) {
-    //             console.error('Error:', error);
+    //             console.error('Lỗi:', error);
     //             toastr.error('Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại sau.');
     //         }
     //     });

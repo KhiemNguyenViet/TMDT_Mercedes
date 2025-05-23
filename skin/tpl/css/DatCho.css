@@ -18,7 +18,7 @@ body {
     border-radius: 8px;
 }
 
-.form-section {
+.form-section_datxe {
     width: 50%;
     background: white;
     padding: 20px;
@@ -96,8 +96,8 @@ button:hover {
     display: inline-block;
 }
 
-.form-section input,
-.form-section select {
+.form-section_datxe input,
+.form-section_datxe select {
     padding: 10px;
     margin-bottom: 5px;
     border: 1px solid #ddd;
@@ -106,8 +106,8 @@ button:hover {
     transition: border-color 0.3s ease;
 }
 
-.form-section input:focus,
-.form-section select:focus {
+.form-section_datxe input:focus,
+.form-section_datxe select:focus {
     outline: none;
     border-color: #007bff;
 }
@@ -116,13 +116,13 @@ button:hover {
     margin-bottom: 15px;
 }
 
-.form-section label {
+.form-section_datxe label {
     display: block;
     margin-bottom: 5px;
     font-weight: 500;
 }
 
-.form-section input.error:focus {
+.form-section_datxe input.error:focus {
     border-color: red;
 }
 

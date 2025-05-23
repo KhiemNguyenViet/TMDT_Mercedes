@@ -145,7 +145,12 @@ if ($action == "datlich") {
 
             $result = $conn->query($sql);
             if ($result) {
-                echo json_encode(['ok' => 1, 'thongbao' => 'Đặt giữ chỗ xe thành công']);
+                $update_stock = mysqli_query($conn, "UPDATE products SET stock = stock - 1 WHERE id = '$product_id'");
+                if($update_stock){
+                    echo json_encode(['ok' => 1, 'thongbao' => 'Đặt giữ chỗ xe thành công']);
+                }else{
+                    echo json_encode(['ok' => 0, 'thongbao' => 'Đặt giữ chỗ xe thành công nhưng cập nhật lại số lượng xe thất bại: ' . $conn->error]);
+                }
             } else {
                 echo json_encode(['ok' => 0, 'thongbao' => 'Đặt giữ chỗ xe thất bại: ' . $conn->error]);
             }

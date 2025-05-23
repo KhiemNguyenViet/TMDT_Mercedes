@@ -1,6 +1,41 @@
 <?php
 class class_index extends class_manage
 {
+    function list_lichsu_thanhtoan($conn, $user_id)
+    {
+        $thongtin = mysqli_query($conn, "SELECT o.*, p.name_car as product_name, p.image_car as product_image 
+            FROM orders o 
+            LEFT JOIN products p ON o.product_id = p.id 
+            WHERE o.user_id = '$user_id' 
+            ORDER BY o.created_at DESC");
+        $skin = $this->load('class_skin');
+        $check = $this->load('class_check');
+        $i = 0;
+        while ($row = mysqli_fetch_array($thongtin)) {
+            $i++;
+            $row['orders.id'] = $row['id'];
+            $row['orders.status'] = $row['status'] == 'pending' ? '<span class="badge bg-warning">Chờ xử lý</span>' : ($row['status'] == 'processing' ? '<span class="badge bg-info">Đang xử lý</span>' : ($row['status'] == 'completed' ? '<span class="badge bg-success">Hoàn thành</span>' : '<span class="badge bg-danger">Đã hủy</span>'));
+            $row['stt'] = $i;
+            $row['fullname'] = $row['full_name'];
+            $row['location'] = $row['location'];
+            $row['phone_number'] = $row['phone_number'];
+            $row['preferred_date'] = $row['preferred_date'];
+            $row['preferred_time'] = $row['preferred_time'];
+            $row['product_name'] = $row['product_name'];
+            $row['product_image'] = $row['product_image'];
+            $row['total_amount'] = number_format($row['total_amount'], 0, ',', '.') . ' vnđ';
+            $row['deposit_amount'] = number_format($row['deposit_amount'], 0, ',', '.') . ' vnđ';
+            $row['bank_name'] = $row['bank_name'];
+            $row['bank_branch'] = $row['bank_branch'];
+            $row['bank_account_number'] = $row['bank_account_number'];
+            $row['bank_account_name'] = $row['bank_account_name'];
+            $row['payment_notes'] = $row['payment_notes'];
+            $row['created_at'] = $row['created_at'];
+            $list .= $skin->skin_replace('skin/box_li/li_lichsu_thanhtoan', $row);
+        }
+        return $list;
+    }
+    /////////////////////////////
     function getThongTinKhachHang($conn, $id)
     {
         $sql = "SELECT * FROM users WHERE user_id = $id";

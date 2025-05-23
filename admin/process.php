@@ -129,6 +129,24 @@ if ($action == "dangnhap") {
              WHERE id = $id";
 
 	if (mysqli_query($conn, $query)) {
+		// Nếu status là cancelled thì cập nhật lại stock
+		if ($status == 'cancelled') {
+			// Lấy thông tin product_id từ order
+			$get_order = mysqli_query($conn, "SELECT product_id FROM orders WHERE id = $id");
+			if ($order = mysqli_fetch_assoc($get_order)) {
+				$product_id = $order['product_id'];
+				// Cập nhật lại stock
+				$update_stock = mysqli_query($conn, "UPDATE products SET stock = stock + 1 WHERE id = $product_id");
+				if (!$update_stock) {
+					echo json_encode([
+						'success' => false,
+						'message' => 'Lỗi cập nhật số lượng tồn kho: ' . mysqli_error($conn)
+					]);
+					exit;
+				}
+			}
+		}
+		
 		echo json_encode([
 			'success' => true,
 			'message' => 'Cập nhật trạng thái thành công'
@@ -393,5 +411,4 @@ if ($action == "dangnhap") {
 		echo json_encode(['ok' => 0, 'message' => 'Vui lòng chọn ảnh sản phẩm. Error: ' . $uploadError]);
 	}
 }
-
 ?>
