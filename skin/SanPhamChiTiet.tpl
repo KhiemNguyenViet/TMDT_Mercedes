@@ -650,7 +650,7 @@
                     <label for="bookingNotes">Ghi chú (Xe muốn lái thử, yêu cầu khác,...):</label>
                     <textarea id="bookingNotes" name="notes" rows="3"></textarea>
                 </div>
-                <button class="datlich-button">GỬI YÊU CẦU ĐẶT LỊCH</button>
+                <button type="button" class="datlich-button">GỬI YÊU CẦU ĐẶT LỊCH</button>
             </form>
         </div>
     </div>

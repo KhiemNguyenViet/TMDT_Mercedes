@@ -59,6 +59,21 @@ $(document).ready(function () {
             }
         })
     });
+    // $('.buy-btn').click(function () {
+    //     product_id = $('.info').data('product-id');
+    //     $.ajax({
+    //         url: '/process.php',
+    //         type: 'POST',
+    //         data: {
+    //             action: 'datcho',
+    //             product_id: product_id,
+    //         },
+    //         success: function (response) {
+    //             $('body').html(response);
+    //             toastr.error('Không thể kết nối máy chủ. Mã lỗi: ' + xhr.status);
+    //         }
+    //     });
+    // });
     // Chặn form reload
     $('#login-form').on('submit', function (e) {
         e.preventDefault();
@@ -205,23 +220,6 @@ $(document).ready(function () {
             });
         });
     });
-    /////////////////////
-    // Đặt giữ xe
-    $('.buy-btn').click(function () {
-        product_id = $('.info').data('product-id');
-        $.ajax({
-            url: '/process.php',
-            type: 'POST',
-            data: {
-                action: 'datcho',
-                product_id: product_id,
-            },
-            success: function (response) {
-                $('body').html(response);
-                toastr.error('Không thể kết nối máy chủ. Mã lỗi: ' + xhr.status);
-            }
-        });
-    });
 
     /////////////////////
     // Đặt lịch lái thử xe
@@ -240,13 +238,13 @@ $(document).ready(function () {
         // notes = $('textarea[name="notes"]').val();
         // diadiem = $('select[name="location"]').val();
 
-        const username = $('input[name="fullName"]').val();
-        const phoneNumber = $('input[name="phoneNumber"]').val();
-        const email = $('input[name="email"]').val();
-        const testDriveDate = $('input[name="testDriveDate"]').val();
-        const testDriveTime = $('select[name="testDriveTime"]').val();
-        const notes = $('textarea[name="notes"]').val();
-        const diadiem = $('select[name="location"]').val();
+        const username = $('#bookingForm input[name="fullName"]').val();
+        const phoneNumber = $('#bookingForm input[name="phoneNumber"]').val();
+        const email = $('#bookingForm input[name="email"]').val();
+        const testDriveDate = $('#bookingForm input[name="testDriveDate"]').val();
+        const testDriveTime = $('#bookingForm select[name="testDriveTime"]').val();
+        const notes = $('#bookingForm textarea[name="notes"]').val();
+        const diadiem = $('#bookingForm select[name="location"]').val();
 
         // Lấy productId từ URL hoặc data attribute
         const productId = $('.info').data('product-id');
@@ -254,25 +252,25 @@ $(document).ready(function () {
         // Validate dữ liệu
         if (username.length < 4) {
             toastr.error('Tên khách hàng phải từ 4 ký tự trở lên');
-            $('input[name="fullName"]').focus();
+            $('#bookingForm input[name="fullName"]').focus();
             $button.prop('disabled', false).text(originalText);
             return;
         }
         if (phoneNumber.length < 10 || phoneNumber.length > 11) {
             toastr.error('Số điện thoại phải từ 10 ký tự trở lên và không quá 11 ký tự');
-            $('input[name="phoneNumber"]').focus();
+            $('#bookingForm input[name="phoneNumber"]').focus();
             $button.prop('disabled', false).text(originalText);
             return;
         }
         if (testDriveDate == '') {
             toastr.error('Ngày lái thử xe không được để trống');
-            $('input[name="testDriveDate"]').focus();
+            $('#bookingForm input[name="testDriveDate"]').focus();
             $button.prop('disabled', false).text(originalText);
             return;
         }
         if (testDriveTime == '') {
             toastr.error('Giờ lái thử xe không được để trống');
-            $('select[name="testDriveTime"]').focus();
+            $('#bookingForm select[name="testDriveTime"]').focus();
             $button.prop('disabled', false).text(originalText);
             return;
         }
@@ -282,16 +280,6 @@ $(document).ready(function () {
             return;
         }
         if (email == '') {
-            toastr.error('Email không được để trống');
-            $button.prop('disabled', false).text(originalText);
-            return;
-        }
-        if (email != '') {
-            if (!isValidEmail(email)) {
-                toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
-                $button.prop('disabled', false).text(originalText);
-                return;
-            }
             toastr.error('Email không được để trống');
             $button.prop('disabled', false).text(originalText);
             return;
@@ -324,7 +312,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (response) {
                 if (response.ok === 1) {
-                    toastr.success('Yêu cầu đặt lịch lái thử xe của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất!');
+                    alert('Yêu cầu đặt lịch lái thử xe của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất!');
                     setTimeout(function () {
                         $('#bookingPopup').hide();
                         $('form#bookingForm')[0].reset();

@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xin chào Admin</title>
-    <meta name="description" content="Mercedes-Benz Việt Nam - Đại lý Mercedes-Benz chính hãng, cung cấp xe Mercedes-Benz mới, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
-    <meta name="keywords" content="Mercedes-Benz, xe Mercedes-Benz, đại lý Mercedes-Benz, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
+    <meta name="description"
+        content="Mercedes-Benz Việt Nam - Đại lý Mercedes-Benz chính hãng, cung cấp xe Mercedes-Benz mới, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
+    <meta name="keywords"
+        content="Mercedes-Benz, xe Mercedes-Benz, đại lý Mercedes-Benz, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
     <link rel="icon" href="../hinhanh/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../skin/tpl/css/MenuBar.css">
     <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
@@ -79,7 +81,12 @@
             z-index: 1000;
         }
 
-        #popup, #popup_xl_thanhtoan, #popup_ht_thanhtoan, #popup_huy_thanhtoan, #popup_huy_laithu, #popup_ht_laithu {
+        #popup,
+        #popup_xl_thanhtoan,
+        #popup_ht_thanhtoan,
+        #popup_huy_thanhtoan,
+        #popup_huy_laithu,
+        #popup_ht_laithu {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -93,7 +100,12 @@
             z-index: 1001;
         }
 
-        #popup h3, #popup_xl_thanhtoan h3, #popup_ht_thanhtoan h3, #popup_huy_thanhtoan h3, #popup_huy_laithu h3, #popup_ht_laithu h3 {
+        #popup h3,
+        #popup_xl_thanhtoan h3,
+        #popup_ht_thanhtoan h3,
+        #popup_huy_thanhtoan h3,
+        #popup_huy_laithu h3,
+        #popup_ht_laithu h3 {
             color: #333;
             margin-bottom: 15px;
             font-size: 20px;
@@ -102,12 +114,22 @@
             padding-bottom: 8px;
         }
 
-        #popup form, #popup_xl_thanhtoan form, #popup_ht_thanhtoan form, #popup_huy_thanhtoan form, #popup_huy_laithu form, #popup_ht_laithu form {
+        #popup form,
+        #popup_xl_thanhtoan form,
+        #popup_ht_thanhtoan form,
+        #popup_huy_thanhtoan form,
+        #popup_huy_laithu form,
+        #popup_ht_laithu form {
             display: flex;
             flex-direction: column;
         }
 
-        #popup label, #popup_xl_thanhtoan label, #popup_ht_thanhtoan label, #popup_huy_thanhtoan label, #popup_huy_laithu label, #popup_ht_laithu label {
+        #popup label,
+        #popup_xl_thanhtoan label,
+        #popup_ht_thanhtoan label,
+        #popup_huy_thanhtoan label,
+        #popup_huy_laithu label,
+        #popup_ht_laithu label {
             color: #555;
             font-weight: 500;
             font-size: 13px;
@@ -256,7 +278,7 @@
             <li onclick="showTab('products')">📦 Danh mục sản phẩm</li>
             <li onclick="showTab('add-product')">➕ Thêm sản phẩm</li>
             <li onclick="showTab('users')">👥 Quản lý tài khoản</li>
-            <li onclick="showTab('orders_car')">Quản lí đơn hàng </li>
+            <li onclick="showTab('orders_car')">📋 Quản lí đơn hàng</li>
             <li onclick="showTab('orders')">📅 Quản lí đặt lịch</li>
             <li onclick="showTab('revenue')">📊 Doanh thu theo tháng</li>
         </ul>
@@ -368,7 +390,8 @@
         <div id="popup">
             <button class="close" onclick="closePopup()">×</button>
             <h3>Gửi Email xác nhận lịch lái thử đến khách hàng</h3>
-            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để xác nhận lịch lái thử*</p>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để xác nhận
+                lịch lái thử*</p>
             <form action="sendmail.php" method="POST">
                 <label>Đến email:</label><br>
                 <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
@@ -385,7 +408,8 @@
         <div id="popup_ht_laithu">
             <button class="close" onclick="closePopup_ht_laithu()">×</button>
             <h3>Gửi Email xác nhận hoàn thành lịch lái thử đến khách hàng</h3>
-            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hoàn thành xác nhận lịch lái thử*</p>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hoàn thành
+                xác nhận lịch lái thử*</p>
             <form action="sendmail.php" method="POST">
                 <label>Đến email:</label><br>
                 <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
@@ -402,7 +426,8 @@
         <div id="popup_huy_laithu">
             <button class="close" onclick="closePopup_huy_laithu()">×</button>
             <h3>Gửi Email xác nhận hủy lịch lái thử đến khách hàng</h3>
-            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hủy lịch lái thử*</p>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hủy lịch
+                lái thử*</p>
             <form action="sendmail.php" method="POST">
                 <label>Đến email:</label><br>
                 <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
@@ -419,7 +444,8 @@
         <div id="popup_xl_thanhtoan">
             <button class="close" onclick="closePopup_xl_thanhtoan()">×</button>
             <h3>Gửi Email xác nhận xử lý đơn hàng đến khách hàng</h3>
-            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để xác nhận xử lý đơn hàng*</p>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để xác nhận
+                xử lý đơn hàng*</p>
             <form action="sendmail.php" method="POST">
                 <label>Đến email:</label><br>
                 <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
@@ -436,7 +462,8 @@
         <div id="popup_ht_thanhtoan">
             <button class="close" onclick="closePopup_ht_thanhtoan()">×</button>
             <h3>Gửi Email xác nhận hoàn thành đơn hàng đến khách hàng</h3>
-            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hoàn thành xác nhận hoàn thành đơn hàng*</p>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hoàn thành
+                xác nhận hoàn thành đơn hàng*</p>
             <form action="sendmail.php" method="POST">
                 <label>Đến email:</label><br>
                 <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>
@@ -453,7 +480,8 @@
         <div id="popup_huy_thanhtoan">
             <button class="close" onclick="closePopup_huy_thanhtoan()">×</button>
             <h3>Gửi Email xác nhận hủy đơn hàng đến khách hàng</h3>
-            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hủy đơn hàng*</p>
+            <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hủy đơn
+                hàng*</p>
             <form action="sendmail.php" method="POST">
                 <label>Đến email:</label><br>
                 <input type="email" name="to_email" required placeholder="Nhập email khách hàng"><br><br>

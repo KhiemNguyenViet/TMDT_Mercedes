@@ -66,20 +66,21 @@ $(document).ready(function () {
                     let result = JSON.parse(response);
                     if (result.success) {
                         // Cập nhật trạng thái trực tiếp trên giao diện
-                        let trangThai = status === 'completed' ? 'Đã hoàn thành' : 'Đã hủy';
-                        let mauBadge = status === 'completed' ? 'success' : 'danger';
+                        // let trangThai = status === 'completed' ? 'Đã hoàn thành' : 'Đã hủy';
+                        // let mauBadge = status === 'completed' ? 'success' : 'danger';
 
-                        // Cập nhật text trạng thái
-                        $(`#order_${id} .status-badge`).text(trangThai)
-                            .removeClass('status-pending status-completed status-cancelled')
-                            .addClass(`status-${status}`);
+                        // // Cập nhật text trạng thái
+                        // $(`#order_${id} .status-badge`).text(trangThai)
+                        //     .removeClass('status-pending status-completed status-cancelled')
+                        //     .addClass(`status-${status}`);
 
-                        // Ẩn nút thao tác và hiển thị badge
-                        $(`#order_${id} .action-buttons`).html(
-                            `<span class="badge badge-${mauBadge}">${trangThai}</span>`
-                        );
+                        // // Ẩn nút thao tác và hiển thị badge
+                        // $(`#order_${id} .action-buttons`).html(
+                        //     `<span class="badge badge-${mauBadge}">${trangThai}</span>`
+                        // );
 
-                        alert('Cập nhật trạng thái thành công!');
+                        alert(result.message);
+                        location.reload();
                     } else {
                         alert('Lỗi: ' + result.message);
                     }
@@ -405,7 +406,7 @@ window.status_update = function (id, status) {
             try {
                 let result = JSON.parse(response);
                 if (result.success) {
-                    alert('Cập nhật trạng thái thành công!');
+                    alert(result.message);
                     location.reload();
                 } else {
                     alert('Lỗi: ' + result.message);

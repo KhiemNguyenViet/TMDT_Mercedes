@@ -34,38 +34,41 @@
                     <option value="?{category_param}sort=price-asc" {sort_asc}>Giá tăng dần</option>
                     <option value="?{category_param}sort=price-desc" {sort_desc}>Giá giảm dần</option>
                 </select>
-            </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm..." id="search-input">
+                    <button id="search-button">Tìm kiếm</button>
+                </div>
 
-            <div class="product-grid">
-                {box_index}
-            </div>
-            <style>
-                #category-list li {
-                    padding: 10px 15px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    border-radius: 4px;
-                }
+                <div class="product-grid">
+                    {box_index}
+                </div>
+                <style>
+                    #category-list li {
+                        padding: 10px 15px;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        border-radius: 4px;
+                    }
 
-                #category-list li a {
-                    color: #333;
-                    text-decoration: none;
-                    display: block;
-                }
+                    #category-list li a {
+                        color: #333;
+                        text-decoration: none;
+                        display: block;
+                    }
 
-                #category-list li.active {
-                    background-color: #000;
-                }
+                    #category-list li.active {
+                        background-color: #000;
+                    }
 
-                #category-list li.active a {
-                    color: #fff;
-                }
+                    #category-list li.active a {
+                        color: #fff;
+                    }
 
-                #category-list li:hover:not(.active) {
-                    background-color: #f5f5f5;
-                }
-            </style>
-            {pagination}
+                    #category-list li:hover:not(.active) {
+                        background-color: #f5f5f5;
+                    }
+                </style>
+                {pagination}
         </main>
     </div>
     {footer}
