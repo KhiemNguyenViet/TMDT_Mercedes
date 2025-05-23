@@ -20,7 +20,7 @@
     <a href="/product/{product.id}.html" class="back-link">← Quay lại trang xe đã chọn</a>
     <div class="container">
         <div data-product-id="{product.id}" class="car-section">
-            <img src="../hinhanh/{product.image}" alt="{product.name}" class="car-image">
+            <img src="../uploads/{product.image}" alt="{product.name}" class="car-image">
             <h2>{product.name}</h2>
             <div data-product-id="{product.id}" class="car-info">
                 <p>Danh mục: <strong>{product.category_name}</strong></p>

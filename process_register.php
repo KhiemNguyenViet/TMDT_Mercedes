@@ -37,8 +37,8 @@ if(isset($_COOKIE['user_id'])) {
                 $hashed_password = md5($password);
 
                 // Thêm user mới
-                $query = "INSERT INTO users (username, password, email, full_name, phone, address, role) 
-                         VALUES ('$username', '$hashed_password', '$email', '$name', '$phone', '$address', 'user')";
+                $query = "INSERT INTO users (username, password, email, full_name, phone, address, role,avatar) 
+                         VALUES ('$username', '$hashed_password', '$email', '$name', '$phone', '$address', 'user','')";
 
                 if(mysqli_query($conn, $query)) {
                     $ok = 1;

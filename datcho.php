@@ -25,11 +25,12 @@ error_log("Loading product details for ID: " . $product_id);
         'header' => $header,
         'footer' => $skin->skin_normal('skin/footer'),
         'product.id' => $product['id'],
-        'product.name' => $product['name'],
+        'product.name' => $product['name_car'],
         'product.price' => $formatted_price,
-        'product.image' => $product['image'],
+        'product.image' => $product['image_car'],
         'product.category_name' => $product['category_name']
     );
+    
 
     echo $skin->skin_replace('skin/DatCho', $replace);
 ?>

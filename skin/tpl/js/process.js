@@ -126,84 +126,85 @@ $(document).ready(function () {
         });
     });
     ///////////////////////////////////
-    $('#register-form').on('submit', function (e) {
-        e.preventDefault();
+    $(document).ready(function () {
+        $('#register-form').on('submit', function (e) {
+            e.preventDefault();
 
-        var username = $('input[name=username]').val();
-        var password = $('input[name=password]').val();
-        var email = $('input[name=email]').val();
-        var name = $('input[name=name]').val();
-        var phone = $('input[name=phone]').val();
-        var address = $('input[name=address]').val();
+            // Get form input values
+            var username = $('input[name=username]').val().trim();
+            var password = $('input[name=password]').val().trim();
+            var email = $('input[name=email]').val().trim();
+            var name = $('input[name=name]').val().trim();
+            var phone = $('input[name=phone]').val().trim();
+            var address = $('input[name=address]').val().trim();
 
-        if (username.length < 4) {
-            toastr.error('Tên đăng nhập phải từ 4 ký tự trở lên');
-            $('input[name=username]').focus();
-            return false;
-        }
+            // Client-side validation
+            if (username.length < 4) {
+                toastr.error('Tên đăng nhập phải từ 4 ký tự trở lên');
+                $('input[name=username]').focus();
+                return false;
+            }
 
-        if (password.length < 6) {
-            toastr.error('Mật khẩu phải từ 6 ký tự trở lên');
-            $('input[name=password]').focus();
-            return false;
-        }
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                toastr.error('Email không hợp lệ');
+                $('input[name=email]').focus();
+                return false;
+            }
 
-        $('.load_overlay').show();
-        $('.load_process').fadeIn();
-        $('.load_note').html('Đang xử lý đăng ký...');
+            if (phone.length < 10 || phone.length > 11) {
+                toastr.error('Số điện thoại phải từ 10 đến 11 số');
+                $('input[name=phone]').focus();
+                return false;
+            }
 
-        $.ajax({
-            url: '/process_register.php',
-            type: 'POST',
-            data: {
-                username: username,
-                password: password,
-                email: email,
-                name: name,
-                phone: phone,
-                address: address
-            },
-            success: function (response) {
-                try {
-                    var info = JSON.parse(response);
+            if (password.length < 6) {
+                toastr.error('Mật khẩu phải từ 6 ký tự trở lên');
+                $('input[name=password]').focus();
+                return false;
+            }
 
-                    // Hiển thị thông báo trên load_process
-                    $('.load_note').html(info.thongbao || 'Đăng ký thành công!');
+            // Show loading overlay
+            $('.load_overlay').show();
+            $('.load_process').fadeIn();
+            $('.load_note').html('Đang xử lý đăng ký...');
+
+            // AJAX request
+            $.ajax({
+                url: '/process_register.php',
+                type: 'POST',
+                data: {
+                    username: username,
+                    password: password,
+                    email: email,
+                    name: name,
+                    phone: phone,
+                    address: address
+                },
+                dataType: 'json', // Expect JSON response
+                success: function (response) {
+                    console.log('Response:', response);
+
+                    // Update loading message
+                    $('.load_note').html(response.thongbao || 'Đăng ký thành công!');
 
                     setTimeout(function () {
-                        if (info.ok == 1) {
+                        if (response.ok === 1) {
                             $('.load_note').html('Đăng ký thành công! Đang chuyển hướng...');
                             setTimeout(function () {
                                 window.location.href = 'login.html';
                             }, 1000);
                         } else {
-                            $('.load_note').html(info.thongbao || 'Đăng ký thất bại');
-                            setTimeout(function () {
-                                $('.load_process').hide();
-                                $('.load_overlay').hide();
-                                toastr.error(info.thongbao || 'Đăng ký thất bại');
-                            }, 1000);
+                            $('.load_note').html(response.thongbao || 'Đăng ký thất bại');
+                            toastr.error(response.thongbao || 'Đăng ký thất bại');
+                            $('.load_process').hide();
+                            $('.load_overlay').hide();
                         }
                     }, 1000);
-                } catch (e) {
-                    console.error('Lỗi:', e);
-                    $('.load_note').html('Có lỗi xử lý dữ liệu');
-                    setTimeout(function () {
-                        $('.load_process').hide();
-                        $('.load_overlay').hide();
-                    }, 1000);
-                }
-            },
-            error: function () {
-                $('.load_note').html('Có lỗi xảy ra khi kết nối máy chủ');
-                setTimeout(function () {
-                    $('.load_process').hide();
-                    $('.load_overlay').hide();
-                }, 1000);
-            }
+                },
+            });
         });
     });
-
     /////////////////////
     // Đặt giữ xe
     $('.buy-btn').click(function () {
@@ -285,6 +286,19 @@ $(document).ready(function () {
             $button.prop('disabled', false).text(originalText);
             return;
         }
+<<<<<<< HEAD
+=======
+        if (email != '') {
+            if (!isValidEmail(email)) {
+                toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
+                $button.prop('disabled', false).text(originalText);
+                return;
+            }
+            toastr.error('Email không được để trống');
+            $button.prop('disabled', false).text(originalText);
+            return;
+        }
+>>>>>>> f110fa278f780a469ae8bdf2a6f43a4f3322d2aa
         if (email != '' && !isValidEmail(email)) {
             toastr.error('Email không hợp lệ. Vui lòng nhập lại.');
             $button.prop('disabled', false).text(originalText);
