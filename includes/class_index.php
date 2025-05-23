@@ -254,4 +254,30 @@ class class_index extends class_manage
 
         return $list;
     }
+    function search_products($conn, $keyword)
+    {
+        $keyword = mysqli_real_escape_string($conn, $keyword);
+
+        $query = "SELECT * FROM products WHERE 
+          name_car LIKE '%$keyword%' OR 
+          description_car LIKE '%$keyword%'
+          ORDER BY name_car ASC";
+
+        $result = mysqli_query($conn, $query);
+        $list = '';
+
+        while ($row = mysqli_fetch_array($result)) {
+            $row['stock'] = $row['stock'];
+            $row['name'] = $row['name_car'];
+            $row['image'] = $row['image_car'];
+            $row['description'] = $row['description_car'];
+            $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
+            $list .= $this->skin->skin_replace('skin/box_li/li_sanpham', $row);
+        }
+
+        return [
+            'list' => $list ?: '<div class="no-results">Không tìm thấy sản phẩm phù hợp</div>',
+            'pagination' => ''
+        ];
+    }
 }

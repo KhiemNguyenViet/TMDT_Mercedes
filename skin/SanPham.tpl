@@ -35,8 +35,10 @@
                     <option value="?{category_param}sort=price-desc" {sort_desc}>Giá giảm dần</option>
                 </select>
                 <div class="search-bar">
-                    <input type="text" placeholder="Tìm kiếm sản phẩm..." id="search-input">
-                    <button id="search-button">Tìm kiếm</button>
+                    <form action="/search.php" method="GET">
+                        <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm..." id="search-input" required>
+                        <button type="submit" id="search-button">Tìm kiếm</button>
+                    </form>
                 </div>
 
                 <div class="product-grid">
