@@ -13,13 +13,20 @@ if(isset($user_info['user_id']) && $user_info['user_id']>0){
 }else{
     $header = $skin->skin_normal('skin/header');
 }
-
-    // Parse URL
-    $param_url = parse_url($_SERVER['REQUEST_URI']);
-    parse_str($param_url['query'] ?? '', $url_query);
-
+    $thongtin_khachhang = mysqli_query($conn, "SELECT * FROM users WHERE user_id = $user_info[user_id]");
+    $result_thongtin_khachhang = mysqli_fetch_assoc($thongtin_khachhang);
+    // var_dump($result_thongtin_khachhang);
+    // die();
     // Xử lý và hiển thị nội dung
     $replace = array(
+        'password' => $result_thongtin_khachhang['password'],
+        'full_name' => $result_thongtin_khachhang['full_name'],
+        'user_avatar' => $result_thongtin_khachhang['avatar'],
+        'user_name' => $result_thongtin_khachhang['username'],
+        'user_address' => $result_thongtin_khachhang['address'],
+        'user_phone' => $result_thongtin_khachhang['phone'],
+        'user_email' => $result_thongtin_khachhang['email'],
+        'user_id' => $result_thongtin_khachhang['user_id'],
         'header' => $header,
         'footer' => $skin->skin_normal('skin/footer'),
     );

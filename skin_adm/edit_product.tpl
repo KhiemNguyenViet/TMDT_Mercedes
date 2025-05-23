@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../hinhanh/logo.jpg" type="image/x-icon">
     <title>Chỉnh sửa sản phẩm</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- Thêm CSS của Toastr -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-<!-- Thêm JS của Toastr -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Thêm JS của Toastr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
         /* Reset CSS */
         * {
@@ -230,11 +232,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="edit-form">
             <h2>Chỉnh sửa sản phẩm</h2>
-            
+
             <form id="productForm">
                 <div class="form-sections" id_product="{id}">
                     <!-- Thông tin cơ bản -->
@@ -257,7 +260,8 @@
 
                                 <div class="form-group">
                                     <label for="price">Giá (VNĐ)</label>
-                                    <input type="number" id="price" value="{price}" name="price" min="0" step="0.01" required>
+                                    <input type="text" id="price" value="{price}" name="price" min="0" step="0.01"
+                                        required>
                                 </div>
 
                                 <div class="form-group">
@@ -269,7 +273,8 @@
                             <div class="form-right">
                                 <div class="form-group">
                                     <label for="description">Mô tả chung</label>
-                                    <textarea id="description" value="{description_car}" name="description" rows="4">{description_car}</textarea>
+                                    <textarea id="description" value="{description_car}" name="description"
+                                        rows="4">{description_car}</textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -308,7 +313,8 @@
 
                                 <div class="form-group">
                                     <label for="displacement">Dung tích xi lanh (cc)</label>
-                                    <input type="number" id="displacement" value="{displacement_cc}" name="displacement_cc">
+                                    <input type="number" id="displacement" value="{displacement_cc}"
+                                        name="displacement_cc">
                                 </div>
 
                                 <div class="form-group">
@@ -325,7 +331,8 @@
                             <div class="form-right">
                                 <div class="form-group">
                                     <label for="transmission">Hộp số</label>
-                                    <input type="text" id="transmission" value="{transmission_type}" name="transmission_type">
+                                    <input type="text" id="transmission" value="{transmission_type}"
+                                        name="transmission_type">
                                 </div>
 
                                 <div class="form-group">
@@ -335,12 +342,14 @@
 
                                 <div class="form-group">
                                     <label for="fuel_consumption">Mức tiêu thụ nhiên liệu (L/100km)</label>
-                                    <input type="number" id="fuel_consumption" value="{fuel_consumption_l_100km}" name="fuel_consumption_l_100km" step="0.1">
+                                    <input type="number" id="fuel_consumption" value="{fuel_consumption_l_100km}"
+                                        name="fuel_consumption_l_100km" step="0.1">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="acceleration">Tăng tốc 0-100 km/h (giây)</label>
-                                    <input type="number" id="acceleration" value="{acceleration_0_100_s}" name="acceleration_0_100_s" step="0.1">
+                                    <input type="number" id="acceleration" value="{acceleration_0_100_s}"
+                                        name="acceleration_0_100_s" step="0.1">
                                 </div>
                             </div>
                         </div>
@@ -375,17 +384,20 @@
                             <div class="form-right">
                                 <div class="form-group">
                                     <label for="interior_features">Tính năng nội thất</label>
-                                    <textarea id="interior_features" value="{interior_features}" name="interior_features" rows="4">{interior_features}</textarea>
+                                    <textarea id="interior_features" value="{interior_features}"
+                                        name="interior_features" rows="4">{interior_features}</textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="safety_features">Tính năng an toàn</label>
-                                    <textarea id="safety_features" value="{safety_features}" name="safety_features" rows="4">{safety_features}</textarea>
+                                    <textarea id="safety_features" value="{safety_features}" name="safety_features"
+                                        rows="4">{safety_features}</textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="color_options">Các màu sắc</label>
-                                    <textarea id="color_options" value="{color_options}" name="color_options" rows="2">{color_options}</textarea>
+                                    <textarea id="color_options" value="{color_options}" name="color_options"
+                                        rows="2">{color_options}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -401,4 +413,5 @@
     </div>
 </body>
 <script src="../skin_adm/js/process.js"></script>
-</html> 
+
+</html>

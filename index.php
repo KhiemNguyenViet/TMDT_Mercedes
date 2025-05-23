@@ -19,6 +19,7 @@ $coupe_banchay = $class_index->list_coupebanchay($conn, 5);
 
 // Xử lý và hiển thị nội dung
 $replace = array(
+    'user_id' => $user_info['user_id'],
     'header' => $header,
     'footer' => $skin->skin_normal('skin/footer'),
     'products' => json_encode($products),

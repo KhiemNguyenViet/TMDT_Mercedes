@@ -71,7 +71,7 @@
         <form id="login-form" method="post">
             <input type="text" name="username" placeholder="Tên đăng nhập" required />
             <input type="password" name="password" placeholder="Mật khẩu" required />
-            <div class="remember" value="on">
+            <div class="remember" value="on" style="display: none;">
                 <i class="fa fa-check-circle-o" style="color: #000;"></i> Remember
             </div>
             <button type="submit" class="login-button">Đăng Nhập</button>

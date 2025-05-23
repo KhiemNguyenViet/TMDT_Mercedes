@@ -45,7 +45,7 @@ class class_index extends class_manage
 
     function list_glcbanchay($conn, $limit)
     {
-        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 1 LIMIT $limit");
+        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 1 AND featured = 1 LIMIT $limit");
         $skin = $this->load('class_skin');
         $check = $this->load('class_check');
         $i = 0;
@@ -62,7 +62,7 @@ class class_index extends class_manage
     }
     function list_suvbanchay($conn, $limit)
     {
-        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 2 LIMIT $limit");
+        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 2 AND featured = 1 LIMIT $limit");
         $skin = $this->load('class_skin');
         $check = $this->load('class_check');
         $i = 0;
@@ -70,6 +70,7 @@ class class_index extends class_manage
         while ($row = mysqli_fetch_array($thongtin)) {
             $i++;
             $row['stock'] = $row['stock'];
+
             $row['name'] = $row['name_car'];
             $row['image'] = $row['image_car'];
             $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
@@ -79,7 +80,7 @@ class class_index extends class_manage
     }
     function list_coupebanchay($conn, $limit)
     {
-        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 3 LIMIT $limit");
+        $thongtin = mysqli_query($conn, "SELECT * FROM products WHERE category_id = 3 AND featured = 1 LIMIT $limit");
         $skin = $this->load('class_skin');
         $check = $this->load('class_check');
         $i = 0;
