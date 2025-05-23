@@ -10,6 +10,53 @@ body {
     background: #f8f8f8;
 }
 
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.sort-select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    /* Đẩy search-bar về phía bên phải */
+}
+
+#search-input {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 220px;
+}
+
+#search-button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #000;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-button:hover {
+    background-color: #333;
+}
+
+
 .sort-select {
     width: 200px;
     padding: 10px;
@@ -29,7 +76,7 @@ body {
 /* Sidebar styles - Cập nhật để sát lề hơn */
 .sidebar {
     width: 220px;
-    height: 780px;
+    height: 539px;
     flex-shrink: 0;
     background: #fff;
     border-radius: 8px;
