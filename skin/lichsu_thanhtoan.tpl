@@ -143,7 +143,7 @@
          <img src="assets/images/no-data.png" alt="No Data" style="width: 150px; opacity: 0.5;">
          <h4 class="mt-3">Chưa có lịch sử thanh toán</h4>
          <p class="text-muted">Bạn chưa thực hiện giao dịch nào</p>
-         <a href="index.php" class="btn btn-primary">Khám phá xe ngay</a>
+         <a href="/" class="btn btn-primary">Khám phá xe ngay</a>
      </div>
      <!-- END: no_orders -->
  </div>    

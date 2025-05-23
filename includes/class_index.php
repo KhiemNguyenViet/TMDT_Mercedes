@@ -241,4 +241,17 @@ class class_index extends class_manage
 
         return $list;
     }
+    function list_car_models($conn)
+    {
+        $query = mysqli_query($conn, "SELECT * FROM categories ORDER BY name ASC");
+        $list = '';
+
+        while ($row = mysqli_fetch_array($query)) {
+            $row['value'] = $row['id'];
+            $row['name'] = $row['name'];
+            $list .= $this->skin->skin_replace('skin/box_li/li_car_model', $row);
+        }
+
+        return $list;
+    }
 }

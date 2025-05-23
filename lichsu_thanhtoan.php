@@ -12,7 +12,7 @@
     $user_id = $user_info['user_id'];
 
     // Lấy danh sách đơn hàng của user
-    $sql = "SELECT o.*, p.name as product_name, p.image as product_image 
+    $sql = "SELECT o.*, p.name_car as product_name, p.image_car as product_image 
             FROM orders o 
             LEFT JOIN products p ON o.product_id = p.id 
             WHERE o.user_id = '$user_id' 

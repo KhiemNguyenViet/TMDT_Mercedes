@@ -39,31 +39,40 @@
 <style>
     .load_overlay {
         position: fixed;
+        background: #000;
+        opacity: 0.8;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
+        right: 0;
+        bottom: 0;
         z-index: 9999;
         display: none;
-        backdrop-filter: blur(3px);
-        transition: all 0.3s ease;
     }
 
     .load_process {
         position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        margin: auto;
+        z-index: 99999;
         background: #fff;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        z-index: 10000;
-        display: none;
+        width: 400px;
+        max-width: calc(90% - 10px);
+        height: 120px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
+        border-radius: 8px;
         text-align: center;
-        min-width: 300px;
-        transition: all 0.3s ease;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+        overflow: hidden;
+        display: none;
     }
 
     .load_note {

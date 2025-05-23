@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Mercedes-Benz Việt Nam - Đại lý Mercedes-Benz chính hãng, cung cấp xe Mercedes-Benz mới, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
-    <meta name="keywords" content="Mercedes-Benz, xe Mercedes-Benz, đại lý Mercedes-Benz, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
+    <meta name="description"
+        content="Mercedes-Benz Việt Nam - Đại lý Mercedes-Benz chính hãng, cung cấp xe Mercedes-Benz mới, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
+    <meta name="keywords"
+        content="Mercedes-Benz, xe Mercedes-Benz, đại lý Mercedes-Benz, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
     <link rel="icon" href="../hinhanh/logo.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mercedes</title>
@@ -176,21 +178,7 @@
                         <input type="tel" name="phone" placeholder="Số điện thoại" required />
                         <select name="carModel" required>
                             <option value="">Dòng xe cần tư vấn</option>
-                            <option value="A-Class">A-Class</option>
-                            <option value="C-Class">C-Class</option>
-                            <option value="E-Class">E-Class</option>
-                            <option value="G-Class">G-Class</option>
-                            <option value="S-Class">S-Class</option>
-                            <option value="V-Class">V-Class</option>
-                            <option value="AMG">AMG</option>
-                            <option value="GT">GT</option>
-                            <option value="Maybach">Maybach</option>
-                            <option value="EQ">Mercedes-EQ</option>
-                            <option value="GLA">GLA</option>
-                            <option value="GLB">GLB</option>
-                            <option value="GLC">GLC</option>
-                            <option value="GLE">GLE</option>
-                            <option value="GLS">GLS</option>
+                            {car_models}
                         </select>
                         <button type="submit" class="submit-button">Gửi thông tin</button>
                     </form>
