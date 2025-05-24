@@ -42,7 +42,7 @@
         function fadeOut(element, callback) {
             element.style.transition = 'opacity 1s';
             element.style.opacity = 0;
-            setTimeout(callback, 500); // Wait for the fade-out transition to complete
+            setTimeout(callback, 500); 
         }
 
         function fadeIn(element) {

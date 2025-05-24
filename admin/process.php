@@ -238,7 +238,7 @@ if ($action == "dangnhap") {
 		$newFileName = time() . '_' . md5($fileName) . '.' . $fileExtension;
 		$dest_path = $uploadFileDir . $newFileName;
 		// Kiểm tra định dạng file		
-		$allowedTypes = array('jpg', 'jpeg', 'png', 'gif','avif');
+		$allowedTypes = array('jpg', 'jpeg', 'png', 'gif', 'avif');
 		if (!in_array($fileExtension, $allowedTypes)) {
 			echo json_encode(['ok' => 0, 'message' => 'Chỉ chấp nhận file ảnh định dạng: ' . implode(', ', $allowedTypes)]);
 			exit;
@@ -252,7 +252,8 @@ if ($action == "dangnhap") {
 			$id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 			$name_product = addslashes(strip_tags($_REQUEST['name_product'])) ?? 'Đang cập nhật...';
 			$category_id = addslashes(strip_tags($_REQUEST['category_id'])) ?? 0;
-			$price = number_format($_REQUEST['price'], 2, '.', '') ?? 0;
+			$price = str_replace([',', '.'], '', $_REQUEST['price']);
+			$price = (float)$price;
 			$stock = addslashes(strip_tags($_REQUEST['stock'])) ?? 0;
 			$description = addslashes(strip_tags($_REQUEST['description'])) ?? 'Đang cập nhật...';
 			$featured = addslashes(strip_tags($_REQUEST['featured'])) ?? 0;
@@ -273,14 +274,14 @@ if ($action == "dangnhap") {
 			$color_options = addslashes(strip_tags($_REQUEST['color_options'])) ?? 'Đang cập nhật...';
 
 			$query_product = "UPDATE products
-	              	SET name_car = '$name_product',         
-					category_id = '$category_id',         
-					price = '$price',         
-					stock = '$stock',         
-					description_car = '$description',         
-					image_car = '$newFileName',
-					featured = '$featured'
-					WHERE id = '$id'";
+    SET name_car = '$name_product',         
+    category_id = '$category_id',         
+    price = '$price',         
+    stock = '$stock',         
+    description_car = '$description',         
+    image_car = '$newFileName',
+    featured = '$featured'
+    WHERE id = '$id'";
 			$result_product = mysqli_query($conn, $query_product);
 			if ($result_product) {
 				$query_detail = "UPDATE product_details 
@@ -336,13 +337,13 @@ if ($action == "dangnhap") {
 		if (!file_exists($uploadFileDir)) {
 			mkdir($uploadFileDir, 0777, true);
 		}
-		
+
 		// Tạo tên file mới và đường dẫn đầy đủ		
 		$newFileName = time() . '_' . md5($fileName) . '.' . $fileExtension;
 		$dest_path = $uploadFileDir . $newFileName;
 
 		// Kiểm tra định dạng file		
-		$allowedTypes = array('jpg', 'jpeg', 'png', 'gif','avif');
+		$allowedTypes = array('jpg', 'jpeg', 'png', 'gif', 'avif');
 		if (!in_array($fileExtension, $allowedTypes)) {
 			echo json_encode(['ok' => 0, 'message' => 'Chỉ chấp nhận file ảnh định dạng: ' . implode(', ', $allowedTypes)]);
 			exit;
