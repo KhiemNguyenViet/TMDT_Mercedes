@@ -101,7 +101,7 @@
 
     <!-- Dịch Vụ -->
     <div class="dichvu-container" id="dichvu-section">
-        <h1 class="dichvu-title">Dịch vụ</h1>
+        <h1 class="dichvu-title">Thông tin dịch vụ</h1>
         <div class="dichvu-slider" id="dichvuSlider">
             <div class="dichvu-card">
                 <img src="../hinhanh/cclass.jpg" alt="Mercedes GLC" class="dichvu-image" />
