@@ -90,7 +90,7 @@
             <a href="/">Trang chủ</a>
             <a href="/cacmauxe.html">Các mẫu xe</a>  
             <a href="/lichsu_thanhtoan.html">Lịch Sử Thanh Toán</a>
-            <a href="/#dichvu-section">Dịch vụ</a>
+            <a href="/#dichvu-section">Thông tin dịch vụ</a>
             <a href="/thuonghieu.html">Thương hiệu</a>
         </div>
         <div class="navbar-center">

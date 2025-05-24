@@ -25,6 +25,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách lịch lái thử</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
         .fade {
             display: none;
         }
@@ -92,17 +99,50 @@
         }
 
         .btn-primary {
+            text-decoration: none;
             background-color: #ffffff;
-            border-color: #ffffff;
-            padding: 6px 12px;
+            color: #000;
+            padding: 10px 20px;
             font-size: 14px;
-            border-radius: 4px;
-            transition: background-color 0.3s, border-color 0.3s;
+            font-weight: 500;
+            border: 2px solid #000;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
         }
 
         .btn-primary:hover {
-            background-color: #91dfaa;
-            border-color: #91dfaa;
+            background-color: #000;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:hover:before {
+            left: 100%;
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .modal-content {
@@ -252,9 +292,42 @@
         }
 
         .popup-footer {
-            padding: 10px 20px;
-            border-top: 1px solid #dee2e6;
+            padding: 15px 25px;
+            border-top: 1px solid #eef2f7;
             text-align: right;
+            background: #f8f9fa;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .popup-footer .btn {
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .popup-footer .btn-secondary {
+            background-color: #fff;
+            color: #1a252f;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .popup-footer .btn-secondary:hover {
+            background-color: #f8f9fa;
+            border-color: #c1c9d0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .popup-footer .btn-secondary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .popup-body img {
