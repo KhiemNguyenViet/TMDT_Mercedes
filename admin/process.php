@@ -412,7 +412,4 @@ if ($action == "dangnhap") {
 		echo json_encode(['ok' => 0, 'message' => 'Vui lòng chọn ảnh sản phẩm. Error: ' . $uploadError]);
 	}
 }
-<<<<<<< HEAD
-=======
 ?>
->>>>>>> b5ff2f78aa1b73e7db119b1926788c0fb3d1d569
