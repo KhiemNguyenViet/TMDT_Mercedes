@@ -318,17 +318,222 @@
             </table>
         </div>
 
-        <!-- Revenue -->
         <div id="revenue" class="tab-content">
             <h2>Doanh thu theo tháng</h2>
-            <div class="chart-container" style="display: flex; flex-wrap: wrap; gap: 20px;">
-                <iframe id="revenue-chart" width="100%" height="400" style="max-width:600px;border:none"
-                    src="https://quickchart.io/chart-maker/view/ckz7qtP0aUUFJx0Uld49"></iframe>
-                <iframe width="100%" height="400" style="max-width:400px;border:none"
-                    src="https://quickchart.io/chart-maker/view/ckz7qtSyaUUFJx0Uld4A"></iframe>
+            <div class="revenue-summary">
+                <div class="revenue-card total">
+                    <h3>Tổng doanh thu</h3>
+                    <div class="amount" id="total-revenue">0 VNĐ</div>
+                </div>
+                <div class="revenue-card monthly">
+                    <h3>Doanh thu tháng này</h3>
+                    <div class="amount" id="current-month-revenue">0 VNĐ</div>
+                </div>
             </div>
-            <div id="total-revenue" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></div>
+
+            <div class="chart-container">
+                <canvas id="revenueChart" style="width: 100% !important;"></canvas>
+            </div>
+
+            <div class="revenue-table-container">
+                <table class="revenue-table">
+                    <thead>
+                        <tr>
+                            <th>Tháng</th>
+                            <th>Doanh thu</th>
+                            <th>So với tháng trước</th>
+                        </tr>
+                    </thead>
+                    <tbody id="revenue-table-body">
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+        <style>
+            .revenue-summary {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+
+            .revenue-card {
+                background: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .revenue-card h3 {
+                margin: 0 0 10px 0;
+                color: #666;
+            }
+
+            .revenue-card .amount {
+                font-size: 24px;
+                font-weight: bold;
+                color: #2c3e50;
+            }
+
+            .chart-container {
+                background: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .revenue-table-container {
+                background: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                overflow-x: auto;
+            }
+
+            .revenue-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .revenue-table th,
+            .revenue-table td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #eee;
+            }
+
+            .revenue-table th {
+                background: #f8f9fa;
+                font-weight: 500;
+            }
+
+            .text-success {
+                color: #28a745;
+                font-weight: 500;
+            }
+
+            .text-danger {
+                color: #dc3545;
+                font-weight: 500;
+            }
+
+            .revenue-card {
+                background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+                border: 1px solid #e9ecef;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .revenue-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .chart-container {
+                transition: all 0.3s ease;
+            }
+
+            .chart-container:hover {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetchRevenueData();
+            });
+
+            function fetchRevenueData() {
+                fetch('revenue.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        updateRevenueDisplay(data);
+                        createRevenueChart(data.chart_data);
+                        updateRevenueTable(data.monthly_revenue);
+                    })
+                    .catch(error => console.error('Error fetching revenue data:', error));
+            }
+
+            function updateRevenueDisplay(data) {
+                document.getElementById('total-revenue').textContent =
+                    formatCurrency(data.total_revenue);
+
+                const currentMonth = new Date().getMonth();
+                document.getElementById('current-month-revenue').textContent =
+                    formatCurrency(data.monthly_revenue[currentMonth + 1]);
+            }
+
+            function createRevenueChart(chartData) {
+                const ctx = document.getElementById('revenueChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: chartData.labels,
+                        datasets: [{
+                            label: 'Doanh thu (VNĐ)',
+                            data: chartData.values,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: value => formatCurrency(value)
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: context => formatCurrency(context.raw)
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function formatCurrency(value) {
+                return new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                }).format(value);
+            }
+            function updateRevenueTable(monthlyData) {
+                const tableBody = document.getElementById('revenue-table-body');
+                let html = '';
+
+                for (let month = 1; month <= 12; month++) {
+                    const current = monthlyData[month];
+                    const previous = month > 1 ? monthlyData[month - 1] : null;
+                    let changeText = '-';
+                    let changeClass = '';
+
+                    if (previous) {
+                        const change = ((current - previous) / previous) * 100;
+                        changeText = `${change > 0 ? '+' : ''}${change.toFixed(1)}%`;
+                        changeClass = change > 0 ? 'text-success' : 'text-danger';
+                    }
+
+                    html += `
+            <tr>
+                <td>Tháng ${month}</td>
+                <td>${formatCurrency(current)}</td>
+                <td class="${changeClass}">${changeText}</td>
+            </tr>
+        `;
+                }
+
+                tableBody.innerHTML = html;
+            }
+        </script>
         <!-- orders -->
         <div id="orders" class="tab-content">
             <h2>Quản lý đặt lịch</h2>
