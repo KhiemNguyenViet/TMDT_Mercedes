@@ -24,7 +24,7 @@ RewriteRule ^admin/dashboard admin/index.php?action=dashboard
 RewriteRule ^product/([^/]+).html view.php?blank=$1
 # RewriteRule ^addon-deal.html addon_deal.php
 # RewriteRule ^coupon-detail.html coupon_detail.php
-# RewriteRule ^bai-viet/([^/]+).html tintuc.php?blank=$1
+RewriteRule ^bai-viet/([^/]+).html tintuc.php?blank=$1
 # RewriteRule ^san-pham/([^/]+).html sanpham_category.php?blank=$1
 # # THêm đường link cho shop
 # RewriteRule ^shop/([^/]+)/san-pham.html sanpham_shop.php?username=$1 [L]
