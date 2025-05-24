@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
+<style>
+    body {
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.style.opacity = "1";
+    });
+
+</script>
 
 <head>
     <meta charset="UTF-8" />
@@ -147,51 +159,56 @@
     <!-- Sản phẩm bán chạy -->
     <div class="sanpham-container">
         <h1 class="title">Sản phẩm bán chạy</h1>
+        <<<<<<< HEAD function fadeOut(element, callback) { element.style.transition='opacity 1s' ;
+            element.style.opacity=0; setTimeout(callback, 500); } let currentImageIndex=0; const
+            mainImage=document.getElementById('mainImage'); const thumbnails=document.querySelectorAll('.thumbnail');>
+            >>>>>> 09f8cd9313fe38989562cffcabad8d5a375452c8
+            >>>>>>> efc33c1d6c2f89400ed469d4c7cbe0319a955aae
 
-        <div class="danh-muc">
-            <h3>Sedan</h3>
-            <div class="sanpham-list">
-                {spsedan_banchay}
-            </div>
-        </div>
-
-        <div class="danh-muc">
-            <h3>SUV</h3>
-            <div class="sanpham-list">
-                {spsuv_banchay}
-            </div>
-        </div>
-
-        <div class="danh-muc">
-            <h3>Coupe</h3>
-            <div class="sanpham-list">
-                {spcoupe_banchay}
-            </div>
-        </div>
-
-        <div class="footer-wrapper">
-            <div class="testdrive-section">
-                <div class="testdrive-overlay">
-                    <form class="testdrive-form" onsubmit="handleSubmit(event)">
-                        <h2 class="form-title">Đăng ký lái thử</h2>
-                        <input type="text" name="name" placeholder="Họ và tên" required />
-                        <input type="tel" name="phone" placeholder="Số điện thoại" required />
-                        <select name="carModel" required>
-                            <option value="">Dòng xe cần tư vấn</option>
-                            {car_models}
-                        </select>
-                        <button type="submit" class="submit-button">Gửi thông tin</button>
-                    </form>
+            <div class="danh-muc">
+                <h3>Sedan</h3>
+                <div class="sanpham-list">
+                    {spsedan_banchay}
                 </div>
             </div>
-            {footer}
-            <script>
-                function handleSubmit(event) {
-                    event.preventDefault();
-                    alert("Thông tin của bạn đã được gửi!");
-                }
 
-            </script>
+            <div class="danh-muc">
+                <h3>SUV</h3>
+                <div class="sanpham-list">
+                    {spsuv_banchay}
+                </div>
+            </div>
+
+            <div class="danh-muc">
+                <h3>Coupe</h3>
+                <div class="sanpham-list">
+                    {spcoupe_banchay}
+                </div>
+            </div>
+
+            <div class="footer-wrapper">
+                <div class="testdrive-section">
+                    <div class="testdrive-overlay">
+                        <form class="testdrive-form" onsubmit="handleSubmit(event)">
+                            <h2 class="form-title">Đăng ký lái thử</h2>
+                            <input type="text" name="name" placeholder="Họ và tên" required />
+                            <input type="tel" name="phone" placeholder="Số điện thoại" required />
+                            <select name="carModel" required>
+                                <option value="">Dòng xe cần tư vấn</option>
+                                {car_models}
+                            </select>
+                            <button type="submit" class="submit-button">Gửi thông tin</button>
+                        </form>
+                    </div>
+                </div>
+                {footer}
+                <script>
+                    function handleSubmit(event) {
+                        event.preventDefault();
+                        alert("Thông tin của bạn đã được gửi!");
+                    }
+
+                </script>
 
 </body>
 

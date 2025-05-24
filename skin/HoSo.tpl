@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
+<style>
+	body {
+		opacity: 0;
+		transition: opacity 0.1s ease-in-out;
+	}
+</style>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		document.body.style.opacity = "1";
+	});
 
+</script>
 <head>
     <meta name="description"
         content="Mercedes-Benz Việt Nam - Đại lý Mercedes-Benz chính hãng, cung cấp xe Mercedes-Benz mới, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">

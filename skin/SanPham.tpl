@@ -14,6 +14,18 @@
     <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
 
 </head>
+<style>
+    body {
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.style.opacity = "1";
+    });
+
+</script>
 
 <body>
     {header}

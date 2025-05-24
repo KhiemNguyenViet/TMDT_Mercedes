@@ -14,6 +14,18 @@
     <link rel="stylesheet" href="../skin/tpl/css/Banner.css">
     <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
 </head>
+<style>
+    body {
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.style.opacity = "1";
+    });
+
+</script>
 
 <body>
     {header}
@@ -194,7 +206,7 @@
             var user_id = $('.user_info').data('user-id');
             console.log('User ID:', user_id);
             formData.append('user_id', user_id);
-            
+
             // Lấy price từ data attribute
             var price = $('.price').data('price');
             console.log('Price:', price);
