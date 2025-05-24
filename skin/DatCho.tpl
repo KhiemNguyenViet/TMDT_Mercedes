@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="form-section">
+        <div class="form-section_datxe">
             <div class="step-nav">
                 <div class="step active">1. Chi tiết thanh toán</div>
                 <div class="step">2. Phương thức thanh toán</div>
@@ -76,7 +76,7 @@
                         alt="Mã QR chuyển tiền" style="max-width: 250px; display: block; margin-bottom: 10px;">
 
                     <label>Chọn ảnh xác nhận chuyển khoản (bắt buộc):</label>
-                    <input type="file" name="payment_image" accept="image/*" required>
+                    <input id="payment_image" type="file" name="payment_image" accept="image/*" required>
 
 
                     <label>Ghi chú thanh toán</label>
@@ -187,6 +187,14 @@
             console.log('Product ID:', product_id);
             formData.append('product_id', product_id);
 
+            var fullName = $('input[name="fullName"]').val();
+            console.log('Full Name:', fullName);
+            formData.append('fullName', fullName);
+
+            var user_id = $('.user_info').data('user-id');
+            console.log('User ID:', user_id);
+            formData.append('user_id', user_id);
+            
             // Lấy price từ data attribute
             var price = $('.price').data('price');
             console.log('Price:', price);

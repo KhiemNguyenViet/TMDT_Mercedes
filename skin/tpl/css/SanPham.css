@@ -76,7 +76,11 @@ body {
 /* Sidebar styles - Cập nhật để sát lề hơn */
 .sidebar {
     width: 220px;
+<<<<<<< HEAD
+    height: 610px;
+=======
     height: 539px;
+>>>>>>> ee45222515f8bb44fa64733cc57db9d91a2e71e7
     flex-shrink: 0;
     background: #fff;
     border-radius: 8px;
