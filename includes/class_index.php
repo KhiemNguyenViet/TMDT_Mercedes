@@ -23,8 +23,8 @@ class class_index extends class_manage
             $row['preferred_time'] = $row['preferred_time'];
             $row['product_name'] = $row['product_name'];
             $row['product_image'] = $row['product_image'];
-            $row['total_amount'] = number_format($row['total_amount'], 0, ',', '.') . ' vnđ';
-            $row['deposit_amount'] = number_format($row['deposit_amount'], 0, ',', '.') . ' vnđ';
+            $row['total_amount'] = number_format($row['total_amount'], 0, ',', '.') . ' VND';
+            $row['deposit_amount'] = number_format($row['deposit_amount'], 0, ',', '.') . ' VND';
             $row['bank_name'] = $row['bank_name'];
             $row['bank_branch'] = $row['bank_branch'];
             $row['bank_account_number'] = $row['bank_account_number'];
@@ -90,7 +90,7 @@ class class_index extends class_manage
             $row['stock'] = $row['stock'];
             $row['name'] = $row['name_car'];
             $row['image'] = $row['image_car'];
-            $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
+            $row['price'] = number_format($row['price'], 0, ',', '.') . ' VND';
             $list .= $skin->skin_replace('skin/box_li/li_glcbanchay', $row);
         }
         return $list;
@@ -108,7 +108,7 @@ class class_index extends class_manage
 
             $row['name'] = $row['name_car'];
             $row['image'] = $row['image_car'];
-            $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
+            $row['price'] = number_format($row['price'], 0, ',', '.') . ' VND';
             $list .= $skin->skin_replace('skin/box_li/li_suvbanchay', $row);
         }
         return $list;
@@ -125,7 +125,7 @@ class class_index extends class_manage
             $row['stock'] = $row['stock'];
             $row['name'] = $row['name_car'];
             $row['image'] = $row['image_car'];
-            $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
+            $row['price'] = number_format($row['price'], 0, ',', '.') . ' VND';
             $list .= $skin->skin_replace('skin/box_li/li_coupebanchay', $row);
         }
         return $list;
@@ -203,7 +203,7 @@ class class_index extends class_manage
                 'stock' => $row['stock'],
                 'name' => $row['name_car'],
                 'image' => $row['image_car'],
-                'price' => number_format($row['price'], 0, ',', '.') . ' vnđ',
+                'price' => number_format($row['price'], 0, ',', '.'),
                 'description' => $row['description_car'],
                 'id' => $row['id'],
                 'category_id' => $row['category_id'],
@@ -306,7 +306,7 @@ class class_index extends class_manage
             $row['name'] = $row['name_car'];
             $row['image'] = $row['image_car'];
             $row['description'] = $row['description_car'];
-            $row['price'] = number_format($row['price'], 0, ',', '.') . ' vnđ';
+            $row['price'] = number_format($row['price'], 0, ',', '.') . ' VND';
             $list .= $this->skin->skin_replace('skin/box_li/li_sanpham', $row);
         }
 
