@@ -65,6 +65,8 @@
 }
 
 .dichvu-button {
+    color: black;
+    text-decoration: none;
     padding: 10px 20px;
     font-size: 16px;
     background: transparent;

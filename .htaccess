@@ -6,6 +6,12 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 #RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|css|js|svg|ico|webp|woff|woff2|ttf|eot|otf|mp4|mp3)$ [NC]
 #RewriteRule ^(.*)$ baotri.php [L]
 RewriteRule ^index.html index.php
+RewriteRule ^huongdansudung.html huongdansudung.php
+RewriteRule ^baoduongdinhky.html baoduongdinhky.php
+RewriteRule ^dichvucuuhoc.html dichvucuuhoc.php
+RewriteRule ^tuvanmienphi.html tuvanmienphi.php
+RewriteRule ^giaoxe.html giaoxe.php
+RewriteRule ^doitra.html doitra.php
 RewriteRule ^login.html login.php
 RewriteRule ^register.html register.php
 RewriteRule ^thuonghieu.html thuonghieu.php
