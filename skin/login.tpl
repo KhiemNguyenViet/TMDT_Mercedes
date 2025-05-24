@@ -63,7 +63,18 @@
         }
     </style> -->
 </head>
+<style>
+	body {
+		opacity: 0;
+		transition: opacity 0.1s ease-in-out;
+	}
+</style>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		document.body.style.opacity = "1";
+	});
 
+</script>
 <body>
     {header}
     <div class="login-container">

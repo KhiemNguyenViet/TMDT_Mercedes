@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
+<style>
+    body {
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.style.opacity = "1";
+    });
+
+</script>
 
 <head>
     <meta charset="UTF-8" />
@@ -42,7 +54,7 @@
         function fadeOut(element, callback) {
             element.style.transition = 'opacity 1s';
             element.style.opacity = 0;
-            setTimeout(callback, 500); 
+            setTimeout(callback, 500);
         }
 
         function fadeIn(element) {
