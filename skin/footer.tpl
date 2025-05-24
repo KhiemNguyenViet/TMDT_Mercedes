@@ -55,6 +55,7 @@
     }
 
     .footer-column h3 {
+        height:7%;
         color: #fff;
         font-size: 18px;
         margin-bottom: 20px;
