@@ -332,7 +332,7 @@
             </div>
 
             <div class="chart-container">
-                <canvas id="revenueChart"></canvas>
+                <canvas id="revenueChart" style="width: 100% !important;"></canvas>
             </div>
 
             <div class="revenue-table-container">
