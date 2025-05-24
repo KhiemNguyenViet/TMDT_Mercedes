@@ -7,8 +7,8 @@ function getMonthlyRevenue($conn)
 
     $query = "SELECT 
                 MONTH(created_at) as month, 
-                SUM(amount) as total 
-              FROM orders_car 
+                SUM(total_amount) as total 
+              FROM orders 
               WHERE 
                 YEAR(created_at) = YEAR(CURRENT_DATE) 
                 AND status = 'completed' 
@@ -22,6 +22,7 @@ function getMonthlyRevenue($conn)
 
     return $revenue;
 }
+<<<<<<< HEAD
 $monthly_revenue = [
     1 => 5200000000, 
     2 => 6100000000, 
@@ -36,9 +37,16 @@ $monthly_revenue = [
     11 => 12800000000,
     12 => 15000000000, 
 ];
+=======
+>>>>>>> 09f8cd9313fe38989562cffcabad8d5a375452c8
 
+// Lấy doanh thu hàng tháng từ cơ sở dữ liệu
+$monthly_revenue = getMonthlyRevenue($conn);
+
+// Tính tổng doanh thu
 $total_revenue = array_sum($monthly_revenue);
 
+// Chuẩn bị dữ liệu cho biểu đồ
 $chart_data = [
     'labels' => [
         'Tháng 1',
@@ -57,6 +65,7 @@ $chart_data = [
     'values' => array_values($monthly_revenue)
 ];
 
+// Tính toán sự thay đổi hàng tháng
 $monthly_changes = [];
 for ($i = 1; $i <= 12; $i++) {
     $current = $monthly_revenue[$i];
@@ -74,6 +83,7 @@ for ($i = 1; $i <= 12; $i++) {
     ];
 }
 
+// Trả về dữ liệu dưới dạng JSON
 header('Content-Type: application/json');
 echo json_encode([
     'monthly_revenue' => $monthly_revenue,
