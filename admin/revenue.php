@@ -22,23 +22,6 @@ function getMonthlyRevenue($conn)
 
     return $revenue;
 }
-<<<<<<< HEAD
-$monthly_revenue = [
-    1 => 5200000000, 
-    2 => 6100000000, 
-    3 => 7500000000, 
-    4 => 6800000000, 
-    5 => 8200000000, 
-    6 => 9100000000, 
-    7 => 8500000000,  
-    8 => 9800000000,  
-    9 => 10200000000, 
-    10 => 11500000000, 
-    11 => 12800000000,
-    12 => 15000000000, 
-];
-=======
->>>>>>> 09f8cd9313fe38989562cffcabad8d5a375452c8
 
 // Lấy doanh thu hàng tháng từ cơ sở dữ liệu
 $monthly_revenue = getMonthlyRevenue($conn);
