@@ -11,7 +11,35 @@
             <button class="toggle-password" onclick="togglePassword('pw_{user_id}', this)">&#128065;&#x20E0;</button>
         </div>
     </td>
+    <td>
+        <button class="button edit" data-id="{user_id}">Sửa</button>
+        <button class="button delete" data-user-id="{user_id}">Xóa</button>
+    </td>
 </tr>
+<div class="box_confirm" style="display: none;">
+    <div class="box_confirm_content">
+        <div class="title" style="color: #d9534f; font-weight: bold; text-align: center;">
+            Xác nhận xóa tài khoản này không?
+        </div>
+        <div style="text-align: center; margin: 20px 0;">
+            Bạn có chắc chắn muốn xóa tài khoản này không?
+        </div>
+        <div style="text-align: center;">
+            <button id="confirm_yes"
+                style="background: #ff0000; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-right: 10px;">Thực
+                hiện</button>
+            <button id="confirm_no"
+                style="background: #0066cc; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Hủy</button>
+        </div>
+    </div>
+</div>
+<div class="load_overlay" style="display: none;"></div>
+<div class="load_process" style="display: none;">
+    <div class="load_content">
+        <img src="/hinhanh/load.gif" alt="loading" width="70">
+        <div class="load_note">Hệ thống đang xử lý</div>
+    </div>
+</div>
 <style>
     .load_overlay {
         position: fixed;

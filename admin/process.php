@@ -146,7 +146,7 @@ if ($action == "dangnhap") {
 				}
 			}
 		}
-		
+
 		echo json_encode([
 			'success' => true,
 			'message' => 'Cập nhật trạng thái thành công'
@@ -197,30 +197,77 @@ if ($action == "dangnhap") {
 	echo json_encode(['ok' => $ok, 'message' => $message]);
 	exit;
 } else if ($action == 'delete_user') {
+	// Get and validate ID
 	$id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-
-	$check_query = mysqli_query($conn, "SELECT COUNT(*) as total FROM users WHERE user_id='$id' AND role='user'");
-	$result = mysqli_fetch_assoc($check_query);
-
-	if ($result['total'] == 0) {
-		$ok = 0;
-		$message = 'Không tìm thấy người dùng hoặc không có quyền xóa';
-	} else {
-		if (mysqli_query($conn, "DELETE FROM users WHERE user_id='$id' AND role='user'")) {
-			$ok = 1;
-			$message = 'Xóa người dùng thành công';
-		} else {
-			$ok = 0;
-			$message = 'Lỗi khi xóa người dùng';
-		}
+	if ($id <= 0) {
+		ob_end_clean();
+		echo json_encode([
+			'ok' => 0,
+			'message' => 'ID người dùng không hợp lệ'
+		]);
+		exit;
 	}
 
-	ob_end_clean();
-	echo json_encode([
-		'ok' => $ok,
-		'message' => $message
-	]);
-	exit;
+	// Ensure database connection
+	if (!$conn) {
+		ob_end_clean();
+		echo json_encode([
+			'ok' => 0,
+			'message' => 'Lỗi kết nối cơ sở dữ liệu'
+		]);
+		exit;
+	}
+
+	// Check if user exists
+	$stmt = $conn->prepare("SELECT COUNT(*) as total FROM users WHERE user_id = ?");
+	$stmt->bind_param("i", $id);
+	if (!$stmt->execute()) {
+		$stmt->close();
+		$conn->close();
+		ob_end_clean();
+		echo json_encode([
+			'ok' => 0,
+			'message' => 'Lỗi truy vấn kiểm tra: ' . $conn->error
+		]);
+		exit;
+	}
+	$result = $stmt->get_result()->fetch_assoc();
+	error_log("User ID: $id, Total: " . $result['total']);
+
+	if ($result['total'] == 0) {
+		$stmt->close();
+		$conn->close();
+		ob_end_clean();
+		echo json_encode([
+			'ok' => 0,
+			'message' => 'Không tìm thấy người dùng'
+		]);
+		exit;
+	}
+
+	$stmt = $conn->prepare("DELETE FROM users WHERE user_id = ?");
+	$stmt->bind_param("i", $id);
+	if ($stmt->execute()) {
+		$affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		$conn->close();
+		ob_end_clean();
+		echo json_encode([
+			'ok' => $affected_rows > 0 ? 1 : 0,
+			'message' => $affected_rows > 0 ? 'Xóa người dùng thành công' : 'Không có người dùng nào bị xóa'
+		]);
+		exit;
+	} else {
+		$error = $conn->error;
+		$stmt->close();
+		$conn->close();
+		ob_end_clean();
+		echo json_encode([
+			'ok' => 0,
+			'message' => 'Lỗi khi xóa người dùng: ' . $error
+		]);
+		exit;
+	}
 } else if ($action == 'update_product') {
 	if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 		$fileTmpPath = $_FILES['image']['tmp_name'];
@@ -325,6 +372,54 @@ if ($action == "dangnhap") {
 		error_log("Upload error: " . $uploadError);
 		echo json_encode(['ok' => 0, 'message' => 'Vui lòng chọn ảnh sản phẩm. Error: ' . $uploadError]);
 	}
+} else if ($action === 'update_user') {
+	$user_id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+	$full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+	$phone = mysqli_real_escape_string($conn, $_POST['phone']);
+	$email = mysqli_real_escape_string($conn, $_POST['email']);
+	$username = mysqli_real_escape_string($conn, $_POST['username']);
+	$address = mysqli_real_escape_string($conn, $_POST['address']);
+
+	// Validate inputs
+	if (empty($full_name) || empty($email) || empty($username)) {
+		echo json_encode([
+			'ok' => 0,
+			'message' => 'Vui lòng điền đầy đủ thông tin bắt buộc'
+		]);
+		exit;
+	}
+
+	// Check if user exists
+	$check = mysqli_query($conn, "SELECT user_id FROM users WHERE user_id = '$user_id'");
+	if (mysqli_num_rows($check) == 0) {
+		echo json_encode([
+			'ok' => 0,
+			'message' => 'Không tìm thấy người dùng'
+		]);
+		exit;
+	}
+
+	// Update user information
+	$query = "UPDATE users SET 
+        full_name = '$full_name',
+        phone = '$phone',
+        email = '$email',
+        username = '$username',
+        address = '$address'
+        WHERE user_id = '$user_id'";
+
+	if (mysqli_query($conn, $query)) {
+		echo json_encode([
+			'ok' => 1,
+			'message' => 'Cập nhật thành công'
+		]);
+	} else {
+		echo json_encode([
+			'ok' => 0,
+			'message' => 'Lỗi cập nhật: ' . mysqli_error($conn)
+		]);
+	}
+	exit;
 } else if ($action == 'add_product') {
 	if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 		$fileTmpPath = $_FILES['image']['tmp_name'];
@@ -412,4 +507,3 @@ if ($action == "dangnhap") {
 		echo json_encode(['ok' => 0, 'message' => 'Vui lòng chọn ảnh sản phẩm. Error: ' . $uploadError]);
 	}
 }
-?>
