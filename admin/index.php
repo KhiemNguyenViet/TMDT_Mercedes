@@ -35,12 +35,25 @@ if ($action == "edit_product") {
         $row['list_category'] = $list_category;
         $row['id'] = $row['id'];
         $row['name_featured'] = $row['featured'] == 1 ? 'Có' : 'Không';
-        // $row['name'] = $row['name'];
         $row['price'] = number_format($row['price'], 0, ',', '.');
-        // $row['description'] = $row['description'];
-        // $row['stock'] = $row['stock'];
-        // $row['image'] = $row['image'];
-        // $row['featured'] = $row['featured'];
         echo $skin->skin_replace('skin_adm/edit_product', $row);
 }
-?>
+if ($action == "edit_user") {
+        $id = (int)$_REQUEST['id'];
+        $query = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$id' LIMIT 1");
+        $user = mysqli_fetch_assoc($query);
+
+        if (!$user) {
+                $thongbao = "Không tìm thấy người dùng";
+                $replace = array(
+                        'title' => 'Không tìm thấy người dùng',
+                        'description' => $index_setting['description'],
+                        'thongbao' => $thongbao,
+                        'link_chuyen' => '/admin/dashboard'
+                );
+                echo $skin->skin_replace('skin_cpanel/chuyenhuong', $replace);
+                exit();
+        }
+
+        echo $skin->skin_replace('skin_adm/edit_user', $user);
+}

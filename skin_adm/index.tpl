@@ -310,6 +310,7 @@
                         <th>Địa chỉ</th>
                         <th>Tên tài khoản</th>
                         <th>Mật khẩu</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>

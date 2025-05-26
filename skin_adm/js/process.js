@@ -1,15 +1,12 @@
 function editProduct(id) {
-    // Redirect to edit page
     window.location.href = '/admincp/edit-product?id=' + id;
 }
-// Hoặc nếu muốn dùng Ajax load form:
 function editProduct(id) {
     $.ajax({
         url: '/admincp/edit-product',
         type: 'GET',
         data: { id: id },
         success: function (response) {
-            // Hiển thị form edit trong modal
             $('#editModal').html(response).show();
         },
         error: function (xhr, status, error) {
@@ -17,7 +14,6 @@ function editProduct(id) {
         }
     });
 }
-// Đóng modal
 function closeEditModal() {
     $('#editModal').hide();
 }
@@ -32,7 +28,6 @@ function showNotification(message) {
 $(document).ready(function () {
     ////////////////////////////////////////
     window.updateStatus = function (id, status) {
-        // Tạo thông báo xác nhận
         let message = '';
         switch (status) {
             case 'confirmed':
@@ -65,20 +60,6 @@ $(document).ready(function () {
                 try {
                     let result = JSON.parse(response);
                     if (result.success) {
-                        // Cập nhật trạng thái trực tiếp trên giao diện
-                        // let trangThai = status === 'completed' ? 'Đã hoàn thành' : 'Đã hủy';
-                        // let mauBadge = status === 'completed' ? 'success' : 'danger';
-
-                        // // Cập nhật text trạng thái
-                        // $(`#order_${id} .status-badge`).text(trangThai)
-                        //     .removeClass('status-pending status-completed status-cancelled')
-                        //     .addClass(`status-${status}`);
-
-                        // // Ẩn nút thao tác và hiển thị badge
-                        // $(`#order_${id} .action-buttons`).html(
-                        //     `<span class="badge badge-${mauBadge}">${trangThai}</span>`
-                        // );
-
                         alert(result.message);
                         location.reload();
                     } else {
@@ -95,14 +76,20 @@ $(document).ready(function () {
             }
         });
     };
+
     $('.button.delete').click(function () {
+        var $button = $(this);
         var userId = $(this).closest('tr').attr('id').replace('user_', '');
         var $boxConfirm = $('.box_confirm');
         var $loadOverlay = $('.load_overlay');
         var $loadProcess = $('.load_process');
         var $loadNote = $('.load_note');
 
-        // Show confirmation box with smooth animation
+        if ($button.prop('disabled')) return;
+        $button.prop('disabled', true);
+
+        console.log('Deleting user ID:', userId);
+
         $boxConfirm.css({
             'opacity': '0',
             'display': 'flex'
@@ -110,9 +97,7 @@ $(document).ready(function () {
             'opacity': '1'
         }, 300);
 
-        // Handle confirm delete
         function handleDelete() {
-            // Show loading with smooth transition
             $loadOverlay.fadeIn(300);
             $loadProcess.fadeIn(300);
             $loadNote.html('Đang xử lý...');
@@ -126,37 +111,33 @@ $(document).ready(function () {
                 },
                 dataType: 'json',
                 success: function (response) {
+                    console.log('Response:', response);
                     $loadNote.fadeOut(200, function () {
                         $(this).html(response.message).fadeIn(200);
                     });
 
                     if (response.ok === 1) {
-                        // Fade out the deleted row
                         $('#user_' + userId).fadeOut(500, function () {
                             $(this).remove();
                         });
 
-                        // Hide all overlays smoothly
                         setTimeout(function () {
                             $loadProcess.fadeOut(300);
                             $loadOverlay.fadeOut(300);
                             $boxConfirm.fadeOut(300);
-
-                            // Only reload if needed
-                            setTimeout(function () {
-                                location.reload();
-                            }, 300);
+                            $button.prop('disabled', false);
                         }, 1000);
                     } else {
-                        // Hide overlays on error
                         setTimeout(function () {
                             $loadProcess.fadeOut(300);
                             $loadOverlay.fadeOut(300);
                             $boxConfirm.fadeOut(300);
+                            $button.prop('disabled', false);
                         }, 1000);
                     }
                 },
-                error: function () {
+                error: function (xhr, status, error) {
+                    console.log('AJAX Error:', status, error);
                     $loadNote.fadeOut(200, function () {
                         $(this).html('Có lỗi xảy ra').fadeIn(200);
                     });
@@ -165,12 +146,12 @@ $(document).ready(function () {
                         $loadProcess.fadeOut(300);
                         $loadOverlay.fadeOut(300);
                         $boxConfirm.fadeOut(300);
+                        $button.prop('disabled', false);
                     }, 1000);
                 }
             });
         }
 
-        // One-time event handlers
         function handleConfirm(e) {
             e.preventDefault();
             $(document).off('click', '#confirm_yes', handleConfirm);
@@ -183,9 +164,9 @@ $(document).ready(function () {
             $(document).off('click', '#confirm_yes', handleConfirm);
             $(document).off('click', '#confirm_no', handleCancel);
             $boxConfirm.fadeOut(300);
+            $button.prop('disabled', false);
         }
 
-        // Attach handlers
         $(document).on('click', '#confirm_yes', handleConfirm);
         $(document).on('click', '#confirm_no', handleCancel);
     });
@@ -193,10 +174,8 @@ $(document).ready(function () {
         var productId = $(this).closest('tr').attr('id').replace('product-', '');
         var $boxConfirm = $('.box_confirm');
 
-        // Hiện box confirm
         $boxConfirm.fadeIn(200).css('display', 'flex');
 
-        // Bind event cho nút Thực hiện
         $(document).on('click', '#confirm_yes', function () {
             $('.load_overlay').show();
             $('.load_process').fadeIn();
@@ -221,8 +200,8 @@ $(document).ready(function () {
                             $boxConfirm.fadeOut(200);
 
                             if (response.ok === 1) {
-                                $('#product-' + productId).remove(); // Xóa hàng khỏi bảng
-                                location.reload(); // Reload trang
+                                $('#product-' + productId).remove();
+                                location.reload();
                             }
                         }, 500);
                     } catch (e) {
@@ -246,23 +225,23 @@ $(document).ready(function () {
                 }
             });
 
-            // Unbind event sau khi xử lý
             $(document).off('click', '#confirm_yes');
         });
 
-        // Bind event cho nút Hủy
         $(document).on('click', '#confirm_no', function () {
             $boxConfirm.fadeOut(200);
-            // Unbind các event
             $(document).off('click', '#confirm_yes');
             $(document).off('click', '#confirm_no');
         });
     });
+    $('.button.edit').click(function () {
+        const userId = $(this).data('id');
+        window.location.href = `index.php?action=edit_user&id=${userId}`;
+    });
+
     $('.btn-edit_product').click(function () {
-        // Tạo FormData từ form        
         var formData = new FormData($('#productForm')[0]);
         formData.append('action', 'update_product');
-        // Lấy các giá trị input        
         formData.append('name_product', $('#productForm #name').val());
         formData.append('category_id', $('#productForm #category').val());
         formData.append('price', $('#productForm #price').val());
@@ -270,7 +249,6 @@ $(document).ready(function () {
         formData.append('description', $('#productForm #description').val());
         formData.append('featured', $('#productForm #featured').val());
         formData.append('engine_type', $('#productForm #engine_type').val());
-        // Thêm các thông số kỹ thuật vào FormData        
         formData.append('displacement_cc', $('#productForm #displacement').val());
         formData.append('horsepower_hp', $('#productForm #horsepower').val());
         formData.append('torque_nm', $('#productForm #torque').val());
@@ -310,9 +288,7 @@ $(document).ready(function () {
         });
     });
     $('.btn-add_product').click(function () {
-        // Tạo FormData từ form                
         var formData = new FormData();
-        // Thêm file ảnh        
         var imageFile = $('#productForm_add #image')[0].files[0];
         if (imageFile) {
             formData.append('image', imageFile);
@@ -321,14 +297,12 @@ $(document).ready(function () {
             return;
         }
         formData.append('action', 'add_product');
-        // Lấy các giá trị input cơ bản        
         formData.append('name_product', $('#productForm_add #name').val());
         formData.append('category_id', $('#productForm_add #category').val());
         formData.append('price', $('#productForm_add #price').val().replace(/[^0-9]/g, ''));
         formData.append('stock', $('#productForm_add #stock').val());
         formData.append('description', $('#productForm_add #description').val());
         formData.append('featured', $('#productForm_add #featured').val());
-        // Thông số kỹ thuật        
         formData.append('engine_type', $('#productForm_add #engine_type').val());
         formData.append('displacement_cc', $('#productForm_add #displacement').val());
         formData.append('horsepower_hp', $('#productForm_add #horsepower').val());
@@ -337,7 +311,6 @@ $(document).ready(function () {
         formData.append('drive_type', $('#productForm_add #drive_type').val());
         formData.append('fuel_consumption_l_100km', $('#productForm_add #fuel_consumption').val());
         formData.append('acceleration_0_100_s', $('#productForm_add #acceleration').val());
-        // Kích thước và tính năng        
         formData.append('length_mm', $('#productForm_add #length').val());
         formData.append('width_mm', $('#productForm_add #width').val());
         formData.append('height_mm', $('#productForm_add #height').val());

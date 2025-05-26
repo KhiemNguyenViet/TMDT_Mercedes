@@ -111,7 +111,7 @@ $(document).ready(function () {
                         } else if (info.ok == 2) {
                             $('.load_note').html('Đăng nhập thành công! Đang chuyển hướng...');
                             setTimeout(function () {
-                                window.location.href = '/index.html';
+                                window.location.href = '/';
                             }, 1000);
                         } else {
                             $('.load_note').html(info.thongbao || 'Đăng nhập thất bại');
