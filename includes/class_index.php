@@ -23,8 +23,8 @@ class class_index extends class_manage
             $row['preferred_time'] = $row['preferred_time'];
             $row['product_name'] = $row['product_name'];
             $row['product_image'] = $row['product_image'];
-            $row['total_amount'] = number_format($row['total_amount'], 0, ',', '.') . ' VND';
-            $row['deposit_amount'] = number_format($row['deposit_amount'], 0, ',', '.') . ' VND';
+            $row['total_amount'] = number_format($row['total_amount'], 0, ',', '.');
+            $row['deposit_amount'] = number_format($row['deposit_amount'], 0, ',', '.');
             $row['bank_name'] = $row['bank_name'];
             $row['bank_branch'] = $row['bank_branch'];
             $row['bank_account_number'] = $row['bank_account_number'];

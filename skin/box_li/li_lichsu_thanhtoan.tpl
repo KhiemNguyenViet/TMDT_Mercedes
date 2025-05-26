@@ -1,5 +1,5 @@
 <tr>
-    <td>#{id}</td>
+    <td style="text-align: center;">#{id}</td>
     <td>
         <div class="d-flex align-items-center">
             <img src="../uploads/{product_image}" class="img-thumbnail me-2" style="width: 50px; height: 50px; object-fit: cover;">
