@@ -21,7 +21,7 @@ class class_cpanel extends class_manage
         $skin = $this->load('class_skin_cpanel');
         $list = '';
         $i = 0;
-        $query = mysqli_query($conn, "SELECT o.*, p.name_car as product_name FROM orders o LEFT JOIN products p ON o.product_id = p.id ");
+        $query = mysqli_query($conn, "SELECT o.*, p.name_car as product_name FROM orders o LEFT JOIN products p ON o.product_id = p.id ORDER BY o.id DESC");
         while ($row = mysqli_fetch_assoc($query)) {
             $i++;
             $row['stt'] = $i;
@@ -130,7 +130,7 @@ class class_cpanel extends class_manage
                     <button type="button" class="btn-confirm" data-id="' . $row['id'] . '">
                         Xác nhận
                     </button>
-                    <button type="button" class="btn-cancel">
+                    <button type="button" class="btn-cancel" data-id="' . $row['id'] . '">
                         Hủy
                     </button>';
                     break;
@@ -140,7 +140,7 @@ class class_cpanel extends class_manage
                     <button type="button" class="btn-complete" data-id="' . $row['id'] . '">
                         Hoàn thành
                     </button>   
-                    <button type="button" class="btn-cancel">
+                    <button type="button" class="btn-cancel" data-id="' . $row['id'] . '">
                         Hủy
                     </button>';
                     break;
@@ -151,6 +151,13 @@ class class_cpanel extends class_manage
                 case 'cancelled':
                     $row['status_text'] = 'Đã hủy';
                     $row['action_buttons'] = '<span class="badge badge-danger">Đã hủy</span>';
+                    break;
+                case 'processing':
+                    $row['status_text'] = 'Khách hàng yêu cầu hủy';
+                    $row['action_buttons'] = '
+                    <button type="button" class="btn-cancel" data-id="' . $row['id'] . '">
+                        Xác nhận hủy
+                    </button>';
                     break;
             }
 

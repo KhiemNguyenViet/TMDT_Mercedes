@@ -47,6 +47,7 @@
                         <th>Xe đăng ký</th>
                         <th>Ghi chú</th>
                         <th>Trạng thái</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,8 +58,133 @@
             </table>
         </div>
     </div>
+    <style>
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+        #popup_khuy_laithu {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            width: 350px;
+            border-radius: 10px;
+            display: none;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+        }
+        #popup_khuy_laithu h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
+            text-align: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+        #popup_khuy_laithu form {
+            display: flex;
+            flex-direction: column;
+        }
+        #popup_khuy_laithu label {
+            color: #555;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        #popup_khuy_laithu input[type="email"],
+        #popup_khuy_laithu input[type="text"],
+        #popup_khuy_laithu textarea {    
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        #popup_khuy_laithu input[type="email"]:focus,
+        #popup_khuy_laithu input[type="text"]:focus,
+        #popup_khuy_laithu textarea:focus {      
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+            outline: none;
+        }
+        #popup_khuy_laithu textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        #popup_khuy_laithu button[type="submit"] {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            margin-top: 5px;
+        }
+        #popup_khuy_laithu button[type="submit"]:hover {
+            background: #357abd;
+        }
+
+        #popup_khuy_laithu button.close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        #popup_khuy_laithu button.close:hover {
+            background: #ff6b81;
+        }
+    </style>
+    <div id="overlay"></div>
+    <div id="popup_khuy_laithu">
+        <button class="close" onclick="closePopup_khuy_laithu()">×</button>
+        <h3>Khách hàng gửi email yêu cầu hủy lịch lái thử</h3>
+        <p style="font-size: 12px; color: #e21616; font-style: italic; text-align: center;">*Gửi email để hủy lịch
+            lái thử*</p>
+        <form action="../admin/sendmail.php" method="POST">
+            <label class="hidden">Đến email:</label><br>
+            <input class="hidden" type="email" name="to_email" required value="khiemnguyenviet.2004@gmail.com" readonly><br><br>
+            <label>Email khách hàng:</label><br>
+            <input type="email" name="from_email" value="{email_khachhang}" required><br><br>
+
+            <label>Tiêu đề:</label><br>
+            <input type="text" name="subject" required value="Yêu cầu hủy lịch lái thử" readonly><br><br>
+
+            <label>Nội dung:</label><br>
+            <textarea name="message" rows="4" required placeholder="Nhập nội dung email"></textarea><br><br>
+
+            <button type="submit" name="khachhangsend" onclick="kh_updateStatus(currentTestDriveId, 'processing')">Gửi</button>
+        </form>
+    </div>
     {footer}
     <style>
+        .hidden {
+            display: none;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -184,5 +310,27 @@
         }
     </style>
 </body>
+<script>
+    let currentTestDriveId = null;
+    const popup_khuy_laithu = document.getElementById('popup_khuy_laithu');
+    const overlay = document.getElementById('overlay');
+
+    // Lặp qua tất cả các nút xác nhận
+    document.querySelectorAll('.btn-khachhang-cancel').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            currentTestDriveId = this.dataset.id;
+            console.log("Mở popup cho ID:", currentTestDriveId);
+            popup_khuy_laithu.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+    });
+
+    function closePopup_khuy_laithu() {
+        popup_khuy_laithu.style.display = 'none';
+        overlay.style.display = 'none';
+        currentTestDriveId = null;
+    }
+    overlay.addEventListener('click', closePopup_khuy_laithu);
+</script>
 
 </html>

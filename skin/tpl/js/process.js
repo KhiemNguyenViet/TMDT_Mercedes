@@ -312,7 +312,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (response) {
                 if (response.ok === 1) {
-                    alert('Yêu cầu đặt lịch lái thử xe của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất!');
+                    alert('Yêu cầu đặt lịch lái thử xe của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất, xin quý khách vui lòng để ý kiểm tra email để nhận thông báo.');
                     setTimeout(function () {
                         $('#bookingPopup').hide();
                         $('form#bookingForm')[0].reset();
@@ -367,6 +367,43 @@ $(document).ready(function () {
         // Nếu đã đăng nhập thì mở popup đặt lịch
         $('#bookingPopup').css('display', 'flex');
     });
+
+    window.kh_updateStatus = function (id, status) {
+        let message = '';
+        switch (status) {
+            case 'processing':
+                message = 'Bạn có chắc muốn hủy lịch lái thử xe này?';
+                break;
+        }
+
+        if(!confirm(message)){
+            return;
+        }
+
+        $.ajax({
+            url: '/process.php',    
+            type: 'POST',
+            data: {
+                action: 'kh_cancel_lichlai',
+                id: id,
+                status: status
+            },
+            success: function (response) {
+                console.log(response);
+                try{
+                    let result = JSON.parse(response);
+                    if(result.ok == 1){
+                        toastr.success(result.thongbao);
+                    }else{
+                        toastr.error(result.thongbao);
+                    }
+                }catch(e){
+                    console.error('Lỗi:', e);
+                }
+            }
+        });
+    }
+    
 
     // Xử lý đặt giữ chỗ xe
     // Xử lý đặt giữ chỗ xe

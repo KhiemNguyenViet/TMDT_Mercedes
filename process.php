@@ -82,6 +82,7 @@ if ($action == "datlich") {
     $product = $result->fetch_assoc();
     $formatted_price = number_format($product['price'], 0, ',', '.') . ' VNĐ';
     $replace = array(
+        'fullName' => $user_info['full_name'],
         'header' => $header,
         'footer' => $skin->skin_normal('skin/footer'),
         'product.id' => $product['id'],
@@ -117,7 +118,7 @@ if ($action == "datlich") {
             $salutation = addslashes(strip_tags($_POST['salutation']));
             $user_id = addslashes(strip_tags($_POST['user_id']));
             $product_id = addslashes(strip_tags($_POST['product_id']));
-            $username = addslashes(strip_tags($_POST['username']));
+            $username = addslashes(strip_tags($_POST['fullName']));
             $phoneNumber = addslashes(strip_tags($_POST['phoneNumber']));
             $email = addslashes(strip_tags($_POST['email']));
             $address = addslashes(strip_tags($_POST['address']));
@@ -147,7 +148,7 @@ if ($action == "datlich") {
             if ($result) {
                 $update_stock = mysqli_query($conn, "UPDATE products SET stock = stock - 1 WHERE id = '$product_id'");
                 if($update_stock){
-                    echo json_encode(['ok' => 1, 'thongbao' => 'Đặt giữ chỗ xe thành công']);
+                    echo json_encode(['ok' => 1, 'thongbao' => 'Đặt giữ chỗ xe thành công. Xin vui lòng quý khách kiểm tra email đợi nhận thông tin xử lý đơn hàng.']);
                 }else{
                     echo json_encode(['ok' => 0, 'thongbao' => 'Đặt giữ chỗ xe thành công nhưng cập nhật lại số lượng xe thất bại: ' . $conn->error]);
                 }
@@ -223,5 +224,11 @@ if ($action == "datlich") {
         error_log("Upload error: " . $uploadError);
         echo json_encode(['ok' => 0, 'thongbao' => 'Vui lòng chọn ảnh đại diện. Error: ' . $uploadError]);
     }
+}else if ($action == "kh_cancel_lichlai") {
+    $id = addslashes(strip_tags($_POST['id']));
+    $status = addslashes(strip_tags($_POST['status']));
+    $sql = "UPDATE test_drives SET status = '$status' WHERE id = '$id'";
+    $result = $conn->query($sql);
+    echo json_encode(['ok' => 1, 'thongbao' => 'Đã hủy yêu cầu hủy lịch lái thử xe. Xin vui lòng kiểm tra email đợi nhận thông tin xử lý lịch lái thử.']);
 }
 ?>

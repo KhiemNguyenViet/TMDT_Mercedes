@@ -8,4 +8,5 @@
     <td>{car_name}</td>
     <td>{note}</td>
     <td><span class="status {status}">{status}</span></td>
+    <td>{action_buttons}</td>
 </tr>

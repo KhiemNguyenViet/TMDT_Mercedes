@@ -60,7 +60,7 @@
                     </select>
 
                     <label class="user_info" data-user-id="{user_id}">Họ và Tên*</label>
-                    <input type="text" value="{username}" name="fullName" placeholder="Nhập họ và tên" required>
+                    <input type="text" value="{fullName}" name="fullName" placeholder="Nhập họ và tên" required>
 
                     <label>SĐT*</label>
                     <input type="tel" value="{phone}" name="phoneNumber" pattern="[0-9]{10,11}"
@@ -225,6 +225,9 @@
                 return;
             }
 
+            // console.log('Form data:', formData);
+            // debugger;
+            // die();
             // Disable button
             $(this).prop('disabled', true).text('Đang xử lý...');
 

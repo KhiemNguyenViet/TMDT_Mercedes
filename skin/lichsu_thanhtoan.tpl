@@ -476,7 +476,12 @@
 <script>
     // Hàm mở popup
     function openPopup(popupId) {
-        document.getElementById(popupId).style.display = 'flex';
+        var popupElement = document.getElementById(popupId);
+        if (popupElement) {
+            popupElement.style.display = 'flex';
+        } else {
+            console.error('Popup không tồn tại với ID:', popupId);
+        }
     }
 
     // Hàm đóng popup

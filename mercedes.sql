@@ -87,7 +87,7 @@ CREATE TABLE test_drives (
     product_id INT NOT NULL,
     preferred_date DATE NOT NULL,
     preferred_time TIME NOT NULL,
-    status ENUM('pending', 'confirmed', 'completed', 'cancelled') DEFAULT 'pending',
+    status ENUM('pending', 'confirmed', 'completed', 'cancelled','processing') DEFAULT 'pending',
     notes TEXT,
     location VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

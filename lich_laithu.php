@@ -16,10 +16,12 @@ if (isset($user_info['user_id']) && $user_info['user_id'] > 0) {
 }
 
 $list_lichlai = $class_index->list_lichlai($conn,$user_info['user_id']);
+$thongtin_khachhang = $class_index->getThongTinKhachHang($conn,$user_info['user_id']);
 $replace = array(
     'header' => $header,
     'footer' => $skin->skin_normal('skin/footer'),
     'li_lichlai' => $list_lichlai,
+    'email_khachhang' => $thongtin_khachhang['email']
 );
 
 echo $skin->skin_replace('skin/danhsach_laithu', $replace);

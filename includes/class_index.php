@@ -4,17 +4,19 @@ class class_index extends class_manage
     function list_lichsu_thanhtoan($conn, $user_id)
     {
         $thongtin = mysqli_query($conn, "SELECT o.*, p.name_car as product_name, p.image_car as product_image 
-            FROM orders o 
-            LEFT JOIN products p ON o.product_id = p.id 
-            WHERE o.user_id = '$user_id' 
-            ORDER BY o.created_at DESC");
+        FROM orders o 
+        LEFT JOIN products p ON o.product_id = p.id 
+        WHERE o.user_id = '$user_id' 
+        ORDER BY o.id DESC");
         $skin = $this->load('class_skin');
         $check = $this->load('class_check');
         $i = 0;
+        $list = '';
         while ($row = mysqli_fetch_array($thongtin)) {
             $i++;
             $row['orders.id'] = $row['id'];
-            $row['orders.status'] = $row['status'] == 'pending' ? '<span class="badge bg-warning">Chờ xử lý</span>' : ($row['status'] == 'processing' ? '<span class="badge bg-info">Đang xử lý</span>' : ($row['status'] == 'completed' ? '<span class="badge bg-success">Hoàn thành</span>' : '<span class="badge bg-danger">Đã hủy</span>'));
+            $row['orders.status'] = $row['status'] == 'pending' ? '<span class="badge bg-warning">Chờ xử lý</span>' : ($row['status'] == 'processing' ? '<span class="badge bg-info">Đang xử lý</span>' : ($row['status'] == 'completed' ? '<span class="badge bg-success">Hoàn thành</span>' :
+                        '<span class="badge bg-danger">Đã hủy</span>'));
             $row['stt'] = $i;
             $row['fullname'] = $row['full_name'];
             $row['location'] = $row['location'];
@@ -31,6 +33,12 @@ class class_index extends class_manage
             $row['bank_account_name'] = $row['bank_account_name'];
             $row['payment_notes'] = $row['payment_notes'];
             $row['created_at'] = $row['created_at'];
+            $row['orders.salutation'] = $row['salutation'];
+            $row['orders.email'] = $row['email'];
+            $row['orders.contact_address'] = $row['contact_address'];
+            $row['orders.dealer'] = $row['dealer'];
+            $row['orders.sales_person'] = $row['sales_person'];
+            $row['orders.image_thanhtoan'] = $row['image_thanhtoan'];
             $list .= $skin->skin_replace('skin/box_li/li_lichsu_thanhtoan', $row);
         }
         return $list;
@@ -132,7 +140,7 @@ class class_index extends class_manage
     }
     function list_lichlai($conn, $user_id)
     {
-        $thongtin_laithu = mysqli_query($conn, "SELECT test_drives.*, products.name_car as car_name FROM test_drives LEFT JOIN products ON test_drives.product_id = products.id WHERE user_id = $user_id");
+        $thongtin_laithu = mysqli_query($conn, "SELECT test_drives.*, products.name_car as car_name FROM test_drives LEFT JOIN products ON test_drives.product_id = products.id WHERE user_id = $user_id ORDER BY test_drives.id DESC");
         $skin = $this->load('class_skin');
         $check = $this->load('class_check');
         $i = 0;
@@ -148,6 +156,34 @@ class class_index extends class_manage
             $row['note'] = $row['notes'] ? $row['notes'] : 'Không có';
             $row['car_name'] = $row['car_name'];
             $row['status'] = $row['status'];
+            switch ($row['status']) {
+                case 'pending':
+                    $row['status_text'] = 'Chờ xác nhận';
+                    $row['action_buttons'] = '
+                    <button type="button" class="btn-khachhang-cancel" data-id="' . $row['id'] . '">
+                        Hủy
+                    </button>';
+                    break;
+                case 'confirmed':
+                    $row['status_text'] = 'Đã xác nhận';
+                    $row['action_buttons'] = '  
+                    <button type="button" class="btn-khachhang-cancel" data-id="' . $row['id'] . '" >
+                        Hủy
+                    </button>';
+                    break;
+                case 'completed':
+                    $row['status_text'] = 'Đã hoàn thành';
+                    $row['action_buttons'] = '<span class="badge badge-success">Đã hoàn thành</span>';
+                    break;
+                case 'cancelled':
+                    $row['status_text'] = 'Đã hủy';
+                    $row['action_buttons'] = '<span class="badge badge-danger">Đã hủy</span>';
+                    break;
+                case 'processing':
+                    $row['status_text'] = 'Đang xử lý';
+                    $row['action_buttons'] = '<span class="badge badge-info">Đang xử lý</span>';
+                    break;
+            }
             $list .= $skin->skin_replace('skin/box_li/li_lichlai', $row);
         }
         return $list;

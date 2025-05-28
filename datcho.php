@@ -30,8 +30,5 @@ error_log("Loading product details for ID: " . $product_id);
         'product.image' => $product['image_car'],
         'product.category_name' => $product['category_name']
     );
-    
-    
-
     echo $skin->skin_replace('skin/DatCho', $replace);
 ?>
