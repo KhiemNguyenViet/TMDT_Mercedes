@@ -82,7 +82,7 @@
                         Chỉ vài bước để chạm đến chiếc Mercedes-Benz của bạn.<br />
                         <strong>Mercedes-AMG GLE 53 4MATIC+ Coupé</strong> của riêng bạn đang chờ
                     </p>
-                    <button class="btn-view">View</button>
+                    <a href="../product/17.html" class="btn-view">View</a>
                 </div>
             </div>
 
@@ -93,7 +93,7 @@
                         Tổng hợp thông tin khuyến mại từ Mercedes-Benz Việt Nam cùng hệ thống Nhà phân phối.<br />
                         <strong>Thông tin khuyến mại mới nhất từ Mercedes-Benz</strong>
                     </p>
-                    <button class="btn-view">View</button>
+                    <a class="btn-view" href="/TongHopThongTinKhuyenMai.html">View</a>
                 </div>
             </div>
         </div>

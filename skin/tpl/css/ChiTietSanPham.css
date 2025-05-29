@@ -75,6 +75,11 @@ body {
     justify-content: center;
 }
 
+.thumbnail.active {
+    border: 10px solid #ff0000;
+    box-sizing: border-box;
+}
+
 .thumbnail-container img {
     width: 70px;
     height: 50px;
