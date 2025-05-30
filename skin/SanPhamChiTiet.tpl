@@ -16,19 +16,44 @@
     <title>Chi tiết xe Mercedes</title>
 </head>
 <style>
-	body {
-		opacity: 0;
-		transition: opacity 0.1s ease-in-out;
-	}
+    body {
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+    }
 </style>
 <script>
-	document.addEventListener("DOMContentLoaded", function () {
-		document.body.style.opacity = "1";
-	});
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.style.opacity = "1";
+    });
 
 </script>
+
 <body>
     {header}
+    <script>
+        // Cập nhật lại chức năng điều hướng ảnh
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                // Nếu ảnh hiện tại nằm ngoài vùng thumbnail đang hiển thị thì dịch thumbnail
+                if (currentIndex < visibleStart) {
+                    visibleStart = currentIndex;
+                }
+                updateMainImage();
+            }
+        }
+
+        function nextImage() {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                // Nếu ảnh hiện tại vượt quá vùng thumbnail đang hiển thị thì dịch thumbnail
+                if (currentIndex >= visibleStart + maxVisible) {
+                    visibleStart = currentIndex - maxVisible + 1;
+                }
+                updateMainImage();
+            }
+        }
+    </script>
     <div class="container">
         <div class="image-gallery">
             <img id="mainImage" src="../uploads/{product.image}" alt="{product.name}" class="main-image" />
@@ -314,19 +339,19 @@
             renderThumbnails();
         }
 
-        function prevImage() {
-            if (visibleStart > 0) {
-                visibleStart--;
-                renderThumbnails();
-            }
-        }
+        // function prevImage() {
+        //     if (visibleStart > 0) {
+        //         visibleStart--;
+        //         renderThumbnails();
+        //     }
+        // }
 
-        function nextImage() {
-            if (visibleStart + maxVisible < images.length) {
-                visibleStart++;
-                renderThumbnails();
-            }
-        }
+        // function nextImage() {
+        //     if (visibleStart + maxVisible < images.length) {
+        //         visibleStart++;
+        //         renderThumbnails();
+        //     }
+        // }
 
         // Initial load
         updateMainImage();
