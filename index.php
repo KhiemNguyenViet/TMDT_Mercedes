@@ -17,8 +17,13 @@ $glc_banchay = $class_index->list_glcbanchay($conn, 5);
 $suv_banchay = $class_index->list_suvbanchay($conn, 5);
 $coupe_banchay = $class_index->list_coupebanchay($conn, 5);
 
+$thongtin_khachhang = $class_index->getThongTinKhachHang($conn,$user_info['user_id']);
+
 // Xử lý và hiển thị nội dung
 $replace = array(
+    'email_khachhang'=> $thongtin_khachhang['email'] ?? '',
+    'name_khachhang'=> $thongtin_khachhang['full_name'] ?? '',
+    'phone_khachhang'=> $thongtin_khachhang['phone'] ?? '',
     'user_id' => $user_info['user_id'],
     'header' => $header,
     'footer' => $skin->skin_normal('skin/footer'),

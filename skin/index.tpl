@@ -184,28 +184,97 @@
         <div class="footer-wrapper">
             <div class="testdrive-section">
                 <div class="testdrive-overlay">
-                    <form class="testdrive-form" onsubmit="handleSubmit(event)">
-                        <h2 class="form-title">Đăng ký lái thử</h2>
-                        <input type="text" name="name" placeholder="Họ và tên" required />
-                        <input type="tel" name="phone" placeholder="Số điện thoại" required />
+                    <form action="../admin/sendmail.php" method="POST" class="testdrive-form">
+                        <h2 class="form-title">Đăng ký tư vấn</h2>
+                        <input type="hidden" name="subject" value="Yêu cầu tư vấn xe" required />
+                        <input type="text" name="name" value="{name_khachhang}" placeholder="Họ và tên" required />
+                        <input type="tel" name="phone" value="{phone_khachhang}" placeholder="Số điện thoại" required />
+                        <input type="email" name="from_email" value="{email_khachhang}" placeholder="Email" required />
                         <select name="carModel" required>
                             <option value="">Dòng xe cần tư vấn</option>
                             {car_models}
                         </select>
-                        <button type="submit" class="submit-button">Gửi thông tin</button>
+                        <textarea name="message" placeholder="Ghi chú"></textarea>
+                        <button type="submit" name="tuvansend" class="submit-button">Gửi thông tin</button>
                     </form>
                 </div>
             </div>
             {footer}
-            <script>
-                function handleSubmit(event) {
-                    event.preventDefault();
-                    alert("Thông tin của bạn đã được gửi!");
-                }
-
-            </script>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            // Cấu hình toastr
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                positionClass: 'toast-top-right', // Vị trí: top-right
+                timeOut: 3000, // Thời gian hiển thị (3 giây)
+                showMethod: 'fadeIn',
+                hideMethod: 'fadeOut'
+            };
+
+            $('.testdrive-form').on('submit', function (event) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định của biểu mẫu
+
+                // Lấy nút submit
+                var $submitButton = $('button[name="tuvansend"]', this);
+                var originalButtonText = $submitButton.text(); // Lưu văn bản gốc của nút
+
+                // Thu thập dữ liệu từ các trường biểu mẫu
+                var subject = $('input[name="subject"]', this).val();
+                var name = $('input[name="name"]', this).val();
+                var phone = $('input[name="phone"]', this).val();
+                var from_email = $('input[name="from_email"]', this).val();
+                var carModel = $('select[name="carModel"]', this).val();
+                var message = $('textarea[name="message"]', this).val();
+
+                // Kiểm tra các trường bắt buộc
+                if (!subject || !name || !phone || !from_email || !carModel) {
+                    toastr.error('Vui lòng điền đầy đủ các trường bắt buộc.');
+                    return;
+                }
+
+                // Cập nhật trạng thái nút: "Đang chờ xử lý" và vô hiệu hóa
+                $submitButton.text('Xin quý khách vui lòng chờ xử lý...').prop('disabled', true);
+
+                // Tạo đối tượng dữ liệu để gửi
+                var data = {
+                    tuvansend: '1', // Giá trị cho tuvansend
+                    subject: subject,
+                    name: name,
+                    phone: phone,
+                    from_email: from_email,
+                    carModel: carModel,
+                    message: message
+                };
+
+                // Gửi yêu cầu AJAX
+                $.ajax({
+                    url: '../admin/sendmail.php',
+                    type: 'POST',
+                    data: data, // Dữ liệu gửi dưới dạng application/x-www-form-urlencoded
+                    dataType: 'json', // Mong đợi phản hồi JSON
+                    success: function (response) {
+                        // Hiển thị thông báo bằng toastr
+                        if (response.success) {
+                            toastr.success(response.message);
+                        } else {
+                            toastr.error(response.message);
+                        }
+                        // Khôi phục trạng thái nút
+                        $submitButton.text(originalButtonText).prop('disabled', false);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Lỗi:', error);
+                        toastr.error('Có lỗi xảy ra. Vui lòng thử lại.');
+                        // Khôi phục trạng thái nút
+                        $submitButton.text(originalButtonText).prop('disabled', false);
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

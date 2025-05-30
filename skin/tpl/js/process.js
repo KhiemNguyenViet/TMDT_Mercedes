@@ -390,10 +390,13 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response);
-                try{
+                try{        
                     let result = JSON.parse(response);
                     if(result.ok == 1){
                         toastr.success(result.thongbao);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
                     }else{
                         toastr.error(result.thongbao);
                     }
