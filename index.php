@@ -7,6 +7,7 @@ $class_member = $tlca_do->load('class_member');
 $user_info = $class_member->user_info($conn, $_COOKIE['user_id']);
 
 if (isset($user_info['user_id']) && $user_info['user_id'] > 0) {
+    $thongtin_khachhang = $class_index->getThongTinKhachHang($conn,$user_info['user_id']);
     $header = $skin->skin_normal('skin_cpanel/headeruser');
 } else {
     $header = $skin->skin_normal('skin/header');
@@ -17,7 +18,6 @@ $glc_banchay = $class_index->list_glcbanchay($conn, 5);
 $suv_banchay = $class_index->list_suvbanchay($conn, 5);
 $coupe_banchay = $class_index->list_coupebanchay($conn, 5);
 
-$thongtin_khachhang = $class_index->getThongTinKhachHang($conn,$user_info['user_id']);
 
 // Xử lý và hiển thị nội dung
 $replace = array(
