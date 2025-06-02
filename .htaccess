@@ -24,3 +24,4 @@ RewriteRule ^admincp/edit-product/([0-9]+)$ admin/index.php?action=edit_product&
 RewriteRule ^admin/dashboard admin/index.php?action=dashboard
 RewriteRule ^product/([^/]+).html view.php?blank=$1
 RewriteRule ^bai-viet/([^/]+).html tintuc.php?blank=$1
+RewriteRule ^tonghopthongtin.html tonghopthongtin.php

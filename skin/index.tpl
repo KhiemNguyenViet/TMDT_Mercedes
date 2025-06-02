@@ -13,7 +13,7 @@
 
 </script>
 
-<head>
+<head>  
     <meta charset="UTF-8" />
     <meta name="description"
         content="Mercedes-Benz Việt Nam - Đại lý Mercedes-Benz chính hãng, cung cấp xe Mercedes-Benz mới, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
@@ -93,7 +93,7 @@
                         Tổng hợp thông tin khuyến mại từ Mercedes-Benz Việt Nam cùng hệ thống Nhà phân phối.<br />
                         <strong>Thông tin khuyến mại mới nhất từ Mercedes-Benz</strong>
                     </p>
-                    <a class="btn-view" href="/TongHopThongTinKhuyenMai.html">View</a>
+                    <a class="btn-view" href="/tonghopthongtin.html">View</a>
                 </div>
             </div>
         </div>
