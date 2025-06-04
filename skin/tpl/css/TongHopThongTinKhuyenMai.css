@@ -73,3 +73,7 @@ a.btn {
     border-radius: 6px;
     font-weight: bold;
 }
+
+.bannerkhuyenmai {
+    object-fit: cover;
+}
