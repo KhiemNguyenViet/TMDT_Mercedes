@@ -50,7 +50,8 @@
         <div class="text">
             <h2>Khuyến mại cực hot cùng ngân hàng MB Bank</h2>
             <p>Từ ngày 01/04/2025...</p>
-            <a href="#" class="btn">Chi tiết chương trình</a>
+            <a href="https://ngaymoionline.com.vn/gui-tien-lien-tay-trung-ngay-mercedes-tu-mb-33352.html"
+                class="btn">Chi tiết chương trình</a>
         </div>
     </section>
 
