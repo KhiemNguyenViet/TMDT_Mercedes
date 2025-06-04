@@ -82,11 +82,7 @@
             </a>
         </div>
         <div class="navbar-right">
-            <!-- <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" /> -->
-            <a href="/lich_laithu.html">
-                <img style="background-color: rgb(255, 255, 255); border-radius: 50%;" src="../hinhanh/files.png"
-                    alt="Cart" class="icon" style="width: 30px; height: 30px;" />
-            </a>
+            <p style=" font-size: 14px">Mercedes xin chào, {full_name}!</p>
             <div class="tk-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
                 <div class="dropdown-content">
@@ -96,6 +92,11 @@
                     </ul>
                 </div>
             </div>
+            <!-- <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" /> -->
+            <a href="/lich_laithu.html">
+                <img style="background-color: rgb(255, 255, 255); border-radius: 50%;" src="../hinhanh/files.png"
+                    alt="Cart" class="icon" style="width: 30px; height: 30px;" />
+            </a>
             <img src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px;" />
             <!-- <a href=""><i class="fa fa-user icon" style="width: 20px; height: 20px;color: white;"></i></a> -->
         </div>
