@@ -88,7 +88,7 @@
     <nav class="navbar">
         <div class="navbar-left">
             <a href="/">Trang chủ</a>
-            <a href="/cacmauxe.html">Các mẫu xe</a>  
+            <a href="/cacmauxe.html">Các mẫu xe</a>
             <a href="/lichsu_thanhtoan.html">Lịch Sử Thanh Toán</a>
             <a href="/#dichvu-section">Thông tin dịch vụ</a>
             <a href="/thuonghieu.html">Thương hiệu</a>
@@ -101,13 +101,13 @@
 
         </div>
         <div class="navbar-right">
-            <p style=" font-size: 14px">Mời quý khách đăng nhập để có trải nghiệm tốt hơn !</p>
+            <p class="login-message" style="color: deepskyblue;">Mời quý khách đăng nhập để có trải nghiệm tốt hơn !</p>
             <div class="user-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
                 <div class="dropdown-content">
-                    <ul>
-                        <li><a href="/login.html">Đăng nhập</a></li>
-                        <li><a href="/register.html">Đăng ký</a></li>
+                    <ul class="icon-menu-bar">
+                        <li><a class="login" href="/login.html">Đăng nhập</a></li>
+                        <li><a class="register" href="/register.html">Đăng ký</a></li>
                     </ul>
                 </div>
             </div>

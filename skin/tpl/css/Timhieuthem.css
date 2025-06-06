@@ -1,3 +1,36 @@
+/* mũi tên cuộn xuống */
+.scroll-down {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: rgb(0, 0, 0);
+    animation: blink 1.5s infinite;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Khi cuộn thì sẽ thêm class này */
+.scroll-down.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
 .allcard {
     padding: 40px;
 }
@@ -48,8 +81,8 @@
 
 .card:hover .card-img,
 .card-small:hover .card1-img {
-    transform: scale(1.3);
-    /* Phóng to 30% khi hover */
+    transform: scale(1.2);
+    /* Phóng to 20% khi hover */
 }
 
 .card-content {

@@ -9,9 +9,11 @@ $(document).ready(function () {
         // console.log('click');
         var formData = new FormData();
         var avatarFile = $('#avatarInput')[0].files[0];
+        var currentAvatar = $('#currentAvatar').val().trim();
+
         if (avatarFile) {
             formData.append('image', avatarFile);
-        }else{
+        } else if (!currentAvatar) {
             toastr.error('Vui lòng chọn ảnh đại diện');
             return;
         }
@@ -20,6 +22,7 @@ $(document).ready(function () {
         formData.append('phone', $('input[name="phone"]').val());
         formData.append('address', $('input[name="address"]').val());
         formData.append('user_id', $('.profile-form button').attr('id_user'));
+        formData.append('current_avatar', currentAvatar);
         formData.append('action', 'update_tk');
         $.ajax({
             url: '/process.php',
@@ -376,12 +379,12 @@ $(document).ready(function () {
                 break;
         }
 
-        if(!confirm(message)){
+        if (!confirm(message)) {
             return;
         }
 
         $.ajax({
-            url: '/process.php',    
+            url: '/process.php',
             type: 'POST',
             data: {
                 action: 'kh_cancel_lichlai',
@@ -390,23 +393,23 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response);
-                try{        
+                try {
                     let result = JSON.parse(response);
-                    if(result.ok == 1){
+                    if (result.ok == 1) {
                         toastr.success(result.thongbao);
                         setTimeout(function () {
                             window.location.reload();
                         }, 3000);
-                    }else{
+                    } else {
                         toastr.error(result.thongbao);
                     }
-                }catch(e){
+                } catch (e) {
                     console.error('Lỗi:', e);
                 }
             }
         });
     }
-    
+
 
     // Xử lý đặt giữ chỗ xe
     // Xử lý đặt giữ chỗ xe
@@ -417,12 +420,12 @@ $(document).ready(function () {
     //         toastr.error('Không tìm thấy biểu mẫu. Vui lòng kiểm tra lại.');
     //         return;
     //     }
-    
+
     //     var formData = new FormData(form);
     //     var image_thanhtoan = $('#multiStepForm #payment_image')[0].files[0];
     //     formData.append('image_thanhtoan', image_thanhtoan);
     //     formData.append('action', 'xacnhan_datcho');
-    
+
     //     const product_id = $('.car-info').data('product-id');
     //     const price = $('.price').data('price');
     //     const user_id = $('.user_info').data('user-id');
@@ -438,7 +441,7 @@ $(document).ready(function () {
     //     const bank_branch = $('input[name="bank_branch"]').val();
     //     const dealer = $('input[name="dealer"]').val();
     //     const sales_person = $('input[name="sales_person"]').val();
-    
+
     //     console.log(salutation, username, phoneNumber, email, bank_account_number, bank_account_name, bank_name, dealer);
     //     // Kiểm tra các trường bắt buộc
     //     if (!salutation || !username || !phoneNumber || !email || !bank_account_number || !bank_account_name || !bank_name || !dealer) {
@@ -449,7 +452,7 @@ $(document).ready(function () {
     //         toastr.error('Thiếu thông tin xe hoặc người dùng.');
     //         return;
     //     }
-    
+
     //     formData.append('product_id', product_id);
     //     formData.append('price', price);
     //     formData.append('pay_note', pay_note);
@@ -465,7 +468,7 @@ $(document).ready(function () {
     //     formData.append('dealer', dealer);
     //     formData.append('sales_person', sales_person);
     //     formData.append('user_id', user_id);
-    
+
     //     $.ajax({
     //         url: '/process.php',
     //         type: 'POST',

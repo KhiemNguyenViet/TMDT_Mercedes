@@ -1,14 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Segoe UI', sans-serif;
     color: #111;
     background-color: #fff;
-    line-height: 1.6;
+    margin: 0;
 }
 
 .hero img {
@@ -49,11 +43,12 @@ h2 {
     margin-bottom: 20px;
 }
 
-p {
+p:not(.login-message) {
     margin-bottom: 15px;
 }
 
-ul {
+ul:not(.icon-menu-bar, .login, .register) {
+
     margin-bottom: 15px;
     padding-left: 20px;
 }

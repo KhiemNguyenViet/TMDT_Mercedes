@@ -1,5 +1,11 @@
 <body>
     <style>
+        .body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif
+        }
+
         .dichvu-slider {
             display: flex;
             overflow-x: auto;

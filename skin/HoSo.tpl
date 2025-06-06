@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
 <style>
-	body {
-		opacity: 0;
-		transition: opacity 0.1s ease-in-out;
-	}
+    body {
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+    }
 </style>
 <script>
-	document.addEventListener("DOMContentLoaded", function () {
-		document.body.style.opacity = "1";
-	});
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.style.opacity = "1";
+    });
 
 </script>
+
 <head>
     <meta name="description"
         content="Mercedes-Benz Việt Nam - Đại lý Mercedes-Benz chính hãng, cung cấp xe Mercedes-Benz mới, tư vấn xe, lái thử xe, bán lẻ xe Mercedes-Benz">
@@ -41,6 +42,7 @@
         <form class="profile-form">
             <div class="avatar-section">
                 <img src="../uploads/{user_avatar}" alt="Ảnh đại diện" class="avatar-preview" id="avatarPreview">
+                <input type="hidden" id="currentAvatar" value="{user_avatar}">
                 <label class="upload-btn">
                     <input type="file" id="avatarInput" accept="image/*" hidden>
                     Thay đổi ảnh
@@ -48,17 +50,17 @@
             </div>
 
             <div class="form-group">
-                <label>Họ tên <i class="fas fa-pen edit-icon"></i></label>
+                <label>Họ tên </label>
                 <input type="text" value="{full_name}" name="full_name">
             </div>
 
             <div class="form-group">
-                <label>Địa chỉ <i class="fas fa-pen edit-icon"></i></label>
+                <label>Địa chỉ </label>
                 <input type="text" value="{user_address}" name="address">
             </div>
 
             <div class="form-group">
-                <label>Số điện thoại <i class="fas fa-pen edit-icon"></i></label>
+                <label>Số điện thoại </label>
                 <input type="text" value="{user_phone}" name="phone">
             </div>
 
@@ -68,18 +70,18 @@
             </div> -->
 
             <div class="form-group">
-                <label>Email <i class="fas fa-pen edit-icon"></i></label>
+                <label>Email </label>
                 <input type="email" value="{user_email}" name="email">
             </div>
 
             <div class="form-group">
-                <label>Tài khoản <i class="fas fa-pen edit-icon"></i></label>
+                <label>Tài khoản </label>
                 <input type="text" id="username" class="readonly-field" value="{user_name}" readonly>
             </div>
 
             <div class="form-group password-group">
-                <label>Mật khẩu <i class="fas fa-pen edit-icon"></i></label>
-                <input type="password" value="{password}" id="passwordInput" class="readonly-field">
+                <label>Mật khẩu </label>
+                <input type="password" value="{password}" id="passwordInput">
                 <!-- <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i> -->
             </div>
 
