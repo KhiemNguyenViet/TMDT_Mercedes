@@ -6,7 +6,8 @@ $skin = $tlca_do->load('class_skin');
 $class_member = $tlca_do->load('class_member');
 $user_info = $class_member->user_info($conn, $_COOKIE['user_id']);
 if (isset($user_info['user_id'])) {
-    $header = $skin->skin_normal('skin_cpanel/headeruser');
+    $thongtin_khachhang = $class_index->getThongTinKhachHang($conn,$user_info['user_id']);
+    $header = $skin->skin_replace('skin_cpanel/headeruser', $thongtin_khachhang);
     $thongtinkhachhang = $class_index->getThongTinKhachHang($conn, $user_info['user_id']);
     $username = $thongtinkhachhang['username'];
     $phone = $thongtinkhachhang['phone'];

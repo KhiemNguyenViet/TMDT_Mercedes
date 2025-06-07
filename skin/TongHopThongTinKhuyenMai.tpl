@@ -35,8 +35,8 @@
                 <li>C 300 AMG</li>
                 <!-- Các dòng khác -->
             </ul>
-            <a href="#">Xem xe có sẵn</a>
-            <a href="#" class="btn">Chi tiết chương trình</a>
+            <a class="btn thtt" href="#">Xem xe có sẵn</a>
+            <a class="btn thtt" href="#">Chi tiết chương trình</a>
         </div>
         <div class="image">
             <img src="../hinhanh/khuyenmaihot.jpg" alt="Mercedes-Benz EV Models">
@@ -51,7 +51,7 @@
             <h2>Khuyến mại cực hot cùng ngân hàng MB Bank</h2>
             <p>Từ ngày 01/04/2025...</p>
             <a href="https://ngaymoionline.com.vn/gui-tien-lien-tay-trung-ngay-mercedes-tu-mb-33352.html"
-                class="btn">Chi tiết chương trình</a>
+                class="btn thtt">Chi tiết chương trình</a>
         </div>
     </section>
 
@@ -59,7 +59,7 @@
         <div class="text">
             <h2>Chính sách giá hấp dẫn cho các dòng xe...</h2>
             <p>Từ ngày 01/03/2023...</p>
-            <a href="#" class="btn">Bảng giá cập nhật</a>
+            <a href="#" class="btn thtt">Bảng giá cập nhật</a>
         </div>
         <div class="image">
             <img src="../hinhanh/khuyenmaihot2.png" alt="Nội thất Mercedes-Benz">

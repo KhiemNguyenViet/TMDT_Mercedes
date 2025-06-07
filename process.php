@@ -8,7 +8,8 @@ $user_info=$class_member->user_info($conn,$_COOKIE['user_id']);
 $action = addslashes($_REQUEST['action']);
 
 if(isset($user_info['user_id']) && $user_info['user_id']>0){
-    $header = $skin->skin_normal('skin_cpanel/headeruser');
+    $thongtin_khachhang = $class_index->getThongTinKhachHang($conn,$user_info['user_id']);
+    $header = $skin->skin_replace('skin_cpanel/headeruser', $thongtin_khachhang);
 }else{
     $header = $skin->skin_normal('skin/header');
 }

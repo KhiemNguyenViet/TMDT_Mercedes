@@ -16,7 +16,7 @@ class class_index extends class_manage
             $i++;
             $row['orders.id'] = $row['id'];
             $row['orders.status'] = $row['status'] == 'pending' ? '<span class="badge bg-warning">Chờ xử lý</span>' : ($row['status'] == 'processing' ? '<span class="badge bg-info">Đang xử lý</span>' : ($row['status'] == 'completed' ? '<span class="badge bg-success">Hoàn thành</span>' :
-                        '<span class="badge bg-danger">Đã hủy</span>'));
+                '<span class="badge bg-danger">Đã hủy</span>'));
             $row['stt'] = $i;
             $row['fullname'] = $row['full_name'];
             $row['location'] = $row['location'];
@@ -327,17 +327,56 @@ class class_index extends class_manage
     }
     function search_products($conn, $keyword)
     {
-        $keyword = mysqli_real_escape_string($conn, $keyword);
+        // Chuẩn hóa từ khóa: loại bỏ khoảng trắng thừa ở đầu/cuối
+        $keyword = trim($keyword);
 
+        // Tạo các biến thể của từ khóa
+        $keyword_no_space = str_replace(' ', '', $keyword); // "g 63" -> "g63"
+        $keyword_with_space = preg_replace('/(\w)(\d)/', '$1 $2', $keyword); // "g63" -> "g 63"
+
+        // Chuẩn bị các phiên bản từ khóa cho tìm kiếm
+        $search_terms = [
+            "%$keyword%",           // Từ khóa gốc: "g63" hoặc "g 63"
+            "%$keyword_no_space%",  // Từ khóa không khoảng trắng: "g63"
+            "%$keyword_with_space%" // Từ khóa có khoảng trắng: "g 63"
+        ];
+
+        // Câu query SQL: tìm kiếm không phân biệt hoa thường
         $query = "SELECT * FROM products WHERE 
-          name_car LIKE '%$keyword%' OR 
-          description_car LIKE '%$keyword%'
-          ORDER BY name_car ASC";
+              LOWER(name_car) LIKE ? OR 
+              LOWER(name_car) LIKE ? OR 
+              LOWER(name_car) LIKE ? OR 
+              LOWER(description_car) LIKE ? OR 
+              LOWER(description_car) LIKE ? OR 
+              LOWER(description_car) LIKE ?
+              ORDER BY name_car ASC";
 
-        $result = mysqli_query($conn, $query);
+        // Chuẩn bị statement
+        $stmt = $conn->prepare($query);
+        if ($stmt === false) {
+            return [
+                'list' => '<div class="no-results">Lỗi truy vấn cơ sở dữ liệu</div>',
+                'pagination' => ''
+            ];
+        }
+
+        // Gán tham số: lặp lại các biến thể từ khóa
+        $stmt->bind_param(
+            'ssssss',
+            $search_terms[0],
+            $search_terms[1],
+            $search_terms[2],
+            $search_terms[0],
+            $search_terms[1],
+            $search_terms[2]
+        );
+
+        // Thực thi
+        $stmt->execute();
+        $result = $stmt->get_result();
         $list = '';
 
-        while ($row = mysqli_fetch_array($result)) {
+        while ($row = $result->fetch_assoc()) {
             $row['stock'] = $row['stock'];
             $row['name'] = $row['name_car'];
             $row['image'] = $row['image_car'];
@@ -345,6 +384,9 @@ class class_index extends class_manage
             $row['price'] = number_format($row['price'], 0, ',', '.') . ' VND';
             $list .= $this->skin->skin_replace('skin/box_li/li_sanpham', $row);
         }
+
+        // Đóng statement
+        $stmt->close();
 
         return [
             'list' => $list ?: '<div class="no-results">Không tìm thấy sản phẩm phù hợp</div>',

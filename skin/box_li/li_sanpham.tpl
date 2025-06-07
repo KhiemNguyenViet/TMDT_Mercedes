@@ -1,4 +1,4 @@
-<div class="product-card" data-id="{id}" data-category-id="{category_id}">
+<div class="product-card" data-id="{id}" data-category-id="{category_id}" onclick="window.location.href='product/{id}.html'" style="cursor: pointer;">
     <img src="uploads/{image}" alt="{name}">
     <div class="product-info">
         <h3>{name}</h3>
