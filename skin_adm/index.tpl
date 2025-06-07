@@ -309,7 +309,7 @@
                         <th>Email</th>
                         <th>Địa chỉ</th>
                         <th>Tên tài khoản</th>
-                        <th>Mật khẩu</th>
+                        <!-- <th>Mật khẩu</th> -->
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -574,7 +574,7 @@
                             <th>Số tài khoản</th>
                             <th>Tên chủ tài khoản</th>
                             <th>Ngày đặt</th>
-                            <th>Số điện thoại</th>
+                            <th>Thông tin liên hệ</th>
                             <!-- <th>Email</th> -->
                             <th>Sản phẩm</th>
                             <th>Địa điểm</th>

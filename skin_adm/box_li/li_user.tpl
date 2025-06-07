@@ -5,12 +5,12 @@
     <td>{email}</td>
     <td>{address}</td>
     <td>{username}</td>
-    <td>
+    <!-- <td>
         <div style="display:flex; align-items:center;">
             <input type="password" value="{password}" readonly id="pw_{user_id}">
             <button class="toggle-password" onclick="togglePassword('pw_{user_id}', this)">&#128065;&#x20E0;</button>
         </div>
-    </td>
+    </td> -->
     <td>
         <button class="button edit" data-id="{user_id}">Sửa</button>
         <button class="button delete" data-user-id="{user_id}">Xóa</button>

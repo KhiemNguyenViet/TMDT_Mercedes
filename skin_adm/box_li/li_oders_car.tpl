@@ -7,7 +7,7 @@
     <td>{account_number}</td>
     <td>{account_name}</td>
     <td>{created_at}</td>
-    <td>{phone}</td>
+    <td>{phone} {email}</td>
     <!-- <td>{email}</td> -->
     <td>{product_name}</td>
     <td>{address}</td>
