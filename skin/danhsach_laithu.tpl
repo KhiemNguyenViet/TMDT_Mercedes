@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <style>
     body {
         opacity: 0;
@@ -70,6 +70,7 @@
             backdrop-filter: blur(5px);
             z-index: 1000;
         }
+
         #popup_khuy_laithu {
             position: fixed;
             top: 50%;
@@ -83,6 +84,7 @@
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
             z-index: 1001;
         }
+
         #popup_khuy_laithu h3 {
             color: #333;
             margin-bottom: 15px;
@@ -91,10 +93,12 @@
             border-bottom: 2px solid #f0f0f0;
             padding-bottom: 8px;
         }
+
         #popup_khuy_laithu form {
             display: flex;
             flex-direction: column;
         }
+
         #popup_khuy_laithu label {
             color: #555;
             font-weight: 500;
@@ -103,7 +107,7 @@
 
         #popup_khuy_laithu input[type="email"],
         #popup_khuy_laithu input[type="text"],
-        #popup_khuy_laithu textarea {    
+        #popup_khuy_laithu textarea {
             width: 95%;
             padding: 8px;
             border: 1px solid #ddd;
@@ -114,15 +118,17 @@
 
         #popup_khuy_laithu input[type="email"]:focus,
         #popup_khuy_laithu input[type="text"]:focus,
-        #popup_khuy_laithu textarea:focus {      
+        #popup_khuy_laithu textarea:focus {
             border-color: #4a90e2;
             box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
             outline: none;
         }
+
         #popup_khuy_laithu textarea {
             resize: vertical;
             min-height: 80px;
         }
+
         #popup_khuy_laithu button[type="submit"] {
             background: #4a90e2;
             color: white;
@@ -134,6 +140,7 @@
             transition: background 0.3s ease;
             margin-top: 5px;
         }
+
         #popup_khuy_laithu button[type="submit"]:hover {
             background: #357abd;
         }
@@ -155,6 +162,7 @@
             font-size: 16px;
             transition: background 0.3s ease;
         }
+
         #popup_khuy_laithu button.close:hover {
             background: #ff6b81;
         }
@@ -167,7 +175,8 @@
             lái thử*</p>
         <form action="../admin/sendmail.php" method="POST">
             <label class="hidden">Đến email:</label><br>
-            <input class="hidden" type="email" name="to_email" required value="khiemnguyenviet.2004@gmail.com" readonly><br><br>
+            <input class="hidden" type="email" name="to_email" required value="khiemnguyenviet.2004@gmail.com"
+                readonly><br><br>
             <label>Email khách hàng:</label><br>
             <input type="email" name="from_email" value="{email_khachhang}" required><br><br>
 
@@ -177,7 +186,8 @@
             <label>Nội dung:</label><br>
             <textarea name="message" rows="4" required placeholder="Nhập nội dung email"></textarea><br><br>
 
-            <button type="submit" name="khachhangsend" onclick="kh_updateStatus(currentTestDriveId, 'processing')">Gửi</button>
+            <button type="submit" name="khachhangsend"
+                onclick="kh_updateStatus(currentTestDriveId, 'processing')">Gửi</button>
         </form>
     </div>
     {footer}
@@ -185,6 +195,7 @@
         .hidden {
             display: none;
         }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;

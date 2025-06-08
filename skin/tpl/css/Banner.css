@@ -159,3 +159,21 @@ body {
     margin-top: 40px;
     line-height: 1.6;
 }
+
+#google_translate_element {
+    visibility: hidden;
+
+}
+
+#google_translate_element select {
+
+    visibility: visible;
+}
+
+body>.skiptranslate {
+    display: none;
+}
+
+body {
+    top: 0 !important;
+}

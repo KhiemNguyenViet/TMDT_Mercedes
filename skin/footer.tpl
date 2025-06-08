@@ -1,9 +1,9 @@
 <footer class="footer">
     <script src="https://app.tudongchat.com/js/chatbox.js"></script>
-<script>
-  const tudong_chatbox = new TuDongChat('-TVbUq1fKEv5X-i8FL8zN')
-  tudong_chatbox.initial()
-</script>
+    <script>
+        const tudong_chatbox = new TuDongChat('-TVbUq1fKEv5X-i8FL8zN')
+        tudong_chatbox.initial()
+    </script>
     <div class="footer-content">
         <div class="footer-column">
             <h3 style="margin-left: 0px;">HỆ THỐNG ĐẠI LÝ MERCEDES-BENZ</h3>
@@ -60,7 +60,7 @@
     }
 
     .footer-column h3 {
-        height:7%;
+        height: 7%;
         color: #fff;
         font-size: 18px;
         margin-bottom: 20px;
@@ -156,3 +156,11 @@
         }
     }
 </style>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

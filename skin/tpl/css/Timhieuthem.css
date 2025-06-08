@@ -76,12 +76,12 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.8s ease;
 }
 
 .card:hover .card-img,
 .card-small:hover .card1-img {
-    transform: scale(1.2);
+    transform: scale(1.05);
     /* Phóng to 20% khi hover */
 }
 

@@ -111,12 +111,12 @@
                     </ul>
                 </div>
             </div>
-            <!-- <img src="../hinhanh/glass.png" alt="Search" class="icon" style="width: 23px; height: 23px;" /> -->
             <a href="/lich_laithu.html">
                 <img style="background-color: rgb(255, 255, 255); border-radius: 50%;" src="../hinhanh/files.png"
                     alt="Cart" class="icon" style="width: 30px; height: 30px;" />
             </a>
             <img src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px;" />
+            <div id="google_translate_element"></div>
 
     </nav>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
