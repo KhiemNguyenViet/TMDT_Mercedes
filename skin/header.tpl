@@ -90,6 +90,11 @@
         select.goog-te-combo {
             width: 90px;
         }
+        .navbar{
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
     </style>
     <!-- MenuBar -->
     <nav class="navbar">
