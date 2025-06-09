@@ -105,7 +105,7 @@
             <div class="card">
                 <a href="../product/17.html"><img src="../hinhanh/sanpham12.png" alt="Mercedes" class="card-img" /></a>
                 <div class="card-content">
-                    <p>
+                    <p style="line-height: 1.5;">
                         Chỉ vài bước để chạm đến chiếc Mercedes-Benz của bạn.<br />
                         <strong>Mercedes-AMG GLE 53 4MATIC+ Coupé</strong> của riêng bạn đang chờ
                     </p>
@@ -116,7 +116,7 @@
             <div class="card-small">
                 <a href="/tonghopthongtin.html"><img src="../hinhanh/chuy2.jpg" alt="Mercedes" class="card1-img" /></a>
                 <div class="card-content">
-                    <p>
+                    <p style="line-height: 1.5;">
                         Tổng hợp thông tin khuyến mại từ Mercedes-Benz Việt Nam cùng hệ thống Nhà phân phối.<br />
                         <strong>Thông tin khuyến mại mới nhất từ Mercedes-Benz</strong>
                     </p>
@@ -230,7 +230,7 @@
             <div class="testdrive-section">
                 <div class="testdrive-overlay">
                     <form action="../admin/sendmail.php" method="POST" class="testdrive-form">
-                        <h2 class="form-title">Đăng ký tư vấn</h2>
+                        <h2 class="form-title" style="margin: 0 0 0 0;">Đăng ký tư vấn</h2>
                         <input type="hidden" name="subject" value="Yêu cầu tư vấn xe" required />
                         <input type="text" name="name" value="{name_khachhang}" placeholder="Họ và tên" required />
                         <input type="tel" name="phone" value="{phone_khachhang}" placeholder="Số điện thoại" required />

@@ -72,6 +72,14 @@
         .navbar .navbar-right .user-dropdown {
             display: none;
         }
+        #google_translate_element {
+            display: none;
+            width: 90px;
+        }
+
+        select.goog-te-combo {
+            width: 90px;
+        }
     </style>
     <!-- MenuBar -->
     <nav class="navbar">
@@ -103,10 +111,48 @@
                 <img style="background-color: rgb(255, 255, 255); border-radius: 50%;" src="../hinhanh/files.png"
                     alt="Cart" class="icon" style="width: 30px; height: 30px;" />
             </a>
-            <img src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px;" />
+            <img id="languageIcon" src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px; cursor: pointer;" />
+            <div id="google_translate_element"></div>
             <!-- <a href=""><i class="fa fa-user icon" style="width: 20px; height: 20px;color: white;"></i></a> -->
         </div>
     </nav>
+    <script>
+        $(document).ready(function () {
+            if (localStorage.getItem('loginStatus') === 'loggedInAsUser24') {
+                $('.navbar .user-dropdown').css('display', 'none');
+                $('.navbar .tk-dropdown').css('display', 'block');
+            } else {
+                // Đảm bảo trạng thái mặc định nếu không có loginStatus hoặc giá trị khác
+                $('.navbar .user-dropdown').css('display', 'block');
+                $('.navbar .tk-dropdown').css('display', 'none');
+            }
+    
+            // Xử lý ngôn ngữ
+            $('#languageIcon').click(function() {
+                $('#languageIcon').hide();
+                $('#google_translate_element').show();
+            });
+    
+            // Theo dõi sự thay đổi của Google Translate
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        // Kiểm tra nếu đã chọn ngôn ngữ
+                        if ($('.goog-te-combo').val()) {
+                            $('#google_translate_element').hide();
+                            $('#languageIcon').show();
+                        }
+                    }
+                });
+            });
+    
+            // Bắt đầu quan sát
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />

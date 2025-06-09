@@ -67,12 +67,10 @@
         }
 
         .navbar .navbar-right .user-dropdown {
-
-            display: none;
+            display: block;
         }
 
         .navbar .user-dropdown {
-
             display: block;
         }
 
@@ -82,6 +80,15 @@
 
         .navbar .navbar-right .user-dropdown {
             display: block;
+        }
+
+        #google_translate_element {
+            display: none;
+            width: 90px;
+        }
+
+        select.goog-te-combo {
+            width: 90px;
         }
     </style>
     <!-- MenuBar -->
@@ -115,7 +122,7 @@
                 <img style="background-color: rgb(255, 255, 255); border-radius: 50%;" src="../hinhanh/files.png"
                     alt="Cart" class="icon" style="width: 30px; height: 30px;" />
             </a>
-            <img src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px;" />
+            <img id="languageIcon" src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px; cursor: pointer;" />
             <div id="google_translate_element"></div>
 
     </nav>
@@ -135,6 +142,31 @@
             $('.navbar .user-dropdown').css('display', 'block');
             $('.navbar .tk-dropdown').css('display', 'none');
         }
+
+        // Xử lý ngôn ngữ
+        $('#languageIcon').click(function() {
+            $('#languageIcon').hide();
+            $('#google_translate_element').show();
+        });
+
+        // Theo dõi sự thay đổi của Google Translate
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    // Kiểm tra nếu đã chọn ngôn ngữ
+                    if ($('.goog-te-combo').val()) {
+                        $('#google_translate_element').hide();
+                        $('#languageIcon').show();
+                    }
+                }
+            });
+        });
+
+        // Bắt đầu quan sát
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
     });
 </script>
 <script type="text/javascript" src="../skin/tpl/js/jquery-3.2.1.min.js?t=<?php echo time();?>"></script>
