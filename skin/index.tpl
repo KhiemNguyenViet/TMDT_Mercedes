@@ -84,7 +84,7 @@
     </div>
     <script>
         function scrollDown() {
-            window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+            window.scrollBy({ top: 900, behavior: 'smooth' });
         }
 
         window.addEventListener('scroll', function () {
