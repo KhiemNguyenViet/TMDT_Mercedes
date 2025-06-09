@@ -1,7 +1,8 @@
 /* mũi tên cuộn xuống */
 .scroll-down {
     position: absolute;
-    bottom: -6px;
+    /* bottom: -6px; */
+    margin-top: -12.5px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 2.5rem;
