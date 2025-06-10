@@ -103,7 +103,8 @@
         <h1 class="text1">Tìm hiểu thêm</h1>
         <div class="card-container">
             <div class="card">
-                <a href="../product/17.html"><img src="../hinhanh/sanpham12.png" alt="Mercedes" class="card-img" /></a>
+                <a href="../product/17.html"><img src="../uploads/1748054887_427702539c18b4ace4b3223d6587dfec.png"
+                        alt="Mercedes" class="card-img" /></a>
                 <div class="card-content">
                     <p style="line-height: 1.5;">
                         Chỉ vài bước để chạm đến chiếc Mercedes-Benz của bạn.<br />
