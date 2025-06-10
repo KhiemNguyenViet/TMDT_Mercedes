@@ -19,6 +19,184 @@
         opacity: 0;
         transition: opacity 0.1s ease-in-out;
     }
+    /* Thêm CSS cho toastr */
+    #toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+    .toast {
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        padding: 15px;
+        margin-bottom: 10px;
+        min-width: 300px;
+    }
+    .toast-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+    .toast-error {
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        color: #a94442;
+    }
+    /* CSS cho popup */
+    .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .popup-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        min-width: 300px;
+        animation: slideIn 0.3s ease-in-out;
+    }
+
+    .popup-icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+
+    .popup-icon.success {
+        color: #4CAF50;
+    }
+
+    .popup-icon.error {
+        color: #f44336;
+    }
+
+    .popup-message {
+        font-size: 18px;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+    .popup-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .popup-button {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    .popup-button.primary {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .popup-button.primary:hover {
+        background-color: #45a049;
+    }
+
+    .popup-button.secondary {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .popup-button.secondary:hover {
+        background-color: #da190b;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translate(-50%, -60%);
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+    }
+
+    /* CSS cho nút khám phá */
+    .khampha {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        padding: 15px 25px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .khampha:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        background-color: #45a049;
+        color: white;
+        text-decoration: none;
+    }
+
+    .khampha:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Thêm animation cho nút */
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .khampha {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    /* Thêm responsive */
+    @media (max-width: 768px) {
+        .khampha {
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+    }
 </style>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -174,6 +352,48 @@
     {footer}
 
     <script src="../skin/tpl/js/DatCho.js"></script>
+
+    <!-- Thêm HTML cho popup -->
+    <div id="popup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-icon success">✓</div>
+            <div class="popup-message"></div>
+            <div class="popup-buttons">
+                <button class="popup-button primary" onclick="closePopup()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPopup(message, isSuccess = true) {
+            const popup = document.getElementById('popup');
+            const popupMessage = popup.querySelector('.popup-message');
+            const popupIcon = popup.querySelector('.popup-icon');
+            
+            popupMessage.textContent = message;
+            popupIcon.className = 'popup-icon ' + (isSuccess ? 'success' : 'error');
+            popupIcon.textContent = isSuccess ? '✓' : '✕';
+            
+            popup.style.display = 'block';
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+            if (popup.dataset.redirect) {
+                window.location.href = popup.dataset.redirect;
+            }
+        }
+
+        // Sửa lại phần xử lý response
+        if (result.ok === 1) {
+            const popup = document.getElementById('popup');
+            popup.dataset.redirect = '/cacmauxe.html';
+            showPopup(result.thongbao, true);
+        } else {
+            showPopup(result.thongbao, false);
+        }
+    </script>
 </body>
 <script>
     $(document).ready(function () {
@@ -243,16 +463,15 @@
                     try {
                         var result = JSON.parse(response);
                         if (result.ok === 1) {
-                            alert('Thành công: ' + result.thongbao);
-                            // Chuyển hướng ngay sau khi alert
-                            window.location.href = '/cacmauxe.html';
+                            const popup = document.getElementById('popup');
+                            popup.dataset.redirect = '/cacmauxe.html';
+                            showPopup(result.thongbao, true);
                         } else {
-                            alert('Lỗi: ' + result.thongbao);
+                            showPopup(result.thongbao, false);
                         }
                     } catch (e) {
                         console.error('Error parsing response:', e);
-                        console.error('Raw response:', response);
-                        alert('Có lỗi xảy ra khi xử lý phản hồi từ server');
+                        showPopup('Có lỗi xảy ra khi xử lý phản hồi', false);
                     }
                 },
                 error: function (xhr, status, error) {

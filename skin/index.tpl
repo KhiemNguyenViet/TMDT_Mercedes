@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="../skin/tpl/css/SanPhamBanChay.css">
     <link rel="stylesheet" href="../skin/tpl/css/Footer.css">
     <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
 </head>
 <script>
     function scrollDichVu(direction) {
