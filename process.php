@@ -138,7 +138,7 @@ if ($action == "datlich") {
                 bank_account_number, bank_account_name, bank_name, bank_branch, 
                 dealer, sales_person, created_at, image_thanhtoan, payment_notes
             ) VALUES (
-                " . ($user_id ? "'$user_id'" : "NULL") . ", 
+                " . ($user_id ? $user_id : "NULL") . ", 
                 '$product_id', '$salutation', '$username', '$phoneNumber',
                 '$email', '$address', '$price', '10000000',
                 '$bank_account_number', '$bank_account_name', '$bank_name', '$bank_branch',
