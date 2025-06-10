@@ -393,6 +393,70 @@
                 max-height: 50vh;
             }
         }
+        header {
+            background-color: #111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        /* CSS cho nút khám phá */
+    .khampha {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        z-index: 1000;
+        padding: 15px 25px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .khampha:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        background-color: #45a049;
+        color: white;
+        text-decoration: none;
+    }
+
+    .khampha:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Thêm animation cho nút */
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .khampha {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    /* Thêm responsive */
+    @media (max-width: 768px) {
+        .khampha {
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+    }
     </style>
 </head>
 
@@ -402,8 +466,11 @@
 
     <!-- Main Content -->
     <div class="container my-5">
-        <h2 class="mb-4" style="text-align: center;">Lịch sử thanh toán</h2>
-        <a href="\cacmauxe.html" class="btn btn-primary">Khám phá thêm xe ngay</a>
+        <header>
+            <h1>Lịch sử thanh toán</h1>
+        </header>
+        <!-- <h2 class="mb-4" style="text-align: center;">Lịch sử thanh toán</h2> -->
+        <a href="\cacmauxe.html" class="btn btn-primary khampha">Khám phá thêm xe ngay</a>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-hover">
