@@ -121,7 +121,7 @@ $(document).ready(function () {
                             setTimeout(function () {
                                 $('.load_process').hide();
                                 $('.load_overlay').hide();
-                                toastr.error(info.thongbao || 'Đăng nhập thất bại');
+                                // toastr.error(info.thongbao || 'Đăng nhập thất bại');
                             }, 1000);
                         }
                     }, 1000);
@@ -214,7 +214,7 @@ $(document).ready(function () {
                             }, 1000);
                         } else {
                             $('.load_note').html(response.thongbao || 'Đăng ký thất bại');
-                            toastr.error(response.thongbao || 'Đăng ký thất bại');
+                            // toastr.error(response.thongbao || 'Đăng ký thất bại');
                             $('.load_process').hide();
                             $('.load_overlay').hide();
                         }

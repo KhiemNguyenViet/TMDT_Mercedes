@@ -36,7 +36,7 @@
 <script>
     function scrollDichVu(direction) {
         const slider = document.getElementById("dichvuSlider");
-        const scrollAmount = 320; // bằng với độ rộng của 1 thẻ card + margin
+        const scrollAmount = 320;
         slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
     }
 </script>
