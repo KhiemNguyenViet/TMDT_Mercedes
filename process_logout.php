@@ -17,6 +17,14 @@ if($redirect == 'login') {
         'link'=>'login.html'
     );
     echo $skin->skin_replace('skin/chuyenhuong',$replace);
+} else if($redirect == 'capnhat') {
+    $replace=array(
+        'header'=>$skin->skin_normal('skin/header'),
+        'title'=>'Cập nhật thông tin thành công',
+        'thongbao'=>$thongbao,
+        'link'=>'account.html'
+    );
+    echo $skin->skin_replace('skin/chuyenhuong',$replace);
 } else {
     $replace=array(
         'header'=>$skin->skin_normal('skin/header'),

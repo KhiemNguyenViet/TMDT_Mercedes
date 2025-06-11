@@ -81,8 +81,7 @@
 
             <div class="form-group password-group">
                 <label>Mật khẩu </label>
-                <input type="password" name="password" value="{password}" id="passwordInput">
-                <!-- <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i> -->
+                <input type="password" name="password" id="passwordInput">
             </div>
 
             <button type="button" id_user="{user_id}" id="savetk-btn" class="savetk-btn">Lưu thay đổi</button>

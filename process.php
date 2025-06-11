@@ -4,13 +4,13 @@ $check = $tlca_do->load('class_check');
 $class_index = $tlca_do->load('class_index');
 $skin = $tlca_do->load('class_skin');
 $class_member = $tlca_do->load('class_member');
-$user_info=$class_member->user_info($conn,$_COOKIE['user_id']);
+$user_info = $class_member->user_info($conn, $_COOKIE['user_id']);
 $action = addslashes($_REQUEST['action']);
 
-if(isset($user_info['user_id']) && $user_info['user_id']>0){
-    $thongtin_khachhang = $class_index->getThongTinKhachHang($conn,$user_info['user_id']);
+if (isset($user_info['user_id']) && $user_info['user_id'] > 0) {
+    $thongtin_khachhang = $class_index->getThongTinKhachHang($conn, $user_info['user_id']);
     $header = $skin->skin_replace('skin_cpanel/headeruser', $thongtin_khachhang);
-}else{
+} else {
     $header = $skin->skin_normal('skin/header');
 }
 if ($action == "datlich") {
@@ -32,9 +32,9 @@ if ($action == "datlich") {
                  AND status != 'cancelled'";
     $checkResult = $conn->query($checkSql);
 
-    if($hientai > $thoigiankhachdat){
+    if ($hientai > $thoigiankhachdat) {
         echo json_encode(array(
-            'ok' => 0, 
+            'ok' => 0,
             'thongbao' => 'Thời gian này đã qua. Vui lòng chọn thời gian khác.',
             'trungLich' => true
         ));
@@ -44,7 +44,7 @@ if ($action == "datlich") {
     $maxDate = date('Y-m-d', strtotime('+30 days'));
     if ($testDriveDate > $maxDate) {
         echo json_encode(array(
-            'ok' => 0, 
+            'ok' => 0,
             'thongbao' => 'Vui lòng chọn ngày trong vòng 30 ngày tới.',
             'trungLich' => false
         ));
@@ -52,31 +52,31 @@ if ($action == "datlich") {
     }
     if ($checkResult->num_rows > 0) {
         echo json_encode(array(
-            'ok' => 0, 
+            'ok' => 0,
             'thongbao' => 'Thời gian này đã có người đặt. Vui lòng chọn thời gian khác hoặc địa điểm khác.',
             'trungLich' => true
         ));
         return;
     }
-    
+
 
     // Xử lý user_id
     $userId = null;
     if (isset($user_info['user_id'])) {
         $userId = $user_info['user_id'];
     }
-    
+
     $sql = "INSERT INTO test_drives (user_id, full_name, phone_number, email, product_id, preferred_date, preferred_time, status, notes, location,created_at) 
             VALUES (" . ($userId ? $userId : "NULL") . ", '$fullName', '$phoneNumber', '$email', '$productId', '$testDriveDate', '$testDriveTime', 'pending', '$notes', '$location', '$hientai')";
-    
+
     $result = $conn->query($sql);
     if ($result) {
         echo json_encode(array('ok' => 1, 'thongbao' => 'Đặt lịch lái thử xe thành công'));
     } else {
         echo json_encode(array('ok' => 0, 'thongbao' => 'Đặt lịch lái thử xe thất bại'));
     }
-}else if ($action == "datcho") {
-    $user_id=$user_info['user_id'] ?? 'NULL';
+} else if ($action == "datcho") {
+    $user_id = $user_info['user_id'] ?? 'NULL';
     $id = addslashes(strip_tags($_REQUEST['product_id']));
     $sql = "SELECT products.*, categories.name as category_name FROM products LEFT JOIN categories ON products.category_id = categories.id WHERE products.id = $id";
     $result = $conn->query($sql);
@@ -98,7 +98,7 @@ if ($action == "datlich") {
         'user_id' => $user_info['user_id'] ?? 'NULL'
     );
     echo $skin->skin_replace('skin/DatCho', $replace);
-}else if ($action == "xacnhan_datcho") {
+} else if ($action == "xacnhan_datcho") {
     error_log("Received request: " . print_r($_POST, true));
     error_log("Files: " . print_r($_FILES, true));
     if (isset($_FILES['payment_image']) && $_FILES['payment_image']['error'] === UPLOAD_ERR_OK) {
@@ -106,7 +106,7 @@ if ($action == "datlich") {
         $fileName = $_FILES['payment_image']['name'];
         $fileNameCmps = explode(".", $fileName);
         $fileExtension = strtolower(end($fileNameCmps));
-        
+
         // Tạo tên file mới
         $newFileName = time() . '_' . md5($fileName) . '.' . $fileExtension;
         $uploadFileDir = './uploads/';
@@ -148,9 +148,9 @@ if ($action == "datlich") {
             $result = $conn->query($sql);
             if ($result) {
                 $update_stock = mysqli_query($conn, "UPDATE products SET stock = stock - 1 WHERE id = '$product_id'");
-                if($update_stock){
+                if ($update_stock) {
                     echo json_encode(['ok' => 1, 'thongbao' => 'Đặt giữ chỗ xe thành công. Xin vui lòng quý khách kiểm tra email đợi nhận thông tin xử lý đơn hàng.']);
-                }else{
+                } else {
                     echo json_encode(['ok' => 0, 'thongbao' => 'Đặt giữ chỗ xe thành công nhưng cập nhật lại số lượng xe thất bại: ' . $conn->error]);
                 }
             } else {
@@ -162,9 +162,9 @@ if ($action == "datlich") {
     } else {
         $uploadError = isset($_FILES['payment_image']) ? $_FILES['payment_image']['error'] : 'No file uploaded';
         error_log("Upload error: " . $uploadError);
-        echo json_encode(['ok' => 0, 'thongbao' => 'Vui lòng chọn ảnh xác nhận chuyển khoản. Error: ' . $uploadError]);    
+        echo json_encode(['ok' => 0, 'thongbao' => 'Vui lòng chọn ảnh xác nhận chuyển khoản. Error: ' . $uploadError]);
     }
-}else if ($action == "update_tk") {
+} else if ($action == "update_tk") {
     $avatarFileName = $_POST['current_avatar'] ?? null;
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -198,7 +198,6 @@ if ($action == "datlich") {
         }
 
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
-            // Gán tên file mới để lưu DB
             $avatarFileName = $newFileName;
         } else {
             echo json_encode(['ok' => 0, 'message' => 'Không thể lưu file ảnh. Vui lòng kiểm tra quyền thư mục']);
@@ -206,38 +205,76 @@ if ($action == "datlich") {
         }
     }
 
-    $user_info = $class_member->user_info($conn, $user_id);
-    $password_old = $user_info['password'];
-    // Dù có upload ảnh hay không, đến đây là xử lý update dữ liệu
     $user_id = addslashes(strip_tags($_POST['user_id']));
+    // Kiểm tra $user_id
+    if (!isset($user_id)) {
+        error_log("Debug: user_id không được định nghĩa");
+        echo json_encode(['ok' => 0, 'thongbao' => 'user_id không hợp lệ']);
+        exit;
+    }
+
+    // $user_info = $class_member->user_info($conn, $user_id);
+    if (!$user_info || !isset($user_info['password'])) {
+        error_log("Debug: Không lấy được user_info hoặc password");
+        echo json_encode(['ok' => 0, 'thongbao' => 'Không lấy được thông tin người dùng']);
+        exit;
+    }
+    $password_old = $user_info['password'];
+
+    // Lấy và xử lý dữ liệu từ form
+    
     $full_name = addslashes(strip_tags($_POST['full_name']));
     $email = addslashes(strip_tags($_POST['email']));
     $phone = addslashes(strip_tags($_POST['phone']));
     $address = addslashes(strip_tags($_POST['address']));
-    $password = addslashes(strip_tags($_POST['password']));
-    if($password != $password_old){
-        $password = md5($password);
-        $sql = "UPDATE users SET full_name = '$full_name', email = '$email', phone = '$phone', address = '$address', avatar = '$avatarFileName', password = '$password' WHERE user_id = '$user_id'";
-    }else{
-        $sql = "UPDATE users SET full_name = '$full_name', email = '$email', phone = '$phone', address = '$address', avatar = '$avatarFileName' WHERE user_id = '$user_id'";
-    }
-    $result = $conn->query($sql);
+    $password = isset($_POST['password']) ? addslashes(strip_tags($_POST['password'])) : '';
 
-    if ($result) {
-        if($password != $password_old) {
-            // Nếu đổi mật khẩu thành công, trả về thông báo đặc biệt
-            echo json_encode(['ok' => 1, 'thongbao' => 'Cập nhật thông tin thành công. Vui lòng đăng nhập lại.', 'change_password' => true]);
+    // Khởi tạo biến $doimk
+    $doimk = false;
+
+    // Debug: Kiểm tra giá trị $password
+    error_log("Debug: password = '$password', password_old = '$password_old'");
+
+    // Kiểm tra nếu có mật khẩu mới được nhập
+    if (!empty($password)) {
+        $password_hashed = md5($password);
+        error_log("Debug: password_hashed = '$password_hashed'");
+        if ($password_hashed != $password_old) {
+            $doimk = true;
+            $sql = "UPDATE users SET full_name = ?, email = ?, phone = ?, address = ?, avatar = ?, password = ? WHERE user_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sssssss", $full_name, $email, $phone, $address, $avatarFileName, $password_hashed, $user_id);
         } else {
-            echo json_encode(['ok' => 1, 'thongbao' => 'Cập nhật thông tin thành công']);
+            $sql = "UPDATE users SET full_name = ?, email = ?, phone = ?, address = ?, avatar = ? WHERE user_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssssss", $full_name, $email, $phone, $address, $avatarFileName, $user_id);
         }
     } else {
+        $sql = "UPDATE users SET full_name = ?, email = ?, phone = ?, address = ?, avatar = ? WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssss", $full_name, $email, $phone, $address, $avatarFileName, $user_id);
+    }
+
+    // Debug: Kiểm tra $doimk trước khi execute
+    error_log("Debug: doimk = " . ($doimk ? 'true' : 'false'));
+
+    $result = $stmt->execute();
+
+    if ($result) {
+        error_log("Debug: Cập nhật thành công, doimk = " . ($doimk ? 'true' : 'false'));
+        if ($doimk) {
+            echo json_encode(['ok' => 1, 'thongbao' => 'Cập nhật thông tin thành công. Vui lòng đăng nhập lại.', 'change_password' => true]);
+        } else {
+            echo json_encode(['ok' => 1, 'thongbao' => 'Cập nhật thông tin thành công', 'change_password' => false]);
+        }
+    } else {
+        error_log("Debug: Cập nhật thất bại, SQL: $sql");
         echo json_encode(['ok' => 0, 'thongbao' => 'Cập nhật thông tin thất bại']);
     }
-}else if ($action == "kh_cancel_lichlai") {
+} else if ($action == "kh_cancel_lichlai") {
     $id = addslashes(strip_tags($_POST['id']));
     $status = addslashes(strip_tags($_POST['status']));
     $sql = "UPDATE test_drives SET status = '$status' WHERE id = '$id'";
     $result = $conn->query($sql);
     echo json_encode(['ok' => 1, 'thongbao' => 'Đã hủy yêu cầu hủy lịch lái thử xe. Xin vui lòng kiểm tra email đợi nhận thông tin xử lý lịch lái thử.']);
 }
-?>

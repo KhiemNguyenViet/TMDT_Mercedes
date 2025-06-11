@@ -6,11 +6,10 @@ function isValidEmail(email) {
 $(document).ready(function () {
     //////////////////////
     $('.profile-form #savetk-btn').click(function () {
-        // console.log('click');
         var formData = new FormData();
         var avatarFile = $('#avatarInput')[0].files[0];
         var currentAvatar = $('#currentAvatar').val().trim();
-
+    
         if (avatarFile) {
             formData.append('image', avatarFile);
         } else if (!currentAvatar) {
@@ -32,18 +31,14 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                // console.log(response);
-                // die();
                 const info = JSON.parse(response);
                 if (info.ok == 1) {
                     toastr.success(info.thongbao);
-                    if (info.change_password) {
-                        // Nếu đổi mật khẩu thành công, chuyển hướng đến trang đăng xuất
+                    if (info.change_password === true) {
                         setTimeout(function () {
                             window.location.href = '/logout?redirect=login';
                         }, 1000);
                     } else {
-                        // Nếu chỉ cập nhật thông tin thông thường
                         setTimeout(function () {
                             location.reload();
                         }, 3000);

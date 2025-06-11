@@ -153,6 +153,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
         // Mã hóa mật khẩu mới bằng MD5
         $hashed_password = md5($new_password);
         
+        // Mã hóa mật khẩu mới
+        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+        
         // Cập nhật mật khẩu mới vào database
         $update_sql = "UPDATE users SET password = '$hashed_password' WHERE email = '$email'";
         $update_result = mysqli_query($conn, $update_sql);
@@ -187,15 +190,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
                 ";
 
                 $mail->send();
-                echo "<script>alert('Mật khẩu mới đã được gửi đến email của bạn!'); window.location.href='../login.html';</script>";
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Mật khẩu mới đã được gửi đến email của bạn!',
+                    'redirect' => '../login.html'
+                ]);
             } catch (Exception $e) {
-                echo "<script>alert('Có lỗi xảy ra khi gửi email: {$mail->ErrorInfo}'); window.location.href='../forgot-password.html';</script>";
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Có lỗi xảy ra khi gửi email: ' . $mail->ErrorInfo,
+                    'redirect' => '../forgot-password.html'
+                ]);
             }
         } else {
-            echo "<script>alert('Có lỗi xảy ra khi cập nhật mật khẩu!'); window.location.href='../forgot-password.html';</script>";
+            echo json_encode([
+                'success' => false,
+                'message' => 'Có lỗi xảy ra khi cập nhật mật khẩu!',
+                'redirect' => '../forgot-password.html'
+            ]);
         }
     } else {
-        echo "<script>alert('Email không tồn tại trong hệ thống!'); window.location.href='../forgot-password.html';</script>";
+        echo json_encode([
+            'success' => false,
+            'message' => 'Email không tồn tại trong hệ thống!',
+            'redirect' => '../forgot-password.html'
+        ]);
     }
 } else {
     echo json_encode([

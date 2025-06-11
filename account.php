@@ -18,9 +18,9 @@
         
         // Xử lý và hiển thị nội dung
         $replace = array(
-            'password' => $result_thongtin_khachhang['password'],
+            // 'password' => $result_thongtin_khachhang['password'],
             'full_name' => $result_thongtin_khachhang['full_name'],
-            'user_avatar' => $result_thongtin_khachhang['avatar'],
+            'user_avatar' => $result_thongtin_khachhang['avatar']?$result_thongtin_khachhang['avatar']:'../hinhanh/no-images.jpg',
             'user_name' => $result_thongtin_khachhang['username'],
             'user_address' => $result_thongtin_khachhang['address'],
             'user_phone' => $result_thongtin_khachhang['phone'],
