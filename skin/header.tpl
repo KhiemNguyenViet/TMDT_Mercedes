@@ -93,11 +93,12 @@
         select.goog-te-combo {
             width: 90px;
         }
-        .navbar{
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
     </style>
     <!-- MenuBar -->
     <nav class="navbar">
@@ -116,7 +117,8 @@
 
         </div>
         <div class="navbar-right">
-            <p class="login-message" style="color: deepskyblue;">Mời quý khách đăng nhập để có trải nghiệm tốt hơn !</p>
+            <div class="login-message" style="color: deepskyblue;">Mời quý khách đăng nhập để có trải nghiệm tốt hơn !
+            </div>
             <div class="user-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
                 <div class="dropdown-content">
@@ -130,7 +132,8 @@
                 <img style="background-color: rgb(255, 255, 255); border-radius: 50%;" src="../hinhanh/files.png"
                     alt="Cart" class="icon" style="width: 30px; height: 30px;" />
             </a>
-            <img id="languageIcon" src="../hinhanh/eath.jpg" alt="Language" class="icon" style="width: 20px; height: 20px; cursor: pointer;" />
+            <img id="languageIcon" src="../hinhanh/eath.jpg" alt="Language" class="icon"
+                style="width: 20px; height: 20px; cursor: pointer;" />
             <div id="google_translate_element"></div>
 
     </nav>
@@ -152,14 +155,14 @@
         }
 
         // Xử lý ngôn ngữ
-        $('#languageIcon').click(function() {
+        $('#languageIcon').click(function () {
             $('#languageIcon').hide();
             $('#google_translate_element').show();
         });
 
         // Theo dõi sự thay đổi của Google Translate
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
                 if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
                     // Kiểm tra nếu đã chọn ngôn ngữ
                     if ($('.goog-te-combo').val()) {

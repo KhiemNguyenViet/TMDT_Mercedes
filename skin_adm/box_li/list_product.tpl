@@ -4,8 +4,8 @@
             <th>Ảnh</th>
             <th>Tên sản phẩm</th>
             <th>Giá</th>
+            <th>Mô tả</th>
             <th>Số lượng</th>
-            <th>Trạng thái</th>
             <th>Hành động</th>
         </tr>
     </thead>

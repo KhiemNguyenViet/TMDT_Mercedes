@@ -6,7 +6,7 @@
     <td>Còn: {stock} xe</td>
     <td>
         <a href="index.php?action=edit_product&id={id}" class="btn-edit">Sửa</a>
-        <button class="btn-delete" onclick="deleteProduct({id})">Xóa</button>
+        <button style="height: 35px; align-items: center;" class="btn-delete" onclick="deleteProduct({id})">Xóa</button>
     </td>
 </tr>
 
@@ -49,5 +49,4 @@
     .btn-delete:hover {
         background: #da190b;
     }
-    
 </style>
