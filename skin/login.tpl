@@ -88,6 +88,7 @@
             <button type="submit" class="login-button">Đăng Nhập</button>
         </form>
         <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+        <p>Quên mật khẩu? <a href="forgot-password.html">Lấy lại mật khẩu</a></p>
     </div>
     <div class="load_overlay" style="display: none;"></div>
     <div class="load_process" style="display: none;">

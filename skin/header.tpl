@@ -87,6 +87,9 @@
             width: 90px;
         }
 
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd {
+            display: none;
+        }
         select.goog-te-combo {
             width: 90px;
         }

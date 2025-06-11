@@ -11,6 +11,7 @@ RewriteRule ^giaoxe.html giaoxe.php
 RewriteRule ^doitra.html doitra.php
 RewriteRule ^login.html login.php
 RewriteRule ^register.html register.php
+RewriteRule ^forgot-password.html forgot-password.php
 RewriteRule ^thuonghieu.html thuonghieu.php
 RewriteRule ^cacmauxe.html cacmauxe.php
 RewriteRule ^lich_laithu.html lich_laithu.php
