@@ -216,7 +216,7 @@ class class_index extends class_manage
                 $query .= " ORDER BY p.price DESC";
                 break;
             default:
-                $query .= " ORDER BY p.id ASC";
+                $query .= " ORDER BY p.id DESC";
         }
 
         // Get total records for pagination
