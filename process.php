@@ -206,18 +206,30 @@ if ($action == "datlich") {
         }
     }
 
+    $user_info = $class_member->user_info($conn, $user_id);
+    $password_old = $user_info['password'];
     // Dù có upload ảnh hay không, đến đây là xử lý update dữ liệu
     $user_id = addslashes(strip_tags($_POST['user_id']));
     $full_name = addslashes(strip_tags($_POST['full_name']));
     $email = addslashes(strip_tags($_POST['email']));
     $phone = addslashes(strip_tags($_POST['phone']));
     $address = addslashes(strip_tags($_POST['address']));
-
-    $sql = "UPDATE users SET full_name = '$full_name', email = '$email', phone = '$phone', address = '$address', avatar = '$avatarFileName' WHERE user_id = '$user_id'";
+    $password = addslashes(strip_tags($_POST['password']));
+    if($password != $password_old){
+        $password = md5($password);
+        $sql = "UPDATE users SET full_name = '$full_name', email = '$email', phone = '$phone', address = '$address', avatar = '$avatarFileName', password = '$password' WHERE user_id = '$user_id'";
+    }else{
+        $sql = "UPDATE users SET full_name = '$full_name', email = '$email', phone = '$phone', address = '$address', avatar = '$avatarFileName' WHERE user_id = '$user_id'";
+    }
     $result = $conn->query($sql);
 
     if ($result) {
-        echo json_encode(['ok' => 1, 'thongbao' => 'Cập nhật thông tin thành công']);
+        if($password != $password_old) {
+            // Nếu đổi mật khẩu thành công, trả về thông báo đặc biệt
+            echo json_encode(['ok' => 1, 'thongbao' => 'Cập nhật thông tin thành công. Vui lòng đăng nhập lại.', 'change_password' => true]);
+        } else {
+            echo json_encode(['ok' => 1, 'thongbao' => 'Cập nhật thông tin thành công']);
+        }
     } else {
         echo json_encode(['ok' => 0, 'thongbao' => 'Cập nhật thông tin thất bại']);
     }

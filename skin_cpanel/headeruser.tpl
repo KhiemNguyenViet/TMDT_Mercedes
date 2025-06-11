@@ -126,14 +126,8 @@
     </nav>
     <script>
         $(document).ready(function () {
-            if (localStorage.getItem('loginStatus') === 'loggedInAsUser24') {
-                $('.navbar .user-dropdown').css('display', 'none');
-                $('.navbar .tk-dropdown').css('display', 'block');
-            } else {
-                // Đảm bảo trạng thái mặc định nếu không có loginStatus hoặc giá trị khác
-                $('.navbar .user-dropdown').css('display', 'block');
-                $('.navbar .tk-dropdown').css('display', 'none');
-            }
+            // 
+            
     
             // Xử lý ngôn ngữ
             $('#languageIcon').click(function() {

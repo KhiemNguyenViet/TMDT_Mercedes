@@ -117,7 +117,7 @@
 
         </div>
         <div class="navbar-right">
-            <div class="login-message" style="color: deepskyblue;">Mời quý khách đăng nhập để có trải nghiệm tốt hơn !
+            <div class="login-message" style="color: deepskyblue;">Mời quý khách <a href="/login.html" style="font-size: 16px;">đăng nhập</a> để có trải nghiệm tốt hơn !
             </div>
             <div class="user-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />

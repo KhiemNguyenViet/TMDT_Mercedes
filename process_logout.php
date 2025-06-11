@@ -5,11 +5,25 @@ $check=$tlca_do->load('class_check');
 $skin=$tlca_do->load('class_skin');
 $class_index=$tlca_do->load('class_index');
 $thongbao="Đăng xuất thành công.";
-$replace=array(
-	'header'=>$skin->skin_normal('skin/header'),
-	'title'=>'Đăng xuất thành công',
-	'thongbao'=>$thongbao,
-	'link'=>'/'
-);
-echo $skin->skin_replace('skin/chuyenhuong',$replace);
+
+// Kiểm tra nếu có tham số redirect
+$redirect = isset($_GET['redirect']) ? $_GET['redirect'] : '';
+
+if($redirect == 'login') {
+    $replace=array(
+        'header'=>$skin->skin_normal('skin/header'),
+        'title'=>'Đăng xuất thành công',
+        'thongbao'=>$thongbao,
+        'link'=>'login.html'
+    );
+    echo $skin->skin_replace('skin/chuyenhuong',$replace);
+} else {
+    $replace=array(
+        'header'=>$skin->skin_normal('skin/header'),
+        'title'=>'Đăng xuất thành công',
+        'thongbao'=>$thongbao,
+        'link'=>'/'
+    );
+    echo $skin->skin_replace('skin/chuyenhuong',$replace);
+}
 ?>

@@ -17,6 +17,7 @@ $(document).ready(function () {
             toastr.error('Vui lòng chọn ảnh đại diện');
             return;
         }
+        formData.append('password', $('input[name="password"]').val());
         formData.append('full_name', $('input[name="full_name"]').val());
         formData.append('email', $('input[name="email"]').val());
         formData.append('phone', $('input[name="phone"]').val());
@@ -36,9 +37,17 @@ $(document).ready(function () {
                 const info = JSON.parse(response);
                 if (info.ok == 1) {
                     toastr.success(info.thongbao);
-                    setTimeout(function () {
-                        location.reload();
-                    }, 3000);
+                    if (info.change_password) {
+                        // Nếu đổi mật khẩu thành công, chuyển hướng đến trang đăng xuất
+                        setTimeout(function () {
+                            window.location.href = '/logout?redirect=login';
+                        }, 1000);
+                    } else {
+                        // Nếu chỉ cập nhật thông tin thông thường
+                        setTimeout(function () {
+                            location.reload();
+                        }, 3000);
+                    }
                 } else {
                     toastr.error(info.thongbao);
                 }

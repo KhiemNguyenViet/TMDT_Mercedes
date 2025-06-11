@@ -81,7 +81,7 @@
 
             <div class="form-group password-group">
                 <label>Mật khẩu </label>
-                <input type="password" value="{password}" id="passwordInput">
+                <input type="password" name="password" value="{password}" id="passwordInput">
                 <!-- <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i> -->
             </div>
 
