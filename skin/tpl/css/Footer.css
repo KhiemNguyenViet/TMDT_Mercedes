@@ -122,3 +122,54 @@
     border-top: 1px solid #333;
     padding-top: 20px;
 }
+@media (max-width: 768px) {
+    .testdrive-section {
+        height: auto; /* Allow height to adjust based on content */
+        padding: 20px 0;
+    }
+
+    .testdrive-form {
+        max-width: 90%;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+
+    .testdrive-form input,
+    .testdrive-form select,
+    .testdrive-form textarea {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .submit-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-column {
+        flex: 1 1 100%;
+    }
+
+    .footer-column h3 {
+        font-size: 16px;
+    }
+
+    .footer-column ul li {
+        font-size: 13px;
+    }
+
+    .footer-bottom {
+        font-size: 12px;
+        margin-top: 20px;
+        padding-top: 15px;
+    }
+}

@@ -111,3 +111,43 @@
 .btn-view:hover {
     background-color: #3a41c2;
 }
+@media (max-width: 768px) {
+    .allcard {
+        padding: 20px;
+    }
+
+    .text1 {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+
+    .card-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .card,
+    .card-small {
+        flex: 0 0 100%; /* Full width on mobile */
+        height: 300px; /* Reduce height */
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-content p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .btn-view {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .scroll-down {
+        font-size: 2rem;
+        margin-top: -10px;
+    }
+}

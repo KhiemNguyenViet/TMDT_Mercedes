@@ -1,13 +1,14 @@
+
 .navbar {
     background-color: #000;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
+    position: sticky;
+    top: 0;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
-
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     width: 100%;
@@ -32,7 +33,6 @@
 .navbar-left a:hover,
 .navbar-right a:hover {
     color: #1e90ff;
-    text-decoration: none;
 }
 
 .navbar-center {
@@ -54,10 +54,28 @@
 }
 
 .icon {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.user-icon {
+    width: 35px;
+    height: 20px;
+}
+
+.cart-icon {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.language-icon {
+    width: 20px;
+    height: 20px;
 }
 
 .icon:hover {
@@ -65,27 +83,225 @@
     opacity: 0.8;
 }
 
+.user-dropdown,
+.tk-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.user-dropdown:hover .dropdown-content,
+.tk-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content ul li {
+    text-align: center;
+    padding: 7px;
+}
+
+.dropdown-content ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.login-message {
+    color: deepskyblue;
+    font-size: 14px;
+}
+
+.login-message a {
+    font-size: 14px;
+    color: deepskyblue;
+}
+
+.login-message a:hover {
+    color: #1e90ff;
+}
+
+.language-toggle {
+    position: relative;
+    display: inline-block;
+}
+
+#google_translate_element {
+    display: none;
+    width: 90px;
+}
+
+select.goog-te-combo {
+    width: 90px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    padding: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
 @media (max-width: 768px) {
     .navbar {
+        height: 50px;
         padding: 0 10px;
     }
 
-    .navbar-left,
-    .navbar-right {
-        gap: 10px;
+    .navbar-left {
+        padding: 0;
     }
 
-    .navbar-left a,
-    .navbar-right a {
-        font-size: 12px;
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        flex-direction: column;
+        padding: 10px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        padding: 10px 20px;
+        width: 100%;
+        text-align: left;
+        display: block; /* Ensure links are visible */
+    }
+
+    .navbar-center {
+        left: 50px;
+        transform: none;
     }
 
     .logo {
         height: 30px;
     }
 
+    .navbar-right {
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .login-message {
+        font-size: 12px;
+    }
+
+    .login-message a {
+        font-size: 12px;
+    }
+
     .icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .user-icon {
+        width: 28px;
+        height: 16px;
+    }
+
+    .cart-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .language-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .user-dropdown .dropdown-content,
+    .tk-dropdown .dropdown-content {
+        min-width: 120px;
+        right: 10px;
+        top: 30px;
+        background-color: #fff;
+    }
+
+    .dropdown-content ul li a {
+        font-size: 13px;
+    }
+
+    #google_translate_element {
+        width: 80px;
+    }
+
+    select.goog-te-combo {
+        width: 80px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-right {
+        gap: 8px;
+    }
+
+    .login-message {
+        font-size: 10px;
+        max-width: 211px;
+    }
+
+    .login-message a {
+        font-size: 10px !important;
+        color: rgb(255, 255, 255);
+    }
+
+    .user-icon {
+        width: 24px;
+        height: 14px;
+    }
+
+    .cart-icon {
+        width: 13px;
+        height: 13px;
+    }
+
+    .language-icon {
         width: 16px;
         height: 16px;
+    }
+
+    .hamburger {
+        font-size: 20px;
+        padding: 8px;
     }
 }

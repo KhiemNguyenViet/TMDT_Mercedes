@@ -2,10 +2,22 @@
 <html lang="vi">
 <style>
     body {
+        margin:0;
         opacity: 0;
         transition: opacity 0.1s ease-in-out;
         font-family: Arial, Helvetica, sans-serif;
     }
+    @media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Smaller base font size */
+    }
+
+    /* Adjust scroll-down arrow */
+    .scroll-down {
+        font-size: 2rem;
+        margin-top: -8px;
+    }
+}
 </style>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

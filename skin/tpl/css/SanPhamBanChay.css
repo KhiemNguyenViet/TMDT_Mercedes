@@ -108,3 +108,43 @@ h3 {
     color: #888;
     margin-top: 3px;
 }
+@media (max-width: 768px) {
+    .sanpham-list {
+        grid-template-columns: 1fr; /* Single column */
+        gap: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .title,
+    h3 {
+        font-size: 24px;
+        margin-left: 20px;
+        margin-bottom: 15px;
+    }
+
+    .sanpham-item {
+        height: 260px; /* Slightly smaller cards */
+    }
+
+    .image-wrapper {
+        height: 160px; /* Adjust image height */
+    }
+
+    .sanpham-ten {
+        font-size: 16px;
+    }
+
+    .sanpham-gia {
+        font-size: 14px;
+    }
+
+    .gia-cu {
+        font-size: 12px;
+    }
+
+    .stock-badge {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+}

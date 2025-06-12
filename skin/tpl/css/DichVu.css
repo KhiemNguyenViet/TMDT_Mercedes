@@ -143,3 +143,57 @@
     .dichvu-nav.right {
         right: 0;
     }
+
+    @media (max-width: 768px) {
+        .dichvu-container {
+            padding: 20px;
+        }
+    
+        .dichvu-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+    
+        .dichvu-slider {
+            gap: 15px;
+        }
+    
+        .dichvu-card {
+            min-width: 250px; /* Smaller cards for mobile */
+            height: auto;
+        }
+    
+        .dichvu-image {
+            height: 150px; /* Reduce image height */
+        }
+    
+        .dichvu-card-content {
+            padding: 15px;
+        }
+    
+        .dichvu-card-title {
+            font-size: 18px;
+        }
+    
+        .dichvu-card-text {
+            font-size: 13px;
+        }
+    
+        .dichvu-button {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+    
+        .dichvu-nav {
+            padding: 10px;
+            font-size: 18px;
+        }
+    
+        .dichvu-nav.left {
+            left: 10px;
+        }
+    
+        .dichvu-nav.right {
+            right: 10px;
+        }
+    }
