@@ -308,30 +308,6 @@
         </div>
     </div>
 
-    <!-- Popup xác nhận đặt lịch -->
-    <div id="confirmBookingPopup" class="popup-overlay" style="display: none;">
-        <div class="popup-content confirm-popup">
-            <h2>Xác nhận đặt lịch</h2>
-            <p>Bạn có chắc chắn muốn đặt lịch lái thử xe này?</p>
-            <div class="confirm-buttons">
-                <button class="confirm-yes">Xác nhận</button>
-                <button class="confirm-no">Hủy</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Popup xác nhận chọn thời gian khác -->
-    <div id="confirmTimeChangePopup" class="popup-overlay" style="display: none;">
-        <div class="popup-content confirm-popup">
-            <h2>Thời gian đã được đặt</h2>
-            <p class="time-change-message"></p>
-            <div class="confirm-buttons">
-                <button class="change-time-yes">Chọn thời gian khác</button>
-                <button class="change-time-no">Đóng</button>
-            </div>
-        </div>
-    </div>
-
     <script>
         const images = [
             "../uploads/{product.image}",
