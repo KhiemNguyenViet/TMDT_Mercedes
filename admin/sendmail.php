@@ -153,9 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
         // Mã hóa mật khẩu mới bằng MD5
         $hashed_password = md5($new_password);
         
-        // Mã hóa mật khẩu mới
-        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-        
         // Cập nhật mật khẩu mới vào database
         $update_sql = "UPDATE users SET password = '$hashed_password' WHERE email = '$email'";
         $update_result = mysqli_query($conn, $update_sql);
