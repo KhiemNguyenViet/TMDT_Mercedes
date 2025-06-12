@@ -262,7 +262,7 @@
                     <p>Tiền giữ chỗ: <strong>10.000.000 VNĐ</strong></p>
 
                     <label>Quét mã QR để chuyển tiền:</label><br>
-                    <img src='https://img.vietqr.io/image/MB-0981663735-print.jpg?amount=10000000&addInfo={username} Thanh Toán Tiền Giữ Xe {product.name}'
+                    <img src='https://img.vietqr.io/image/MB-0366585487-print.jpg?amount=10000&addInfo={username} Thanh Toán Tiền Giữ Xe {product.name}'
                         alt="Mã QR chuyển tiền" style="max-width: 250px; display: block; margin-bottom: 10px;">
 
                     <label>Chọn ảnh xác nhận chuyển khoản (bắt buộc):</label>

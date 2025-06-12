@@ -56,7 +56,7 @@
     </script>
     <div class="container">
         <div class="image-gallery">
-            <img id="mainImage" src="../uploads/{product.image}" alt="{product.name}" class="main-image" />
+            <img id="mainImage" src="../uploads/{product.image}" alt="{product.name}" class="main-image" onclick="showImage(this.src)" style="cursor: pointer;" />
             <div class="thumbnail-wrapper">
                 <span class="arrow" onclick="prevImage()">&#10094;</span>
                 <div class="thumbnail-container" id="thumbnailSlider">
@@ -306,9 +306,9 @@
             "../hinhanh/chitiet3.jpg",
             "../hinhanh/chitiet4.jpg",
             "../hinhanh/chitiet5.jpg",
-            "../hinhanh/chitiet6.jpg",
-            "../hinhanh/chitiet7.jpg",
-            "../hinhanh/chitiet8.jpg",
+            // "../hinhanh/chitiet6.jpg",
+            // "../hinhanh/chitiet7.jpg",
+            // "../hinhanh/chitiet8.jpg",
         ];
 
         let currentIndex = 0;
@@ -406,6 +406,40 @@
                 testDriveDateInput.setAttribute('min', today);
             }
         });
+
+        function showImage(src) {
+            // Tạo modal container
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';        // Đặt vị trí cố định trên màn hình
+            modal.style.zIndex = '9999';           // Đảm bảo hiển thị trên cùng các phần tử khác
+            modal.style.left = '0';                // Căn lề trái
+            modal.style.top = '0';                 // Căn lề trên
+            modal.style.width = '100%';            // Chiều rộng 100% màn hình
+            modal.style.height = '100%';           // Chiều cao 100% màn hình
+            modal.style.backgroundColor = 'rgba(0,0,0,0.9)';  // Nền đen với độ trong suốt 90%
+            modal.style.display = 'flex';          // Sử dụng flexbox để căn giữa
+            modal.style.alignItems = 'center';     // Căn giữa theo chiều dọc
+            modal.style.justifyContent = 'center'; // Căn giữa theo chiều ngang
+            modal.style.cursor = 'pointer';        // Con trỏ chuột thành dạng pointer
+
+            // Tạo ảnh phóng to
+            const img = document.createElement('img');
+            img.src = src;                         // Lấy đường dẫn ảnh từ tham số
+            img.style.maxWidth = '90%';            // Chiều rộng tối đa 90% màn hình
+            img.style.maxHeight = '90%';           // Chiều cao tối đa 90% màn hình
+            img.style.objectFit = 'contain';       // Giữ tỷ lệ ảnh gốc
+
+            // Thêm ảnh vào modal
+            modal.appendChild(img);
+
+            // Thêm modal vào body của trang
+            document.body.appendChild(modal);
+
+            // Xử lý sự kiện click để đóng modal
+            modal.onclick = function() {
+                document.body.removeChild(modal);   // Xóa modal khỏi trang
+            };
+        }
 
     </script>
     {footer}

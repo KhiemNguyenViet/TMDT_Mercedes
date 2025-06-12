@@ -26,7 +26,7 @@ class class_cpanel extends class_manage
             $i++;
             $row['stt'] = $i;
             if (!empty($row['image_thanhtoan'])) {
-                $row['image'] = '<img src="/uploads/' . htmlspecialchars($row['image_thanhtoan']) . '" alt="Ảnh chuyển khoản" style="max-width:100px; max-height:100px;">';
+                $row['image'] = '<img src="/uploads/' . htmlspecialchars($row['image_thanhtoan']) . '" alt="Ảnh chuyển khoản" style="max-width:100%; max-height:100%; cursor:pointer;" class="payment-image" onclick="showImage(this.src)">';
             } else {
                 $row['image'] = 'Không có';
             }

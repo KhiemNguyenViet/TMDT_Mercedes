@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../skin_adm/css/admin.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/skin_adm/js/process.js"></script>
+    <script src="/assets/js/payment-image.js"></script>
     <link rel="icon" type="image/x-icon" href="{favicon}">
     <style>
         .dichvu-slider {
