@@ -81,7 +81,7 @@
 
             <div class="form-group password-group">
                 <label>Mật khẩu </label>
-                <input type="password" name="password" id="passwordInput">
+                <input type="password" name="password" id="passwordInput" placeholder="Nhập mật khẩu mới">
             </div>
 
             <button type="button" id_user="{user_id}" id="savetk-btn" class="savetk-btn">Lưu thay đổi</button>
