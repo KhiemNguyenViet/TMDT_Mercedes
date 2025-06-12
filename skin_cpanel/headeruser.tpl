@@ -1,4 +1,9 @@
 <body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript" src="../skin/tpl/js/process.js?t=<?php echo time();?>"></script>
     <style>
         .body {
             margin: 0;
@@ -92,11 +97,14 @@
     <!-- MenuBar -->
     <nav class="navbar">
         <div class="navbar-left">
-            <a href="/">Trang chủ</a>
-            <a href="/cacmauxe.html">Các mẫu xe</a>
-            <a href="/lichsu_thanhtoan.html">Lịch Sử Thanh Toán</a>
-            <a href="/#dichvu-section">Dịch vụ</a>
-            <a href="/thuonghieu.html">Thương hiệu</a>
+            <span class="hamburger" aria-label="Toggle navigation">☰</span>
+            <div class="nav-links">
+                <a href="/">Trang chủ</a>
+                <a href="/cacmauxe.html">Các mẫu xe</a>
+                <a href="/lichsu_thanhtoan.html">Lịch Sử Thanh Toán</a>
+                <a href="/#dichvu-section">Thông tin dịch vụ</a>
+                <a href="/thuonghieu.html">Thương hiệu</a>
+            </div>
         </div>
         <div class="navbar-center">
             <a href="/">
@@ -104,7 +112,7 @@
             </a>
         </div>
         <div class="navbar-right">
-            <p style=" font-size: 14px">Mercedes xin chào, {full_name}!</p>
+            <p class="login-message" style=" font-size: 14px">Mercedes xin chào, {full_name}!</p>
             <div class="tk-dropdown">
                 <img src="../hinhanh/user-icon.png" alt="User" class="icon" style="width: 35px; height: 20px;" />
                 <div class="dropdown-content">
@@ -126,7 +134,9 @@
     </nav>
     <script>
         $(document).ready(function () {
-            // 
+            $('.hamburger').click(function () {
+                $('.nav-links').toggleClass('active');
+            });
             
     
             // Xử lý ngôn ngữ
