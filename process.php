@@ -29,7 +29,8 @@ if ($action == "datlich") {
                  WHERE preferred_date = '$testDriveDate' 
                  AND preferred_time = '$testDriveTime' 
                  AND location = '$location' 
-                 AND status != 'cancelled'";
+                 AND status != 'cancelled'
+                 AND status != 'completed'";
     $checkResult = $conn->query($checkSql);
 
     if ($hientai > $thoigiankhachdat) {

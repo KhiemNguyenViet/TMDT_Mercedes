@@ -296,10 +296,18 @@ $(document).ready(function () {
             $button.prop('disabled', false).text(originalText);
             return;
         }
-        if (!confirm('Bạn có chắc chắn muốn đặt lịch lái thử xe này?')) {
-            $button.prop('disabled', false).text(originalText);
-            return;
-        }
+
+        // Hiển thị popup xác nhận thay vì confirm
+        $('#confirmBookingPopup').fadeIn();
+        $button.prop('disabled', false).text(originalText);
+        return;
+    });
+
+    // Xử lý nút xác nhận đặt lịch
+    $(document).on('click', '.confirm-yes', function() {
+        $('#confirmBookingPopup').fadeOut();
+        const $button = $('.datlich-button');
+        $button.prop('disabled', true).text('Đang xử lý...');
 
         // Gửi request đến server
         $.ajax({
@@ -307,30 +315,26 @@ $(document).ready(function () {
             method: 'POST',
             data: {
                 action: 'datlich',
-                fullName: username,
-                phoneNumber: phoneNumber,
-                email: email,
-                testDriveDate: testDriveDate,
-                testDriveTime: testDriveTime,
-                notes: notes,
-                productId: productId,
-                diadiem: diadiem
+                fullName: $('#bookingForm input[name="fullName"]').val(),
+                phoneNumber: $('#bookingForm input[name="phoneNumber"]').val(),
+                email: $('#bookingForm input[name="email"]').val(),
+                testDriveDate: $('#bookingForm input[name="testDriveDate"]').val(),
+                testDriveTime: $('#bookingForm select[name="testDriveTime"]').val(),
+                notes: $('#bookingForm textarea[name="notes"]').val(),
+                productId: $('.info').data('product-id'),
+                diadiem: $('#bookingForm select[name="location"]').val()
             },
             dataType: 'json',
             success: function (response) {
                 if (response.ok === 1) {
-                    alert('Yêu cầu đặt lịch lái thử xe của Quý khách đã được gửi. Chúng tôi sẽ liên hệ lại sớm nhất, xin quý khách vui lòng để ý kiểm tra email để nhận thông báo.');
-                    setTimeout(function () {
-                        $('#bookingPopup').hide();
-                        $('form#bookingForm')[0].reset();
-                    }, 2000);
-
+                    $('#bookingPopup').hide();
+                    $('#successPopup').fadeIn();
+                    $('form#bookingForm')[0].reset();
                 } else {
                     if (response.trungLich) {
-                        const confirmChange = confirm(response.thongbao + '\n\nBạn có muốn chọn thời gian khác không?');
-                        if (confirmChange) {
-                            $('input[name="testDriveDate"]').focus();
-                        }
+                        // Hiển thị popup xác nhận chọn thời gian khác
+                        $('.time-change-message').text(response.thongbao);
+                        $('#confirmTimeChangePopup').fadeIn();
                     } else {
                         toastr.error(response.thongbao);
                     }
@@ -341,13 +345,49 @@ $(document).ready(function () {
                 toastr.error('Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại sau.');
             },
             complete: function () {
-                // Khôi phục trạng thái nút
-                $button.prop('disabled', false).text(originalText);
+                $button.prop('disabled', false).text('GỬI YÊU CẦU ĐẶT LỊCH');
             }
         });
     });
 
+    // Xử lý nút hủy đặt lịch
+    $(document).on('click', '.confirm-no', function() {
+        $('#confirmBookingPopup').fadeOut();
+    });
+
+    // Xử lý nút chọn thời gian khác
+    $(document).on('click', '.change-time-yes', function() {
+        $('#confirmTimeChangePopup').fadeOut();
+        $('input[name="testDriveDate"]').focus();
+    });
+
+    // Xử lý nút đóng popup chọn thời gian khác
+    $(document).on('click', '.change-time-no', function() {
+        $('#confirmTimeChangePopup').fadeOut();
+    });
+
+    // Đóng popup khi click ra ngoài
+    $(document).on('click', '.popup-overlay', function(e) {
+        if (e.target === this) {
+            $(this).fadeOut();
+        }
+    });
+
     // Xử lý nút tư vấn xe
+
+    $('#openBookingPopupBtn').click(function () {
+        const stock = parseInt($('.info').data('stock'));
+        const productName = $('.info h2').text();
+
+        if (stock === 0) {
+            toastr.error('Xin lỗi, sản phẩm ' + productName + ' hiện đã hết hàng. Vui lòng liên hệ với chúng tôi để được tư vấn về các sản phẩm khác.');
+            return;
+        }
+
+        // Nếu còn hàng thì mở popup tư vấn
+        // $('#consultPopup').css('display', 'flex');
+    });
+
     $('#openConsultPopupBtn').click(function () {
         const stock = parseInt($('.info').data('stock'));
         const productName = $('.info h2').text();
@@ -497,4 +537,15 @@ $(document).ready(function () {
     //     });
     // });
 
+    // Thêm xử lý đóng popup thành công
+    $(document).on('click', '.close-success-popup', function() {
+        $('#successPopup').fadeOut();
+    });
+
+    // Đóng popup khi click ra ngoài
+    $(document).on('click', '#successPopup', function(e) {
+        if (e.target === this) {
+            $(this).fadeOut();
+        }
+    });
 });

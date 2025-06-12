@@ -490,3 +490,106 @@ body {
 #bookingForm .popup-option-button:hover {
     background-color: #004085;
 }
+
+/* CSS cho popup thông báo thành công */
+.success-popup {
+    text-align: center;
+    padding: 30px;
+    max-width: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 40px;
+}
+
+.success-popup h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.success-popup p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.success-popup button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.success-popup button:hover {
+    background: #45a049;
+}
+
+/* CSS cho popup xác nhận */
+.confirm-popup {
+    text-align: center;
+    padding: 30px;
+    max-width: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.confirm-popup h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.confirm-popup p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.confirm-buttons button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.confirm-yes, .change-time-yes {
+    background: #4CAF50;
+    color: white;
+}
+
+.confirm-yes:hover, .change-time-yes:hover {
+    background: #45a049;
+}
+
+.confirm-no, .change-time-no {
+    background: #f44336;
+    color: white;
+}
+
+.confirm-no:hover, .change-time-no:hover {
+    background: #da190b;
+}
